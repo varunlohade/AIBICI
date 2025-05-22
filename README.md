@@ -1,41 +1,19 @@
-# Python Project
 
-This is a Python project initialized with basic configuration and structure.
+## TODO
 
-## Setup
+### Memory Implementation
+- [ ] Implement conversation memory storage
+- [ ] Add long-term memory capabilities
+- [ ] Implement memory retrieval and context management
+- [ ] Add memory persistence across sessions
 
-1. Create a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Unix/macOS
-# or
-.\venv\Scripts\activate  # On Windows
-```
+### Text-to-Speech (TTS)
+- [ ] Integrate TTS engine
+- [ ] Add voice customization options
+- [ ] Implement real-time speech synthesis
+- [ ] Add support for multiple languages
 
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-## Project Structure
-
-```
-.
-├── README.md
-├── requirements.txt
-├── src/
-│   └── __init__.py
-├── tests/
-│   └── __init__.py
-└── .gitignore
-```
-
-## Development
-
-- Use `black` for code formatting
-- Use `flake8` for linting
-- Use `pytest` for testing
-
-## License
-
-MIT # AIBICI
+### Speech-to-Text (STT)
+- [ ] Implement real-time speech recognition
+- [ ] Add support for multiple languages
+- [ ] Implement continuous listening mode
