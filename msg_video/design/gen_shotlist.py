@@ -137,34 +137,17 @@ shot(B(3, "one"), D(), "CLOSE",
      [(W(3, "one"), "whoosh", 0.4), (W(3, "letter,"), "paper", 0.4), (W(3, "1968."), "pop", 0.45)],
      ["LETTER"], beats=[(W(3, "1968.") + 1.0, "the envelope's flap lifts a little")])
 
-# ================================================================ s02 title
-scene("s02_title")
-shot(0.0, 1.2, "MEDIUM",
-     "A single gold drop falls into a broth surface on 'MSG.'; the Fifth Ripple spreads (4 white rings, the fifth "
-     "gold and wider); Goldie pops up out of the centre.",
-     "Drop falling", "Fifth Ripple + Goldie", "Title slip",
-     "Locked.",
-     [("MSG", W(1, "msg."), None)], "Match: the gold drop from s06.10 lands", "Continuous",
-     [(0.05, "swoosh_down", 0.4), (W(1, "msg."), "bubble", 0.5), (W(1, "msg.") + 0.1, "impact_soft", 0.6)],
-     ["GOLDIE", "RIPPLE"])
-shot(1.2, D(), "MEDIUM",
-     "Goldie bobs in the gold ring and smiles at camera; rings keep spreading; Goldie waves on 'kitchen'.",
-     "—", "Goldie in the ripple", "'MSG' title slip (Young Serif)",
-     "Slow push-in.",
-     [("MSG", 1.2, None)], "Continuous", RIPPLE_OUT,
-     [(W(1, "misunderstood"), "sparkle", 0.5), (W(1, "kitchen."), "pop", 0.4)],
-     ["GOLDIE", "RIPPLE"], hero="Title: Goldie and the Fifth Ripple", beats=[(W(1, "molecule"), "new ring spawns")])
-
 # ================================================================ s03 Ikeda
 scene("s03_ikeda")
 shot(0.0, B(1, "tasted"), "MEDIUM",
-     "1908: a bright period laboratory-kitchen; Kikunae Ikeda (respectful paper doll: high collar, round glasses, "
-     "moustache) carries a steaming bowl to his desk.",
-     "Date slip", "Ikeda + bowl", "Desk",
-     "Lateral truck with Ikeda.",
-     [("1908", W(1, "1908,"), None)], "Gold Ripple reveal", "Continuous",
-     [(W(1, "1908,"), "pop", 0.4), (W(1, "chemist"), "paper", 0.3), (W(1, "ikeda"), "pop_small", 0.3)],
-     ["IKEDA"], beats=[(W(1, "japanese"), "steam curls off the bowl")])
+     "Opens on the gold drop from s06.10 landing in a steaming soup bowl: a small Fifth Ripple spreads on the broth. "
+     "Pull back: 1908, a bright period laboratory-kitchen; Kikunae Ikeda (respectful paper doll: high collar, round "
+     "glasses, moustache) is carrying that bowl to his desk.",
+     "Date slip", "Ikeda + bowl (ripple on the broth)", "Desk",
+     "Start close on the bowl, pull back, lateral truck with Ikeda.",
+     [("1908", W(1, "1908,"), None)], "Match: the gold drop from s06.10 lands in Ikeda's soup bowl (no blank frame)", "Continuous",
+     [(0.05, "bubble", 0.45), (W(1, "1908,"), "pop", 0.4), (W(1, "chemist"), "paper", 0.3), (W(1, "ikeda"), "pop_small", 0.3)],
+     ["IKEDA", "RIPPLE"], beats=[(W(1, "japanese"), "steam curls off the bowl")])
 shot(B(1, "tasted"), L(2), "MEDIUM-CLOSE",
      "Ikeda sips. A long ruffled kombu blade (kelp ribbon with wavy edges and a holdfast) hangs over the bowl's rim, "
      "unmistakably seaweed; his eyebrows lift and a '?' pops on 'odd'.",
@@ -418,12 +401,12 @@ shot(B(6, "the"), L(7), "MEDIUM -> CLOSE",
 shot(L(7), D(), "MEDIUM",
      "BRIDGE TO THE SCIENCE: a giant ink '?' cut-out drops onto the stamped carton on 'right?'. Then the villain shaker "
      "steps into the foreground and turns to look straight at camera on 'Is MSG'; its moustache wobbles loose on 'bad'. "
-     "On 'you?' a single gold drop falls from the top of frame toward it: that drop continues into s02's title ripple.",
+     "On 'you?' a single gold drop falls from the top of frame: that drop lands in Ikeda's soup bowl at the start of s03.",
      "Gold drop falling (end)", "Shaker looking at camera", "Carton with '?' behind",
      "Slow push-in on the shaker.",
-     [], "Continuous", "Match: the gold drop falls into s02 (no blank frame)",
+     [], "Continuous", "Match: the gold drop falls into Ikeda's bowl in s03 (no blank frame)",
      [(W(7, "right?"), "thud", 0.45), (W(7, "msg"), "boing", 0.3), (W(7, "bad"), "pop_small", 0.35), (W(7, "you?"), "swoosh_down", 0.4)],
-     ["SHAKER", "TAKEOUT", "HEADLINE"], hero="Bridge: 'Is MSG actually bad for you?' -> title",
+     ["SHAKER", "TAKEOUT", "HEADLINE"], hero="Bridge: 'Is MSG actually bad for you?' -> the gold drop into Ikeda's bowl",
      beats=[(W(7, "you?") + 0.15, "the drop enters frame")])
 
 # ================================================================ s09 outro (LOOP)
@@ -499,7 +482,7 @@ CONTINUITY = {
     "TOMATO": ("Tomato", "Same ripe tomato paper cut throughout s04."),
     "KOMBU": ("Kombu seaweed", "A long ruffled kelp blade: wavy edges, a midrib, a small holdfast, kombu green with "
               "turquoise under-print and a few bubbles. Must read as seaweed at thumbnail size (s03, s06)."),
-    "RIPPLE": ("The Fifth Ripple", "KP.ripple: drop + 5 rings, the fifth gold and wider: s02, s03, s06 (anti-ripple), "
+    "RIPPLE": ("The Fifth Ripple", "KP.ripple: drop + 5 rings, the fifth gold and wider: s03 (drop into the bowl, taste rings), s06 (anti-ripple), "
                "s07 (chart baseline), s09 (ramen, end card)."),
     "HEADLINE": ("Stamped headline", "KP.stamp, Young Serif, '\"CHINESE-RESTAURANT SYNDROME\"' over two lines, tomato "
                  "red, distressed. One render, used in s06.05 and stamped onto the carton in s06.09."),
@@ -544,13 +527,12 @@ GUARDRAILS = {
     ],
 }
 
-ORDER = ["s01_coldopen", "s06_origin", "s05_body", "s02_title", "s03_ikeda", "s04_everywhere", "s07_tests", "s08_twist", "s09_outro"]
+ORDER = ["s01_coldopen", "s06_origin", "s05_body", "s03_ikeda", "s04_everywhere", "s07_tests", "s08_twist", "s09_outro"]
 ORDER_WHY = {
     "s01_coldopen": "BUILT - rework: clip order swapped (hungry first), camera pushed in so the clip is big, flash-forward removed, last shot hands the envelope over to s06 by match cut.",
-    "s06_origin": "BUILT - rework: now 2nd in the Reel; opens on the s01 desk; gut-cell cameo removed; s06.09 'fear stuck' becomes a full-frame stamp-on-carton beat; new s06.10 bridge ('Is MSG actually bad for you?') drops the gold drop into s02.",
+    "s06_origin": "BUILT - rework: now 2nd in the Reel; opens on the s01 desk; gut-cell cameo removed; s06.09 'fear stuck' becomes a full-frame stamp-on-carton beat; new s06.10 bridge ('Is MSG actually bad for you?') drops the gold drop into Ikeda's bowl (s03).",
     "s05_body": "BUILT - re-time only (still between s04 and s07).",
-    "s02_title": "BUILT - re-time; opens on the gold drop handed over from s06.10.",
-    "s03_ikeda": "scenes/s03_ikeda.js exists (previous cut) - rework to 5 shots.",
+    "s03_ikeda": "scenes/s03_ikeda.js exists (previous cut) - rework to 5 shots; now opens on the s06.10 gold drop landing in the bowl, and is where Goldie is first seen (s03.04), since the title card is gone.",
     "s04_everywhere": "To build: Earth of Goldies, 3-food stack, equality split.",
     "s07_tests": "To build: 3 shots (shuffle + volunteers, chart, GRAS + shelf).",
     "s08_twist": "To build: scale + ions, pot + meter; now hands straight into s09.",
@@ -692,8 +674,8 @@ y 1920 └───────────────────────�
   outlines, no glows, no gradients, vivid riso stock only, gold reserved for glutamate (Goldie). Use the `KP` kit
   (`design/frames/kombu-paper/frames.js`).
 - **Transitions:** every paper slide carries the next shot's art on the sheet (viewer test: two slides flashed a
-  blank colour; never again). Gold Ripple wipe on act changes, match cuts at s01→s06 (envelope) and s06→s02 (gold
-  drop), channel flicker on
+  blank colour; never again). Gold Ripple wipe on act changes, match cuts at s01→s06 (envelope) and s06→s03 (gold
+  drop into Ikeda's bowl), channel flicker on
   the TV wall. No dips to black anywhere: the Reel opens lit and loops.
 - **Timing:** shot boundaries are line starts or `word start - 0.1 s`; labels and SFX land on real word starts.
   Times are scene-relative; `reel_time` in the JSON is the Reel clock.

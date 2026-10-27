@@ -10,7 +10,7 @@
    "nothing important cropped at frame edges (40 px inside the key box)",
    "hook within 2 s"
   ],
-  "duration": 133.827,
+  "duration": 129.04,
   "fps": 30,
   "resolution": [
    1080,
@@ -81,19 +81,15 @@
   },
   {
    "scene": "s06_origin",
-   "why": "BUILT - rework: now 2nd in the Reel; opens on the s01 desk; gut-cell cameo removed; s06.09 'fear stuck' becomes a full-frame stamp-on-carton beat; new s06.10 bridge ('Is MSG actually bad for you?') drops the gold drop into s02."
+   "why": "BUILT - rework: now 2nd in the Reel; opens on the s01 desk; gut-cell cameo removed; s06.09 'fear stuck' becomes a full-frame stamp-on-carton beat; new s06.10 bridge ('Is MSG actually bad for you?') drops the gold drop into Ikeda's bowl (s03)."
   },
   {
    "scene": "s05_body",
    "why": "BUILT - re-time only (still between s04 and s07)."
   },
   {
-   "scene": "s02_title",
-   "why": "BUILT - re-time; opens on the gold drop handed over from s06.10."
-  },
-  {
    "scene": "s03_ikeda",
-   "why": "scenes/s03_ikeda.js exists (previous cut) - rework to 5 shots."
+   "why": "scenes/s03_ikeda.js exists (previous cut) - rework to 5 shots; now opens on the s06.10 gold drop landing in the bowl, and is where Goldie is first seen (s03.04), since the title card is gone."
   },
   {
    "scene": "s04_everywhere",
@@ -472,7 +468,7 @@
   {
    "id": "s06_origin",
    "title": "How the Rumour Started",
-   "duration": 35.837,
+   "duration": 36.394,
    "reel_offset": 14.929,
    "build_order": 2,
    "shots": [
@@ -1083,23 +1079,23 @@
     {
      "id": "s06.10",
      "start": 31.9,
-     "end": 35.837,
+     "end": 36.394,
      "reel_time": [
       46.829,
-      50.766
+      51.323
      ],
      "lines": [
       {
        "n": 7,
        "voice": "NARR",
        "start": 31.9,
-       "end": 35.337,
+       "end": 35.894,
        "coverage": "full",
        "text": "But was he right? Is MSG actually bad for you?"
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "BRIDGE TO THE SCIENCE: a giant ink '?' cut-out drops onto the stamped carton on 'right?'. Then the villain shaker steps into the foreground and turns to look straight at camera on 'Is MSG'; its moustache wobbles loose on 'bad'. On 'you?' a single gold drop falls from the top of frame toward it: that drop continues into s02's title ripple.",
+     "on_screen": "BRIDGE TO THE SCIENCE: a giant ink '?' cut-out drops onto the stamped carton on 'right?'. Then the villain shaker steps into the foreground and turns to look straight at camera on 'Is MSG'; its moustache wobbles loose on 'bad'. On 'you?' a single gold drop falls from the top of frame: that drop lands in Ikeda's soup bowl at the start of s03.",
      "layout": {
       "TOP": "Gold drop falling (end)",
       "MID": "Shaker looking at camera",
@@ -1111,31 +1107,31 @@
      "flash": false,
      "beats": [
       {
-       "t": 35.277,
+       "t": 35.243,
        "action": "the drop enters frame"
       }
      ],
-     "max_still": 1.29,
+     "max_still": 1.24,
      "transition_in": "Continuous",
-     "transition_out": "Match: the gold drop falls into s02 (no blank frame)",
+     "transition_out": "Match: the gold drop falls into Ikeda's bowl in s03 (no blank frame)",
      "sfx": [
       {
-       "t": 32.531,
+       "t": 32.604,
        "name": "thud",
        "gain": 0.45
       },
       {
-       "t": 33.414,
+       "t": 33.451,
        "name": "boing",
        "gain": 0.3
       },
       {
-       "t": 34.706,
+       "t": 34.69,
        "name": "pop_small",
        "gain": 0.35
       },
       {
-       "t": 35.127,
+       "t": 35.093,
        "name": "swoosh_down",
        "gain": 0.4
       }
@@ -1145,142 +1141,7 @@
       "TAKEOUT",
       "HEADLINE"
      ],
-     "hero": "Bridge: 'Is MSG actually bad for you?' -> title",
-     "notes": null
-    }
-   ]
-  },
-  {
-   "id": "s02_title",
-   "title": "Title Card",
-   "duration": 4.694,
-   "reel_offset": 50.766,
-   "build_order": 4,
-   "shots": [
-    {
-     "id": "s02.01",
-     "start": 0.0,
-     "end": 1.2,
-     "reel_time": [
-      50.766,
-      51.966
-     ],
-     "lines": [
-      {
-       "n": 1,
-       "voice": "NARR",
-       "start": 0.3,
-       "end": 4.294,
-       "coverage": "partial",
-       "text": "MSG. The most misunderstood molecule in your kitchen."
-      }
-     ],
-     "shot_size": "MEDIUM",
-     "on_screen": "A single gold drop falls into a broth surface on 'MSG.'; the Fifth Ripple spreads (4 white rings, the fifth gold and wider); Goldie pops up out of the centre.",
-     "layout": {
-      "TOP": "Drop falling",
-      "MID": "Fifth Ripple + Goldie",
-      "LOW": "Title slip"
-     },
-     "camera": "Locked.",
-     "labels": [
-      {
-       "text": "MSG",
-       "in": 0.3,
-       "out": 1.2
-      }
-     ],
-     "credit_lower_third": false,
-     "flash": false,
-     "beats": [],
-     "max_still": 0.8,
-     "transition_in": "Match: the gold drop from s06.10 lands",
-     "transition_out": "Continuous",
-     "sfx": [
-      {
-       "t": 0.05,
-       "name": "swoosh_down",
-       "gain": 0.4
-      },
-      {
-       "t": 0.3,
-       "name": "bubble",
-       "gain": 0.5
-      },
-      {
-       "t": 0.4,
-       "name": "impact_soft",
-       "gain": 0.6
-      }
-     ],
-     "props": [
-      "GOLDIE",
-      "RIPPLE"
-     ],
-     "hero": null,
-     "notes": null
-    },
-    {
-     "id": "s02.02",
-     "start": 1.2,
-     "end": 4.694,
-     "reel_time": [
-      51.966,
-      55.46
-     ],
-     "lines": [
-      {
-       "n": 1,
-       "voice": "NARR",
-       "start": 0.3,
-       "end": 4.294,
-       "coverage": "partial",
-       "text": "MSG. The most misunderstood molecule in your kitchen."
-      }
-     ],
-     "shot_size": "MEDIUM",
-     "on_screen": "Goldie bobs in the gold ring and smiles at camera; rings keep spreading; Goldie waves on 'kitchen'.",
-     "layout": {
-      "TOP": "—",
-      "MID": "Goldie in the ripple",
-      "LOW": "'MSG' title slip (Young Serif)"
-     },
-     "camera": "Slow push-in.",
-     "labels": [
-      {
-       "text": "MSG",
-       "in": 1.2,
-       "out": 4.694
-      }
-     ],
-     "credit_lower_third": false,
-     "flash": false,
-     "beats": [
-      {
-       "t": 2.602,
-       "action": "new ring spawns"
-      }
-     ],
-     "max_still": 1.25,
-     "transition_in": "Continuous",
-     "transition_out": "Gold Ripple wipe (the ring reveals the next scene inside it)",
-     "sfx": [
-      {
-       "t": 1.76,
-       "name": "sparkle",
-       "gain": 0.5
-      },
-      {
-       "t": 3.85,
-       "name": "pop",
-       "gain": 0.4
-      }
-     ],
-     "props": [
-      "GOLDIE",
-      "RIPPLE"
-     ],
-     "hero": "Title: Goldie and the Fifth Ripple",
+     "hero": "Bridge: 'Is MSG actually bad for you?' -> the gold drop into Ikeda's bowl",
      "notes": null
     }
    ]
@@ -1288,91 +1149,97 @@
   {
    "id": "s03_ikeda",
    "title": "1908: The Discovery of Umami",
-   "duration": 16.336,
-   "reel_offset": 55.46,
-   "build_order": 5,
+   "duration": 15.686,
+   "reel_offset": 51.323,
+   "build_order": 4,
    "shots": [
     {
      "id": "s03.01",
      "start": 0.0,
-     "end": 4.172,
+     "end": 4.246,
      "reel_time": [
-      55.46,
-      59.632
+      51.323,
+      55.569
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 7.22,
+       "end": 6.569,
        "coverage": "partial",
        "text": "In 1908, a Japanese chemist named Kikunae Ikeda tasted something odd in his seaweed soup."
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "1908: a bright period laboratory-kitchen; Kikunae Ikeda (respectful paper doll: high collar, round glasses, moustache) carries a steaming bowl to his desk.",
+     "on_screen": "Opens on the gold drop from s06.10 landing in a steaming soup bowl: a small Fifth Ripple spreads on the broth. Pull back: 1908, a bright period laboratory-kitchen; Kikunae Ikeda (respectful paper doll: high collar, round glasses, moustache) is carrying that bowl to his desk.",
      "layout": {
       "TOP": "Date slip",
-      "MID": "Ikeda + bowl",
+      "MID": "Ikeda + bowl (ripple on the broth)",
       "LOW": "Desk"
      },
-     "camera": "Lateral truck with Ikeda.",
+     "camera": "Start close on the bowl, pull back, lateral truck with Ikeda.",
      "labels": [
       {
        "text": "1908",
-       "in": 0.552,
-       "out": 4.172
+       "in": 0.575,
+       "out": 4.246
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [
       {
-       "t": 1.936,
+       "t": 1.978,
        "action": "steam curls off the bowl"
       }
      ],
-     "max_still": 1.38,
-     "transition_in": "Gold Ripple reveal",
+     "max_still": 1.4,
+     "transition_in": "Match: the gold drop from s06.10 lands in Ikeda's soup bowl (no blank frame)",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 0.552,
+       "t": 0.05,
+       "name": "bubble",
+       "gain": 0.45
+      },
+      {
+       "t": 0.575,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 2.542,
+       "t": 2.592,
        "name": "paper",
        "gain": 0.3
       },
       {
-       "t": 3.695,
+       "t": 3.761,
        "name": "pop_small",
        "gain": 0.3
       }
      ],
      "props": [
-      "IKEDA"
+      "IKEDA",
+      "RIPPLE"
      ],
      "hero": null,
      "notes": null
     },
     {
      "id": "s03.02",
-     "start": 4.172,
-     "end": 7.47,
+     "start": 4.246,
+     "end": 6.819,
      "reel_time": [
-      59.632,
-      62.93
+      55.569,
+      58.142
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 7.22,
+       "end": 6.569,
        "coverage": "partial",
        "text": "In 1908, a Japanese chemist named Kikunae Ikeda tasted something odd in his seaweed soup."
       }
@@ -1388,29 +1255,29 @@
      "labels": [
       {
        "text": "Seaweed",
-       "in": 5.839,
-       "out": 7.47
+       "in": 5.934,
+       "out": 6.819
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.63,
+     "max_still": 1.0,
      "transition_in": "Continuous",
      "transition_out": "Push into the bowl",
      "sfx": [
       {
-       "t": 4.272,
+       "t": 4.346,
        "name": "slurp",
        "gain": 0.35
       },
       {
-       "t": 5.262,
+       "t": 5.35,
        "name": "pop_small",
        "gain": 0.35
       },
       {
-       "t": 5.839,
+       "t": 5.934,
        "name": "bubble",
        "gain": 0.3
       }
@@ -1424,18 +1291,18 @@
     },
     {
      "id": "s03.03",
-     "start": 7.47,
-     "end": 9.725,
+     "start": 6.819,
+     "end": 9.075,
      "reel_time": [
-      62.93,
-      65.185
+      58.142,
+      60.398
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 7.47,
-       "end": 13.832,
+       "start": 6.819,
+       "end": 13.182,
        "coverage": "partial",
        "text": "Not sweet, sour, salty or bitter. He called it umami, and turned it into a seasoning."
       }
@@ -1457,22 +1324,22 @@
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 7.693,
+       "t": 7.043,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 8.098,
+       "t": 7.447,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 8.502,
+       "t": 7.852,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 9.053,
+       "t": 8.403,
        "name": "pop",
        "gain": 0.35
       }
@@ -1487,18 +1354,18 @@
     },
     {
      "id": "s03.04",
-     "start": 9.725,
-     "end": 14.032,
+     "start": 9.075,
+     "end": 13.382,
      "reel_time": [
-      65.185,
-      69.492
+      60.398,
+      64.705
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 7.47,
-       "end": 13.832,
+       "start": 6.819,
+       "end": 13.182,
        "coverage": "partial",
        "text": "Not sweet, sour, salty or bitter. He called it umami, and turned it into a seasoning."
       }
@@ -1514,8 +1381,8 @@
      "labels": [
       {
        "text": "Umami",
-       "in": 10.56,
-       "out": 14.032
+       "in": 9.91,
+       "out": 13.382
       }
      ],
      "credit_lower_third": false,
@@ -1526,22 +1393,22 @@
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 10.56,
+       "t": 9.91,
        "name": "impact_soft",
        "gain": 0.6
       },
       {
-       "t": 10.71,
+       "t": 10.06,
        "name": "chime",
        "gain": 0.4
       },
       {
-       "t": 11.515,
+       "t": 10.865,
        "name": "swoosh_down",
        "gain": 0.35
       },
       {
-       "t": 12.618,
+       "t": 11.968,
        "name": "pop",
        "gain": 0.35
       }
@@ -1556,18 +1423,18 @@
     },
     {
      "id": "s03.05",
-     "start": 14.032,
-     "end": 16.336,
+     "start": 13.382,
+     "end": 15.686,
      "reel_time": [
-      69.492,
-      71.796
+      64.705,
+      67.009
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 14.032,
-       "end": 15.936,
+       "start": 13.382,
+       "end": 15.286,
        "coverage": "full",
        "text": "Monosodium glutamate."
       }
@@ -1583,8 +1450,8 @@
      "labels": [
       {
        "text": "MSG",
-       "in": 14.067,
-       "out": 16.336
+       "in": 13.417,
+       "out": 15.686
       }
      ],
      "credit_lower_third": false,
@@ -1595,17 +1462,17 @@
      "transition_out": "Paper slide carrying the next shot's art (never a blank sheet)",
      "sfx": [
       {
-       "t": 14.067,
+       "t": 13.417,
        "name": "click",
        "gain": 0.4
       },
       {
-       "t": 14.861,
+       "t": 14.211,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 15.936,
+       "t": 15.286,
        "name": "whoosh",
        "gain": 0.35
       }
@@ -1623,16 +1490,16 @@
    "id": "s04_everywhere",
    "title": "Glutamate Is Everywhere",
    "duration": 13.596,
-   "reel_offset": 71.796,
-   "build_order": 6,
+   "reel_offset": 67.009,
+   "build_order": 5,
    "shots": [
     {
      "id": "s04.01",
      "start": 0.0,
      "end": 2.353,
      "reel_time": [
-      71.796,
-      74.149
+      67.009,
+      69.362
      ],
      "lines": [
       {
@@ -1694,8 +1561,8 @@
      "start": 2.353,
      "end": 4.673,
      "reel_time": [
-      74.149,
-      76.469
+      69.362,
+      71.682
      ],
      "lines": [
       {
@@ -1758,8 +1625,8 @@
      "start": 4.673,
      "end": 7.762,
      "reel_time": [
-      76.469,
-      79.558
+      71.682,
+      74.771
      ],
      "lines": [
       {
@@ -1815,8 +1682,8 @@
      "start": 7.762,
      "end": 11.048,
      "reel_time": [
-      79.558,
-      82.844
+      74.771,
+      78.057
      ],
      "lines": [
       {
@@ -1879,8 +1746,8 @@
      "start": 11.048,
      "end": 13.596,
      "reel_time": [
-      82.844,
-      85.392
+      78.057,
+      80.605
      ],
      "lines": [
       {
@@ -1943,7 +1810,7 @@
    "id": "s05_body",
    "title": "What Happens When You Eat It",
    "duration": 15.221,
-   "reel_offset": 85.392,
+   "reel_offset": 80.605,
    "build_order": 3,
    "shots": [
     {
@@ -1951,8 +1818,8 @@
      "start": 0.0,
      "end": 2.265,
      "reel_time": [
-      85.392,
-      87.657
+      80.605,
+      82.87
      ],
      "lines": [
       {
@@ -2008,8 +1875,8 @@
      "start": 2.265,
      "end": 5.528,
      "reel_time": [
-      87.657,
-      90.92
+      82.87,
+      86.133
      ],
      "lines": [
       {
@@ -2077,8 +1944,8 @@
      "start": 5.528,
      "end": 9.666,
      "reel_time": [
-      90.92,
-      95.058
+      86.133,
+      90.271
      ],
      "lines": [
       {
@@ -2151,8 +2018,8 @@
      "start": 9.666,
      "end": 11.813,
      "reel_time": [
-      95.058,
-      97.205
+      90.271,
+      92.418
      ],
      "lines": [
       {
@@ -2209,8 +2076,8 @@
      "start": 11.813,
      "end": 15.221,
      "reel_time": [
-      97.205,
-      100.613
+      92.418,
+      95.826
      ],
      "lines": [
       {
@@ -2267,16 +2134,16 @@
    "id": "s07_tests",
    "title": "Putting MSG to the Test",
    "duration": 12.374,
-   "reel_offset": 100.613,
-   "build_order": 7,
+   "reel_offset": 95.826,
+   "build_order": 6,
    "shots": [
     {
      "id": "s07.01",
      "start": 0.0,
      "end": 3.948,
      "reel_time": [
-      100.613,
-      104.561
+      95.826,
+      99.774
      ],
      "lines": [
       {
@@ -2348,8 +2215,8 @@
      "start": 3.948,
      "end": 7.284,
      "reel_time": [
-      104.561,
-      107.897
+      99.774,
+      103.11
      ],
      "lines": [
       {
@@ -2411,8 +2278,8 @@
      "start": 7.284,
      "end": 12.374,
      "reel_time": [
-      107.897,
-      112.987
+      103.11,
+      108.2
      ],
      "lines": [
       {
@@ -2486,16 +2353,16 @@
    "id": "s08_twist",
    "title": "Plot Twist: MSG vs Salt",
    "duration": 6.319,
-   "reel_offset": 112.987,
-   "build_order": 8,
+   "reel_offset": 108.2,
+   "build_order": 7,
    "shots": [
     {
      "id": "s08.01",
      "start": 0.0,
      "end": 3.769,
      "reel_time": [
-      112.987,
-      116.756
+      108.2,
+      111.969
      ],
      "lines": [
       {
@@ -2583,8 +2450,8 @@
      "start": 3.769,
      "end": 6.319,
      "reel_time": [
-      116.756,
-      119.306
+      111.969,
+      114.519
      ],
      "lines": [
       {
@@ -2653,16 +2520,16 @@
    "id": "s09_outro",
    "title": "So... Is MSG Bad for You?",
    "duration": 14.521,
-   "reel_offset": 119.306,
-   "build_order": 9,
+   "reel_offset": 114.519,
+   "build_order": 8,
    "shots": [
     {
      "id": "s09.01",
      "start": 0.0,
      "end": 4.108,
      "reel_time": [
-      119.306,
-      123.414
+      114.519,
+      118.627
      ],
      "lines": [
       {
@@ -2738,8 +2605,8 @@
      "start": 4.108,
      "end": 7.163,
      "reel_time": [
-      123.414,
-      126.469
+      118.627,
+      121.682
      ],
      "lines": [
       {
@@ -2795,8 +2662,8 @@
      "start": 7.163,
      "end": 9.281,
      "reel_time": [
-      126.469,
-      128.587
+      121.682,
+      123.8
      ],
      "lines": [
       {
@@ -2856,8 +2723,8 @@
      "start": 9.281,
      "end": 11.865,
      "reel_time": [
-      128.587,
-      131.171
+      123.8,
+      126.384
      ],
      "lines": [
       {
@@ -2928,8 +2795,8 @@
      "start": 11.865,
      "end": 14.521,
      "reel_time": [
-      131.171,
-      133.827
+      126.384,
+      129.04
      ],
      "lines": [
       {
@@ -3056,30 +2923,20 @@
   {
    "shot": "s06.10",
    "start": 31.9,
-   "end": 35.837,
+   "end": 36.394,
    "reel_time": [
     46.829,
-    50.766
+    51.323
    ],
-   "beat": "Bridge: 'Is MSG actually bad for you?' -> title"
-  },
-  {
-   "shot": "s02.02",
-   "start": 1.2,
-   "end": 4.694,
-   "reel_time": [
-    51.966,
-    55.46
-   ],
-   "beat": "Title: Goldie and the Fifth Ripple"
+   "beat": "Bridge: 'Is MSG actually bad for you?' -> the gold drop into Ikeda's bowl"
   },
   {
    "shot": "s03.04",
-   "start": 9.725,
-   "end": 14.032,
+   "start": 9.075,
+   "end": 13.382,
    "reel_time": [
-    65.185,
-    69.492
+    60.398,
+    64.705
    ],
    "beat": "Umami is named"
   },
@@ -3088,8 +2945,8 @@
    "start": 11.048,
    "end": 13.596,
    "reel_time": [
-    82.844,
-    85.392
+    78.057,
+    80.605
    ],
    "beat": "Tomato glutamate = MSG glutamate (copies identical)"
   },
@@ -3098,8 +2955,8 @@
    "start": 2.265,
    "end": 5.528,
    "reel_time": [
-    87.657,
-    90.92
+    82.87,
+    86.133
    ],
    "beat": "Gut cells eat glutamate as fuel (style frame B)"
   },
@@ -3108,8 +2965,8 @@
    "start": 5.528,
    "end": 9.666,
    "reel_time": [
-    90.92,
-    95.058
+    86.133,
+    90.271
    ],
    "beat": "95% lands on 'ninety-five'"
   },
@@ -3118,8 +2975,8 @@
    "start": 0.0,
    "end": 3.948,
    "reel_time": [
-    100.613,
-    104.561
+    95.826,
+    99.774
    ],
    "beat": "Double-blind shuffle"
   },
@@ -3128,8 +2985,8 @@
    "start": 3.948,
    "end": 7.284,
    "reel_time": [
-    104.561,
-    107.897
+    99.774,
+    103.11
    ],
    "beat": "MSG vs placebo nearly equal"
   },
@@ -3138,8 +2995,8 @@
    "start": 7.284,
    "end": 12.374,
    "reel_time": [
-    107.897,
-    112.987
+    103.11,
+    108.2
    ],
    "beat": "GRAS stamp"
   },
@@ -3148,8 +3005,8 @@
    "start": 0.0,
    "end": 3.769,
    "reel_time": [
-    112.987,
-    116.756
+    108.2,
+    111.969
    ],
    "beat": "A third of the sodium (ions exactly 3:1)"
   },
@@ -3158,8 +3015,8 @@
    "start": 7.163,
    "end": 9.281,
    "reel_time": [
-    126.469,
-    128.587
+    121.682,
+    123.8
    ],
    "beat": "TVs switch off"
   },
@@ -3168,8 +3025,8 @@
    "start": 9.281,
    "end": 11.865,
    "reel_time": [
-    128.587,
-    131.171
+    123.8,
+    126.384
    ],
    "beat": "'NO' burns out"
   },
@@ -3178,8 +3035,8 @@
    "start": 11.865,
    "end": 14.521,
    "reel_time": [
-    131.171,
-    133.827
+    126.384,
+    129.04
    ],
    "beat": "End card -> loop into the hook"
   }
@@ -3192,8 +3049,6 @@
    "appears_in": [
     "s06.07",
     "s06.08",
-    "s02.01",
-    "s02.02",
     "s03.04",
     "s03.05",
     "s04.01",
@@ -3357,12 +3212,11 @@
   {
    "id": "RIPPLE",
    "name": "The Fifth Ripple",
-   "rules": "KP.ripple: drop + 5 rings, the fifth gold and wider: s02, s03, s06 (anti-ripple), s07 (chart baseline), s09 (ramen, end card).",
+   "rules": "KP.ripple: drop + 5 rings, the fifth gold and wider: s03 (drop into the bowl, taste rings), s06 (anti-ripple), s07 (chart baseline), s09 (ramen, end card).",
    "appears_in": [
     "s06.05",
     "s06.09",
-    "s02.01",
-    "s02.02",
+    "s03.01",
     "s03.03",
     "s03.04",
     "s07.02",
