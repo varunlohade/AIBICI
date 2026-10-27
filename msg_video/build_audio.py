@@ -10,7 +10,7 @@ from script import SCENES, VOICES
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "audio", "narration")
-LEAD_IN = 0.6   # silence before the first line of every scene
+LEAD_IN = 0.3   # silence before the first line of every scene
 SR = 24000
 
 def syllables(w):
@@ -74,7 +74,7 @@ def main():
     for sc in SCENES:
         chunks, lines, t = [np.zeros(int(LEAD_IN * SR), np.float32)], [], LEAD_IN
         for voice, text, pause in sc["lines"]:
-            speed = 1.0 if voice == "NARR" else 1.08
+            speed = 1.1 if voice == "NARR" else 1.12  # brisk documentary pace
             a, sr = k.create(text, voice=VOICES[voice], speed=speed, lang="en-us")
             assert sr == SR
             dur = len(a) / SR

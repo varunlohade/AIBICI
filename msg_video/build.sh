@@ -10,7 +10,7 @@ python3 script.py
 node render.js --video all --jobs 4
 node render.js --sfx
 python3 mix_audio.py
-# One Instagram Reel per part (1080x1920), plus the full-length cut.
+# One Instagram Reel per entry in PARTS (1080x1920), plus the full-length cut.
 python3 - <<'PY'
 from script import PARTS, SCENES
 groups = {p["id"]: p["scenes"] for p in PARTS}
@@ -18,7 +18,7 @@ groups["full"] = [s["id"] for s in SCENES]
 for name, ids in groups.items():
     open(f"out/concat_{name}.txt", "w").write("".join(f"file 'scenes/{i}.mp4'\n" for i in ids))
 PY
-for name in part1 part2 part3 full; do
+for name in $(python3 -c "from script import PARTS; print(' '.join(p['id'] for p in PARTS))") full; do
   audio="out/${name}_audio.wav"; [[ $name == full ]] && audio="out/final_audio.wav"
   ffmpeg -y -loglevel error -f concat -safe 0 -i "out/concat_${name}.txt" -i "$audio" \
     -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart "out/msg_${name}.mp4"
