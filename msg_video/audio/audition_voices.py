@@ -4,7 +4,7 @@ Shortlists voices whose labels describe a calm, warm documentary/narration deliv
 ~180-character sample with each (cached), and writes out/preview/elevenlabs_audition.m4a with a spoken
 number before each sample. Usage: python3 audio/audition_voices.py [max_voices=4]
 """
-import json, os, subprocess, sys
+import json, os, subprocess, sys, urllib.error
 
 import numpy as np
 import soundfile as sf
@@ -31,14 +31,24 @@ def main():
     if cost > left:
         raise SystemExit("not enough credits")
     voices = json.loads(el.request("/voices"))["voices"]
-    pick = sorted(voices, key=score, reverse=True)[:n]
+    ranked = sorted(voices, key=score, reverse=True)
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    out, sr = [], 24000
-    for i, v in enumerate(pick, 1):
+    out, sr, pick = [], 24000, []
+    for v in ranked:
+        if len(pick) == n:
+            break
+        try:
+            sample = el.synth(SAMPLE, v["voice_id"])
+        except urllib.error.HTTPError as e:
+            if e.code in (401, 402, 403):   # voice not usable on this plan via the API; try the next one
+                print(f"   skip {v['name']}: HTTP {e.code}")
+                continue
+            raise
+        pick.append(v)
+        i = len(pick)
         print(f"{i}. {v['name']}  {v['voice_id']}  {v.get('labels')}")
         num = el.synth(f"Voice {i}.", v["voice_id"])
-        out += [num * 0.7, np.zeros(int(.4 * sr), np.float32), el.synth(SAMPLE, v["voice_id"]),
-                np.zeros(int(1.2 * sr), np.float32)]
+        out += [num * 0.7, np.zeros(int(.4 * sr), np.float32), sample, np.zeros(int(1.2 * sr), np.float32)]
     os.makedirs(os.path.join(root, "out", "preview"), exist_ok=True)
     wav = os.path.join(root, "out", "preview", "elevenlabs_audition.wav")
     sf.write(wav, np.concatenate(out), sr)
