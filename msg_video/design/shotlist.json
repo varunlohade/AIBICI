@@ -10,7 +10,7 @@
    "nothing important cropped at frame edges (40 px inside the key box)",
    "hook within 2 s"
   ],
-  "duration": 138.373,
+  "duration": 135.808,
   "fps": 30,
   "resolution": [
    1080,
@@ -116,7 +116,7 @@
   {
    "id": "s01_coldopen",
    "title": "Cold Open: The Accusations",
-   "duration": 22.417,
+   "duration": 21.451,
    "reel_offset": 0.0,
    "build_order": 1,
    "shots": [
@@ -323,17 +323,17 @@
     {
      "id": "s01.04",
      "start": 12.009,
-     "end": 14.208,
+     "end": 14.216,
      "reel_time": [
       12.009,
-      14.208
+      14.216
      ],
      "lines": [
       {
        "n": 4,
        "voice": "NARR",
        "start": 12.009,
-       "end": 19.711,
+       "end": 18.975,
        "coverage": "partial",
        "text": "For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968."
       }
@@ -349,14 +349,14 @@
      "labels": [
       {
        "text": "50 years",
-       "in": 12.268,
-       "out": 14.208
+       "in": 12.261,
+       "out": 14.216
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.02,
+     "max_still": 1.19,
      "transition_in": "Fast pull-back",
      "transition_out": "Paper slide",
      "sfx": [
@@ -366,12 +366,12 @@
        "gain": 0.45
       },
       {
-       "t": 12.268,
+       "t": 12.261,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 13.184,
+       "t": 13.022,
        "name": "tv_on",
        "gain": 0.3
       }
@@ -384,18 +384,18 @@
     },
     {
      "id": "s01.05",
-     "start": 14.208,
-     "end": 17.307,
+     "start": 14.216,
+     "end": 16.424,
      "reel_time": [
-      14.208,
-      17.307
+      14.216,
+      16.424
      ],
      "lines": [
       {
        "n": 4,
        "voice": "NARR",
        "start": 12.009,
-       "end": 19.711,
+       "end": 18.975,
        "coverage": "partial",
        "text": "For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968."
       }
@@ -411,34 +411,34 @@
      "labels": [
       {
        "text": "No MSG",
-       "in": 14.308,
-       "out": 17.307
+       "in": 14.316,
+       "out": 16.424
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [
       {
-       "t": 16.098,
+       "t": 15.438,
        "action": "envelope slides in"
       }
      ],
-     "max_still": 1.13,
+     "max_still": 0.94,
      "transition_in": "Paper slide",
      "transition_out": "Smash cut (flash-forward)",
      "sfx": [
       {
-       "t": 14.308,
+       "t": 14.316,
        "name": "neon_flicker",
        "gain": 0.45
       },
       {
-       "t": 14.963,
+       "t": 14.497,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 16.753,
+       "t": 15.981,
        "name": "paper",
        "gain": 0.35
       }
@@ -452,18 +452,18 @@
     },
     {
      "id": "s01.06",
-     "start": 17.307,
-     "end": 18.992,
+     "start": 16.424,
+     "end": 17.915,
      "reel_time": [
-      17.307,
-      18.992
+      16.424,
+      17.915
      ],
      "lines": [
       {
        "n": 4,
        "voice": "NARR",
        "start": 12.009,
-       "end": 19.711,
+       "end": 18.975,
        "coverage": "partial",
        "text": "For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968."
       }
@@ -479,29 +479,29 @@
      "labels": [
       {
        "text": "\"Chinese-Restaurant Syndrome\"",
-       "in": 18.542,
-       "out": 18.992
+       "in": 17.465,
+       "out": 17.915
       }
      ],
      "credit_lower_third": false,
      "flash": true,
      "beats": [],
-     "max_still": 1.19,
+     "max_still": 0.99,
      "transition_in": "Smash cut",
      "transition_out": "Smash cut back + record scratch",
      "sfx": [
       {
-       "t": 17.357,
+       "t": 16.474,
        "name": "whoosh",
        "gain": 0.45
       },
       {
-       "t": 18.542,
+       "t": 17.465,
        "name": "stamp",
        "gain": 0.8
       },
       {
-       "t": 18.592,
+       "t": 17.515,
        "name": "impact_big",
        "gain": 0.4
       }
@@ -516,26 +516,26 @@
     },
     {
      "id": "s01.07",
-     "start": 18.992,
-     "end": 22.417,
+     "start": 17.915,
+     "end": 21.451,
      "reel_time": [
-      18.992,
-      22.417
+      17.915,
+      21.451
      ],
      "lines": [
       {
        "n": 4,
        "voice": "NARR",
        "start": 12.009,
-       "end": 19.711,
+       "end": 18.975,
        "coverage": "partial",
        "text": "For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968."
       },
       {
        "n": 5,
        "voice": "NARR",
-       "start": 20.061,
-       "end": 21.917,
+       "start": 19.325,
+       "end": 20.951,
        "coverage": "full",
        "text": "But is it actually bad for you?"
       }
@@ -553,35 +553,35 @@
      "flash": false,
      "beats": [
       {
-       "t": 20.662,
+       "t": 19.901,
        "action": "spotlight swings once"
       },
       {
-       "t": 21.629,
+       "t": 20.78,
        "action": "pull-back starts"
       }
      ],
-     "max_still": 1.29,
+     "max_still": 1.64,
      "transition_in": "Smash cut back",
      "transition_out": "Paper slide, the sheet carries a falling gold drop into s02",
      "sfx": [
       {
-       "t": 18.992,
+       "t": 17.915,
        "name": "record_scratch",
        "gain": 0.6
       },
       {
-       "t": 20.286,
+       "t": 19.56,
        "name": "boing",
        "gain": 0.3
       },
       {
-       "t": 21.254,
+       "t": 20.439,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 21.917,
+       "t": 20.951,
        "name": "whoosh",
        "gain": 0.4
       }
@@ -598,8 +598,8 @@
   {
    "id": "s02_title",
    "title": "Title Card",
-   "duration": 4.689,
-   "reel_offset": 22.417,
+   "duration": 4.554,
+   "reel_offset": 21.451,
    "build_order": 4,
    "shots": [
     {
@@ -607,15 +607,15 @@
      "start": 0.0,
      "end": 1.2,
      "reel_time": [
-      22.417,
-      23.617
+      21.451,
+      22.651
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 4.289,
+       "end": 4.154,
        "coverage": "partial",
        "text": "MSG. The most misunderstood molecule in your kitchen."
       }
@@ -631,14 +631,14 @@
      "labels": [
       {
        "text": "MSG",
-       "in": 0.33,
+       "in": 0.308,
        "out": 1.2
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 0.77,
+     "max_still": 0.79,
      "transition_in": "Paper slide",
      "transition_out": "Continuous",
      "sfx": [
@@ -648,12 +648,12 @@
        "gain": 0.4
       },
       {
-       "t": 0.33,
+       "t": 0.308,
        "name": "bubble",
        "gain": 0.5
       },
       {
-       "t": 0.43,
+       "t": 0.408,
        "name": "impact_soft",
        "gain": 0.6
       }
@@ -668,17 +668,17 @@
     {
      "id": "s02.02",
      "start": 1.2,
-     "end": 4.689,
+     "end": 4.554,
      "reel_time": [
-      23.617,
-      27.106
+      22.651,
+      26.005
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 4.289,
+       "end": 4.154,
        "coverage": "partial",
        "text": "MSG. The most misunderstood molecule in your kitchen."
       }
@@ -695,28 +695,28 @@
       {
        "text": "MSG",
        "in": 1.2,
-       "out": 4.689
+       "out": 4.554
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [
       {
-       "t": 2.559,
+       "t": 2.332,
        "action": "new ring spawns"
       }
      ],
-     "max_still": 1.21,
+     "max_still": 1.13,
      "transition_in": "Continuous",
      "transition_out": "Gold Ripple wipe (act change)",
      "sfx": [
       {
-       "t": 1.744,
+       "t": 1.592,
        "name": "sparkle",
        "gain": 0.5
       },
       {
-       "t": 3.766,
+       "t": 3.429,
        "name": "pop",
        "gain": 0.4
       }
@@ -733,24 +733,24 @@
   {
    "id": "s03_ikeda",
    "title": "1908: The Discovery of Umami",
-   "duration": 15.678,
-   "reel_offset": 27.106,
+   "duration": 16.336,
+   "reel_offset": 26.005,
    "build_order": 5,
    "shots": [
     {
      "id": "s03.01",
      "start": 0.0,
-     "end": 4.529,
+     "end": 4.172,
      "reel_time": [
-      27.106,
-      31.635
+      26.005,
+      30.177
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 7.169,
+       "end": 7.22,
        "coverage": "partial",
        "text": "In 1908, a Japanese chemist named Kikunae Ikeda tasted something odd in his seaweed soup."
       }
@@ -766,34 +766,34 @@
      "labels": [
       {
        "text": "1908",
-       "in": 0.545,
-       "out": 4.529
+       "in": 0.552,
+       "out": 4.172
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [
       {
-       "t": 2.064,
+       "t": 1.936,
        "action": "steam curls off the bowl"
       }
      ],
-     "max_still": 1.52,
+     "max_still": 1.38,
      "transition_in": "Gold Ripple reveal",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 0.545,
+       "t": 0.552,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 2.729,
+       "t": 2.542,
        "name": "paper",
        "gain": 0.3
       },
       {
-       "t": 3.996,
+       "t": 3.695,
        "name": "pop_small",
        "gain": 0.3
       }
@@ -806,18 +806,18 @@
     },
     {
      "id": "s03.02",
-     "start": 4.529,
-     "end": 7.419,
+     "start": 4.172,
+     "end": 7.47,
      "reel_time": [
-      31.635,
-      34.525
+      30.177,
+      33.475
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 7.169,
+       "end": 7.22,
        "coverage": "partial",
        "text": "In 1908, a Japanese chemist named Kikunae Ikeda tasted something odd in his seaweed soup."
       }
@@ -833,29 +833,29 @@
      "labels": [
       {
        "text": "Seaweed",
-       "in": 6.349,
-       "out": 7.419
+       "in": 5.839,
+       "out": 7.47
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.09,
+     "max_still": 1.63,
      "transition_in": "Continuous",
      "transition_out": "Push into the bowl",
      "sfx": [
       {
-       "t": 4.629,
+       "t": 4.272,
        "name": "slurp",
        "gain": 0.35
       },
       {
-       "t": 5.716,
+       "t": 5.262,
        "name": "pop_small",
        "gain": 0.35
       },
       {
-       "t": 6.349,
+       "t": 5.839,
        "name": "bubble",
        "gain": 0.3
       }
@@ -869,18 +869,18 @@
     },
     {
      "id": "s03.03",
-     "start": 7.419,
-     "end": 9.57,
+     "start": 7.47,
+     "end": 9.725,
      "reel_time": [
-      34.525,
-      36.676
+      33.475,
+      35.73
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 7.419,
-       "end": 12.987,
+       "start": 7.47,
+       "end": 13.832,
        "coverage": "partial",
        "text": "Not sweet, sour, salty or bitter. He called it umami, and turned it into a seasoning."
       }
@@ -897,27 +897,27 @@
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 0.64,
+     "max_still": 0.67,
      "transition_in": "Push-in",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 7.629,
+       "t": 7.693,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 8.016,
+       "t": 8.098,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 8.403,
+       "t": 8.502,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 8.931,
+       "t": 9.053,
        "name": "pop",
        "gain": 0.35
       }
@@ -932,18 +932,18 @@
     },
     {
      "id": "s03.04",
-     "start": 9.57,
-     "end": 13.187,
+     "start": 9.725,
+     "end": 14.032,
      "reel_time": [
-      36.676,
-      40.293
+      35.73,
+      40.037
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 7.419,
-       "end": 12.987,
+       "start": 7.47,
+       "end": 13.832,
        "coverage": "partial",
        "text": "Not sweet, sour, salty or bitter. He called it umami, and turned it into a seasoning."
       }
@@ -959,34 +959,34 @@
      "labels": [
       {
        "text": "Umami",
-       "in": 10.374,
-       "out": 13.187
+       "in": 10.56,
+       "out": 14.032
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.06,
+     "max_still": 1.41,
      "transition_in": "Continuous",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 10.374,
+       "t": 10.56,
        "name": "impact_soft",
        "gain": 0.6
       },
       {
-       "t": 10.524,
+       "t": 10.71,
        "name": "chime",
        "gain": 0.4
       },
       {
-       "t": 11.289,
+       "t": 11.515,
        "name": "swoosh_down",
        "gain": 0.35
       },
       {
-       "t": 12.345,
+       "t": 12.618,
        "name": "pop",
        "gain": 0.35
       }
@@ -1001,18 +1001,18 @@
     },
     {
      "id": "s03.05",
-     "start": 13.187,
-     "end": 15.678,
+     "start": 14.032,
+     "end": 16.336,
      "reel_time": [
-      40.293,
-      42.784
+      40.037,
+      42.341
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 13.187,
-       "end": 15.278,
+       "start": 14.032,
+       "end": 15.936,
        "coverage": "full",
        "text": "Monosodium glutamate."
       }
@@ -1028,29 +1028,29 @@
      "labels": [
       {
        "text": "MSG",
-       "in": 13.231,
-       "out": 15.678
+       "in": 14.067,
+       "out": 16.336
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.12,
+     "max_still": 1.07,
      "transition_in": "Continuous",
      "transition_out": "Paper slide",
      "sfx": [
       {
-       "t": 13.231,
+       "t": 14.067,
        "name": "click",
        "gain": 0.4
       },
       {
-       "t": 14.346,
+       "t": 14.861,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 15.278,
+       "t": 15.936,
        "name": "whoosh",
        "gain": 0.35
       }
@@ -1067,25 +1067,25 @@
   {
    "id": "s04_everywhere",
    "title": "Glutamate Is Everywhere",
-   "duration": 14.206,
-   "reel_offset": 42.784,
+   "duration": 13.596,
+   "reel_offset": 42.341,
    "build_order": 6,
    "shots": [
     {
      "id": "s04.01",
      "start": 0.0,
-     "end": 3.025,
+     "end": 2.353,
      "reel_time": [
-      42.784,
-      45.809
+      42.341,
+      44.694
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 2.775,
-       "coverage": "full",
+       "end": 2.622,
+       "coverage": "partial",
        "text": "Which sounds alarmingly chemical."
       }
      ],
@@ -1100,14 +1100,14 @@
      "labels": [
       {
        "text": "Chemical?",
-       "in": 1.876,
-       "out": 3.025
+       "in": 1.453,
+       "out": 2.353
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.15,
+     "max_still": 0.9,
      "transition_in": "Paper slide (sheet slides over, shadow leading)",
      "transition_out": "Zoom-out",
      "sfx": [
@@ -1117,12 +1117,12 @@
        "gain": 0.3
       },
       {
-       "t": 0.835,
+       "t": 0.728,
        "name": "bubble",
        "gain": 0.35
       },
       {
-       "t": 1.876,
+       "t": 1.453,
        "name": "error",
        "gain": 0.3
       }
@@ -1136,18 +1136,26 @@
     },
     {
      "id": "s04.02",
-     "start": 3.025,
-     "end": 5.081,
+     "start": 2.353,
+     "end": 4.673,
      "reel_time": [
-      45.809,
-      47.865
+      44.694,
+      47.014
      ],
      "lines": [
       {
+       "n": 1,
+       "voice": "NARR",
+       "start": 0.3,
+       "end": 2.622,
+       "coverage": "partial",
+       "text": "Which sounds alarmingly chemical."
+      },
+      {
        "n": 2,
        "voice": "NARR",
-       "start": 3.025,
-       "end": 7.846,
+       "start": 2.872,
+       "end": 7.562,
        "coverage": "partial",
        "text": "But glutamate is everywhere: tomatoes, parmesan, even breast milk."
       }
@@ -1164,22 +1172,22 @@
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 0.98,
+     "max_still": 0.83,
      "transition_in": "Continuous",
      "transition_out": "Cut",
      "sfx": [
       {
-       "t": 3.057,
+       "t": 2.94,
        "name": "swoosh_up",
        "gain": 0.4
       },
       {
-       "t": 3.259,
+       "t": 3.115,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 4.098,
+       "t": 3.839,
        "name": "sparkle",
        "gain": 0.4
       }
@@ -1192,18 +1200,18 @@
     },
     {
      "id": "s04.03",
-     "start": 5.081,
-     "end": 8.046,
+     "start": 4.673,
+     "end": 7.762,
      "reel_time": [
-      47.865,
-      50.83
+      47.014,
+      50.103
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 3.025,
-       "end": 7.846,
+       "start": 2.872,
+       "end": 7.562,
        "coverage": "partial",
        "text": "But glutamate is everywhere: tomatoes, parmesan, even breast milk."
       }
@@ -1220,22 +1228,22 @@
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.49,
+     "max_still": 1.28,
      "transition_in": "Cut",
      "transition_out": "Split-wipe",
      "sfx": [
       {
-       "t": 5.181,
+       "t": 4.773,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 6.061,
+       "t": 5.532,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 7.548,
+       "t": 6.815,
        "name": "pop",
        "gain": 0.4
       }
@@ -1249,18 +1257,18 @@
     },
     {
      "id": "s04.04",
-     "start": 8.046,
-     "end": 11.737,
+     "start": 7.762,
+     "end": 11.048,
      "reel_time": [
-      50.83,
-      54.521
+      50.103,
+      53.389
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 8.046,
-       "end": 13.806,
+       "start": 7.762,
+       "end": 13.196,
        "coverage": "partial",
        "text": "To your body, glutamate from a tomato and from MSG is the exact same molecule."
       }
@@ -1278,26 +1286,26 @@
      "flash": false,
      "beats": [
       {
-       "t": 9.145,
+       "t": 8.758,
        "action": "diagrams slide in"
       }
      ],
-     "max_still": 1.06,
+     "max_still": 0.94,
      "transition_in": "Split-wipe",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 8.08,
+       "t": 7.813,
        "name": "whoosh",
        "gain": 0.35
       },
       {
-       "t": 10.199,
+       "t": 9.694,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 11.223,
+       "t": 10.602,
        "name": "pop",
        "gain": 0.4
       }
@@ -1313,18 +1321,18 @@
     },
     {
      "id": "s04.05",
-     "start": 11.737,
-     "end": 14.206,
+     "start": 11.048,
+     "end": 13.596,
      "reel_time": [
-      54.521,
-      56.99
+      53.389,
+      55.937
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 8.046,
-       "end": 13.806,
+       "start": 7.762,
+       "end": 13.196,
        "coverage": "partial",
        "text": "To your body, glutamate from a tomato and from MSG is the exact same molecule."
       }
@@ -1340,29 +1348,29 @@
      "labels": [
       {
        "text": "Same molecule",
-       "in": 12.656,
-       "out": 14.206
+       "in": 11.875,
+       "out": 13.596
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [
       {
-       "t": 13.461,
+       "t": 12.656,
        "action": "the merged Goldie winks"
       }
      ],
-     "max_still": 0.8,
+     "max_still": 0.94,
      "transition_in": "Continuous",
      "transition_out": "Gold Ripple wipe (act change)",
      "sfx": [
       {
-       "t": 12.246,
+       "t": 11.511,
        "name": "impact_soft",
        "gain": 0.55
       },
       {
-       "t": 12.656,
+       "t": 11.875,
        "name": "success",
        "gain": 0.4
       }
@@ -1379,24 +1387,24 @@
   {
    "id": "s05_body",
    "title": "What Happens When You Eat It",
-   "duration": 15.166,
-   "reel_offset": 56.99,
+   "duration": 15.221,
+   "reel_offset": 55.937,
    "build_order": 2,
    "shots": [
     {
      "id": "s05.01",
      "start": 0.0,
-     "end": 2.42,
+     "end": 2.265,
      "reel_time": [
-      56.99,
-      59.41
+      55.937,
+      58.202
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 2.22,
+       "end": 2.065,
        "coverage": "full",
        "text": "So what happens when you eat it?"
       }
@@ -1413,22 +1421,22 @@
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 0.9,
+     "max_still": 0.72,
      "transition_in": "Gold Ripple reveal",
      "transition_out": "Dive lands in the gut",
      "sfx": [
       {
-       "t": 0.786,
+       "t": 0.674,
        "name": "whoosh",
        "gain": 0.35
       },
       {
-       "t": 1.687,
+       "t": 1.398,
        "name": "chomp",
        "gain": 0.45
       },
       {
-       "t": 1.913,
+       "t": 1.58,
        "name": "whoosh_long",
        "gain": 0.45
       }
@@ -1442,18 +1450,18 @@
     },
     {
      "id": "s05.02",
-     "start": 2.42,
-     "end": 5.646,
+     "start": 2.265,
+     "end": 5.528,
      "reel_time": [
-      59.41,
-      62.636
+      58.202,
+      61.465
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 2.42,
-       "end": 9.545,
+       "start": 2.265,
+       "end": 9.416,
        "coverage": "partial",
        "text": "The cells lining your gut burn glutamate as fuel. Around ninety-five percent never even reaches your blood."
       }
@@ -1469,34 +1477,34 @@
      "labels": [
       {
        "text": "Fuel!",
-       "in": 5.012,
-       "out": 5.646
+       "in": 4.878,
+       "out": 5.528
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.18,
+     "max_still": 1.21,
      "transition_in": "Dive lands",
      "transition_out": "Pull-back",
      "sfx": [
       {
-       "t": 2.682,
+       "t": 2.499,
        "name": "chomp",
        "gain": 0.4
       },
       {
-       "t": 3.601,
+       "t": 3.437,
        "name": "chomp",
        "gain": 0.35
       },
       {
-       "t": 3.83,
+       "t": 3.671,
        "name": "sizzle",
        "gain": 0.3
       },
       {
-       "t": 5.012,
+       "t": 4.878,
        "name": "pop_small",
        "gain": 0.35
       }
@@ -1511,18 +1519,18 @@
     },
     {
      "id": "s05.03",
-     "start": 5.646,
-     "end": 9.795,
+     "start": 5.528,
+     "end": 9.666,
      "reel_time": [
-      62.636,
-      66.785
+      61.465,
+      65.603
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 2.42,
-       "end": 9.545,
+       "start": 2.265,
+       "end": 9.416,
        "coverage": "partial",
        "text": "The cells lining your gut burn glutamate as fuel. Around ninety-five percent never even reaches your blood."
       }
@@ -1538,39 +1546,39 @@
      "labels": [
       {
        "text": "95%",
-       "in": 6.206,
-       "out": 9.795
+       "in": 6.097,
+       "out": 9.666
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [
       {
-       "t": 7.617,
+       "t": 7.538,
        "action": "a gut cell burps a tiny flame"
       }
      ],
-     "max_still": 1.61,
+     "max_still": 1.64,
      "transition_in": "Pull-back",
      "transition_out": "Track up the vessel",
      "sfx": [
       {
-       "t": 5.746,
+       "t": 5.628,
        "name": "tick",
        "gain": 0.2
       },
       {
-       "t": 5.896,
+       "t": 5.778,
        "name": "tick",
        "gain": 0.2
       },
       {
-       "t": 6.206,
+       "t": 6.097,
        "name": "ding",
        "gain": 0.5
       },
       {
-       "t": 9.224,
+       "t": 9.178,
        "name": "bubble",
        "gain": 0.3
       }
@@ -1585,18 +1593,18 @@
     },
     {
      "id": "s05.04",
-     "start": 9.795,
-     "end": 11.972,
+     "start": 9.666,
+     "end": 11.813,
      "reel_time": [
-      66.785,
-      68.962
+      65.603,
+      67.75
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 9.795,
-       "end": 14.766,
+       "start": 9.666,
+       "end": 14.821,
        "coverage": "partial",
        "text": "And the rest hits the blood-brain barrier, one of the best-guarded borders in your body."
       }
@@ -1612,24 +1620,24 @@
      "labels": [
       {
        "text": "Blood-brain barrier",
-       "in": 10.897,
-       "out": 11.972
+       "in": 10.699,
+       "out": 11.813
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.1,
+     "max_still": 1.11,
      "transition_in": "Track",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 9.795,
+       "t": 9.666,
        "name": "whoosh",
        "gain": 0.4
       },
       {
-       "t": 10.897,
+       "t": 10.699,
        "name": "thud",
        "gain": 0.45
       }
@@ -1643,18 +1651,18 @@
     },
     {
      "id": "s05.05",
-     "start": 11.972,
-     "end": 15.166,
+     "start": 11.813,
+     "end": 15.221,
      "reel_time": [
-      68.962,
-      72.156
+      67.75,
+      71.158
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 9.795,
-       "end": 14.766,
+       "start": 9.666,
+       "end": 14.821,
        "coverage": "partial",
        "text": "And the rest hits the blood-brain barrier, one of the best-guarded borders in your body."
       }
@@ -1671,22 +1679,22 @@
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.53,
+     "max_still": 1.34,
      "transition_in": "Continuous",
      "transition_out": "Paper slide",
      "sfx": [
       {
-       "t": 12.713,
+       "t": 12.287,
        "name": "click",
        "gain": 0.35
       },
       {
-       "t": 14.24,
+       "t": 13.623,
        "name": "boing",
        "gain": 0.4
       },
       {
-       "t": 14.766,
+       "t": 14.821,
        "name": "whoosh",
        "gain": 0.3
       }
@@ -1703,24 +1711,24 @@
   {
    "id": "s07_tests",
    "title": "Putting MSG to the Test",
-   "duration": 12.449,
-   "reel_offset": 72.156,
+   "duration": 12.374,
+   "reel_offset": 71.158,
    "build_order": 7,
    "shots": [
     {
      "id": "s07.01",
      "start": 0.0,
-     "end": 4.341,
+     "end": 3.948,
      "reel_time": [
-      72.156,
-      76.497
+      71.158,
+      75.106
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 7.169,
+       "end": 7.034,
        "coverage": "partial",
        "text": "In double-blind studies, people who said MSG made them sick reacted just as often to a placebo."
       }
@@ -1736,39 +1744,39 @@
      "labels": [
       {
        "text": "Double-blind",
-       "in": 0.563,
-       "out": 4.341
+       "in": 0.559,
+       "out": 3.948
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [
       {
-       "t": 3.736,
+       "t": 3.414,
        "action": "a volunteer clutches its tummy in a thought bubble"
       }
      ],
-     "max_still": 1.65,
+     "max_still": 1.48,
      "transition_in": "Paper slide (sheet slides over, shadow leading)",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 0.328,
+       "t": 0.348,
        "name": "whoosh",
        "gain": 0.3
       },
       {
-       "t": 1.303,
+       "t": 1.225,
        "name": "whoosh",
        "gain": 0.3
       },
       {
-       "t": 2.091,
+       "t": 1.934,
        "name": "bubble",
        "gain": 0.35
       },
       {
-       "t": 4.206,
+       "t": 3.837,
        "name": "bubble",
        "gain": 0.3
       }
@@ -1782,18 +1790,18 @@
     },
     {
      "id": "s07.02",
-     "start": 4.341,
-     "end": 7.419,
+     "start": 3.948,
+     "end": 7.284,
      "reel_time": [
-      76.497,
-      79.575
+      75.106,
+      78.442
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 7.169,
+       "end": 7.034,
        "coverage": "partial",
        "text": "In double-blind studies, people who said MSG made them sick reacted just as often to a placebo."
       }
@@ -1809,29 +1817,29 @@
      "labels": [
       {
        "text": "Placebo",
-       "in": 6.322,
-       "out": 7.419
+       "in": 5.74,
+       "out": 7.284
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.1,
+     "max_still": 1.54,
      "transition_in": "Continuous",
      "transition_out": "Cut",
      "sfx": [
       {
-       "t": 4.441,
+       "t": 4.048,
        "name": "swoosh_up",
        "gain": 0.4
       },
       {
-       "t": 5.382,
+       "t": 4.894,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 6.322,
+       "t": 5.74,
        "name": "ding",
        "gain": 0.35
       }
@@ -1845,18 +1853,18 @@
     },
     {
      "id": "s07.03",
-     "start": 7.419,
-     "end": 12.449,
+     "start": 7.284,
+     "end": 12.374,
      "reel_time": [
-      79.575,
-      84.605
+      78.442,
+      83.532
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 7.419,
-       "end": 12.049,
+       "start": 7.284,
+       "end": 11.974,
        "coverage": "full",
        "text": "The FDA calls it generally recognized as safe. Just like salt."
       }
@@ -1872,39 +1880,39 @@
      "labels": [
       {
        "text": "GRAS",
-       "in": 8.716,
-       "out": 12.449
+       "in": 8.394,
+       "out": 12.374
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.89,
+     "max_still": 1.59,
      "transition_in": "Cut",
      "transition_out": "Paper slide",
      "sfx": [
       {
-       "t": 7.67,
+       "t": 7.509,
        "name": "paper",
        "gain": 0.35
       },
       {
-       "t": 8.716,
+       "t": 8.394,
        "name": "stamp",
        "gain": 0.8
       },
       {
-       "t": 8.766,
+       "t": 8.444,
        "name": "impact_soft",
        "gain": 0.4
       },
       {
-       "t": 10.661,
+       "t": 10.039,
        "name": "sparkle",
        "gain": 0.3
       },
       {
-       "t": 11.748,
+       "t": 10.959,
        "name": "pop",
        "gain": 0.4
       }
@@ -1922,24 +1930,24 @@
   {
    "id": "s08_twist",
    "title": "Plot Twist: MSG vs Salt",
-   "duration": 6.332,
-   "reel_offset": 84.605,
+   "duration": 6.273,
+   "reel_offset": 83.532,
    "build_order": 8,
    "shots": [
     {
      "id": "s08.01",
      "start": 0.0,
-     "end": 4.124,
+     "end": 3.735,
      "reel_time": [
-      84.605,
-      88.729
+      83.532,
+      87.267
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 5.932,
+       "end": 5.873,
        "coverage": "partial",
        "text": "Plot twist: it has a third of the sodium of table salt. Same flavor, less sodium."
       }
@@ -1955,54 +1963,54 @@
      "labels": [
       {
        "text": "Plot twist",
-       "in": 0.323,
-       "out": 1.663
+       "in": 0.389,
+       "out": 1.567
       },
       {
        "text": "1/3 sodium",
-       "in": 1.713,
-       "out": 4.124
+       "in": 1.617,
+       "out": 3.735
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [
       {
-       "t": 3.058,
+       "t": 2.805,
        "action": "scale wobbles level"
       }
      ],
-     "max_still": 1.07,
+     "max_still": 0.93,
      "transition_in": "Page curl",
      "transition_out": "Cut",
      "sfx": [
       {
-       "t": 0.323,
+       "t": 0.389,
        "name": "swoosh_up",
        "gain": 0.45
       },
       {
-       "t": 1.265,
+       "t": 1.221,
        "name": "thud",
        "gain": 0.4
       },
       {
-       "t": 1.413,
+       "t": 1.317,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 1.563,
+       "t": 1.467,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 1.713,
+       "t": 1.617,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 2.385,
+       "t": 2.211,
        "name": "ding",
        "gain": 0.45
       }
@@ -2017,18 +2025,18 @@
     },
     {
      "id": "s08.02",
-     "start": 4.124,
-     "end": 6.332,
+     "start": 3.735,
+     "end": 6.273,
      "reel_time": [
-      88.729,
-      90.937
+      87.267,
+      89.805
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 5.932,
+       "end": 5.873,
        "coverage": "partial",
        "text": "Plot twist: it has a third of the sodium of table salt. Same flavor, less sodium."
       }
@@ -2044,34 +2052,34 @@
      "labels": [
       {
        "text": "Less sodium",
-       "in": 5.165,
-       "out": 6.332
+       "in": 4.666,
+       "out": 6.273
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 0.94,
+     "max_still": 1.41,
      "transition_in": "Cut",
      "transition_out": "Paper slide to the cobalt desk",
      "sfx": [
       {
-       "t": 4.224,
+       "t": 3.835,
        "name": "bubbling_pot",
        "gain": 0.3
       },
       {
-       "t": 4.448,
+       "t": 4.033,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 5.165,
+       "t": 4.666,
        "name": "swoosh_down",
        "gain": 0.35
       },
       {
-       "t": 5.389,
+       "t": 4.864,
        "name": "success",
        "gain": 0.4
       }
@@ -2089,24 +2097,24 @@
   {
    "id": "s06_origin",
    "title": "How the Rumour Started",
-   "duration": 33.217,
-   "reel_offset": 90.937,
+   "duration": 31.807,
+   "reel_offset": 89.805,
    "build_order": 3,
    "shots": [
     {
      "id": "s06.01",
      "start": 0.0,
-     "end": 3.387,
+     "end": 3.569,
      "reel_time": [
-      90.937,
-      94.324
+      89.805,
+      93.374
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 3.137,
+       "end": 3.319,
        "coverage": "full",
        "text": "So how did a seaweed seasoning become a villain?"
       }
@@ -2122,14 +2130,14 @@
      "labels": [
       {
        "text": "Villain?",
-       "in": 2.629,
-       "out": 3.387
+       "in": 2.289,
+       "out": 3.569
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.53,
+     "max_still": 1.31,
      "transition_in": "Paper slide (sheet slides over, shadow leading)",
      "transition_out": "Paper slide",
      "sfx": [
@@ -2139,12 +2147,12 @@
        "gain": 0.3
       },
       {
-       "t": 1.096,
+       "t": 0.983,
        "name": "swoosh_down",
        "gain": 0.3
       },
       {
-       "t": 2.629,
+       "t": 2.289,
        "name": "impact_soft",
        "gain": 0.45
       }
@@ -2158,18 +2166,18 @@
     },
     {
      "id": "s06.02",
-     "start": 3.387,
-     "end": 7.985,
+     "start": 3.569,
+     "end": 6.852,
      "reel_time": [
-      94.324,
-      98.922
+      93.374,
+      96.657
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 3.387,
-       "end": 10.833,
+       "start": 3.569,
+       "end": 9.42,
        "coverage": "partial",
        "text": "In 1968, a doctor wrote to a medical journal: after Chinese food, he felt numb and weak."
       }
@@ -2185,34 +2193,34 @@
      "labels": [
       {
        "text": "1968",
-       "in": 3.659,
-       "out": 7.985
+       "in": 3.742,
+       "out": 6.852
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [
       {
-       "t": 4.859,
+       "t": 4.942,
        "action": "squiggle line 2 writes"
       }
      ],
-     "max_still": 1.91,
+     "max_still": 1.38,
      "transition_in": "Paper slide",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 3.659,
+       "t": 3.742,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 5.377,
+       "t": 4.988,
        "name": "typewriter",
        "gain": 0.35
       },
       {
-       "t": 7.286,
+       "t": 6.372,
        "name": "paper",
        "gain": 0.4
       }
@@ -2225,18 +2233,18 @@
     },
     {
      "id": "s06.03",
-     "start": 7.985,
-     "end": 11.033,
+     "start": 6.852,
+     "end": 9.62,
      "reel_time": [
-      98.922,
-      101.97
+      96.657,
+      99.425
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 3.387,
-       "end": 10.833,
+       "start": 3.569,
+       "end": 9.42,
        "coverage": "partial",
        "text": "In 1968, a doctor wrote to a medical journal: after Chinese food, he felt numb and weak."
       }
@@ -2254,26 +2262,26 @@
      "flash": false,
      "beats": [
       {
-       "t": 9.04,
+       "t": 7.644,
        "action": "letter flutters"
       }
      ],
-     "max_still": 1.0,
+     "max_still": 0.9,
      "transition_in": "Continuous",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 8.085,
+       "t": 6.952,
        "name": "paper",
        "gain": 0.25
       },
       {
-       "t": 10.042,
+       "t": 8.371,
        "name": "pop_small",
        "gain": 0.35
       },
       {
-       "t": 10.519,
+       "t": 8.717,
        "name": "pop_small",
        "gain": 0.35
       }
@@ -2286,18 +2294,18 @@
     },
     {
      "id": "s06.04",
-     "start": 11.033,
-     "end": 13.835,
+     "start": 9.62,
+     "end": 13.442,
      "reel_time": [
-      101.97,
-      104.772
+      99.425,
+      103.247
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 11.033,
-       "end": 13.635,
+       "start": 9.62,
+       "end": 13.242,
        "coverage": "full",
        "text": "Wine? Salt? MSG? He was guessing."
       }
@@ -2313,34 +2321,34 @@
      "labels": [
       {
        "text": "Guessing",
-       "in": 13.194,
-       "out": 13.835
+       "in": 12.745,
+       "out": 13.442
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.13,
+     "max_still": 1.64,
      "transition_in": "Continuous",
      "transition_out": "Whip to the stamp",
      "sfx": [
       {
-       "t": 11.061,
+       "t": 9.638,
        "name": "blip",
        "gain": 0.4
       },
       {
-       "t": 11.563,
+       "t": 10.369,
        "name": "blip",
        "gain": 0.4
       },
       {
-       "t": 12.065,
+       "t": 11.1,
        "name": "blip",
        "gain": 0.45
       },
       {
-       "t": 13.194,
+       "t": 12.745,
        "name": "boing",
        "gain": 0.35
       }
@@ -2355,18 +2363,18 @@
     },
     {
      "id": "s06.05",
-     "start": 13.835,
-     "end": 18.295,
+     "start": 13.442,
+     "end": 18.201,
      "reel_time": [
-      104.772,
-      109.232
+      103.247,
+      108.006
      ],
      "lines": [
       {
        "n": 4,
        "voice": "NARR",
-       "start": 13.835,
-       "end": 17.995,
+       "start": 13.442,
+       "end": 17.901,
        "coverage": "full",
        "text": "But the journal gave it a catchy headline: Chinese Restaurant Syndrome."
       }
@@ -2382,39 +2390,39 @@
      "labels": [
       {
        "text": "\"Chinese-Restaurant Syndrome\"",
-       "in": 16.404,
-       "out": 18.295
+       "in": 15.912,
+       "out": 18.201
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.1,
+     "max_still": 1.3,
      "transition_in": "Whip",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 14.284,
+       "t": 13.926,
        "name": "swoosh_down",
        "gain": 0.3
       },
       {
-       "t": 15.308,
+       "t": 14.885,
        "name": "swoosh_down",
        "gain": 0.35
       },
       {
-       "t": 16.404,
+       "t": 15.912,
        "name": "stamp",
        "gain": 0.8
       },
       {
-       "t": 16.454,
+       "t": 15.962,
        "name": "impact_big",
        "gain": 0.45
       },
       {
-       "t": 17.46,
+       "t": 16.899,
        "name": "paper",
        "gain": 0.35
       }
@@ -2430,18 +2438,18 @@
     },
     {
      "id": "s06.06",
-     "start": 18.295,
-     "end": 22.033,
+     "start": 18.201,
+     "end": 21.107,
      "reel_time": [
-      109.232,
-      112.97
+      108.006,
+      110.912
      ],
      "lines": [
       {
        "n": 5,
        "voice": "NARR",
-       "start": 18.295,
-       "end": 26.231,
+       "start": 18.201,
+       "end": 24.934,
        "coverage": "partial",
        "text": "Then mice injected with huge doses got brain damage. But injecting a baby mouse is nothing like eating dinner."
       }
@@ -2457,34 +2465,34 @@
      "labels": [
       {
        "text": "Huge doses",
-       "in": 19.849,
-       "out": 22.033
+       "in": 19.423,
+       "out": 21.107
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.24,
+     "max_still": 0.97,
      "transition_in": "Cut",
      "transition_out": "Split-wipe",
      "sfx": [
       {
-       "t": 18.57,
+       "t": 18.425,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 18.819,
+       "t": 18.619,
        "name": "swoosh_down",
        "gain": 0.35
       },
       {
-       "t": 19.849,
+       "t": 19.423,
        "name": "impact_soft",
        "gain": 0.4
       },
       {
-       "t": 21.09,
+       "t": 20.393,
        "name": "alarm",
        "gain": 0.25
       }
@@ -2498,18 +2506,18 @@
     },
     {
      "id": "s06.07",
-     "start": 22.033,
-     "end": 26.481,
+     "start": 21.107,
+     "end": 25.184,
      "reel_time": [
-      112.97,
-      117.418
+      110.912,
+      114.989
      ],
      "lines": [
       {
        "n": 5,
        "voice": "NARR",
-       "start": 18.295,
-       "end": 26.231,
+       "start": 18.201,
+       "end": 24.934,
        "coverage": "partial",
        "text": "Then mice injected with huge doses got brain damage. But injecting a baby mouse is nothing like eating dinner."
       }
@@ -2526,27 +2534,27 @@
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.78,
+     "max_still": 1.39,
      "transition_in": "Split-wipe",
      "transition_out": "Split-wipe",
      "sfx": [
       {
-       "t": 22.133,
+       "t": 21.207,
        "name": "whoosh",
        "gain": 0.35
       },
       {
-       "t": 23.908,
+       "t": 22.594,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 24.404,
+       "t": 22.982,
        "name": "impact_soft",
        "gain": 0.5
       },
       {
-       "t": 25.645,
+       "t": 23.951,
        "name": "chomp",
        "gain": 0.35
       }
@@ -2562,18 +2570,18 @@
     },
     {
      "id": "s06.08",
-     "start": 26.481,
-     "end": 29.441,
+     "start": 25.184,
+     "end": 28.108,
      "reel_time": [
-      117.418,
-      120.378
+      114.989,
+      117.913
      ],
      "lines": [
       {
        "n": 6,
        "voice": "NARR",
-       "start": 26.481,
-       "end": 32.817,
+       "start": 25.184,
+       "end": 31.407,
        "coverage": "partial",
        "text": "And nobody panicked about parmesan. The fear stuck to one cuisine, and the name said it out loud."
       }
@@ -2595,17 +2603,17 @@
      "transition_out": "Collapse",
      "sfx": [
       {
-       "t": 26.725,
+       "t": 25.396,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 27.351,
+       "t": 26.021,
        "name": "alarm",
        "gain": 0.5
       },
       {
-       "t": 28.425,
+       "t": 27.094,
        "name": "alarm",
        "gain": 0.45
       }
@@ -2619,18 +2627,18 @@
     },
     {
      "id": "s06.09",
-     "start": 29.441,
-     "end": 33.217,
+     "start": 28.108,
+     "end": 31.807,
      "reel_time": [
-      120.378,
-      124.154
+      117.913,
+      121.612
      ],
      "lines": [
       {
        "n": 6,
        "voice": "NARR",
-       "start": 26.481,
-       "end": 32.817,
+       "start": 25.184,
+       "end": 31.407,
        "coverage": "partial",
        "text": "And nobody panicked about parmesan. The fear stuck to one cuisine, and the name said it out loud."
       }
@@ -2646,34 +2654,34 @@
      "labels": [
       {
        "text": "\"Chinese-Restaurant Syndrome\"",
-       "in": 29.541,
-       "out": 33.217
+       "in": 28.208,
+       "out": 31.807
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [
       {
-       "t": 32.733,
+       "t": 31.397,
        "action": "a newspaper slides off"
       }
      ],
-     "max_still": 1.12,
+     "max_still": 1.11,
      "transition_in": "Collapse",
      "transition_out": "Paper slide back to the TV wall",
      "sfx": [
       {
-       "t": 29.749,
+       "t": 28.417,
        "name": "swoosh_down",
        "gain": 0.3
       },
       {
-       "t": 30.583,
+       "t": 29.25,
        "name": "paper",
        "gain": 0.3
       },
       {
-       "t": 31.699,
+       "t": 30.364,
        "name": "impact_soft",
        "gain": 0.4
       }
@@ -2690,32 +2698,32 @@
   {
    "id": "s09_outro",
    "title": "So... Is MSG Bad for You?",
-   "duration": 14.219,
-   "reel_offset": 124.154,
+   "duration": 14.196,
+   "reel_offset": 121.612,
    "build_order": 9,
    "shots": [
     {
      "id": "s09.01",
      "start": 0.0,
-     "end": 4.065,
+     "end": 3.783,
      "reel_time": [
-      124.154,
-      128.219
+      121.612,
+      125.395
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 2.284,
+       "end": 2.343,
        "coverage": "full",
        "text": "So, is MSG bad for you?"
       },
       {
        "n": 2,
        "voice": "NARR",
-       "start": 2.584,
-       "end": 3.715,
+       "start": 2.643,
+       "end": 3.433,
        "coverage": "full",
        "text": "Not really."
       }
@@ -2731,14 +2739,14 @@
      "labels": [
       {
        "text": "Not really",
-       "in": 2.61,
-       "out": 4.065
+       "in": 2.658,
+       "out": 3.783
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.63,
+     "max_still": 1.77,
      "transition_in": "Paper slide (sheet slides over, shadow leading)",
      "transition_out": "Continuous",
      "sfx": [
@@ -2748,17 +2756,17 @@
        "gain": 0.25
       },
       {
-       "t": 0.979,
+       "t": 0.885,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 2.61,
+       "t": 2.658,
        "name": "boing",
        "gain": 0.35
       },
       {
-       "t": 2.932,
+       "t": 2.854,
        "name": "sparkle",
        "gain": 0.35
       }
@@ -2773,18 +2781,18 @@
     },
     {
      "id": "s09.02",
-     "start": 4.065,
-     "end": 6.961,
+     "start": 3.783,
+     "end": 6.838,
      "reel_time": [
-      128.219,
-      131.115
+      125.395,
+      128.45
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 4.065,
-       "end": 8.758,
+       "start": 3.783,
+       "end": 8.706,
        "coverage": "partial",
        "text": "A guess, a catchy name, and a little prejudice outlived decades of science."
       }
@@ -2801,22 +2809,22 @@
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.59,
+     "max_still": 1.67,
      "transition_in": "Continuous",
      "transition_out": "Pull-back",
      "sfx": [
       {
-       "t": 4.288,
+       "t": 4.026,
        "name": "thud",
        "gain": 0.35
       },
       {
-       "t": 4.909,
+       "t": 4.677,
        "name": "stamp",
        "gain": 0.35
       },
       {
-       "t": 6.5,
+       "t": 6.346,
        "name": "thud",
        "gain": 0.4
       }
@@ -2830,18 +2838,18 @@
     },
     {
      "id": "s09.03",
-     "start": 6.961,
-     "end": 9.008,
+     "start": 6.838,
+     "end": 8.956,
      "reel_time": [
-      131.115,
-      133.162
+      128.45,
+      130.568
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 4.065,
-       "end": 8.758,
+       "start": 3.783,
+       "end": 8.706,
        "coverage": "partial",
        "text": "A guess, a catchy name, and a little prejudice outlived decades of science."
       }
@@ -2858,27 +2866,27 @@
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 0.61,
+     "max_still": 0.64,
      "transition_in": "Pull-back",
      "transition_out": "Paper slide",
      "sfx": [
       {
-       "t": 7.111,
+       "t": 6.988,
        "name": "tv_off",
        "gain": 0.45
       },
       {
-       "t": 7.722,
+       "t": 7.629,
        "name": "tv_off",
        "gain": 0.45
       },
       {
-       "t": 8.304,
+       "t": 8.239,
        "name": "tv_off",
        "gain": 0.45
       },
       {
-       "t": 8.498,
+       "t": 8.443,
        "name": "paper",
        "gain": 0.4
       }
@@ -2891,18 +2899,18 @@
     },
     {
      "id": "s09.04",
-     "start": 9.008,
-     "end": 11.765,
+     "start": 8.956,
+     "end": 11.54,
      "reel_time": [
-      133.162,
-      135.919
+      130.568,
+      133.152
      ],
      "lines": [
       {
        "n": 4,
        "voice": "NARR",
-       "start": 9.008,
-       "end": 13.019,
+       "start": 8.956,
+       "end": 12.996,
        "coverage": "partial",
        "text": "So next time you see a No MSG sign... reach for the shaker."
       }
@@ -2918,39 +2926,39 @@
      "labels": [
       {
        "text": "No MSG",
-       "in": 9.008,
-       "out": 11.181
+       "in": 8.956,
+       "out": 10.996
       },
       {
        "text": "MSG",
-       "in": 11.181,
-       "out": 11.765
+       "in": 10.996,
+       "out": 11.54
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 1.22,
+     "max_still": 1.14,
      "transition_in": "Paper slide",
      "transition_out": "Dissolve through the window",
      "sfx": [
       {
-       "t": 9.108,
+       "t": 9.056,
        "name": "neon_buzz",
        "gain": 0.3
       },
       {
-       "t": 10.326,
+       "t": 10.192,
        "name": "neon_flicker",
        "gain": 0.45
       },
       {
-       "t": 11.181,
+       "t": 10.996,
        "name": "click",
        "gain": 0.45
       },
       {
-       "t": 11.481,
+       "t": 11.296,
        "name": "sparkle",
        "gain": 0.35
       }
@@ -2963,18 +2971,18 @@
     },
     {
      "id": "s09.05",
-     "start": 11.765,
-     "end": 14.219,
+     "start": 11.54,
+     "end": 14.196,
      "reel_time": [
-      135.919,
-      138.373
+      133.152,
+      135.808
      ],
      "lines": [
       {
        "n": 4,
        "voice": "NARR",
-       "start": 9.008,
-       "end": 13.019,
+       "start": 8.956,
+       "end": 12.996,
        "coverage": "partial",
        "text": "So next time you see a No MSG sign... reach for the shaker."
       }
@@ -2990,39 +2998,39 @@
      "labels": [
       {
        "text": "MSG",
-       "in": 12.507,
-       "out": 14.219
+       "in": 12.243,
+       "out": 14.196
       }
      ],
      "credit_lower_third": false,
      "flash": false,
      "beats": [],
-     "max_still": 0.96,
+     "max_still": 1.2,
      "transition_in": "Dissolve",
      "transition_out": "LOOP: last frame = s01 frame 0 layout; flicker on the final frames",
      "sfx": [
       {
-       "t": 11.865,
+       "t": 11.64,
        "name": "pop_small",
        "gain": 0.35
       },
       {
-       "t": 12.507,
+       "t": 12.243,
        "name": "pop_small",
        "gain": 0.35
       },
       {
-       "t": 12.907,
+       "t": 12.643,
        "name": "bubble",
        "gain": 0.4
       },
       {
-       "t": 13.107,
+       "t": 12.843,
        "name": "chime",
        "gain": 0.4
       },
       {
-       "t": 14.069,
+       "t": 14.046,
        "name": "channel_switch",
        "gain": 0.45
       }
@@ -3053,161 +3061,161 @@
   },
   {
    "shot": "s01.06",
-   "start": 17.307,
-   "end": 18.992,
+   "start": 16.424,
+   "end": 17.915,
    "reel_time": [
-    17.307,
-    18.992
+    16.424,
+    17.915
    ],
    "beat": "Flash-forward tease: the 1968 headline stamp"
   },
   {
    "shot": "s02.02",
    "start": 1.2,
-   "end": 4.689,
+   "end": 4.554,
    "reel_time": [
-    23.617,
-    27.106
+    22.651,
+    26.005
    ],
    "beat": "Title: Goldie and the Fifth Ripple"
   },
   {
    "shot": "s03.04",
-   "start": 9.57,
-   "end": 13.187,
+   "start": 9.725,
+   "end": 14.032,
    "reel_time": [
-    36.676,
-    40.293
+    35.73,
+    40.037
    ],
    "beat": "Umami is named"
   },
   {
    "shot": "s04.05",
-   "start": 11.737,
-   "end": 14.206,
+   "start": 11.048,
+   "end": 13.596,
    "reel_time": [
-    54.521,
-    56.99
+    53.389,
+    55.937
    ],
    "beat": "Tomato glutamate = MSG glutamate (copies identical)"
   },
   {
    "shot": "s05.02",
-   "start": 2.42,
-   "end": 5.646,
+   "start": 2.265,
+   "end": 5.528,
    "reel_time": [
-    59.41,
-    62.636
+    58.202,
+    61.465
    ],
    "beat": "Gut cells eat glutamate as fuel (style frame B)"
   },
   {
    "shot": "s05.03",
-   "start": 5.646,
-   "end": 9.795,
+   "start": 5.528,
+   "end": 9.666,
    "reel_time": [
-    62.636,
-    66.785
+    61.465,
+    65.603
    ],
    "beat": "95% lands on 'ninety-five'"
   },
   {
    "shot": "s07.01",
    "start": 0.0,
-   "end": 4.341,
+   "end": 3.948,
    "reel_time": [
-    72.156,
-    76.497
+    71.158,
+    75.106
    ],
    "beat": "Double-blind shuffle"
   },
   {
    "shot": "s07.02",
-   "start": 4.341,
-   "end": 7.419,
+   "start": 3.948,
+   "end": 7.284,
    "reel_time": [
-    76.497,
-    79.575
+    75.106,
+    78.442
    ],
    "beat": "MSG vs placebo nearly equal"
   },
   {
    "shot": "s07.03",
-   "start": 7.419,
-   "end": 12.449,
+   "start": 7.284,
+   "end": 12.374,
    "reel_time": [
-    79.575,
-    84.605
+    78.442,
+    83.532
    ],
    "beat": "GRAS stamp"
   },
   {
    "shot": "s08.01",
    "start": 0.0,
-   "end": 4.124,
+   "end": 3.735,
    "reel_time": [
-    84.605,
-    88.729
+    83.532,
+    87.267
    ],
    "beat": "A third of the sodium (ions exactly 3:1)"
   },
   {
    "shot": "s06.05",
-   "start": 13.835,
-   "end": 18.295,
+   "start": 13.442,
+   "end": 18.201,
    "reel_time": [
-    104.772,
-    109.232
+    103.247,
+    108.006
    ],
    "beat": "Headline stamp (style frame C; also the s01 flash-forward)"
   },
   {
    "shot": "s06.07",
-   "start": 22.033,
-   "end": 26.481,
+   "start": 21.107,
+   "end": 25.184,
    "reel_time": [
-    112.97,
-    117.418
+    110.912,
+    114.989
    ],
    "beat": "Injection is not dinner"
   },
   {
    "shot": "s06.08",
-   "start": 26.481,
-   "end": 29.441,
+   "start": 25.184,
+   "end": 28.108,
    "reel_time": [
-    117.418,
-    120.378
+    114.989,
+    117.913
    ],
    "beat": "Double standard: big bell on the carton, silent bell on the parmesan"
   },
   {
    "shot": "s09.03",
-   "start": 6.961,
-   "end": 9.008,
+   "start": 6.838,
+   "end": 8.956,
    "reel_time": [
-    131.115,
-    133.162
+    128.45,
+    130.568
    ],
    "beat": "TVs switch off"
   },
   {
    "shot": "s09.04",
-   "start": 9.008,
-   "end": 11.765,
+   "start": 8.956,
+   "end": 11.54,
    "reel_time": [
-    133.162,
-    135.919
+    130.568,
+    133.152
    ],
    "beat": "'NO' burns out"
   },
   {
    "shot": "s09.05",
-   "start": 11.765,
-   "end": 14.219,
+   "start": 11.54,
+   "end": 14.196,
    "reel_time": [
-    135.919,
-    138.373
+    133.152,
+    135.808
    ],
    "beat": "End card -> loop into the hook"
   }

@@ -115,7 +115,7 @@ shot(L(3), L(4), "MEDIUM",
      [("<Name 3>", L(3), None)], "Channel-switch flicker", "Fast pull-back",
      [(L(3) - 0.05, "channel_switch", 0.55), (W(3, "headaches."), "pop_small", 0.35), (W(3, "msg,"), "pop", 0.35)],
      ["TVWALL", "CLIPS", "NAME_LT", "SHAKER"], credit=True, notes=CLIP_NOTE)
-shot(L(4), B(4, "scared"), "EXTREME WIDE",
+shot(L(4), B(4, "of"), "EXTREME WIDE",
      "Pull back: every set on the wall lights up (paused frames of the three clips plus lemon screens); the wall "
      "recedes (it may bleed into the UI zones as decor).",
      "Upper TV rows", "Full TV wall", "Lower TV rows",
@@ -123,13 +123,13 @@ shot(L(4), B(4, "scared"), "EXTREME WIDE",
      [("50 years", W(4, "fifty"), None)], "Fast pull-back", "Paper slide",
      [(L(4), "whoosh", 0.45), (W(4, "fifty"), "pop", 0.4), (W(4, "everyone"), "tv_on", 0.3)],
      ["TVWALL"], notes="Clip frames here are small and unreadable; no lower third needed. If a face reads, add its credit.")
-shot(B(4, "scared"), B(4, "one"), "MEDIUM",
+shot(B(4, "of"), B(4, "one"), "MEDIUM",
      "Everyone scared of MSG: a restaurant window with the paper 'neon' NO MSG sign switching on, three small dinner "
      "tables stacked below with folded NO MSG cards. On 'it all started' a lemon envelope slides onto the top table.",
      "Restaurant window + NO MSG sign", "Table 1 / table 2", "Table 3 + envelope arriving",
      "Tilt down the stack.",
-     [("No MSG", W(4, "scared"), None)], "Paper slide", "Smash cut (flash-forward)",
-     [(W(4, "scared"), "neon_flicker", 0.45), (W(4, "msg."), "pop_small", 0.3), (W(4, "started"), "paper", 0.35)],
+     [("No MSG", W(4, "of"), None)], "Paper slide", "Smash cut (flash-forward)",
+     [(W(4, "of"), "neon_flicker", 0.45), (W(4, "msg."), "pop_small", 0.3), (W(4, "started"), "paper", 0.35)],
      ["SIGN", "LETTER"], beats=[(W(4, "and"), "envelope slides in")],
      notes="First appearance of the NO MSG sign (paid off in s09). Paper 'neon': flat colour tubes, no glow.")
 shot(B(4, "one"), W(4, "1968.") + 0.45, "CLOSE (flash-forward, style frame C)",
@@ -212,14 +212,14 @@ shot(L(3), D(), "MEDIUM",
 
 # ================================================================ s04 everywhere
 scene("s04_everywhere")
-shot(0.0, L(2), "MEDIUM",
+shot(0.0, round(W(1, "chemical.") + 0.9, 3), "MEDIUM",
      "'Alarmingly chemical': the shaker sprouts bubbling lab flasks; Goldie looks nervous; a tomato-red warning card flaps.",
      "Flasks", "Shaker + nervous Goldie", "Warning card",
      "Small shake on 'chemical'.",
      [("Chemical?", W(1, "chemical."), None)], SLIDE_IN, "Zoom-out",
      [(0.2, "bubble", 0.3), (W(1, "alarmingly"), "bubble", 0.35), (W(1, "chemical."), "error", 0.3)],
      ["SHAKER", "GOLDIE"])
-shot(L(2), B(2, "tomatoes,"), "WIDE",
+shot(round(W(1, "chemical.") + 0.9, 3), B(2, "tomatoes,"), "WIDE",
      "Flasks fall away; zoom out to a paper Earth where little Goldies pop up all over its surface.",
      "Goldies popping", "Paper Earth", "—",
      "Zoom-out.",
@@ -278,14 +278,14 @@ shot(B(2, "around"), L(3), "MEDIUM",
      [(W(2, "around"), "tick", 0.2), (W(2, "around") + 0.15, "tick", 0.2), (W(2, "ninety-five"), "ding", 0.5), (W(2, "blood."), "bubble", 0.3)],
      ["GUTCELL", "GOLDIE", "BADGE95"], hero="95% lands on 'ninety-five'",
      beats=[(W(2, "never"), "a gut cell burps a tiny flame")], notes="Never show '5%'.")
-shot(L(3), B(3, "one"), "WIDE (vertical travel)",
+shot(L(3), B(3, "of"), "WIDE (vertical travel)",
      "Track up the vessel with the few remaining Goldies to the head; a cobalt cut-paper castle wall rises across the frame.",
      "Castle wall", "Goldies rising", "Vessel",
      "Track upward.",
      [("Blood-brain barrier", W(3, "blood-brain"), None)], "Track", "Continuous",
      [(L(3), "whoosh", 0.4), (W(3, "blood-brain"), "thud", 0.45)],
      ["BBB", "GOLDIE"])
-shot(B(3, "one"), D(), "MEDIUM",
+shot(B(3, "of"), D(), "MEDIUM",
      "Paper-doll guards (mitten hands, friendly) at the gate; a Goldie approaches, a guard raises a mitten, Goldie "
      "bounces back and shrugs.",
      "Gate", "Guard + Goldie", "Bouncing Goldie",
