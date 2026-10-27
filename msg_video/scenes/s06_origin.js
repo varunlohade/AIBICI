@@ -372,7 +372,7 @@
           for (const dy of [-22, 22]) KP.paper(c, KP.jitter(KP.rr(430, 760 + dy - 12, 120, 24, 8, 12), 681 + dy + b, 1), P.ink, { shadow: false });
           KP.paper(c, KP.jitter(KP.rot(KP.rr(480, 690, 22, 140, 8, 12), 491, 760, .5), 683 + b, 1), P.tomato, { shadow: false });
           c.restore();
-        });
+        }, prev);
       } else if (t < T.s9) {
         // ---- 8: the double standard: same Goldies, same bell; only one rings
         halves(ctx, t, T.l7, c => {
@@ -387,7 +387,7 @@
           carton(c, 400, 1200, b);
           bell(c, 760, 1010, b, t >= T.parm, t);
           for (let i = 0; i < 2; i++) KP.goldie(c, 300 + i * 150, 900 + Math.sin(KP.held(t) * 3 + i) * 8, 60, { seed: 700 + i, boil: b, steam: false, shadow: KP.SH.far });
-        });
+        }, null, prev);
       } else {
         // ---- 9: the split collapses; the stamped headline slides back; push in on 'name'
         const col = KP.ep(t, T.s9, T.s9 + .3, 'in');
@@ -410,6 +410,7 @@
         }
       }
       if (label) label(ctx);
+      if (nested) return;
       KP.texture(ctx, 'news', .05);
       KP.texture(ctx, 'grain', .1, 101, 57);
       KP.slide(ctx, KP.ep(t, D - .5, D, 'inOut'), KP.GROUND.s09_outro);   // out: paper slide back to the TV wall

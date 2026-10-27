@@ -553,22 +553,22 @@
   };
   // channel-switch 'static' in cut paper: misregistered riso strips + flecks inside a rect. f = frame index (30fps)
   KP.static = (ctx, S, f, o = {}) => {
-    const r = KP.rng(9001 + f * 31), cols = o.colors || [P.pink, P.lemon, P.turq, P.grape, P.rice, P.blue];
+    const r = KP.rng(9001 + f * 31), cols = o.colors || [P.pink, P.lemon, P.turq, P.magenta, P.blue, P.coral];
     ctx.save(); ctx.clip(KP.path(KP.rr(S.x, S.y, S.w, S.h, 20)));
-    ctx.fillStyle = o.ground || P.ink; ctx.fillRect(S.x, S.y, S.w, S.h);
+    ctx.fillStyle = o.ground || P.plum; ctx.fillRect(S.x, S.y, S.w, S.h);
     let y = S.y;
     while (y < S.y + S.h) {
       const hh = 8 + r() * 46, c = cols[(r() * cols.length) | 0], dx = (r() - .5) * 60;
       if (r() < .7) {
-        ctx.globalAlpha = .55 + r() * .45; ctx.fillStyle = c;
+        ctx.globalAlpha = 1; ctx.fillStyle = c;
         ctx.fillRect(S.x + dx - 20, y, S.w + 40, hh);
-        ctx.globalCompositeOperation = 'multiply'; ctx.fillStyle = cols[(r() * cols.length) | 0]; ctx.globalAlpha = .4;
+        ctx.globalCompositeOperation = 'multiply'; ctx.fillStyle = cols[(r() * cols.length) | 0]; ctx.globalAlpha = .5;
         ctx.fillRect(S.x + dx + 6, y + 3, S.w * (.2 + r() * .6), hh * .6);
         ctx.globalCompositeOperation = 'source-over';
       }
       y += hh;
     }
-    ctx.globalAlpha = 1; ctx.fillStyle = P.rice;
+    ctx.globalAlpha = 1; ctx.fillStyle = P.lemon;
     for (let i = 0; i < 60; i++) ctx.fillRect(S.x + r() * S.w, S.y + r() * S.h, 3 + r() * 10, 2 + r() * 3);
     ctx.restore();
   };

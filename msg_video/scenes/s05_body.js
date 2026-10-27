@@ -28,21 +28,21 @@
   // ======================================================== shot 1: fork to mouth
   function shotFork(ctx, t, b, T) {
     ctx.fillStyle = P.turq; ctx.fillRect(0, 0, KP.W, KP.H);
-    const camY = KP.lerp(300, 0, KP.ep(t, T.happens - .3, T.eat, 'inOut'));
+    const camY = KP.lerp(110, 0, KP.ep(t, T.happens - .3, T.eat, 'inOut'));
     ctx.save(); ctx.translate(0, camY);
     // table + plate (LOW)
-    KP.paper(ctx, KP.jitter(KP.rr(-60, 1520, 1200, 800, 12, 40), 10 + b, 1.6), P.coral, { shadow: [0, -10], shadowA: .3, mis: P.pink, misOff: [0, -4], misA: .4 });
-    for (let i = 0; i < 6; i++) KP.paper(ctx, KP.jitter(KP.rr(-40 + i * 200, 1520, 90, 800, 6, 40), 11 + i + b, 1.2), KP.mix(P.coral, P.pink, .35), { shadow: false });
-    KP.paper(ctx, KP.jitter(KP.ell(420, 1600, 250, 62, 48), 12 + b, 1.4), P.rice, { shadow: KP.SH.near, shadowA: .35, mis: P.turq, misOff: [-3, 3], misA: .4 });
-    KP.paper(ctx, KP.jitter(KP.ell(420, 1596, 170, 38, 40), 13 + b, 1), P.pink30, { shadow: false });
-    for (const [x, y, s] of [[360, 1580, 1], [470, 1590, .9], [420, 1568, .8]]) bite(ctx, x, y, s * .8, b, 20 + x);
+    KP.paper(ctx, KP.jitter(KP.rr(-60, 1110, 1200, 1000, 12, 40), 10 + b, 1.6), P.coral, { shadow: [0, -10], shadowA: .3, mis: P.pink, misOff: [0, -4], misA: .4 });
+    for (let i = 0; i < 6; i++) KP.paper(ctx, KP.jitter(KP.rr(-40 + i * 200, 1110, 90, 1000, 6, 40), 11 + i + b, 1.2), KP.mix(P.coral, P.pink, .35), { shadow: false });
+    KP.paper(ctx, KP.jitter(KP.ell(420, 1190, 250, 62, 48), 12 + b, 1.4), P.rice, { shadow: KP.SH.near, shadowA: .35, mis: P.turq, misOff: [-3, 3], misA: .4 });
+    KP.paper(ctx, KP.jitter(KP.ell(420, 1186, 170, 38, 40), 13 + b, 1), P.pink30, { shadow: false });
+    for (const [x, y, s] of [[360, 1170, 1], [470, 1180, .9], [420, 1158, .8]]) bite(ctx, x, y, s * .8, b, 20 + x);
     // the head in profile, facing left (TOP)
     const open = KP.ep(t, T.eat - .55, T.eat - .2, 'out') * (1 - KP.ep(t, T.eat, T.eat + .12, 'out'));
     const chew = t > T.eat ? .5 + .5 * Math.sin(KP.held(t) * 16) : 0;
     head(ctx, 700, 520, b, open, t > T.eat ? 'happy' : 'dot', chew * (t < T.eat + 1.2 ? 1 : 0));
     // the fork: rises from the plate to the mouth, delivers the bite, retracts
     const up = KP.ep(t, T.happens, T.eat - .1, 'inOut'), back = KP.ep(t, T.eat + .1, T.eat + .7, 'inOut');
-    const tip = [KP.lerp(430, 478, up) - back * 60, KP.lerp(1540, 735, up) + back * 700];
+    const tip = [KP.lerp(430, 478, up) - back * 60, KP.lerp(1130, 735, up) + back * 520];
     fork(ctx, tip[0], tip[1], -.5 + up * .25, b, t < T.eat);
     ctx.restore();
     if (t > T.eat && t < T.eat + .35) KP.marks(ctx, 470, 600 + camY, 60, 4, 30 + b, { a0: 2, span: 2.4, len: 24 });
@@ -242,14 +242,27 @@
   const WALLC = [[110, 810, 1], [290, 800, 2], [470, 812, 3], [650, 802, 4]];
   function mapWorld(ctx, t, b, T) {
     ctx.fillStyle = P.turq; ctx.fillRect(-2000, -3000, 5000, 7000);
+    // tissue between the gut and the head: torn pink paper banks either side of the vessel, with capillaries
+    KP.paper(ctx, KP.torn(KP.rr(-700, -470, 1420, 1060, 10, 60), 310 + b, 10, 26), P.pink30, { shadow: [0, 10], shadowA: .25, mis: P.blue, misOff: [3, -2], misA: .25 });
+    KP.paper(ctx, KP.torn(KP.rr(890, -470, 900, 1060, 10, 60), 311 + b, 10, 26), P.pink30, { shadow: [0, 10], shadowA: .25, mis: P.blue, misOff: [3, -2], misA: .25 });
+    KP.paper(ctx, KP.torn(KP.curve([[-700, 80], [-200, 20], [300, 140], [640, 60], [640, 590], [-700, 590]], true, 10), 312 + b, 8, 22), P.bubble, { shadow: [0, -8], shadowA: .2 });
+    KP.paper(ctx, KP.torn(KP.curve([[900, 200], [1200, 120], [1800, 220], [1800, 590], [900, 590]], true, 10), 313 + b, 8, 22), P.bubble, { shadow: [0, -8], shadowA: .2 });
+    [[[700, -260], [520, -320], [380, -250], [220, -330]], [[700, 160], [560, 230], [420, 180]], [[900, -120], [1060, -190], [1200, -120]], [[900, 300], [1040, 360]]].forEach((c, i) => {
+      const pts = KP.curve(c, false, 8); KP.brush(ctx, pts, 22, P.coral, { taper: .7 }); KP.brush(ctx, pts, 8, P.pink30, { taper: .7 });
+    });
     // the vessel (behind the gut wall and the castle)
     const vs = VESSEL;
     KP.brush(ctx, vs.map(([x, y]) => [x + 10, y + 12]), 130, KP.rgba(P.ink, .25), { taper: 0 });
     KP.brush(ctx, vs, 130, P.coral, { taper: 0 });
     KP.brush(ctx, vs, 66, P.pink30, { taper: 0 });
     KP.brush(ctx, vs.map(([x, y]) => [x - 18, y - 18]), 10, P.rice, { taper: .4 });
+    // red blood cells (coral discs) flowing along the vessel
+    for (let i = 0; i < 26; i++) {
+      const sx = ((i * 140 + KP.held(t) * 160) % (SGATE + 200)) - 100, [x, y] = vAt(sx);
+      KP.paper(ctx, KP.jitter(KP.ell(x + (i % 3 - 1) * 12, y + (i % 2) * 6, 22, 15, 18), 320 + i + b, .8), P.tomato, { shadow: KP.SH.far, shadowA: .25 });
+    }
     // the castle wall at the head end (cobalt), a peeking brain, the gate + guards
-    KP.brain(ctx, 470, -990, 190, { boil: b, eyes: 'happy', mouth: 'smile' });
+    KP.brain(ctx, 470, -960, 160, { boil: b, eyes: 'happy', mouth: 'smile' });
     const wall = [[-600, -820]];
     for (let x = -600; x < 1700; x += 130) wall.push([x, -900], [x + 70, -900], [x + 70, -820], [x + 130, -820]);
     wall.push([1700, -820], [1700, -450], [-600, -450]);
@@ -316,9 +329,9 @@
     const pull = KP.ep(t, T.s5, T.s5 + .7, 'out');
     let s = KP.lerp(2.1, 1, pull), cx = KP.lerp(330, 490, pull), cy = KP.lerp(860, 860, pull);
     const up = KP.ep(t, T.l5, T.bbb + .6, 'inOut');
-    cx = KP.lerp(cx, 650, up); cy = KP.lerp(cy, -420, up);
+    cx = KP.lerp(cx, 640, up); cy = KP.lerp(cy, -560, up);
     const pin = KP.ep(t, T.s7, D, 'inOut');
-    cx = KP.lerp(cx, 800, pin); cy = KP.lerp(cy, -540, pin); s *= 1 + .55 * pin;
+    cx = KP.lerp(cx, 790, pin); cy = KP.lerp(cy, -650, pin); s *= 1 + .38 * pin;
     KP.camera(ctx, cx, cy, s, () => {
       mapWorld(ctx, t, b, T);
       // the one label in shot 5: '95%' rolls up from 80 and lands on 'ninety-five' (never shows '5%')
