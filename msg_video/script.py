@@ -79,7 +79,8 @@ SCENES = [
             ("NARR", "Ripe tomatoes are full of it. So are mushrooms, soy sauce, and parmesan cheese, one of the richest sources of glutamate there is.", 0.3),
             ("NARR", "Human breast milk contains around ten times more free glutamate than cow's milk. Our very first meal is umami.", 0.4),
             ("NARR", "Your body even makes its own glutamate, every single day.", 0.3),
-            ("NARR", "And to your body, glutamate from a tomato and glutamate from a shaker of MSG are exactly the same molecule.", 1.0),
+            ("NARR", "And to your body, glutamate from a tomato and glutamate from a shaker of MSG are exactly the same molecule.", 0.5),
+            ("NARR", "So what actually happens when you eat it? That's part two.", 1.5),
         ],
     },
     {
@@ -90,6 +91,7 @@ SCENES = [
                   "them up as fuel. 95% counter. Tiny remainder reaches blood, meets the blood-brain barrier "
                   "as a castle wall with guards.",
         "lines": [
+            ("NARR", "Almost all the MSG you eat never even makes it into your blood. Here's why.", 0.5),
             ("NARR", "So what happens when you eat it?", 0.3),
             ("NARR", "First, glutamate docks onto special receptors on your tongue, and sends your brain a message: this food has protein in it. Yum.", 0.3),
             ("NARR", "Then it reaches your gut. And this is where the scary story starts to fall apart.", 0.3),
@@ -97,26 +99,6 @@ SCENES = [
             ("NARR", "Almost all the glutamate you eat, around ninety-five percent, is used up right there in your gut, before it ever reaches your bloodstream.", 0.4),
             ("NARR", "And the little that slips through faces another wall: the blood-brain barrier, a tightly guarded border that controls what gets into your brain.", 0.3),
             ("NARR", "The glutamate on your dinner plate doesn't just stroll into your neurons.", 1.0),
-        ],
-    },
-    {
-        "id": "s06_origin",
-        "title": "How the Rumour Started",
-        "visual": "1968: a typewritten letter flutters onto a desk, addressed to the New England Journal of "
-                  "Medicine. Question marks over wine, salt, MSG. A headline stamp slams down: "
-                  "'CHINESE-RESTAURANT SYNDROME'. Newspapers multiply and spin. 1969: lab mouse + giant syringe. "
-                  "Then a split screen: tomatoes/parmesan (no alarm) vs takeout box (alarm bells).",
-        "lines": [
-            ("NARR", "So how did a seaweed seasoning become public enemy number one?", 0.3),
-            ("NARR", "It started in 1968, with a letter.", 0.3),
-            ("NARR", "A doctor wrote to the New England Journal of Medicine, describing numbness, weakness and palpitations after eating at Chinese restaurants in the United States.", 0.3),
-            ("NARR", "He wondered what might be causing it. The cooking wine? The salt? Maybe the MSG? He didn't know. It was a guess.", 0.3),
-            ("NARR", "But the journal printed it under a catchy headline: Chinese Restaurant Syndrome.", 0.3),
-            ("NARR", "Letters poured in. Newspapers ran with it. Almost overnight, a guess had become a diagnosis.", 0.4),
-            ("NARR", "A year later, a scientist injected huge doses of MSG under the skin of newborn mice, and found brain damage. The headlines got even scarier.", 0.3),
-            ("NARR", "But injecting a massive dose into a baby mouse is nothing like eating a seasoned meal. Remember: your gut eats almost all of it first.", 0.4),
-            ("NARR", "And there was something else going on. In 1960s America, Chinese food was seen as foreign and suspicious.", 0.3),
-            ("NARR", "Nobody blamed the tomato sauce. Nobody worried about Italian Restaurant Syndrome. The fear stuck to one cuisine, and the name said it out loud.", 1.0),
         ],
     },
     {
@@ -141,7 +123,29 @@ SCENES = [
         "lines": [
             ("NARR", "Here's a plot twist. MSG might actually help.", 0.3),
             ("NARR", "Gram for gram, it has only about a third of the sodium of table salt.", 0.3),
-            ("NARR", "Swap some of the salt in a recipe for MSG, and you can cut the sodium in a dish noticeably, while keeping all the flavor.", 1.0),
+            ("NARR", "Swap some of the salt in a recipe for MSG, and you can cut the sodium in a dish noticeably, while keeping all the flavor.", 0.5),
+            ("NARR", "So if the science is this clear, how did MSG end up with such a terrible reputation? That's part three.", 1.5),
+        ],
+    },
+    {
+        "id": "s06_origin",
+        "title": "How the Rumour Started",
+        "visual": "1968: a typewritten letter flutters onto a desk, addressed to the New England Journal of "
+                  "Medicine. Question marks over wine, salt, MSG. A headline stamp slams down: "
+                  "'CHINESE-RESTAURANT SYNDROME'. Newspapers multiply and spin. 1969: lab mouse + giant syringe. "
+                  "Then a split screen: tomatoes/parmesan (no alarm) vs takeout box (alarm bells).",
+        "lines": [
+            ("NARR", "Fifty years of fear around MSG started with a single letter.", 0.5),
+            ("NARR", "So how did a seaweed seasoning become public enemy number one?", 0.3),
+            ("NARR", "It started in 1968, with a letter.", 0.3),
+            ("NARR", "A doctor wrote to the New England Journal of Medicine, describing numbness, weakness and palpitations after eating at Chinese restaurants in the United States.", 0.3),
+            ("NARR", "He wondered what might be causing it. The cooking wine? The salt? Maybe the MSG? He didn't know. It was a guess.", 0.3),
+            ("NARR", "But the journal printed it under a catchy headline: Chinese Restaurant Syndrome.", 0.3),
+            ("NARR", "Letters poured in. Newspapers ran with it. Almost overnight, a guess had become a diagnosis.", 0.4),
+            ("NARR", "A year later, a scientist injected huge doses of MSG under the skin of newborn mice, and found brain damage. The headlines got even scarier.", 0.3),
+            ("NARR", "But injecting a massive dose into a baby mouse is nothing like eating a seasoned meal. Remember: your gut eats almost all of it first.", 0.4),
+            ("NARR", "And there was something else going on. In 1960s America, Chinese food was seen as foreign and suspicious.", 0.3),
+            ("NARR", "Nobody blamed the tomato sauce. Nobody worried about Italian Restaurant Syndrome. The fear stuck to one cuisine, and the name said it out loud.", 1.0),
         ],
     },
     {
@@ -160,6 +164,13 @@ SCENES = [
     },
 ]
 
+# Instagram Reel series: 3 standalone parts (9:16), each under 3 minutes.
+PARTS = [
+    {"id": "part1", "title": "Part 1: The Accusation", "scenes": ["s01_coldopen", "s02_title", "s03_ikeda", "s04_everywhere"]},
+    {"id": "part2", "title": "Part 2: The Science", "scenes": ["s05_body", "s07_tests", "s08_twist"]},
+    {"id": "part3", "title": "Part 3: The Rumour", "scenes": ["s06_origin", "s09_outro"]},
+]
+
 SOURCES = [
     "Kwok, R.H.M. (1968). Chinese-Restaurant Syndrome. N Engl J Med 278:796.",
     "Olney, J.W. (1969). Brain lesions, obesity, and other disturbances in mice treated with monosodium glutamate. Science 164:719-721.",
@@ -174,12 +185,18 @@ SOURCES = [
 
 def write_markdown(path="SCRIPT.md"):
     out = ["# MSG: The Most Misunderstood Molecule", "",
-           "_A Kurzgesagt-style explainer. Narration + visual direction._", "",
+           "_An animated explainer series for Instagram Reels (9:16, three parts). Narration + visual direction._", "",
            "> The cold-open 'celebrities' are fictional, silhouetted composite characters "
            "(dramatization) voiced by synthetic voices, representing claims commonly made on TV "
            "and social media. No real person is depicted or quoted.", ""]
-    for i, sc in enumerate(SCENES, 1):
-        out += [f"## Scene {i}: {sc['title']}", "", f"**Visual:** {sc['visual']}", ""]
+    by_id = {sc["id"]: sc for sc in SCENES}
+    n = 0
+    for part in PARTS:
+      out += [f"# {part['title']}", ""]
+      for sid in part["scenes"]:
+        sc = by_id[sid]
+        n += 1
+        out += [f"## Scene {n}: {sc['title']}", "", f"**Visual:** {sc['visual']}", ""]
         for voice, text, _ in sc["lines"]:
             who = "NARRATOR" if voice == "NARR" else SPEAKER_LABELS[voice].upper()
             out.append(f"**{who}:** {text}  ")

@@ -1,0 +1,4001 @@
+{
+ "meta": {
+  "project": "MSG: The Most Misunderstood Molecule",
+  "fps": 30,
+  "resolution": [
+   1920,
+   1080
+  ],
+  "safe_area": [
+   1720,
+   940
+  ],
+  "time_base": "seconds, scene-relative (0..duration)",
+  "source_of_truth": "cues.json (line timings) + script.py (narration)",
+  "style": "style-agnostic: framing/motion/content only; palette, line, texture per approved style guide",
+  "notes": "SFX times inside a line are word-estimates - snap to the narration WAV. Every scene fades in from / out to black over ~0.4 s."
+ },
+ "scenes": [
+  {
+   "id": "s01_coldopen",
+   "title": "Cold Open: The Accusations",
+   "duration": 47.709,
+   "shots": [
+    {
+     "id": "s01.01",
+     "start": 0.0,
+     "end": 5.046,
+     "lines": [
+      {
+       "n": 1,
+       "voice": "HOST",
+       "start": 0.6,
+       "end": 4.696,
+       "coverage": "full",
+       "text": "Coming up after the break: the hidden chemical in your takeout that could be making you sick!"
+      }
+     ],
+     "shot_size": "WIDE -> MEDIUM",
+     "on_screen": "Dark wall of 9 retro TVs (3x3 grid, see continuity TVWALL). Static flickers on all screens; the CENTER TV (B2) switches on: HOST silhouette behind a talk-show desk, pointing at camera. Off-screens keep faint static.",
+     "camera": "Slow push-in from full wall toward B2 (ends ~70% frame on B2).",
+     "text": [
+      "DRAMATIZATION (tag on B2)",
+      "TALK SHOW HOST (role chyron)",
+      "HIDDEN CHEMICAL?"
+     ],
+     "transition_in": "Fade from black (0.4 s)",
+     "transition_out": "Hard cut on channel_switch",
+     "sfx": [
+      {
+       "t": 0.2,
+       "name": "static",
+       "gain": 0.3
+      },
+      {
+       "t": 0.45,
+       "name": "tv_on",
+       "gain": 0.7
+      },
+      {
+       "t": 2.6,
+       "name": "pop_small",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "TVWALL",
+      "DRAMA_TAG"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s01.02",
+     "start": 5.046,
+     "end": 10.452,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "TVDOC",
+       "start": 5.046,
+       "end": 10.102,
+       "coverage": "full",
+       "text": "MSG is an excitotoxin. It overexcites your brain cells. Literally to death."
+      }
+     ],
+     "shot_size": "MEDIUM (single TV)",
+     "on_screen": "Top-left TV (A1): TV DOCTOR silhouette (white coat, stethoscope shape). Inset on screen: a simple brain icon with jittery zig-zag 'overexcited' lines that fizzle out on 'to death'. No gore, no skulls.",
+     "camera": "Whip-pan from B2 to A1, then gentle drift right.",
+     "text": [
+      "DRAMATIZATION",
+      "DAYTIME TV DOCTOR",
+      "EXCITOTOXIN?!"
+     ],
+     "transition_in": "Channel-switch glitch (2-4 frames)",
+     "transition_out": "Channel-switch glitch",
+     "sfx": [
+      {
+       "t": 4.95,
+       "name": "channel_switch",
+       "gain": 0.6
+      },
+      {
+       "t": 5.1,
+       "name": "glitch",
+       "gain": 0.3
+      },
+      {
+       "t": 8.3,
+       "name": "blip",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "TVWALL",
+      "DRAMA_TAG"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s01.03",
+     "start": 10.452,
+     "end": 15.346,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "CHEF",
+       "start": 10.452,
+       "end": 14.996,
+       "coverage": "full",
+       "text": "We never use MSG in my kitchen. Never! It's poison, darling."
+      }
+     ],
+     "shot_size": "MEDIUM (single TV)",
+     "on_screen": "Top-right TV (C1): CELEBRITY CHEF silhouette (toque), arms crossed, wagging finger. On 'Never!' an MSG shaker on screen gets a big warning-colored X slammed over it.",
+     "camera": "Whip-pan A1 -> C1; small punch-in (5%) on 'Never!'.",
+     "text": [
+      "DRAMATIZATION",
+      "CELEBRITY CHEF",
+      "POISON!"
+     ],
+     "transition_in": "Channel-switch glitch",
+     "transition_out": "Channel-switch glitch",
+     "sfx": [
+      {
+       "t": 10.4,
+       "name": "channel_switch",
+       "gain": 0.6
+      },
+      {
+       "t": 12.2,
+       "name": "stamp",
+       "gain": 0.4
+      },
+      {
+       "t": 13.9,
+       "name": "pop_small",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "TVWALL",
+      "DRAMA_TAG",
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s01.04",
+     "start": 15.346,
+     "end": 21.456,
+     "lines": [
+      {
+       "n": 4,
+       "voice": "GURU",
+       "start": 15.346,
+       "end": 21.106,
+       "coverage": "full",
+       "text": "Every time I eat Chinese food I get headaches, my heart races... it's the MSG, you guys!"
+      }
+     ],
+     "shot_size": "MEDIUM (single TV, vertical phone frame inside)",
+     "on_screen": "Bottom-left TV (A3) shows a vertical phone-video frame: WELLNESS INFLUENCER silhouette with ring-light halo. Pop-up icons: headache (zig-zag at temple), racing heart (pulsing). A PLAIN generic takeout box icon only (no lettering, no pagoda/lantern/chopstick-font cliches).",
+     "camera": "Whip-pan C1 -> A3 (diagonal); slow drift up.",
+     "text": [
+      "DRAMATIZATION",
+      "WELLNESS INFLUENCER",
+      "HEADACHES?"
+     ],
+     "transition_in": "Channel-switch glitch",
+     "transition_out": "Channel-switch glitch",
+     "sfx": [
+      {
+       "t": 15.3,
+       "name": "channel_switch",
+       "gain": 0.6
+      },
+      {
+       "t": 17.6,
+       "name": "pop_small",
+       "gain": 0.35
+      },
+      {
+       "t": 18.6,
+       "name": "heartbeat",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "TVWALL",
+      "DRAMA_TAG"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s01.05",
+     "start": 21.456,
+     "end": 26.921,
+     "lines": [
+      {
+       "n": 5,
+       "voice": "AUNT",
+       "start": 21.456,
+       "end": 26.021,
+       "coverage": "full",
+       "text": "Sharing this for everyone. MSG is basically brain poison! Please read!!"
+      }
+     ],
+     "shot_size": "MEDIUM -> CLOSE (social post)",
+     "on_screen": "Bottom-right TV (C3) shows a social-media post card typing itself out (illegible placeholder lines + shouty caps keyword). Share-arrow icon bounces. Generic UI only - no real platform logo/colors.",
+     "camera": "Whip-pan A3 -> C3, slow push into the post card.",
+     "text": [
+      "DRAMATIZATION",
+      "YOUR AUNT, ON SOCIAL MEDIA",
+      "BRAIN POISON!!"
+     ],
+     "transition_in": "Channel-switch glitch",
+     "transition_out": "Fast pull-back (no cut)",
+     "sfx": [
+      {
+       "t": 21.4,
+       "name": "channel_switch",
+       "gain": 0.55
+      },
+      {
+       "t": 21.7,
+       "name": "typewriter",
+       "gain": 0.3
+      },
+      {
+       "t": 24.9,
+       "name": "ding",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "TVWALL",
+      "DRAMA_TAG"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s01.06",
+     "start": 26.921,
+     "end": 32.448,
+     "lines": [
+      {
+       "n": 6,
+       "voice": "NARR",
+       "start": 26.921,
+       "end": 32.148,
+       "coverage": "full",
+       "text": "For more than fifty years, three little letters have terrified diners around the world."
+      }
+     ],
+     "shot_size": "EXTREME WIDE",
+     "on_screen": "All five speaker TVs are on simultaneously, looping their keywords; the 4 filler TVs show static. The wall shrinks into a dark room/void as the narrator takes over; the three letters 'MSG' float up big in front.",
+     "camera": "Fast pull-back from C3 to full wall, then continuous slow pull-back.",
+     "text": [
+      "50+ YEARS",
+      "MSG"
+     ],
+     "transition_in": "Continuous (camera move)",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 26.95,
+       "name": "whoosh",
+       "gain": 0.55
+      },
+      {
+       "t": 27.3,
+       "name": "static",
+       "gain": 0.2
+      },
+      {
+       "t": 29.6,
+       "name": "pop",
+       "gain": 0.45
+      }
+     ],
+     "props": [
+      "TVWALL",
+      "DRAMA_TAG"
+     ],
+     "hero": null,
+     "notes": "Keep DRAMATIZATION tags visible on any TV whose talking head is still readable."
+    },
+    {
+     "id": "s01.07",
+     "start": 32.448,
+     "end": 35.6,
+     "lines": [
+      {
+       "n": 7,
+       "voice": "NARR",
+       "start": 32.448,
+       "end": 38.72,
+       "coverage": "partial",
+       "text": "Restaurants hang signs promising they don't use it. Food labels proudly brag about leaving it out."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Night street: restaurant window. The NO MSG neon sign buzzes on letter by letter (NO, then MSG), stutters once, then holds.",
+     "camera": "Slow push-in toward the sign.",
+     "text": [
+      "NO MSG (the sign itself)"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Pan right / wipe to supermarket shelf",
+     "sfx": [
+      {
+       "t": 32.6,
+       "name": "neon_flicker",
+       "gain": 0.6
+      },
+      {
+       "t": 33.1,
+       "name": "neon_buzz",
+       "gain": 0.4
+      },
+      {
+       "t": 34.2,
+       "name": "neon_flicker",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "SIGN"
+     ],
+     "hero": "HERO 1 - first appearance of the NO MSG sign (paid off in s09).",
+     "notes": null
+    },
+    {
+     "id": "s01.08",
+     "start": 35.6,
+     "end": 39.02,
+     "lines": [
+      {
+       "n": 7,
+       "voice": "NARR",
+       "start": 32.448,
+       "end": 38.72,
+       "coverage": "partial",
+       "text": "Restaurants hang signs promising they don't use it. Food labels proudly brag about leaving it out."
+      }
+     ],
+     "shot_size": "MEDIUM -> WIDE",
+     "on_screen": "Supermarket shelf of generic snack/soup packages; badge stickers stamp onto them one by one (fictional brands only, no real logos).",
+     "camera": "Lateral truck left->right along the shelf.",
+     "text": [
+      "NO MSG",
+      "NO ADDED MSG"
+     ],
+     "transition_in": "Wipe / pan from sign",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 36.0,
+       "name": "stamp",
+       "gain": 0.4
+      },
+      {
+       "t": 36.7,
+       "name": "stamp",
+       "gain": 0.35
+      },
+      {
+       "t": 37.4,
+       "name": "stamp",
+       "gain": 0.3
+      }
+     ],
+     "props": [],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s01.09",
+     "start": 39.02,
+     "end": 42.925,
+     "lines": [
+      {
+       "n": 8,
+       "voice": "NARR",
+       "start": 39.02,
+       "end": 42.625,
+       "coverage": "full",
+       "text": "But what actually is MSG? Is it really bad for you?"
+      }
+     ],
+     "shot_size": "CLOSE",
+     "on_screen": "MSG shaker alone, centered in a spotlight on an empty table, crystals glinting. A large '?' pops above it on 'Is it really bad for you?'.",
+     "camera": "Very slow push-in.",
+     "text": [
+      "MSG?"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Freeze-frame on record scratch",
+     "sfx": [
+      {
+       "t": 39.3,
+       "name": "pop",
+       "gain": 0.45
+      },
+      {
+       "t": 40.6,
+       "name": "sparkle",
+       "gain": 0.35
+      },
+      {
+       "t": 41.6,
+       "name": "pop_small",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s01.10",
+     "start": 42.925,
+     "end": 47.709,
+     "lines": [
+      {
+       "n": 9,
+       "voice": "NARR",
+       "start": 42.925,
+       "end": 46.509,
+       "coverage": "full",
+       "text": "And if it isn't... why does almost everyone think it is?"
+      }
+     ],
+     "shot_size": "CLOSE -> WIDE",
+     "on_screen": "Record scratch: frame freezes for ~0.3 s. Then pull back: the shaker sits small in front of the (now dim) TV wall and the NO MSG sign; a big 'WHY?' rises. Fade out.",
+     "camera": "Freeze, then smooth pull-back to wide.",
+     "text": [
+      "WHY?"
+     ],
+     "transition_in": "Freeze (no cut)",
+     "transition_out": "Fade to black (0.4 s)",
+     "sfx": [
+      {
+       "t": 42.95,
+       "name": "record_scratch",
+       "gain": 0.7
+      },
+      {
+       "t": 44.9,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 46.9,
+       "name": "whoosh",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "SHAKER",
+      "TVWALL",
+      "SIGN"
+     ],
+     "hero": "HERO 2 - record scratch + 'WHY?' (the video's central question).",
+     "notes": null
+    }
+   ]
+  },
+  {
+   "id": "s02_title",
+   "title": "Title Card",
+   "duration": 6.36,
+   "shots": [
+    {
+     "id": "s02.01",
+     "start": 0.0,
+     "end": 1.4,
+     "lines": [
+      {
+       "n": 1,
+       "voice": "NARR",
+       "start": 0.6,
+       "end": 4.76,
+       "coverage": "partial",
+       "text": "MSG. The most misunderstood molecule in your kitchen."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Starfield; small crystals orbit; the glutamate mascot (face on) pops in at center with a glow (~0.7 s).",
+     "camera": "Slow linear push-in over whole scene (1.00 -> 1.08).",
+     "text": [],
+     "transition_in": "Fade from black (0.5 s)",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 0.0,
+       "name": "whoosh_long",
+       "gain": 0.8
+      },
+      {
+       "t": 0.9,
+       "name": "sparkle",
+       "gain": 0.7
+      }
+     ],
+     "props": [
+      "GLU"
+     ],
+     "hero": null,
+     "notes": "Already implemented in scenes/s02_title.js - this entry documents it for continuity."
+    },
+    {
+     "id": "s02.02",
+     "start": 1.4,
+     "end": 6.36,
+     "lines": [
+      {
+       "n": 1,
+       "voice": "NARR",
+       "start": 0.6,
+       "end": 4.76,
+       "coverage": "partial",
+       "text": "MSG. The most misunderstood molecule in your kitchen."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Title type rises under the bobbing mascot: 'MSG' (large) then subtitle.",
+     "camera": "Continued push-in.",
+     "text": [
+      "MSG",
+      "The Most Misunderstood Molecule"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Fade to black (0.5 s)",
+     "sfx": [
+      {
+       "t": 1.6,
+       "name": "impact_soft",
+       "gain": 0.9
+      },
+      {
+       "t": 2.3,
+       "name": "pop",
+       "gain": 0.6
+      }
+     ],
+     "props": [
+      "GLU"
+     ],
+     "hero": "HERO 3 - title card; mascot design is canonical from here on.",
+     "notes": null
+    }
+   ]
+  },
+  {
+   "id": "s03_ikeda",
+   "title": "1908: The Discovery of Umami",
+   "duration": 41.495,
+   "shots": [
+    {
+     "id": "s03.01",
+     "start": 0.0,
+     "end": 4.569,
+     "lines": [
+      {
+       "n": 1,
+       "voice": "NARR",
+       "start": 0.6,
+       "end": 4.269,
+       "coverage": "full",
+       "text": "Our story begins in Tokyo, in 1908."
+      }
+     ],
+     "shot_size": "EXTREME WIDE (establishing)",
+     "on_screen": "Tokyo, 1908, at dusk: period-accurate wooden two-storey buildings, telegraph poles, lanterns over a street, a lit university-lab window. Respectful, not exoticized (no generic 'Asia' cliches).",
+     "camera": "Slow descending crane toward the lit window.",
+     "text": [
+      "TOKYO, 1908 (chapter label)"
+     ],
+     "transition_in": "Fade from black",
+     "transition_out": "Push through the window (match to interior)",
+     "sfx": [
+      {
+       "t": 0.2,
+       "name": "whoosh_long",
+       "gain": 0.5
+      },
+      {
+       "t": 1.0,
+       "name": "chime",
+       "gain": 0.35
+      },
+      {
+       "t": 3.4,
+       "name": "tick",
+       "gain": 0.2
+      }
+     ],
+     "props": [],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s03.02",
+     "start": 4.569,
+     "end": 10.928,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 4.569,
+       "end": 10.628,
+       "coverage": "full",
+       "text": "A chemist named Kikunae Ikeda was eating a bowl of soup made with kombu, a kind of seaweed."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Interior: Professor Ikeda (period suit, moustache, round glasses - see continuity IKEDA) at a table, blowing on a steaming bowl. A kombu strip floats up out of the bowl as an icon.",
+     "camera": "Slow push-in from medium to medium-close.",
+     "text": [
+      "KIKUNAE IKEDA (name tag)",
+      "KOMBU"
+     ],
+     "transition_in": "Continuous from window push",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 5.0,
+       "name": "pop_small",
+       "gain": 0.4
+      },
+      {
+       "t": 7.4,
+       "name": "slurp",
+       "gain": 0.4
+      },
+      {
+       "t": 8.9,
+       "name": "pop_small",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "IKEDA"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s03.03",
+     "start": 10.928,
+     "end": 15.4,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 10.928,
+       "end": 18.373,
+       "coverage": "partial",
+       "text": "He noticed a taste that wasn't sweet, or sour, or salty, or bitter. It was something else. Savory. Meaty. Deep."
+      }
+     ],
+     "shot_size": "MEDIUM-CLOSE",
+     "on_screen": "Four taste icons pop into a ring around Ikeda's head as each word is spoken: SWEET, SOUR, SALTY, BITTER. Each dims/greys out right after it appears ('wasn't...').",
+     "camera": "Locked with gentle drift.",
+     "text": [
+      "SWEET",
+      "SOUR",
+      "SALTY",
+      "BITTER"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 11.8,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 12.6,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 13.3,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 14.1,
+       "name": "pop",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "TASTE_ICONS",
+      "IKEDA"
+     ],
+     "hero": null,
+     "notes": "Word times are estimates; snap each pop to the spoken word in the WAV."
+    },
+    {
+     "id": "s03.04",
+     "start": 15.4,
+     "end": 18.773,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 10.928,
+       "end": 18.373,
+       "coverage": "partial",
+       "text": "He noticed a taste that wasn't sweet, or sour, or salty, or bitter. It was something else. Savory. Meaty. Deep."
+      }
+     ],
+     "shot_size": "CLOSE",
+     "on_screen": "A fifth empty slot in the ring glows with a mysterious '?' that pulses; three words drift up in sequence.",
+     "camera": "Push-in on the fifth slot.",
+     "text": [
+      "SAVORY",
+      "MEATY",
+      "DEEP"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 15.5,
+       "name": "sparkle",
+       "gain": 0.45
+      },
+      {
+       "t": 16.6,
+       "name": "pop_small",
+       "gain": 0.3
+      },
+      {
+       "t": 17.4,
+       "name": "pop_small",
+       "gain": 0.3
+      },
+      {
+       "t": 18.0,
+       "name": "pop_small",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "TASTE_ICONS"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s03.05",
+     "start": 18.773,
+     "end": 22.6,
+     "lines": [
+      {
+       "n": 4,
+       "voice": "NARR",
+       "start": 18.773,
+       "end": 26.517,
+       "coverage": "partial",
+       "text": "So he went to his lab, boiled down huge amounts of seaweed, and found the source: a substance called glutamic acid."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Lab: a comically huge pile of seaweed tumbles into a giant pot over a burner; it starts boiling.",
+     "camera": "Tilt down following the falling seaweed.",
+     "text": [],
+     "transition_in": "Cut",
+     "transition_out": "Time-lapse dissolve",
+     "sfx": [
+      {
+       "t": 19.0,
+       "name": "thud",
+       "gain": 0.5
+      },
+      {
+       "t": 19.8,
+       "name": "bubbling_pot",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "IKEDA"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s03.06",
+     "start": 22.6,
+     "end": 26.817,
+     "lines": [
+      {
+       "n": 4,
+       "voice": "NARR",
+       "start": 18.773,
+       "end": 26.517,
+       "coverage": "partial",
+       "text": "So he went to his lab, boiled down huge amounts of seaweed, and found the source: a substance called glutamic acid."
+      }
+     ],
+     "shot_size": "WIDE -> CLOSE",
+     "on_screen": "Time-lapse: the pile shrinks, steam rises, the pot boils down to a small dish with just a few glinting crystals.",
+     "camera": "Push-in from pot to dish (ends close on crystals).",
+     "text": [
+      "GLUTAMIC ACID"
+     ],
+     "transition_in": "Time-lapse dissolve",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 22.8,
+       "name": "swoosh_down",
+       "gain": 0.4
+      },
+      {
+       "t": 24.6,
+       "name": "sparkle",
+       "gain": 0.5
+      },
+      {
+       "t": 25.4,
+       "name": "pop",
+       "gain": 0.4
+      }
+     ],
+     "props": [],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s03.07",
+     "start": 26.817,
+     "end": 30.509,
+     "lines": [
+      {
+       "n": 5,
+       "voice": "NARR",
+       "start": 26.817,
+       "end": 30.209,
+       "coverage": "full",
+       "text": "He named the taste umami. Roughly: delicious taste."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "The fifth taste slot fills: big word UMAMI pops in center with glow; the four other taste icons re-appear around it as equals. Small translation line below.",
+     "camera": "Slight push-in with breathing scale.",
+     "text": [
+      "UMAMI",
+      "'delicious taste'"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 27.2,
+       "name": "impact_soft",
+       "gain": 0.7
+      },
+      {
+       "t": 27.45,
+       "name": "chime",
+       "gain": 0.45
+      }
+     ],
+     "props": [
+      "TASTE_ICONS"
+     ],
+     "hero": "HERO 4 - UMAMI is named (fifth taste completes the ring).",
+     "notes": null
+    },
+    {
+     "id": "s03.08",
+     "start": 30.509,
+     "end": 34.4,
+     "lines": [
+      {
+       "n": 6,
+       "voice": "NARR",
+       "start": 30.509,
+       "end": 38.189,
+       "coverage": "partial",
+       "text": "To turn it into a seasoning, he paired it with sodium, making a stable, salt-like crystal. Monosodium glutamate."
+      }
+     ],
+     "shot_size": "CLOSE",
+     "on_screen": "The glutamate mascot (first time in the story) meets a small round sodium ion character; they click together.",
+     "camera": "Locked, gentle drift.",
+     "text": [
+      "+ Na (sodium)"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 31.6,
+       "name": "click",
+       "gain": 0.45
+      },
+      {
+       "t": 33.0,
+       "name": "pop",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "GLU",
+      "NA"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s03.09",
+     "start": 34.4,
+     "end": 38.489,
+     "lines": [
+      {
+       "n": 6,
+       "voice": "NARR",
+       "start": 30.509,
+       "end": 38.189,
+       "coverage": "partial",
+       "text": "To turn it into a seasoning, he paired it with sodium, making a stable, salt-like crystal. Monosodium glutamate."
+      }
+     ],
+     "shot_size": "CLOSE -> MEDIUM",
+     "on_screen": "The pair tiles into a growing, salt-like crystal lattice. Full name appears with M, S and G highlighted.",
+     "camera": "Pull-back as the crystal grows.",
+     "text": [
+      "MONOSODIUM GLUTAMATE",
+      "M-S-G"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 35.0,
+       "name": "sparkle",
+       "gain": 0.5
+      },
+      {
+       "t": 36.6,
+       "name": "ding",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "GLU",
+      "NA"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s03.10",
+     "start": 38.489,
+     "end": 41.495,
+     "lines": [
+      {
+       "n": 7,
+       "voice": "NARR",
+       "start": 38.489,
+       "end": 40.495,
+       "coverage": "full",
+       "text": "Within a year, it was on sale."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Crystals pour into the MSG shaker (first canonical appearance), which lands on a period shop counter.",
+     "camera": "Small push-in, then hold.",
+     "text": [
+      "ON SALE"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Fade to black",
+     "sfx": [
+      {
+       "t": 38.7,
+       "name": "pop_small",
+       "gain": 0.35
+      },
+      {
+       "t": 39.3,
+       "name": "cash",
+       "gain": 0.45
+      },
+      {
+       "t": 41.0,
+       "name": "whoosh",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": "Do NOT show a year here: script says only 'within a year'."
+    }
+   ]
+  },
+  {
+   "id": "s04_everywhere",
+   "title": "Glutamate Is Everywhere",
+   "duration": 42.752,
+   "shots": [
+    {
+     "id": "s04.01",
+     "start": 0.0,
+     "end": 5.081,
+     "lines": [
+      {
+       "n": 1,
+       "voice": "NARR",
+       "start": 0.6,
+       "end": 4.781,
+       "coverage": "full",
+       "text": "Here's the thing. Glutamate isn't some strange lab-made chemical."
+      }
+     ],
+     "shot_size": "CLOSE",
+     "on_screen": "Glutamate mascot center. Behind it a lab flask and beaker pop in; on 'lab-made' they get a big X and slide away; mascot shrugs.",
+     "camera": "Gentle drift.",
+     "text": [
+      "LAB-MADE?"
+     ],
+     "transition_in": "Fade from black",
+     "transition_out": "Zoom-out (continuous)",
+     "sfx": [
+      {
+       "t": 0.7,
+       "name": "pop",
+       "gain": 0.5
+      },
+      {
+       "t": 2.3,
+       "name": "pop_small",
+       "gain": 0.3
+      },
+      {
+       "t": 3.4,
+       "name": "stamp",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "GLU"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s04.02",
+     "start": 5.081,
+     "end": 8.8,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 5.081,
+       "end": 11.865,
+       "coverage": "partial",
+       "text": "It's one of the most common amino acids on Earth, a building block of the proteins in every living thing."
+      }
+     ],
+     "shot_size": "CLOSE -> MEDIUM",
+     "on_screen": "Zoom out: the mascot is one bead in a long chain of differently-colored beads (amino acids) that folds into a protein blob.",
+     "camera": "Smooth zoom-out.",
+     "text": [
+      "AMINO ACID",
+      "PROTEIN"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 5.2,
+       "name": "swoosh_up",
+       "gain": 0.45
+      },
+      {
+       "t": 6.2,
+       "name": "pop_small",
+       "gain": 0.3
+      },
+      {
+       "t": 7.4,
+       "name": "bubble",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "GLU"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s04.03",
+     "start": 8.8,
+     "end": 12.165,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 5.081,
+       "end": 11.865,
+       "coverage": "partial",
+       "text": "It's one of the most common amino acids on Earth, a building block of the proteins in every living thing."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Protein blobs drift into silhouettes of living things: a leaf, a fish, a cell, a person.",
+     "camera": "Continued slow zoom-out / pan.",
+     "text": [
+      "EVERY LIVING THING"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 9.0,
+       "name": "whoosh",
+       "gain": 0.4
+      },
+      {
+       "t": 9.8,
+       "name": "pop_small",
+       "gain": 0.3
+      },
+      {
+       "t": 10.6,
+       "name": "pop_small",
+       "gain": 0.3
+      },
+      {
+       "t": 11.3,
+       "name": "pop_small",
+       "gain": 0.3
+      }
+     ],
+     "props": [],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s04.04",
+     "start": 12.165,
+     "end": 15.4,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 12.165,
+       "end": 21.381,
+       "coverage": "partial",
+       "text": "Ripe tomatoes are full of it. So are mushrooms, soy sauce, and parmesan cheese, one of the richest sources of glutamate there is."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Ripe tomato (cut-away) glowing softly with tiny glutamate mascots bobbing inside.",
+     "camera": "Push-in.",
+     "text": [
+      "TOMATO"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Truck right",
+     "sfx": [
+      {
+       "t": 12.4,
+       "name": "pop",
+       "gain": 0.5
+      },
+      {
+       "t": 14.0,
+       "name": "bubble",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "TOMATO",
+      "GLU"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s04.05",
+     "start": 15.4,
+     "end": 18.3,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 12.165,
+       "end": 21.381,
+       "coverage": "partial",
+       "text": "Ripe tomatoes are full of it. So are mushrooms, soy sauce, and parmesan cheese, one of the richest sources of glutamate there is."
+      }
+     ],
+     "shot_size": "WIDE (row of foods)",
+     "on_screen": "Mushrooms and a soy-sauce bottle pop in, forming a row to the right of the tomato, each with a mini mascot.",
+     "camera": "Truck right along the row.",
+     "text": [
+      "MUSHROOMS",
+      "SOY SAUCE"
+     ],
+     "transition_in": "Truck",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 15.6,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 16.8,
+       "name": "pop",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "TOMATO",
+      "GLU"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s04.06",
+     "start": 18.3,
+     "end": 21.681,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 12.165,
+       "end": 21.381,
+       "coverage": "partial",
+       "text": "Ripe tomatoes are full of it. So are mushrooms, soy sauce, and parmesan cheese, one of the richest sources of glutamate there is."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Parmesan wedge pops in last and largest, sparkles; it is the only food given an emphasis badge.",
+     "camera": "Push-in on parmesan.",
+     "text": [
+      "PARMESAN",
+      "ONE OF THE RICHEST"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 18.6,
+       "name": "pop",
+       "gain": 0.45
+      },
+      {
+       "t": 19.5,
+       "name": "sparkle",
+       "gain": 0.45
+      }
+     ],
+     "props": [
+      "GLU"
+     ],
+     "hero": null,
+     "notes": "No glutamate amounts or ranking between tomato/mushroom/soy - script only says parmesan is one of the richest."
+    },
+    {
+     "id": "s04.07",
+     "start": 21.681,
+     "end": 25.6,
+     "lines": [
+      {
+       "n": 4,
+       "voice": "NARR",
+       "start": 21.681,
+       "end": 29.255,
+       "coverage": "partial",
+       "text": "Human breast milk contains around ten times more free glutamate than cow's milk. Our very first meal is umami."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Two simple milk icons side by side: HUMAN MILK (droplet/bottle) and COW'S MILK (glass). Bars rise beneath them: the human-milk bar grows to ~10x the cow's-milk bar.",
+     "camera": "Locked; slight tilt up following the tall bar.",
+     "text": [
+      "HUMAN MILK",
+      "COW'S MILK",
+      "FREE GLUTAMATE",
+      "~10x"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 22.0,
+       "name": "pop_small",
+       "gain": 0.35
+      },
+      {
+       "t": 22.6,
+       "name": "swoosh_up",
+       "gain": 0.45
+      },
+      {
+       "t": 24.5,
+       "name": "ding",
+       "gain": 0.4
+      }
+     ],
+     "props": [],
+     "hero": null,
+     "notes": "Bar ratio must be ~10:1. No axis values. Icon-level depiction only (no nudity / breastfeeding scene)."
+    },
+    {
+     "id": "s04.08",
+     "start": 25.6,
+     "end": 29.655,
+     "lines": [
+      {
+       "n": 4,
+       "voice": "NARR",
+       "start": 21.681,
+       "end": 29.255,
+       "coverage": "partial",
+       "text": "Human breast milk contains around ten times more free glutamate than cow's milk. Our very first meal is umami."
+      }
+     ],
+     "shot_size": "MEDIUM-CLOSE",
+     "on_screen": "Swaddled baby smiles with a warm umami glow; a tiny mascot floats by.",
+     "camera": "Gentle push-in.",
+     "text": [
+      "FIRST MEAL = UMAMI"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 26.4,
+       "name": "chime",
+       "gain": 0.4
+      },
+      {
+       "t": 27.8,
+       "name": "pop_small",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "GLU"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s04.09",
+     "start": 29.655,
+     "end": 33.752,
+     "lines": [
+      {
+       "n": 5,
+       "voice": "NARR",
+       "start": 29.655,
+       "end": 33.452,
+       "coverage": "full",
+       "text": "Your body even makes its own glutamate, every single day."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Simple human silhouette with glowing interior; little 'cell factories' produce mascots. A sun/moon arc cycles overhead twice to say 'every day'.",
+     "camera": "Locked, gentle drift.",
+     "text": [
+      "MADE IN YOUR BODY",
+      "EVERY DAY"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Split-wipe",
+     "sfx": [
+      {
+       "t": 30.0,
+       "name": "bubble",
+       "gain": 0.35
+      },
+      {
+       "t": 31.2,
+       "name": "tick",
+       "gain": 0.25
+      },
+      {
+       "t": 32.4,
+       "name": "tick",
+       "gain": 0.25
+      }
+     ],
+     "props": [
+      "GLU"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s04.10",
+     "start": 33.752,
+     "end": 37.8,
+     "lines": [
+      {
+       "n": 6,
+       "voice": "NARR",
+       "start": 33.752,
+       "end": 41.752,
+       "coverage": "partial",
+       "text": "And to your body, glutamate from a tomato and glutamate from a shaker of MSG are exactly the same molecule."
+      }
+     ],
+     "shot_size": "WIDE (split screen)",
+     "on_screen": "Left half: tomato releases a glutamate mascot. Right half: MSG shaker shakes out a glutamate mascot.",
+     "camera": "Locked split; both halves drift slightly.",
+     "text": [
+      "FROM TOMATO",
+      "FROM MSG"
+     ],
+     "transition_in": "Split-wipe",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 33.9,
+       "name": "whoosh",
+       "gain": 0.45
+      },
+      {
+       "t": 35.0,
+       "name": "pop",
+       "gain": 0.45
+      },
+      {
+       "t": 36.3,
+       "name": "pop",
+       "gain": 0.45
+      }
+     ],
+     "props": [
+      "TOMATO",
+      "SHAKER",
+      "GLU"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s04.11",
+     "start": 37.8,
+     "end": 42.752,
+     "lines": [
+      {
+       "n": 6,
+       "voice": "NARR",
+       "start": 33.752,
+       "end": 41.752,
+       "coverage": "partial",
+       "text": "And to your body, glutamate from a tomato and glutamate from a shaker of MSG are exactly the same molecule."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Split line dissolves; both mascots slide to center and overlap perfectly (pixel-identical). Big '=' between then over them.",
+     "camera": "Slow push-in.",
+     "text": [
+      "=",
+      "SAME MOLECULE"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Fade to black",
+     "sfx": [
+      {
+       "t": 38.4,
+       "name": "impact_soft",
+       "gain": 0.6
+      },
+      {
+       "t": 39.6,
+       "name": "success",
+       "gain": 0.45
+      }
+     ],
+     "props": [
+      "GLU"
+     ],
+     "hero": "HERO 5 - tomato glutamate = MSG glutamate (the two mascots must be IDENTICAL).",
+     "notes": null
+    }
+   ]
+  },
+  {
+   "id": "s05_body",
+   "title": "What Happens When You Eat It",
+   "duration": 45.164,
+   "shots": [
+    {
+     "id": "s05.01",
+     "start": 0.0,
+     "end": 2.777,
+     "lines": [
+      {
+       "n": 1,
+       "voice": "NARR",
+       "start": 0.6,
+       "end": 2.477,
+       "coverage": "full",
+       "text": "So what happens when you eat it?"
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "A fork lifts a bite of seasoned food from a plate toward a mouth (profile).",
+     "camera": "Tilt up with the fork.",
+     "text": [],
+     "transition_in": "Fade from black",
+     "transition_out": "Match-cut into the cutaway body",
+     "sfx": [
+      {
+       "t": 0.6,
+       "name": "whoosh",
+       "gain": 0.4
+      },
+      {
+       "t": 2.2,
+       "name": "chomp",
+       "gain": 0.5
+      }
+     ],
+     "props": [],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s05.02",
+     "start": 2.777,
+     "end": 7.0,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 2.777,
+       "end": 11.033,
+       "coverage": "partial",
+       "text": "First, glutamate docks onto special receptors on your tongue, and sends your brain a message: this food has protein in it. Yum."
+      }
+     ],
+     "shot_size": "MEDIUM -> CLOSE",
+     "on_screen": "Cutaway body (side profile head + torso, see BODY). Push into the tongue: taste receptors as little docking cups; glutamate mascots dock with a click and the receptor glows.",
+     "camera": "Zoom into tongue.",
+     "text": [
+      "RECEPTORS"
+     ],
+     "transition_in": "Match-cut",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 4.2,
+       "name": "click",
+       "gain": 0.5
+      },
+      {
+       "t": 4.6,
+       "name": "click",
+       "gain": 0.4
+      },
+      {
+       "t": 5.0,
+       "name": "click",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "BODY",
+      "GLU"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s05.03",
+     "start": 7.0,
+     "end": 11.333,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 2.777,
+       "end": 11.033,
+       "coverage": "partial",
+       "text": "First, glutamate docks onto special receptors on your tongue, and sends your brain a message: this food has protein in it. Yum."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "A glowing signal pulse travels up a nerve to the brain; the brain pops a speech bubble.",
+     "camera": "Tilt/track up following the pulse.",
+     "text": [
+      "PROTEIN!",
+      "YUM"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 7.3,
+       "name": "swoosh_up",
+       "gain": 0.45
+      },
+      {
+       "t": 9.0,
+       "name": "ding",
+       "gain": 0.45
+      },
+      {
+       "t": 10.5,
+       "name": "pop",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "BODY"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s05.04",
+     "start": 11.333,
+     "end": 16.476,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 11.333,
+       "end": 16.176,
+       "coverage": "full",
+       "text": "Then it reaches your gut. And this is where the scary story starts to fall apart."
+      }
+     ],
+     "shot_size": "WIDE (vertical travel)",
+     "on_screen": "Camera dives down the esophagus into the gut tunnel. On 'scary story starts to fall apart' a small '!' alarm bubble (TV-wall style from s01) cracks and crumbles.",
+     "camera": "Long downward dive, ease-in-out.",
+     "text": [
+      "GUT"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 11.4,
+       "name": "whoosh_long",
+       "gain": 0.5
+      },
+      {
+       "t": 14.6,
+       "name": "crunch",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "BODY"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s05.05",
+     "start": 16.476,
+     "end": 21.384,
+     "lines": [
+      {
+       "n": 4,
+       "voice": "NARR",
+       "start": 16.476,
+       "end": 21.084,
+       "coverage": "full",
+       "text": "The cells lining your intestines love glutamate. They burn it as fuel."
+      }
+     ],
+     "shot_size": "CLOSE",
+     "on_screen": "Intestine-wall close-up: round gut-cell characters (see GUTCELL) gobble passing glutamate mascots and light up with a small energy spark.",
+     "camera": "Lateral truck along the cells.",
+     "text": [
+      "FUEL"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Pull-back",
+     "sfx": [
+      {
+       "t": 17.2,
+       "name": "chomp",
+       "gain": 0.45
+      },
+      {
+       "t": 18.0,
+       "name": "chomp",
+       "gain": 0.4
+      },
+      {
+       "t": 18.9,
+       "name": "chomp",
+       "gain": 0.4
+      },
+      {
+       "t": 20.0,
+       "name": "sparkle",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "GUTCELL",
+      "GLU"
+     ],
+     "hero": "HERO 6 - gut cells eat glutamate as fuel (character sheet reused in s06).",
+     "notes": null
+    },
+    {
+     "id": "s05.06",
+     "start": 21.384,
+     "end": 25.6,
+     "lines": [
+      {
+       "n": 5,
+       "voice": "NARR",
+       "start": 21.384,
+       "end": 30.365,
+       "coverage": "partial",
+       "text": "Almost all the glutamate you eat, around ninety-five percent, is used up right there in your gut, before it ever reaches your bloodstream."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "A stream of glutamate particles enters; most are eaten. A percentage counter climbs and lands on 95% exactly as 'ninety-five percent' is spoken.",
+     "camera": "Pull-back to medium, locked.",
+     "text": [
+      "95%",
+      "USED BY YOUR GUT"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 22.0,
+       "name": "tick",
+       "gain": 0.2
+      },
+      {
+       "t": 22.6,
+       "name": "tick",
+       "gain": 0.2
+      },
+      {
+       "t": 23.2,
+       "name": "tick",
+       "gain": 0.2
+      },
+      {
+       "t": 23.8,
+       "name": "tick",
+       "gain": 0.2
+      },
+      {
+       "t": 24.5,
+       "name": "ding",
+       "gain": 0.5
+      }
+     ],
+     "props": [
+      "GUTCELL",
+      "GLU"
+     ],
+     "hero": "HERO 7 - the 95% counter.",
+     "notes": "Counter landing time (~24.5 s) is an estimate - snap to the spoken 'ninety-five' in the WAV."
+    },
+    {
+     "id": "s05.07",
+     "start": 25.6,
+     "end": 30.765,
+     "lines": [
+      {
+       "n": 5,
+       "voice": "NARR",
+       "start": 21.384,
+       "end": 30.365,
+       "coverage": "partial",
+       "text": "Almost all the glutamate you eat, around ninety-five percent, is used up right there in your gut, before it ever reaches your bloodstream."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Pull back: gut wall as a border; only a few stray particles slip through into a blood vessel beyond.",
+     "camera": "Continued pull-back.",
+     "text": [
+      "BLOODSTREAM"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Track along vessel",
+     "sfx": [
+      {
+       "t": 27.0,
+       "name": "bubble",
+       "gain": 0.3
+      },
+      {
+       "t": 28.6,
+       "name": "swoosh_down",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "GUTCELL",
+      "GLU"
+     ],
+     "hero": null,
+     "notes": "Do not print '5%' - only 95% is stated."
+    },
+    {
+     "id": "s05.08",
+     "start": 30.765,
+     "end": 35.3,
+     "lines": [
+      {
+       "n": 6,
+       "voice": "NARR",
+       "start": 30.765,
+       "end": 39.704,
+       "coverage": "partial",
+       "text": "And the little that slips through faces another wall: the blood-brain barrier, a tightly guarded border that controls what gets into your brain."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Follow the few particles up a vessel to the head. A castle-wall barrier rises, with cute guard characters.",
+     "camera": "Track upward with particles.",
+     "text": [
+      "BLOOD-BRAIN BARRIER"
+     ],
+     "transition_in": "Track",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 30.9,
+       "name": "whoosh",
+       "gain": 0.45
+      },
+      {
+       "t": 32.8,
+       "name": "thud",
+       "gain": 0.5
+      },
+      {
+       "t": 34.0,
+       "name": "pop_small",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "BBB",
+      "GLU"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s05.09",
+     "start": 35.3,
+     "end": 40.004,
+     "lines": [
+      {
+       "n": 6,
+       "voice": "NARR",
+       "start": 30.765,
+       "end": 39.704,
+       "coverage": "partial",
+       "text": "And the little that slips through faces another wall: the blood-brain barrier, a tightly guarded border that controls what gets into your brain."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "At the gate a guard checks arrivals; a glutamate particle approaches, the guard raises a palm, it bounces back.",
+     "camera": "Push-in to gate.",
+     "text": [
+      "CONTROLLED BORDER"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Pull-back",
+     "sfx": [
+      {
+       "t": 36.4,
+       "name": "click",
+       "gain": 0.35
+      },
+      {
+       "t": 38.2,
+       "name": "boing",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "BBB",
+      "GLU"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s05.10",
+     "start": 40.004,
+     "end": 45.164,
+     "lines": [
+      {
+       "n": 7,
+       "voice": "NARR",
+       "start": 40.004,
+       "end": 44.164,
+       "coverage": "full",
+       "text": "The glutamate on your dinner plate doesn't just stroll into your neurons."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Full stack: dinner plate at bottom, gut, wall, brain with calm glowing neurons at top. Mascot at the gate shrugs.",
+     "camera": "Slow pull-back to full body.",
+     "text": [],
+     "transition_in": "Continuous",
+     "transition_out": "Fade to black",
+     "sfx": [
+      {
+       "t": 41.0,
+       "name": "pop",
+       "gain": 0.35
+      },
+      {
+       "t": 44.4,
+       "name": "whoosh",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "BODY",
+      "BBB",
+      "GLU"
+     ],
+     "hero": null,
+     "notes": null
+    }
+   ]
+  },
+  {
+   "id": "s06_origin",
+   "title": "How the Rumour Started",
+   "duration": 78.143,
+   "shots": [
+    {
+     "id": "s06.01",
+     "start": 0.0,
+     "end": 5.039,
+     "lines": [
+      {
+       "n": 1,
+       "voice": "NARR",
+       "start": 0.6,
+       "end": 4.739,
+       "coverage": "full",
+       "text": "So how did a seaweed seasoning become public enemy number one?"
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "A kombu strip morphs into the MSG shaker; spotlight snaps on and a target-reticle frames it.",
+     "camera": "Push-in.",
+     "text": [
+      "PUBLIC ENEMY #1"
+     ],
+     "transition_in": "Fade from black",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 0.5,
+       "name": "whoosh",
+       "gain": 0.45
+      },
+      {
+       "t": 2.6,
+       "name": "impact_soft",
+       "gain": 0.5
+      },
+      {
+       "t": 3.6,
+       "name": "pop_small",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s06.02",
+     "start": 5.039,
+     "end": 8.667,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 5.039,
+       "end": 8.367,
+       "coverage": "full",
+       "text": "It started in 1968, with a letter."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Chapter label 1968. A typewritten letter flutters down onto a desk.",
+     "camera": "Tilt down following the letter.",
+     "text": [
+      "1968 (chapter label)"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Push-in",
+     "sfx": [
+      {
+       "t": 5.3,
+       "name": "paper",
+       "gain": 0.45
+      },
+      {
+       "t": 6.0,
+       "name": "swoosh_down",
+       "gain": 0.35
+      },
+      {
+       "t": 7.4,
+       "name": "paper",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "LETTER"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s06.03",
+     "start": 8.667,
+     "end": 13.8,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 8.667,
+       "end": 19.056,
+       "coverage": "partial",
+       "text": "A doctor wrote to the New England Journal of Medicine, describing numbness, weakness and palpitations after eating at Chinese restaurants in the United States."
+      }
+     ],
+     "shot_size": "CLOSE",
+     "on_screen": "Letter close-up: lines type themselves (illegible placeholder text); envelope addressed to the journal.",
+     "camera": "Slow push along the letter.",
+     "text": [
+      "TO: NEW ENGLAND JOURNAL OF MEDICINE"
+     ],
+     "transition_in": "Push-in",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 9.0,
+       "name": "typewriter",
+       "gain": 0.4
+      },
+      {
+       "t": 12.6,
+       "name": "paper",
+       "gain": 0.25
+      }
+     ],
+     "props": [
+      "LETTER"
+     ],
+     "hero": null,
+     "notes": "Plain text address only - do not recreate the journal's real masthead/logo."
+    },
+    {
+     "id": "s06.04",
+     "start": 13.8,
+     "end": 19.356,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 8.667,
+       "end": 19.056,
+       "coverage": "partial",
+       "text": "A doctor wrote to the New England Journal of Medicine, describing numbness, weakness and palpitations after eating at Chinese restaurants in the United States."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Three symptom icons pop out of the letter: tingling hand (numbness), drooping arm (weakness), fluttering heart (palpitations). Beside them a small, NEUTRAL restaurant-front icon with a US flag pin.",
+     "camera": "Gentle pull-back.",
+     "text": [
+      "NUMBNESS",
+      "WEAKNESS",
+      "PALPITATIONS"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 14.6,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 15.5,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 16.6,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 17.1,
+       "name": "heartbeat",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "LETTER"
+     ],
+     "hero": null,
+     "notes": "No stereotyped restaurant/people imagery (see guardrails)."
+    },
+    {
+     "id": "s06.05",
+     "start": 19.356,
+     "end": 23.5,
+     "lines": [
+      {
+       "n": 4,
+       "voice": "NARR",
+       "start": 19.356,
+       "end": 26.417,
+       "coverage": "partial",
+       "text": "He wondered what might be causing it. The cooking wine? The salt? Maybe the MSG? He didn't know. It was a guess."
+      }
+     ],
+     "shot_size": "WIDE (line-up)",
+     "on_screen": "Suspect line-up: cooking-wine bottle, salt shaker, MSG shaker. A '?' pops above each as it is named.",
+     "camera": "Truck left->right.",
+     "text": [
+      "?",
+      "?",
+      "?"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 20.5,
+       "name": "blip",
+       "gain": 0.4
+      },
+      {
+       "t": 21.3,
+       "name": "blip",
+       "gain": 0.4
+      },
+      {
+       "t": 22.3,
+       "name": "blip",
+       "gain": 0.45
+      }
+     ],
+     "props": [
+      "SALT",
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s06.06",
+     "start": 23.5,
+     "end": 26.717,
+     "lines": [
+      {
+       "n": 4,
+       "voice": "NARR",
+       "start": 19.356,
+       "end": 26.417,
+       "coverage": "partial",
+       "text": "He wondered what might be causing it. The cooking wine? The salt? Maybe the MSG? He didn't know. It was a guess."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "The three '?' drift together and merge into one wobbly label; the letter-writer (a simple shrugging hand/silhouette, not a portrait) shrugs.",
+     "camera": "Locked.",
+     "text": [
+      "A GUESS"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Whip to the headline",
+     "sfx": [
+      {
+       "t": 24.6,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 25.6,
+       "name": "boing",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "SALT",
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s06.07",
+     "start": 26.717,
+     "end": 31.753,
+     "lines": [
+      {
+       "n": 5,
+       "voice": "NARR",
+       "start": 26.717,
+       "end": 31.453,
+       "coverage": "full",
+       "text": "But the journal printed it under a catchy headline: Chinese Restaurant Syndrome."
+      }
+     ],
+     "shot_size": "CLOSE",
+     "on_screen": "The printed headline stamp slams across the letter/page with a camera shake.",
+     "camera": "Whip-in, then 6-frame shake on impact, then hold.",
+     "text": [
+      "\"CHINESE-RESTAURANT SYNDROME\""
+     ],
+     "transition_in": "Whip-pan",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 27.4,
+       "name": "swoosh_down",
+       "gain": 0.35
+      },
+      {
+       "t": 29.3,
+       "name": "stamp",
+       "gain": 0.8
+      },
+      {
+       "t": 29.35,
+       "name": "impact_big",
+       "gain": 0.45
+      }
+     ],
+     "props": [
+      "HEADLINE"
+     ],
+     "hero": "HERO 8 - the headline stamp.",
+     "notes": "Stamp lands on the spoken name (~29.3 s, verify). Plain neutral typeface - never a 'chop-suey'/wonton font."
+    },
+    {
+     "id": "s06.08",
+     "start": 31.753,
+     "end": 35.0,
+     "lines": [
+      {
+       "n": 6,
+       "voice": "NARR",
+       "start": 31.753,
+       "end": 38.324,
+       "coverage": "partial",
+       "text": "Letters poured in. Newspapers ran with it. Almost overnight, a guess had become a diagnosis."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Envelopes pour in from the top; newspapers multiply and spin toward camera (classic spinning-paper gag).",
+     "camera": "Push-in into the spinning paper.",
+     "text": [],
+     "transition_in": "Cut",
+     "transition_out": "Spin transition",
+     "sfx": [
+      {
+       "t": 31.9,
+       "name": "paper",
+       "gain": 0.4
+      },
+      {
+       "t": 33.2,
+       "name": "whoosh",
+       "gain": 0.45
+      },
+      {
+       "t": 34.3,
+       "name": "whoosh",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "HEADLINE"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s06.09",
+     "start": 35.0,
+     "end": 38.724,
+     "lines": [
+      {
+       "n": 6,
+       "voice": "NARR",
+       "start": 31.753,
+       "end": 38.324,
+       "coverage": "partial",
+       "text": "Letters poured in. Newspapers ran with it. Almost overnight, a guess had become a diagnosis."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "The 'A GUESS' label morphs into a clipboard-style 'DIAGNOSIS' stamp.",
+     "camera": "Locked.",
+     "text": [
+      "GUESS -> DIAGNOSIS"
+     ],
+     "transition_in": "Spin transition",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 35.8,
+       "name": "swoosh_up",
+       "gain": 0.35
+      },
+      {
+       "t": 36.9,
+       "name": "stamp",
+       "gain": 0.55
+      }
+     ],
+     "props": [],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s06.10",
+     "start": 38.724,
+     "end": 44.0,
+     "lines": [
+      {
+       "n": 7,
+       "voice": "NARR",
+       "start": 38.724,
+       "end": 49.391,
+       "coverage": "partial",
+       "text": "A year later, a scientist injected huge doses of MSG under the skin of newborn mice, and found brain damage. The headlines got even scarier."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Chapter label 1969. A cute lab with newborn mouse pups in a nest; a comically GIANT syringe looms in (scale gag = huge dose). The injection is implied, never shown; no gore.",
+     "camera": "Slow push-in.",
+     "text": [
+      "1969 (chapter label)",
+      "HUGE DOSE"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 39.0,
+       "name": "swoosh_down",
+       "gain": 0.4
+      },
+      {
+       "t": 41.2,
+       "name": "impact_soft",
+       "gain": 0.4
+      },
+      {
+       "t": 42.6,
+       "name": "pop_small",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "MOUSE",
+      "SYRINGE"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s06.11",
+     "start": 44.0,
+     "end": 49.691,
+     "lines": [
+      {
+       "n": 7,
+       "voice": "NARR",
+       "start": 38.724,
+       "end": 49.391,
+       "coverage": "partial",
+       "text": "A year later, a scientist injected huge doses of MSG under the skin of newborn mice, and found brain damage. The headlines got even scarier."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Newspapers return with bigger, scarier headlines (illegible except 'MSG' and '!'); a muted alarm bell shakes.",
+     "camera": "Push-in through the papers.",
+     "text": [
+      "MSG!?"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Split-wipe",
+     "sfx": [
+      {
+       "t": 44.3,
+       "name": "paper",
+       "gain": 0.4
+      },
+      {
+       "t": 46.4,
+       "name": "alarm",
+       "gain": 0.25
+      },
+      {
+       "t": 48.2,
+       "name": "whoosh",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "HEADLINE"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s06.12",
+     "start": 49.691,
+     "end": 54.2,
+     "lines": [
+      {
+       "n": 8,
+       "voice": "NARR",
+       "start": 49.691,
+       "end": 58.693,
+       "coverage": "partial",
+       "text": "But injecting a massive dose into a baby mouse is nothing like eating a seasoned meal. Remember: your gut eats almost all of it first."
+      }
+     ],
+     "shot_size": "WIDE (split screen)",
+     "on_screen": "Left: giant syringe over a tiny mouse pup ('injection'). Right: a person enjoying a seasoned bowl ('meal'). A big not-equal sign between.",
+     "camera": "Locked split, slight drift.",
+     "text": [
+      "INJECTION",
+      "MEAL",
+      "≠"
+     ],
+     "transition_in": "Split-wipe",
+     "transition_out": "Push into the person's belly (cutaway)",
+     "sfx": [
+      {
+       "t": 49.9,
+       "name": "whoosh",
+       "gain": 0.4
+      },
+      {
+       "t": 51.8,
+       "name": "impact_soft",
+       "gain": 0.55
+      }
+     ],
+     "props": [
+      "MOUSE",
+      "SYRINGE"
+     ],
+     "hero": "HERO 9 - injection ≠ meal.",
+     "notes": null
+    },
+    {
+     "id": "s06.13",
+     "start": 54.2,
+     "end": 59.093,
+     "lines": [
+      {
+       "n": 8,
+       "voice": "NARR",
+       "start": 49.691,
+       "end": 58.693,
+       "coverage": "partial",
+       "text": "But injecting a massive dose into a baby mouse is nothing like eating a seasoned meal. Remember: your gut eats almost all of it first."
+      }
+     ],
+     "shot_size": "CLOSE",
+     "on_screen": "Callback: the s05 gut cells gobble glutamate mascots; the 95% badge from s05 reappears small.",
+     "camera": "Lateral truck (same as s05 shot 05).",
+     "text": [
+      "95% (callback)"
+     ],
+     "transition_in": "Push-in / cutaway",
+     "transition_out": "Desaturating dissolve",
+     "sfx": [
+      {
+       "t": 55.4,
+       "name": "chomp",
+       "gain": 0.4
+      },
+      {
+       "t": 56.3,
+       "name": "chomp",
+       "gain": 0.35
+      },
+      {
+       "t": 57.6,
+       "name": "pop_small",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "GUTCELL",
+      "GLU"
+     ],
+     "hero": null,
+     "notes": "Must reuse GUTCELL and 95% badge exactly as designed in s05."
+    },
+    {
+     "id": "s06.14",
+     "start": 59.093,
+     "end": 63.2,
+     "lines": [
+      {
+       "n": 9,
+       "voice": "NARR",
+       "start": 59.093,
+       "end": 67.093,
+       "coverage": "partial",
+       "text": "And there was something else going on. In 1960s America, Chinese food was seen as foreign and suspicious."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Mood shift (slightly muted palette, still the house style): a 1960s American street with a varied crowd of ordinary diners walking past a NEUTRAL restaurant facade.",
+     "camera": "Slow lateral pan.",
+     "text": [
+      "1960s AMERICA"
+     ],
+     "transition_in": "Desaturating dissolve",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 59.2,
+       "name": "whoosh_long",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "CROWD"
+     ],
+     "hero": null,
+     "notes": "Highest-sensitivity shot - see guardrails (no stereotypes, no caricatured Asian people)."
+    },
+    {
+     "id": "s06.15",
+     "start": 63.2,
+     "end": 67.393,
+     "lines": [
+      {
+       "n": 9,
+       "voice": "NARR",
+       "start": 59.093,
+       "end": 67.093,
+       "coverage": "partial",
+       "text": "And there was something else going on. In 1960s America, Chinese food was seen as foreign and suspicious."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Suspicion shown abstractly: cold side-eye glances and gray tag-labels drift onto a plain takeout box (the prejudice is visualized as something put ON the food, not as a trait of people).",
+     "camera": "Slow push-in on the box.",
+     "text": [
+      "'FOREIGN'",
+      "'SUSPICIOUS'"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Split-wipe",
+     "sfx": [
+      {
+       "t": 64.0,
+       "name": "static",
+       "gain": 0.2
+      },
+      {
+       "t": 65.6,
+       "name": "pop_small",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "TAKEOUT"
+     ],
+     "hero": null,
+     "notes": "Words shown in quotes / as tags so they read as the attitude being criticised."
+    },
+    {
+     "id": "s06.16",
+     "start": 67.393,
+     "end": 72.0,
+     "lines": [
+      {
+       "n": 10,
+       "voice": "NARR",
+       "start": 67.393,
+       "end": 77.143,
+       "coverage": "partial",
+       "text": "Nobody blamed the tomato sauce. Nobody worried about Italian Restaurant Syndrome. The fear stuck to one cuisine, and the name said it out loud."
+      }
+     ],
+     "shot_size": "WIDE (split screen)",
+     "on_screen": "Left: pasta with tomato sauce and parmesan - calm, nothing happens. Right: the takeout box - alarm bells ring. Identical glutamate mascots bob above BOTH sides. A fake headline 'ITALIAN RESTAURANT SYNDROME' fades in on the left and dissolves away (it never existed).",
+     "camera": "Locked split, gentle drift.",
+     "text": [
+      "TOMATO SAUCE",
+      "ITALIAN RESTAURANT SYNDROME? (dissolves)"
+     ],
+     "transition_in": "Split-wipe",
+     "transition_out": "Continuous push",
+     "sfx": [
+      {
+       "t": 67.6,
+       "name": "whoosh",
+       "gain": 0.4
+      },
+      {
+       "t": 69.0,
+       "name": "alarm",
+       "gain": 0.3
+      },
+      {
+       "t": 70.6,
+       "name": "pop_small",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "TOMATO",
+      "TAKEOUT",
+      "GLU"
+     ],
+     "hero": "HERO 10 - double standard split screen.",
+     "notes": null
+    },
+    {
+     "id": "s06.17",
+     "start": 72.0,
+     "end": 78.143,
+     "lines": [
+      {
+       "n": 10,
+       "voice": "NARR",
+       "start": 67.393,
+       "end": 77.143,
+       "coverage": "partial",
+       "text": "Nobody blamed the tomato sauce. Nobody worried about Italian Restaurant Syndrome. The fear stuck to one cuisine, and the name said it out loud."
+      }
+     ],
+     "shot_size": "CLOSE",
+     "on_screen": "Split collapses onto the right; the original HEADLINE card from shot 07 slides back in; camera pushes in on the name; hold, then fade.",
+     "camera": "Slow push-in, ease-out.",
+     "text": [
+      "\"CHINESE-RESTAURANT SYNDROME\""
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Fade to black",
+     "sfx": [
+      {
+       "t": 73.4,
+       "name": "swoosh_down",
+       "gain": 0.3
+      },
+      {
+       "t": 75.8,
+       "name": "impact_soft",
+       "gain": 0.4
+      },
+      {
+       "t": 77.4,
+       "name": "whoosh",
+       "gain": 0.25
+      }
+     ],
+     "props": [
+      "HEADLINE"
+     ],
+     "hero": null,
+     "notes": "Same HEADLINE card as shot 07, identical typography."
+    }
+   ]
+  },
+  {
+   "id": "s07_tests",
+   "title": "Putting MSG to the Test",
+   "duration": 46.74,
+   "shots": [
+    {
+     "id": "s07.01",
+     "start": 0.0,
+     "end": 5.572,
+     "lines": [
+      {
+       "n": 1,
+       "voice": "NARR",
+       "start": 0.6,
+       "end": 5.272,
+       "coverage": "full",
+       "text": "Scientists took the claims seriously, and tested them. Again, and again."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Clean modern lab, a diverse team of scientists. Clipboards and study folders stack up, each getting a check as 'again, and again' is said.",
+     "camera": "Slow lateral pan.",
+     "text": [
+      "TESTED",
+      "AGAIN & AGAIN"
+     ],
+     "transition_in": "Fade from black",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 0.6,
+       "name": "whoosh",
+       "gain": 0.35
+      },
+      {
+       "t": 2.4,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 3.9,
+       "name": "click",
+       "gain": 0.35
+      },
+      {
+       "t": 4.6,
+       "name": "click",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "LAB"
+     ],
+     "hero": null,
+     "notes": "No study count is given in the script - do not number the folders."
+    },
+    {
+     "id": "s07.02",
+     "start": 5.572,
+     "end": 9.8,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 5.572,
+       "end": 15.599,
+       "coverage": "partial",
+       "text": "The gold standard is a double-blind study: people get either MSG or a placebo, and nobody, not even the researchers, knows who got which."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "A small gold-standard badge, then two identical capsules labeled A and B on a tray.",
+     "camera": "Push-in.",
+     "text": [
+      "DOUBLE-BLIND",
+      "A",
+      "B"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 6.2,
+       "name": "ding",
+       "gain": 0.4
+      },
+      {
+       "t": 8.0,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 8.5,
+       "name": "pop",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "CAPSULES"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s07.03",
+     "start": 9.8,
+     "end": 15.899,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 5.572,
+       "end": 15.599,
+       "coverage": "partial",
+       "text": "The gold standard is a double-blind study: people get either MSG or a placebo, and nobody, not even the researchers, knows who got which."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Capsules drop under two cups and get shuffled (shell-game). Volunteer AND researcher both wear cute blindfolds - nobody knows which is which.",
+     "camera": "Locked; slight push on blindfolds.",
+     "text": [
+      "MSG?",
+      "PLACEBO?"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 10.4,
+       "name": "whoosh",
+       "gain": 0.35
+      },
+      {
+       "t": 11.1,
+       "name": "whoosh",
+       "gain": 0.3
+      },
+      {
+       "t": 11.8,
+       "name": "whoosh",
+       "gain": 0.3
+      },
+      {
+       "t": 13.6,
+       "name": "pop_small",
+       "gain": 0.3
+      },
+      {
+       "t": 14.8,
+       "name": "boing",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "CAPSULES"
+     ],
+     "hero": "HERO 11 - the double-blind shuffle.",
+     "notes": null
+    },
+    {
+     "id": "s07.04",
+     "start": 15.899,
+     "end": 19.3,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 15.899,
+       "end": 22.597,
+       "coverage": "partial",
+       "text": "Over and over, people who said they were sensitive to MSG reacted just as often to the fake."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "A row of diverse volunteers wearing 'SENSITIVE' badges, thought bubbles with worried symptom icons; each takes a cup.",
+     "camera": "Truck left->right.",
+     "text": [
+      "SENSITIVE"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 16.4,
+       "name": "bubble",
+       "gain": 0.35
+      },
+      {
+       "t": 17.2,
+       "name": "bubble",
+       "gain": 0.3
+      },
+      {
+       "t": 18.0,
+       "name": "bubble",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "VOLUNTEERS"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s07.05",
+     "start": 19.3,
+     "end": 22.897,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 15.899,
+       "end": 22.597,
+       "coverage": "partial",
+       "text": "Over and over, people who said they were sensitive to MSG reacted just as often to the fake."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Results chart: two bars, MSG vs PLACEBO, rise to nearly the same height. Volunteers' reaction icons split evenly between the two groups.",
+     "camera": "Locked, gentle drift.",
+     "text": [
+      "MSG",
+      "PLACEBO"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 19.6,
+       "name": "swoosh_up",
+       "gain": 0.4
+      },
+      {
+       "t": 21.0,
+       "name": "ding",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "VOLUNTEERS"
+     ],
+     "hero": "HERO 12 - MSG vs placebo bars nearly equal.",
+     "notes": "No axis numbers / percentages - the script gives none."
+    },
+    {
+     "id": "s07.06",
+     "start": 22.897,
+     "end": 28.5,
+     "lines": [
+      {
+       "n": 4,
+       "voice": "NARR",
+       "start": 22.897,
+       "end": 35.015,
+       "coverage": "partial",
+       "text": "Huge doses on an empty stomach caused mild, short-lived symptoms in some people. But the results weren't consistent, and nothing like that showed up with normal amounts in normal food."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Comically huge spoonful next to an empty plate/stomach icon; SOME volunteers get small symptom icons that fade away quickly (a short timer runs out).",
+     "camera": "Push-in.",
+     "text": [
+      "HUGE DOSE",
+      "EMPTY STOMACH",
+      "MILD · SHORT-LIVED"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 23.4,
+       "name": "thud",
+       "gain": 0.4
+      },
+      {
+       "t": 25.4,
+       "name": "pop_small",
+       "gain": 0.3
+      },
+      {
+       "t": 26.6,
+       "name": "tick",
+       "gain": 0.25
+      },
+      {
+       "t": 27.3,
+       "name": "tick",
+       "gain": 0.25
+      }
+     ],
+     "props": [
+      "VOLUNTEERS"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s07.07",
+     "start": 28.5,
+     "end": 35.415,
+     "lines": [
+      {
+       "n": 4,
+       "voice": "NARR",
+       "start": 22.897,
+       "end": 35.015,
+       "coverage": "partial",
+       "text": "Huge doses on an empty stomach caused mild, short-lived symptoms in some people. But the results weren't consistent, and nothing like that showed up with normal amounts in normal food."
+      }
+     ],
+     "shot_size": "WIDE -> MEDIUM",
+     "on_screen": "Result cards scatter with mixed, inconsistent marks; then they clear and a normal meal plate appears with a relaxed volunteer and a calm check mark.",
+     "camera": "Pull-back then push-in on the plate.",
+     "text": [
+      "NOT CONSISTENT",
+      "NORMAL FOOD ✓"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 28.8,
+       "name": "paper",
+       "gain": 0.35
+      },
+      {
+       "t": 30.2,
+       "name": "error",
+       "gain": 0.25
+      },
+      {
+       "t": 33.4,
+       "name": "success",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "VOLUNTEERS"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s07.08",
+     "start": 35.415,
+     "end": 40.5,
+     "lines": [
+      {
+       "n": 5,
+       "voice": "NARR",
+       "start": 35.415,
+       "end": 45.74,
+       "coverage": "partial",
+       "text": "Today, the US Food and Drug Administration lists MSG as generally recognized as safe, the same category as salt, sugar, and baking powder."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Official-looking (generic, not a real seal/logo) document slides in; a big GRAS stamp slams onto it.",
+     "camera": "Push-in, 4-frame shake on stamp.",
+     "text": [
+      "US FDA",
+      "GRAS",
+      "GENERALLY RECOGNIZED AS SAFE"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Pull-back",
+     "sfx": [
+      {
+       "t": 35.6,
+       "name": "paper",
+       "gain": 0.35
+      },
+      {
+       "t": 39.0,
+       "name": "stamp",
+       "gain": 0.8
+      },
+      {
+       "t": 39.05,
+       "name": "impact_soft",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "GRAS"
+     ],
+     "hero": "HERO 13 - GRAS stamp.",
+     "notes": "Stamp on 'generally recognized as safe' (~39.0 s, verify). Plain-text 'US FDA' only; no agency logo."
+    },
+    {
+     "id": "s07.09",
+     "start": 40.5,
+     "end": 46.74,
+     "lines": [
+      {
+       "n": 5,
+       "voice": "NARR",
+       "start": 35.415,
+       "end": 45.74,
+       "coverage": "partial",
+       "text": "Today, the US Food and Drug Administration lists MSG as generally recognized as safe, the same category as salt, sugar, and baking powder."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "The MSG shaker joins a row with a salt shaker, a sugar bowl and a baking-powder tin under the GRAS label.",
+     "camera": "Pull-back, then hold.",
+     "text": [
+      "SALT",
+      "SUGAR",
+      "BAKING POWDER"
+     ],
+     "transition_in": "Pull-back",
+     "transition_out": "Fade to black",
+     "sfx": [
+      {
+       "t": 41.6,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 42.5,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 43.6,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 45.0,
+       "name": "success",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "SHAKER",
+      "SALT",
+      "GRAS"
+     ],
+     "hero": null,
+     "notes": null
+    }
+   ]
+  },
+  {
+   "id": "s08_twist",
+   "title": "Plot Twist: MSG vs Salt",
+   "duration": 18.733,
+   "shots": [
+    {
+     "id": "s08.01",
+     "start": 0.0,
+     "end": 4.335,
+     "lines": [
+      {
+       "n": 1,
+       "voice": "NARR",
+       "start": 0.6,
+       "end": 4.035,
+       "coverage": "full",
+       "text": "Here's a plot twist. MSG might actually help."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Swirl/twist transition; MSG shaker in spotlight with a curling twist-arrow and a small heart-shaped spark.",
+     "camera": "Quick spin-in, then hold.",
+     "text": [
+      "PLOT TWIST"
+     ],
+     "transition_in": "Fade from black + spin",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 0.4,
+       "name": "swoosh_up",
+       "gain": 0.5
+      },
+      {
+       "t": 2.0,
+       "name": "sparkle",
+       "gain": 0.4
+      },
+      {
+       "t": 3.0,
+       "name": "pop_small",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s08.02",
+     "start": 4.335,
+     "end": 6.8,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 4.335,
+       "end": 9.092,
+       "coverage": "partial",
+       "text": "Gram for gram, it has only about a third of the sodium of table salt."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Balance scale; SALT shaker lands on the left pan, MSG shaker on the right ('gram for gram' - equal weights).",
+     "camera": "Locked, gentle drift.",
+     "text": [
+      "SALT",
+      "MSG",
+      "1 g = 1 g"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 4.6,
+       "name": "thud",
+       "gain": 0.45
+      },
+      {
+       "t": 5.3,
+       "name": "thud",
+       "gain": 0.45
+      }
+     ],
+     "props": [
+      "SALT",
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": "Scale stays level: equal mass is the premise."
+    },
+    {
+     "id": "s08.03",
+     "start": 6.8,
+     "end": 9.392,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 4.335,
+       "end": 9.092,
+       "coverage": "partial",
+       "text": "Gram for gram, it has only about a third of the sodium of table salt."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Sodium ions (same Na character as s03) pop out above each shaker: three under SALT, one under MSG.",
+     "camera": "Push-in.",
+     "text": [
+      "Na",
+      "≈ 1/3 THE SODIUM"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 7.0,
+       "name": "pop_small",
+       "gain": 0.35
+      },
+      {
+       "t": 7.3,
+       "name": "pop_small",
+       "gain": 0.35
+      },
+      {
+       "t": 7.6,
+       "name": "pop_small",
+       "gain": 0.35
+      },
+      {
+       "t": 8.2,
+       "name": "pop_small",
+       "gain": 0.35
+      },
+      {
+       "t": 8.8,
+       "name": "ding",
+       "gain": 0.45
+      }
+     ],
+     "props": [
+      "SALT",
+      "SHAKER",
+      "NA"
+     ],
+     "hero": "HERO 14 - about a third of the sodium (3:1 ions).",
+     "notes": null
+    },
+    {
+     "id": "s08.04",
+     "start": 9.392,
+     "end": 13.5,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 9.392,
+       "end": 17.733,
+       "coverage": "partial",
+       "text": "Swap some of the salt in a recipe for MSG, and you can cut the sodium in a dish noticeably, while keeping all the flavor."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "A cooking pot; a salt spoon is partly swapped for an MSG spoon; a SODIUM meter beside the pot drops.",
+     "camera": "Locked.",
+     "text": [
+      "SODIUM ↓"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 10.4,
+       "name": "swoosh_down",
+       "gain": 0.4
+      },
+      {
+       "t": 11.2,
+       "name": "bubbling_pot",
+       "gain": 0.3
+      }
+     ],
+     "props": [
+      "SALT",
+      "SHAKER",
+      "NA"
+     ],
+     "hero": null,
+     "notes": "No specific % reduction - script only says 'noticeably'."
+    },
+    {
+     "id": "s08.05",
+     "start": 13.5,
+     "end": 18.733,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 9.392,
+       "end": 17.733,
+       "coverage": "partial",
+       "text": "Swap some of the salt in a recipe for MSG, and you can cut the sodium in a dish noticeably, while keeping all the flavor."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "A FLAVOR meter next to the sodium meter stays full; a heart icon pops up and smiles.",
+     "camera": "Slow pull-back.",
+     "text": [
+      "FLAVOR ✓"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Fade to black",
+     "sfx": [
+      {
+       "t": 14.6,
+       "name": "pop",
+       "gain": 0.45
+      },
+      {
+       "t": 16.0,
+       "name": "success",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": "Heart is a mood icon; no 'heart health' text or claim."
+    }
+   ]
+  },
+  {
+   "id": "s09_outro",
+   "title": "So... Is MSG Bad for You?",
+   "duration": 32.319,
+   "shots": [
+    {
+     "id": "s09.01",
+     "start": 0.0,
+     "end": 2.948,
+     "lines": [
+      {
+       "n": 1,
+       "voice": "NARR",
+       "start": 0.6,
+       "end": 2.648,
+       "coverage": "full",
+       "text": "So, is MSG bad for you?"
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Callback: the exact s01 TV wall, all five talking heads frozen mid-claim (DRAMATIZATION tags visible); MSG shaker in front with a '?'.",
+     "camera": "Slow push-in.",
+     "text": [
+      "?",
+      "DRAMATIZATION (on visible heads)"
+     ],
+     "transition_in": "Fade from black",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 0.3,
+       "name": "static",
+       "gain": 0.25
+      },
+      {
+       "t": 1.0,
+       "name": "pop",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "TVWALL",
+      "DRAMA_TAG",
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s09.02",
+     "start": 2.948,
+     "end": 7.6,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 2.948,
+       "end": 12.463,
+       "coverage": "partial",
+       "text": "In absurd amounts, almost anything is. Even water. But in food, the evidence says it's about as dangerous as the tomato on your pizza."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Absurd-dose gag: a comically gigantic water tank next to a normal glass of water.",
+     "camera": "Tilt up the giant tank.",
+     "text": [
+      "EVEN WATER"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 3.6,
+       "name": "bubble",
+       "gain": 0.35
+      },
+      {
+       "t": 5.8,
+       "name": "boing",
+       "gain": 0.35
+      }
+     ],
+     "props": [],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s09.03",
+     "start": 7.6,
+     "end": 12.863,
+     "lines": [
+      {
+       "n": 2,
+       "voice": "NARR",
+       "start": 2.948,
+       "end": 12.463,
+       "coverage": "partial",
+       "text": "In absurd amounts, almost anything is. Even water. But in food, the evidence says it's about as dangerous as the tomato on your pizza."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Balance scale: a pizza slice with tomato on one side, a pinch of MSG on the other - level.",
+     "camera": "Locked; gentle drift.",
+     "text": [
+      "≈"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 8.4,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 10.6,
+       "name": "impact_soft",
+       "gain": 0.45
+      }
+     ],
+     "props": [
+      "TOMATO",
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s09.04",
+     "start": 12.863,
+     "end": 18.6,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 12.863,
+       "end": 22.057,
+       "coverage": "partial",
+       "text": "The story of MSG is really a story about how one guess, a catchy name, and a little bit of prejudice can outlive decades of science."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "Three tags tumble in as each phrase is spoken: A GUESS (shape from s06), A CATCHY NAME (HEADLINE card mini), A LITTLE PREJUDICE.",
+     "camera": "Locked.",
+     "text": [
+      "ONE GUESS",
+      "A CATCHY NAME",
+      "A LITTLE PREJUDICE"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Pull-back",
+     "sfx": [
+      {
+       "t": 15.0,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 16.1,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 17.6,
+       "name": "pop",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "HEADLINE"
+     ],
+     "hero": null,
+     "notes": "Word times estimated; snap to WAV."
+    },
+    {
+     "id": "s09.05",
+     "start": 18.6,
+     "end": 22.457,
+     "lines": [
+      {
+       "n": 3,
+       "voice": "NARR",
+       "start": 12.863,
+       "end": 22.057,
+       "coverage": "partial",
+       "text": "The story of MSG is really a story about how one guess, a catchy name, and a little bit of prejudice can outlive decades of science."
+      }
+     ],
+     "shot_size": "WIDE",
+     "on_screen": "Pull back to the TV wall: on 'outlive decades of science' the TVs switch off one by one (reverse of s01 order: C3, A3, C1, A1, B2) while a tall stack of research papers rises beside them.",
+     "camera": "Slow pull-back.",
+     "text": [
+      "DECADES OF SCIENCE"
+     ],
+     "transition_in": "Pull-back",
+     "transition_out": "Cut",
+     "sfx": [
+      {
+       "t": 18.9,
+       "name": "tv_off",
+       "gain": 0.45
+      },
+      {
+       "t": 19.5,
+       "name": "tv_off",
+       "gain": 0.45
+      },
+      {
+       "t": 20.1,
+       "name": "tv_off",
+       "gain": 0.45
+      },
+      {
+       "t": 20.7,
+       "name": "tv_off",
+       "gain": 0.45
+      },
+      {
+       "t": 21.4,
+       "name": "tv_off",
+       "gain": 0.5
+      }
+     ],
+     "props": [
+      "TVWALL"
+     ],
+     "hero": "HERO 15 - TVs switch off one by one.",
+     "notes": null
+    },
+    {
+     "id": "s09.06",
+     "start": 22.457,
+     "end": 27.472,
+     "lines": [
+      {
+       "n": 4,
+       "voice": "NARR",
+       "start": 22.457,
+       "end": 27.172,
+       "coverage": "full",
+       "text": "So the next time you see a No MSG sign, you'll know the real story."
+      }
+     ],
+     "shot_size": "MEDIUM",
+     "on_screen": "The same NO MSG neon sign from s01; it flickers and the 'NO' burns out, leaving 'MSG' glowing warmly.",
+     "camera": "Slow push-in.",
+     "text": [
+      "NO MSG -> MSG"
+     ],
+     "transition_in": "Cut",
+     "transition_out": "Dissolve through the window",
+     "sfx": [
+      {
+       "t": 22.6,
+       "name": "neon_buzz",
+       "gain": 0.35
+      },
+      {
+       "t": 24.0,
+       "name": "neon_flicker",
+       "gain": 0.5
+      },
+      {
+       "t": 24.9,
+       "name": "neon_flicker",
+       "gain": 0.45
+      },
+      {
+       "t": 25.5,
+       "name": "click",
+       "gain": 0.4
+      },
+      {
+       "t": 26.4,
+       "name": "sparkle",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "SIGN"
+     ],
+     "hero": "HERO 16 - 'NO' burns out (payoff of s01 shot 07).",
+     "notes": null
+    },
+    {
+     "id": "s09.07",
+     "start": 27.472,
+     "end": 29.819,
+     "lines": [
+      {
+       "n": 5,
+       "voice": "NARR",
+       "start": 27.472,
+       "end": 29.819,
+       "coverage": "full",
+       "text": "And maybe... you'll reach for the shaker."
+      }
+     ],
+     "shot_size": "CLOSE",
+     "on_screen": "Cozy steaming bowl of ramen; a hand reaches for the MSG shaker and gives it two shakes.",
+     "camera": "Gentle push-in.",
+     "text": [],
+     "transition_in": "Dissolve",
+     "transition_out": "Continuous",
+     "sfx": [
+      {
+       "t": 27.9,
+       "name": "slurp",
+       "gain": 0.3
+      },
+      {
+       "t": 28.6,
+       "name": "pop_small",
+       "gain": 0.35
+      },
+      {
+       "t": 29.0,
+       "name": "pop_small",
+       "gain": 0.35
+      }
+     ],
+     "props": [
+      "SHAKER"
+     ],
+     "hero": null,
+     "notes": null
+    },
+    {
+     "id": "s09.08",
+     "start": 29.819,
+     "end": 32.319,
+     "lines": [],
+     "shot_size": "CLOSE -> EXTREME WIDE",
+     "on_screen": "Camera pulls back: bowl -> table -> window -> city -> planet -> stars. End card fades in.",
+     "camera": "Fast-then-slow pull-back into space.",
+     "text": [
+      "MSG: The Most Misunderstood Molecule (end card)"
+     ],
+     "transition_in": "Continuous",
+     "transition_out": "Fade to black (end of film)",
+     "sfx": [
+      {
+       "t": 29.9,
+       "name": "whoosh_long",
+       "gain": 0.55
+      },
+      {
+       "t": 31.0,
+       "name": "chime",
+       "gain": 0.45
+      }
+     ],
+     "props": [
+      "GLU"
+     ],
+     "hero": "HERO 17 - pull-back to space / end card.",
+     "notes": "Optional: small glutamate mascot in the starfield mirrors s02."
+    }
+   ]
+  }
+ ],
+ "hero_moments": [
+  {
+   "shot": "s01.07",
+   "start": 32.448,
+   "end": 35.6,
+   "beat": "HERO 1 - first appearance of the NO MSG sign (paid off in s09)."
+  },
+  {
+   "shot": "s01.10",
+   "start": 42.925,
+   "end": 47.709,
+   "beat": "HERO 2 - record scratch + 'WHY?' (the video's central question)."
+  },
+  {
+   "shot": "s02.02",
+   "start": 1.4,
+   "end": 6.36,
+   "beat": "HERO 3 - title card; mascot design is canonical from here on."
+  },
+  {
+   "shot": "s03.07",
+   "start": 26.817,
+   "end": 30.509,
+   "beat": "HERO 4 - UMAMI is named (fifth taste completes the ring)."
+  },
+  {
+   "shot": "s04.11",
+   "start": 37.8,
+   "end": 42.752,
+   "beat": "HERO 5 - tomato glutamate = MSG glutamate (the two mascots must be IDENTICAL)."
+  },
+  {
+   "shot": "s05.05",
+   "start": 16.476,
+   "end": 21.384,
+   "beat": "HERO 6 - gut cells eat glutamate as fuel (character sheet reused in s06)."
+  },
+  {
+   "shot": "s05.06",
+   "start": 21.384,
+   "end": 25.6,
+   "beat": "HERO 7 - the 95% counter."
+  },
+  {
+   "shot": "s06.07",
+   "start": 26.717,
+   "end": 31.753,
+   "beat": "HERO 8 - the headline stamp."
+  },
+  {
+   "shot": "s06.12",
+   "start": 49.691,
+   "end": 54.2,
+   "beat": "HERO 9 - injection ≠ meal."
+  },
+  {
+   "shot": "s06.16",
+   "start": 67.393,
+   "end": 72.0,
+   "beat": "HERO 10 - double standard split screen."
+  },
+  {
+   "shot": "s07.03",
+   "start": 9.8,
+   "end": 15.899,
+   "beat": "HERO 11 - the double-blind shuffle."
+  },
+  {
+   "shot": "s07.05",
+   "start": 19.3,
+   "end": 22.897,
+   "beat": "HERO 12 - MSG vs placebo bars nearly equal."
+  },
+  {
+   "shot": "s07.08",
+   "start": 35.415,
+   "end": 40.5,
+   "beat": "HERO 13 - GRAS stamp."
+  },
+  {
+   "shot": "s08.03",
+   "start": 6.8,
+   "end": 9.392,
+   "beat": "HERO 14 - about a third of the sodium (3:1 ions)."
+  },
+  {
+   "shot": "s09.05",
+   "start": 18.6,
+   "end": 22.457,
+   "beat": "HERO 15 - TVs switch off one by one."
+  },
+  {
+   "shot": "s09.06",
+   "start": 22.457,
+   "end": 27.472,
+   "beat": "HERO 16 - 'NO' burns out (payoff of s01 shot 07)."
+  },
+  {
+   "shot": "s09.08",
+   "start": 29.819,
+   "end": 32.319,
+   "beat": "HERO 17 - pull-back to space / end card."
+  }
+ ],
+ "continuity": [
+  {
+   "id": "GLU",
+   "name": "Glutamate mascot",
+   "rules": "Always drawn with KZ.glutamate(ctx,x,y,t,{face:true}) — same atom layout, same face, same proportions as s02. Swarms/particles may use small simplified versions but must read as the same molecule. Never redesign per scene; never give it a menacing face (it is the friendly hero). In s04.11 the two copies must be pixel-identical.",
+   "appears_in": "s02, s03.08–09, s04 (most shots), s05 (tongue, gut, barrier), s06.13, s06.16, s09.08"
+  },
+  {
+   "id": "SHAKER",
+   "name": "MSG shaker",
+   "rules": "Always KZ.shaker(ctx,x,y,s,'MSG') with the same body/cap colors in every scene. Label reads exactly 'MSG'. Same height ratio relative to the SALT shaker whenever both appear. Negative scenes (s01, s06.01) change the lighting/overlays (X, reticle), never the prop itself.",
+   "appears_in": "s01.03, s01.09–10, s03.10 (first canonical), s04.10, s06.01, s06.05–06, s07.09, s08 (all), s09.01, s09.03, s09.07"
+  },
+  {
+   "id": "SALT",
+   "name": "Salt shaker",
+   "rules": "KZ.shaker(...,'SALT') — a visibly different body or cap tone than MSG, otherwise identical silhouette (fair comparison). Reused unchanged in s06.05, s07.09, s08.",
+   "appears_in": "s06.05–06, s07.09, s08.02–04"
+  },
+  {
+   "id": "TVWALL",
+   "name": "Retro TV wall",
+   "rules": "3x3 grid of rounded retro TVs, fixed layout reused verbatim in s09. Speaker positions: HOST=B2 (center), TVDOC=A1 (top-left), CHEF=C1 (top-right), GURU=A3 (bottom-left), AUNT=C3 (bottom-right); the 4 remaining TVs show static only. Lighting order in s01: B2, A1, C1, A3, C3. Switch-off order in s09: C3, A3, C1, A1, B2. Talking heads are flat silhouettes with role props (desk, coat, toque, ring light, post card) — no facial likeness to any real person. Build once and share (see PRODUCTION_PLAN.md).",
+   "appears_in": "s01.01–06, s01.10 (dim), s09.01, s09.05"
+  },
+  {
+   "id": "DRAMA_TAG",
+   "name": "DRAMATIZATION tag",
+   "rules": "Small pill tag reading 'DRAMATIZATION' in the same corner of every TV screen whenever a talking head is visible, legible at 1080p (cap height >= 22 px), present for the entire time the head is on screen.",
+   "appears_in": "s01.01–06, s09.01 (and any other frame showing a talking head)"
+  },
+  {
+   "id": "SIGN",
+   "name": "NO MSG neon sign",
+   "rules": "One design: two words on one line, 'NO' and 'MSG' as separate neon tubes so 'NO' can burn out alone in s09. Same window/frame, same camera angle in both appearances (s09.06 should feel like a return to s01.07).",
+   "appears_in": "s01.07, s01.10 (background), s09.06"
+  },
+  {
+   "id": "GUTCELL",
+   "name": "Gut cells",
+   "rules": "Round intestine-cell characters with dot eyes, sitting in a row along the gut wall; gobble animation (mouth opens, mascot vanishes, small energy spark). s06.13 is a callback and must reuse the s05 design, motion and the same '95%' badge styling.",
+   "appears_in": "s05.05–07, s06.13"
+  },
+  {
+   "id": "NA",
+   "name": "Sodium ion",
+   "rules": "Small round 'Na' character (no face or tiny face), identical in s03 (pairing with glutamate) and s08 (counting sodium). In s08 the count is exactly 3 (salt) : 1 (MSG).",
+   "appears_in": "s03.08–09, s08.03–04"
+  },
+  {
+   "id": "TOMATO",
+   "name": "Tomato",
+   "rules": "Same ripe tomato design (cut-away variant allowed) in s04, s06.16 (sauce), s09.03 (on pizza).",
+   "appears_in": "s04.04–05, s04.10, s06.16, s09.03"
+  },
+  {
+   "id": "HEADLINE",
+   "name": "'Chinese-Restaurant Syndrome' headline card",
+   "rules": "One typographic card in a plain, neutral newspaper typeface (never a stereotyped 'oriental' font). Reused in s06.07, s06.08, s06.11 (variants), s06.17 and as a mini tag in s09.04.",
+   "appears_in": "s06.07–08, s06.11, s06.17, s09.04"
+  },
+  {
+   "id": "TASTE_ICONS",
+   "name": "Five taste icons",
+   "rules": "SWEET, SOUR, SALTY, BITTER + UMAMI in a ring; consistent icon set and order.",
+   "appears_in": "s03.03–04, s03.07"
+  },
+  {
+   "id": "IKEDA",
+   "name": "Professor Kikunae Ikeda",
+   "rules": "Respectful, simple character (period suit, moustache, round glasses), built from KZ.person proportions; same design across s03.",
+   "appears_in": "s03.02–05"
+  },
+  {
+   "id": "BODY",
+   "name": "Cutaway body",
+   "rules": "Side-profile head + torso; tongue, nerve, gut, vessels, brain in one consistent map.",
+   "appears_in": "s05.02–04, s05.10"
+  },
+  {
+   "id": "BBB",
+   "name": "Blood-brain barrier castle wall + guards",
+   "rules": "Cute guards, friendly not militaristic.",
+   "appears_in": "s05.08–10"
+  },
+  {
+   "id": "CHAPTER",
+   "name": "Chapter labels",
+   "rules": "Year/place labels use KZ.chapter (TOKYO, 1908 / 1968 / 1969 / 1960s AMERICA) for a consistent look.",
+   "appears_in": "s03.01, s06.02, s06.10, s06.14"
+  }
+ ],
+ "guardrails": {
+  "allowed_numbers_and_claims": [
+   "'50+ YEARS' / 'more than fifty years' (s01)",
+   "1908, Tokyo, Kikunae Ikeda, kombu, glutamic acid, 'umami ~ delicious taste', sodium + glutamate = monosodium glutamate, on sale 'within a year' (s03) — NO explicit year for the sale",
+   "Glutamate: one of the most common amino acids; building block of proteins; in tomatoes, mushrooms, soy sauce, parmesan ('one of the richest sources') (s04)",
+   "Human breast milk ~10x more FREE glutamate than cow's milk (s04) — show '~10x', bars ~10:1",
+   "Body makes its own glutamate every day; tomato glutamate = MSG glutamate (s04)",
+   "~95% of dietary glutamate used up in the gut (s05) — the ONLY percentage in the film; do not show '5%'",
+   "1968 letter to the New England Journal of Medicine; symptoms numbness, weakness, palpitations; suspects wine, salt, MSG; 'a guess'; printed under the headline 'Chinese Restaurant Syndrome' (s06)",
+   "1969 (a year later): huge doses injected under the skin of newborn mice, brain damage found (s06) — no gore",
+   "Double-blind placebo-controlled testing; MSG-sensitive people reacted as often to placebo; huge doses on an empty stomach -> mild, short-lived symptoms in some people, inconsistent; nothing with normal amounts in normal food (s07)",
+   "US FDA: 'generally recognized as safe' (GRAS), same category as salt, sugar, baking powder (s07)",
+   "MSG has ~1/3 the sodium of table salt gram for gram; swapping some salt cuts sodium 'noticeably' while keeping flavor (s08) — no % reduction",
+   "'In absurd amounts almost anything is [bad], even water'; 'about as dangerous as the tomato on your pizza' (s09)"
+  ],
+  "forbidden": [
+   "Any number, percentage, chart value, axis label, study count, dose amount or date not listed above (e.g. no '1909', no 'mg/kg', no 'n=...', no glutamate content per food).",
+   "Health claims beyond the script: no 'heart healthy', 'cures', 'MSG makes you healthier', 'zero side effects'.",
+   "Real logos, mastheads or seals (NEJM, FDA, social platforms, TV networks, food brands). Plain text names only.",
+   "Real or recognisable people (celebrity look-alikes, real TV doctors/chefs). The cold-open talking heads are fictional composites.",
+   "Showing Olney or Kwok as portraits — use hands/silhouettes or objects (letter, lab).",
+   "Gore: no needles piercing animals, no dead mice, no brain lesions imagery."
+  ],
+  "dramatization": "Every frame that shows a cold-open talking head (s01.01–06, s09.01, s09.05 if heads still visible) must carry the 'DRAMATIZATION' tag on that screen. Role chyrons use generic labels only: TALK SHOW HOST, DAYTIME TV DOCTOR, CELEBRITY CHEF, WELLNESS INFLUENCER, YOUR AUNT, ON SOCIAL MEDIA.",
+  "sensitive_1960s_section": [
+   "Applies to s01.04 (takeout mention), s06.04, s06.07, s06.11, s06.14–17 and s09.04.",
+   "No caricatured Asian people: no slanted-eye shorthand, buck teeth, conical hats, queues, 'coolie' imagery.",
+   "No 'oriental' signifiers as shorthand: no wonton/chop-suey fonts, pagoda roofs, gongs, dragons, paper-lantern clusters, chopsticks-in-hair.",
+   "Restaurant = neutral storefront; food = plain takeout box / bowl. Crowds are varied ordinary diners.",
+   "The prejudice is the subject being criticised: show it as cold tags/glances put ON the food, and frame 'foreign'/'suspicious' in quotes; it should never look endorsed.",
+   "The headline text is shown verbatim as a historical artifact in quotation marks; it is not used as a joke or punchline.",
+   "Ikeda / Tokyo 1908 (s03) depicted respectfully and period-plausibly, not exoticized."
+  ]
+ }
+}
