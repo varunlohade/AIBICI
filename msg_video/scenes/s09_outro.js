@@ -18,19 +18,21 @@
     T.decades = w(/decades/i, { fb: T.outlived + .6 }); T.of = w(/^of$/i, { after: T.decades, fb: T.decades + .6 }); T.science = w(/science/i, { fb: T.of + .2 });
     T.s4 = w(/^so$/i, { after: T.science, line: 1, fb: T.science + .6 }); T.no = w(/^no$/i, { after: T.s4, fb: T.s4 + 1.2 }); T.sign = w(/sign/i, { after: T.no, fb: T.no + .8 });
     T.reach = w(/reach/i, { after: T.sign, fb: T.sign + .6 }); T.s5 = T.reach - .1; T.shaker = w(/shaker/i, { after: T.reach, fb: T.reach + .6 });
-    T.drop = T.shaker + .4; T.pull = Math.max(T.drop + .7, D - 1.05); T.flick = (Math.round(D * 30) - 1) / 30 - .2;
+    T.drop = T.shaker + .4; T.pull = Math.max(T.drop + .7, D - 1.05); T.lastF = (Math.round(D * 30) - 1) / 30; T.flick = T.lastF - 8 / 30; T.clean = T.lastF - 4 / 30;
     return T;
   };
   const s01 = () => KZ.scenes.s01_coldopen;
   const SHK = [490, 1330];
   // a TV screen switching off: static -> white band collapses -> dot -> dark (p 0..1)
   function offScreen(ctx, S, p, f) {
-    if (p <= 0) { KP.static(ctx, S, f); return; }
+    // calm colour bars (no harsh static) -> a white band collapses to a dot -> dark glass with a glint + power dot
+    if (p <= 0) { KP.colorBars(ctx, S, f); return; }
+    if (p >= .85) { KP.screenOff(ctx, S); return; }
     ctx.save(); ctx.clip(KP.path(KP.rr(S.x, S.y, S.w, S.h, 20)));
     ctx.fillStyle = P.screenDim; ctx.fillRect(S.x, S.y, S.w, S.h);
     const cx = S.x + S.w / 2, cy = S.y + S.h / 2;
     if (p < .5) { const h = S.h * (1 - p * 2) + 6; ctx.fillStyle = P.rice; ctx.fillRect(S.x, cy - h / 2, S.w, h); }
-    else if (p < .85) { const k = 1 - (p - .5) / .35; ctx.fillStyle = P.rice; ctx.fillRect(cx - S.w / 2 * k, cy - 3, S.w * k, 6); ctx.beginPath(); ctx.arc(cx, cy, 8, 0, TAU); ctx.fill(); }
+    else { const k = 1 - (p - .5) / .35; ctx.fillStyle = P.rice; ctx.fillRect(cx - S.w / 2 * k, cy - 3, S.w * k, 6); ctx.beginPath(); ctx.arc(cx, cy, 8, 0, TAU); ctx.fill(); }
     ctx.restore();
   }
   function table(ctx, b) {
@@ -83,7 +85,7 @@
     });
     if (t >= T.not && t < T.s2 + .1) {
       const ar = KP.arrive(t, T.not, .3), out = KP.leave(t, T.s2 + .1, .15);
-      ctx.save(); ctx.globalAlpha = 1 - out; KP.pose(ctx, ar, 490, 330, 'pop');
+      ctx.save(); ctx.globalAlpha = out > 0 ? 0 : 1; KP.pose(ctx, ar, 490, 330, 'pop');
       KP.slip(ctx, [{ s: 'Not really', size: 96, font: 'Young Serif', weight: 400, ls: 2 }], 200, 230, { rot: -.03, seed: 90, boil: b, tape: P.kombu, padX: 40, padY: 22 });
       ctx.restore();
     }
@@ -162,13 +164,14 @@
     const ox = KP.lerp(KP.W / 2, scx, p), oy = KP.lerp(KP.H / 2, scy, p);
     const cues01 = window.CUES && window.CUES.s01_coldopen;
     ctx.save(); ctx.translate(ox, oy); ctx.scale(Z, Z); ctx.translate(-scx, -scy);
-    const sc = s01(), last = t >= (Math.round(D * 30) - 1) / 30 - 1e-6;   // the Reel's final rendered frame (30 fps)
-    sc.heroOverride = last ? null : (c, SS) => {
-      if (t >= T.flick) { KP.static(c, SS, Math.floor(t * 30)); return; }
+    const sc = s01(), clean = t >= T.clean - 1e-6;   // the last 4 frames are exactly s01 frame 0
+    sc.hideLow = t < T.flick - 1e-6;                 // credit tag + shelf only once the bowl is gone and the TV is in frame
+    sc.heroOverride = clean ? null : (c, SS) => {
+      if (t >= T.flick) { KP.colorBars(c, SS, Math.floor(t * 30)); return; }
       const k = Math.max(SS.w / KP.W, SS.h / KP.H), dw = KP.W * k, dh = KP.H * k;
       c.drawImage(rc, SS.x + (SS.w - dw) / 2, SS.y + (SS.h - dh) / 2, dw, dh);
     };
-    try { sc.draw(ctx, 0, cues01 ? cues01.lines : [], cues01 ? cues01.duration : 21); } finally { sc.heroOverride = null; }
+    try { sc.draw(ctx, 0, cues01 ? cues01.lines : [], cues01 ? cues01.duration : 21); } finally { sc.heroOverride = null; sc.hideLow = false; }
     ctx.restore();
   }
 

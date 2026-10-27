@@ -91,10 +91,11 @@
   }
   // symptom icons pinned on the letter (pictures only): numb = mitten with pins-and-needles dots, weak = drooping arm
   function icons(ctx, t, b, T) {
-    const n = KP.arrive(t, T.numb, .3), wk = KP.arrive(t, T.weak, .3);
+    const base = { p: 1, sx: 1, sy: 1, on: true }, nA = KP.arrive(t, T.numb, .3), wA = KP.arrive(t, T.weak, .3);
+    const n = base, wk = base, nS = t >= T.numb ? KP.lerp(1, 1.75, nA.p) : 1, wS = t >= T.weak ? KP.lerp(1, 1.75, wA.p) : 1;
     if (n.on) {
       const x = 700, y = 380;
-      ctx.save(); KP.pose(ctx, n, x, y + 60, 'pop'); ctx.translate(x, y); ctx.scale(1.75, 1.75); ctx.rotate(KP.wobA(t, 11, .05)); ctx.translate(-x, -y);
+      ctx.save(); KP.pose(ctx, n, x, y + 60, 'pop'); ctx.translate(x, y); ctx.scale(nS, nS); ctx.rotate(KP.wobA(t, 11, .05)); ctx.translate(-x, -y);
       KP.paper(ctx, KP.jitter(KP.rr(x - 70, y - 70, 140, 140, 10, 12), 510 + b, 1), P.rice, { shadow: KP.SH.near, shadowA: .3 });
       KP.paper(ctx, KP.jitter(KP.curve([[x - 30, y + 50], [x - 40, y - 10], [x - 22, y - 44], [x + 16, y - 48], [x + 36, y - 18], [x + 34, y + 50]], true, 6), 511 + b, 1), P.coral, { shadow: KP.SH.far });
       KP.paper(ctx, KP.jitter(KP.egg(x - 46, y - 2, 12, 22, 0, 16), 512 + b, .6), P.coral, { shadow: false });
@@ -106,7 +107,7 @@
     }
     if (wk.on) {
       const x = 690, y = 690;
-      ctx.save(); KP.pose(ctx, wk, x, y + 60, 'pop'); ctx.translate(x, y); ctx.scale(1.75, 1.75); ctx.rotate(KP.wobA(t, 12, .05)); ctx.translate(-x, -y);
+      ctx.save(); KP.pose(ctx, wk, x, y + 60, 'pop'); ctx.translate(x, y); ctx.scale(wS, wS); ctx.rotate(KP.wobA(t, 12, .05)); ctx.translate(-x, -y);
       KP.paper(ctx, KP.jitter(KP.rr(x - 70, y - 70, 140, 140, 10, 12), 520 + b, 1), P.rice, { shadow: KP.SH.near, shadowA: .3 });
       const droop = KP.ep(t, T.weak, T.weak + .5, 'out');
       KP.arm(ctx, x - 40, y - 30, 70, KP.lerp(-.3, 1.1, droop), 24, P.bubble, { seed: 521, boil: b, mis: P.blue });
@@ -362,8 +363,10 @@
         for (const sx of [-1, 1]) { ctx.fillStyle = P.ink; ctx.beginPath(); ctx.ellipse(x + sx * 46, top + 70, 15, 18, 0, 0, TAU); ctx.fill(); ctx.fillStyle = P.rice; ctx.beginPath(); ctx.arc(x + sx * 46 - 4, top + 64, 5, 0, TAU); ctx.fill(); }
       }
       // the moustache: on; wobbles loose on 'bad' (hangs by one end, swinging)
-      const loose = KP.prog(t, T.bad, T.bad + .4), sw = t >= T.bad ? Math.sin((t - T.bad) * 9) * .5 * (1 - KP.prog(t, T.bad, D)) : 0;
-      ctx.save(); ctx.translate(x - 110, top + 130); ctx.rotate(loose * 1.0 + sw); ctx.translate(110, 0);
+      const fly = KP.prog(t, T.bad, T.bad + .55), pre = t >= T.bad - .12 && t < T.bad ? KP.prog(t, T.bad - .12, T.bad) : 0;
+      if (fly >= 1) { KP.brush(ctx, KP.arcPts(x, top + 140, 40, 26, Math.PI * .15, Math.PI * .85, 10), 9, P.ink, { taper: .4 }); }   // a smile: not a villain after all
+      if (t >= T.bad && fly < 1) KP.marks(ctx, x, top + 130, 90, 6, 31 + b, { a0: -Math.PI * .9, span: Math.PI * .8, len: 26 });
+      ctx.save(); ctx.translate(x + fly * 520, top + 130 - pre * 18 - Math.sin(Math.PI * Math.min(1, fly * 1.2)) * 420 + fly * fly * 300); ctx.rotate(fly * 7); ctx.scale(1 + pre * .15, 1 - pre * .2);
       KP.paper(ctx, KP.jitter(KP.curve([[0, -14], [40, -30], [86, -24], [118, -50], [104, -6], [64, 16], [20, 10], [0, 4], [-20, 10], [-64, 16], [-104, -6], [-118, -50], [-86, -24], [-40, -30]], true, 5), 30 + b, 1.2), P.ink, { shadow: KP.SH.far, shadowA: .35 });
       ctx.restore();
     }
@@ -390,7 +393,7 @@
       e(T.l6 + .1, 'whoosh', .35); e(T.nothing, 'impact_soft', .5); e(T.dinner, 'chomp', .35);
       e(T.tomato, 'pop_small', .3); e(T.panicked, 'alarm', .5); e(T.parm, 'alarm', .45);
       e(T.s9, 'swoosh_down', .3); e(T.stuck, 'stamp', .7); e(T.stuck + .05, 'impact_big', .4); e(T.cuisine, 'alarm', .4); e(T.name, 'impact_soft', .4);
-      e(T.right, 'boing', .35); e(T.isMSG, 'pop', .4); e(T.bad, 'boing', .3); e(T.you, 'swoosh_down', .4);
+      e(T.right, 'pop_small', .35); e(T.isMSG, 'pop', .4); e(T.bad, 'boing', .45); e(T.you, 'swoosh_down', .4);
       return a.sort((x, y) => x.t - y.t);
     },
     draw(ctx, t, cues, D, nested) {
@@ -401,7 +404,7 @@
         // ---- 1: kombu -> shaker, villain spotlight + moustache
         const push = 1 + .06 * KP.ep(t, 0, T.l2, 'inOut'), pan = KP.ep(t, T.l2 - .45, T.l2, 'inOut');
         ctx.fillStyle = P.blue; ctx.fillRect(0, 0, KP.W, KP.H);
-        if (pan > 0) { ctx.save(); ctx.translate(KP.W * (1 - pan), 0); desk(ctx, T.l2, b, T, { write: 0, env: null, post: 0, card: false, letterK: 0, noGround: false }); ctx.restore(); }
+        if (pan > 0) { ctx.save(); ctx.translate(KP.W * (1 - pan), 0); desk(ctx, T.l2, b, T, { write: .5, env: null, post: 0, card: false, letterK: 0, noGround: false }); ctx.restore(); }
         ctx.save(); ctx.translate(-KP.W * pan, 0);
         KP.camera(ctx, 490, 900, push, () => {
           // the cobalt desk of style frame C (hot-pink underlay + turquoise card at the edges, the sealed envelope)
@@ -437,7 +440,7 @@
       } else if (t < T.l4) {
         // ---- 2-4: the letter on the cobalt desk; 4 = close on the card
         const slideIn = 1, letterK = KP.ep(t, T.l2, T.doctor - .1, 'out');
-        const write = KP.ep(t, T.doctor - .3, T.journal, 'inOut') * .55 + KP.ep(t, T.after, T.numb - .2, 'inOut') * .45;
+        const write = Math.max(.5, KP.ep(t, T.doctor - .3, T.journal, 'inOut') * .55 + KP.ep(t, T.after, T.numb - .2, 'inOut') * .45);
         const fold = (t >= T.journal && t < T.journal + .45 ? .92 + .08 * KP.ease.out(KP.prog(t, T.journal + .15, T.journal + .45)) : 1) * (t >= T.food && t < T.food + .5 ? 1 + .04 * Math.sin((t - T.food) * 40) * (1 - KP.prog(t, T.food, T.food + .5)) : 1);
         const envOut = KP.ep(t, T.l3 - .3, T.l3 + .1, 'in');
         const cardIn = KP.arrive(t, T.l3 - .1, .35);
@@ -454,7 +457,7 @@
           if (cardIn.on) { ctx.save(); KP.pose(ctx, cardIn, 250, 1300, 'up', 600); card(ctx, b, q, merge); ctx.restore(); }
         });
         ctx.restore();
-        if (t >= T.y1968 && t < T.l3 - .2) label = c => { const ar = KP.arrive(t, T.y1968, .3), out = KP.leave(t, T.after - .1, .2); c.save(); c.globalAlpha = 1 - out; KP.pose(c, ar, 760, 330, 'pop'); KP.slip(c, [{ s: '1968', size: 96, font: 'Young Serif', weight: 400, ls: 3 }], 620, 226, { rot: .05, seed: 41, boil: b, tape: P.pink, padX: 34, padY: 18 }); c.restore(); };
+        if (t >= T.y1968 && t < T.l3 - .2) label = c => { const ar = KP.arrive(t, T.y1968, .3), out = KP.leave(t, T.after - .1, .2); c.save(); c.globalAlpha = out > 0 ? 0 : 1; KP.pose(c, ar, 760, 330, 'pop'); KP.slip(c, [{ s: '1968', size: 96, font: 'Young Serif', weight: 400, ls: 3 }], 620, 226, { rot: .05, seed: 41, boil: b, tape: P.pink, padX: 34, padY: 18 }); c.restore(); };
         if (t >= T.guess) label = c => { const ar = KP.arrive(t, T.guess, .25); c.save(); KP.pose(c, ar, 740, 360, 'pop'); KP.slip(c, [{ s: 'Guessing', size: 80, ls: 1 }], 560, 270, { rot: .04, seed: 42, boil: b, tape: P.pink, padX: 36, padY: 20 }); c.restore(); };
       } else if (t < T.l5) {
         // ---- 5: whip to style frame C, the stamp slams the headline, newspapers slide out

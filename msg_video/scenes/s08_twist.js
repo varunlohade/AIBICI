@@ -9,7 +9,7 @@
     const w = (re, o) => KP.word(cues, re, o);
     const T = { plot: w(/plot/i, { fb: .39 }), has: w(/^has$/i, { fb: 1.2 }), third: w(/third/i, { fb: 1.6 }), sodium: w(/sodium/i, { fb: 2.2 }) };
     T.table = w(/table/i, { after: T.sodium, fb: T.sodium + .6 });
-    T.s2 = w(/same/i, { after: T.table, fb: T.table + 1 }) - .1; T.flavor = w(/flavou?r/i, { fb: T.s2 + .3 });
+    T.s2 = w(/same|big/i, { after: T.table, fb: T.table + 1 }) - .1; T.flavor = w(/flavou?r/i, { fb: T.s2 + .3 });
     T.less = w(/^less/i, { fb: T.flavor + .6 }); T.sodium2 = w(/sodium/i, { after: T.less, fb: T.less + .2 });
     return T;
   };
@@ -78,7 +78,7 @@
     // labels: 'Plot twist' then '1/3 sodium'
     if (t >= T.plot && t < T.third) {
       const ar = KP.arrive(t, T.plot, .3), out = KP.leave(t, T.third, .12);
-      ctx.save(); ctx.globalAlpha = 1 - out; KP.pose(ctx, ar, 490, 330, 'pop');
+      ctx.save(); ctx.globalAlpha = out > 0 ? 0 : 1; KP.pose(ctx, ar, 490, 330, 'pop');
       KP.slip(ctx, [{ s: 'Plot twist', size: 90, font: 'Young Serif', weight: 400, ls: 2 }], 230, 230, { rot: -.04, seed: 80, boil: b, tape: P.lemon, padX: 36, padY: 20 });
       ctx.restore();
     }

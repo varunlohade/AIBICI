@@ -76,7 +76,7 @@
     // the label: a tomato-red warning card that flaps, 'Chemical?'
     if (t >= T.chemical && t < T.s2 + .2) {
       const ar = KP.arrive(t, T.chemical, .3), out = KP.leave(t, T.s2 + .2, .2), flap = Math.sin(KP.held(t) * 9) * .06;
-      ctx.save(); ctx.globalAlpha = 1 - out; KP.pose(ctx, ar, 700, 330, 'pop'); ctx.translate(700, 300); ctx.rotate(flap); ctx.translate(-700, -300);
+      ctx.save(); ctx.globalAlpha = out > 0 ? 0 : 1; KP.pose(ctx, ar, 700, 330, 'pop'); ctx.translate(700, 300); ctx.rotate(flap); ctx.translate(-700, -300);
       KP.slip(ctx, [{ s: 'Chemical?', size: 76, ls: 1, color: P.rice }], 500, 240, { rot: .05, seed: 60, boil: b, fill: P.tomato, tape: P.lemon, padX: 34, padY: 20, shadowA: .35 });
       ctx.restore();
     }

@@ -9,8 +9,8 @@
   const times = (cues, D) => {
     const w = (re, o) => KP.word(cues, re, o);
     const T = { dbl: w(/double/i, { fb: .56 }), studies: w(/studies/i, { fb: 1.2 }), people: w(/people/i, { fb: 1.9 }) };
-    T.made = w(/^made/i, { fb: T.people + 1.4 }); T.sick = w(/sick/i, { fb: T.made + .4 });
-    T.s2 = w(/reacted/i, { fb: T.sick + .2 }) - .1; T.often = w(/often/i, { fb: T.s2 + .8 }); T.placebo = w(/placebo/i, { fb: T.often + .8 });
+    T.made = w(/blamed|^made/i, { fb: T.people + .6 }); T.sick = w(/msg|sick/i, { after: T.made, fb: T.made + .4 });
+    T.s2 = w(/couldn|reacted/i, { after: T.sick, fb: T.sick + .5 }) - .1; T.often = w(/reliably|often/i, { after: T.s2, fb: T.s2 + .3 }); T.placebo = w(/placebo/i, { fb: T.often + .8 });
     T.s3 = w(/fda/i, { line: 1, fb: T.placebo + 1.4 }); T.fda = w(/fda/i, { fb: T.s3 + .2 });
     T.gen = w(/generally/i, { fb: T.fda + .9 }); T.safe = w(/safe/i, { after: T.gen, fb: T.gen + 1.6 }); T.salt = w(/salt/i, { after: T.safe, fb: T.safe + .9 });
     T.just = w(/^just$/i, { after: T.safe, fb: T.salt - .35 });
@@ -32,51 +32,46 @@
     KP.paper(ctx, KP.jitter([[x - 80, y], [x + 80, y], [x + 56, y - 170], [x - 56, y - 170]], sd + b, 1.2), P.coral, { shadow: KP.SH.near, shadowA: .35, mis: P.pink, misOff: [-3, 2], misA: .45 });
     KP.paper(ctx, KP.jitter(KP.rr(x - 84, y - 14, 168, 20, 6, 10), sd + 1 + b, .8), P.tomato, { shadow: false });
   }
-  // two cups; the capsules drop under them, then they shuffle (swap along arcs, 3 swaps)
-  function shuffle(ctx, t, b, T) {
-    const y0 = 760, xs = [380, 600];
-    const drop = KP.ease.in(KP.prog(t, .2, T.dbl + .1)), lift = 1 - KP.ep(t, T.dbl + .05, T.dbl + .35, 'out');
-    if (drop < 1 || lift > 0) xs.forEach((x, i) => capsule(ctx, x, KP.lerp(300, y0 - 30, drop), .3 * (i ? -1 : 1), b, 4700 + i * 3));
+  // two cups lifted over two identical capsules resting on the bench; on 'double-blind' the cups come down over them,
+  // then they shuffle (swap along arcs, 3 swaps on the words)
+  function shuffle(ctx, t, b, T, y0) {
+    const xs = [400, 580];
+    const down = KP.ep(t, T.dbl - .1, T.dbl + .2, 'in'), lift = 1 - down;
+    xs.forEach((x, i) => capsule(ctx, x, y0 - 18, 0, b, 4700 + i * 3));
     const swaps = [T.studies, (T.studies + T.people) / 2, T.people], n = swaps.filter(s => t >= s + .3).length;
     let pos = [0, 1]; for (let k = 0; k < n; k++) pos = [pos[1], pos[0]];
     const cur = swaps.find(s => t >= s && t < s + .3);
     xs.forEach((_, i) => {
-      let x = xs[pos[i]], y = y0 - lift * 160;
-      if (cur !== undefined) { const k = KP.ease.inOut(KP.prog(t, cur, cur + .3)), from = xs[pos[i]], to = xs[pos[1 - i]]; x = KP.lerp(from, to, k); y -= Math.sin(Math.PI * k) * 90 * (i ? 1 : -1); }
-      cup(ctx, x, y, b, 4710 + i * 5);
+      let x = xs[pos[i]], y = y0 - lift * 120;
+      if (cur !== undefined) { const k = KP.ease.inOut(KP.prog(t, cur, cur + .3)), from = xs[pos[i]], to = xs[pos[1 - i]]; x = KP.lerp(from, to, k); y -= Math.sin(Math.PI * k) * 80 * (i ? 1 : -1); }
+      ctx.save(); ctx.translate(x, y); ctx.scale(.8, .8); ctx.translate(-x, -y); cup(ctx, x, y, b, 4710 + i * 5); ctx.restore();
     });
-    if (cur !== undefined) KP.marks(ctx, 490, y0 - 90, 210, 6, 4720 + b, { a0: -Math.PI * .9, span: Math.PI * .8, len: 26 });
+    if (cur !== undefined) KP.marks(ctx, 490, y0 - 80, 170, 6, 4720 + b, { a0: -Math.PI * .9, span: Math.PI * .8, len: 24 });
   }
   function shot1(ctx, t, b, T) {
-    const tilt = KP.ep(t, T.people - .2, T.made, 'inOut');
-    KP.camera(ctx, 490, KP.lerp(700, 1440, tilt), 1, () => {
-      lab(ctx, b);
-      ctx.save(); ctx.translate(490, 760); ctx.scale(1.25, 1.25); ctx.translate(-490, -760);
-      KP.paper(ctx, KP.jitter(KP.rr(-60, 760, 1200, 60, 10, 30), 4730 + b, 1.4), P.lemon, { shadow: KP.SH.near, shadowA: .35 });  // bench
-      // scientist (left, lab coat) and volunteer (right), both blindfolded
-      KP.doll(ctx, 150, 760, 1.05, { seed: 4740, boil: b, coat: true, skin: P.skin2, hair: P.ink, blind: P.lemon, arm: KP.ep(t, T.studies, T.studies + .2, 'out') * .4 });
-      KP.doll(ctx, 830, 760, 1.05, { seed: 4750, boil: b, shirt: P.pink, skin: P.skin3, hair: P.grape, blind: P.lemon });
-      shuffle(ctx, t, b, T);
-      ctx.restore();
-      // the volunteers, three skin tones, with worried thought bubbles
-      KP.paper(ctx, KP.jitter(KP.rr(-60, 1730, 1200, 600, 10, 30), 4760 + b, 1.4), P.turq, { shadow: [0, -8], shadowA: .3 });
-      [[220, P.skin, P.grape, P.coral], [490, P.skin3, P.ink, P.lemon], [760, P.skin2, P.magenta, P.kombu]].forEach(([x, sk, hair, sh], i) => {
-        const worried = t >= T.made, bob = Math.sin(KP.held(t) * 3 + i * 2) * 4;
-        KP.doll(ctx, x, 1780 + bob, 1.15, { seed: 4770 + i * 10, boil: b, skin: sk, hair, shirt: sh, eyes: worried ? 'worried' : 'dot', mouth: worried ? 'wobble' : 'smile' });
-        const ta = KP.arrive(t, T.made + i * .1, .3);
-        if (ta.on) { ctx.save(); KP.pose(ctx, ta, x + 30, 1410, 'pop');
-          KP.thought(ctx, x + 40, 1330, 90, (c, cx, cy, r) => {
-            KP.shaker(c, cx - 22, cy + 34, 70, { boil: b, seed: 7, shadow: false });
-            // tummy-ache (on 'sick'): a little belly with a wavy line; otherwise a '?'
-            if (t >= T.sick && i === 1) { KP.paper(c, KP.jitter(KP.egg(cx + 30, cy + 6, 26, 30, 0, 20), 4790 + b, .6), P.pink, { shadow: false }); KP.brush(c, [[cx + 16, cy + 6], [cx + 24, cy], [cx + 32, cy + 8], [cx + 42, cy + 2]], 4, P.ink, { taper: .3 }); }
-            else KP.text(c, '?', cx + 32, cy + 22, { size: 56, font: 'Young Serif', weight: 400, align: 'center' });
-          }, { boil: b }); ctx.restore(); }
-      });
+    // one composition inside the safe area: the blindfolded bench row (TOP/MID) and the volunteers (LOW), all in frame
+    lab(ctx, b);
+    const BY = 690, VY = 1250;
+    KP.paper(ctx, KP.jitter(KP.rr(-60, BY, 1200, 44, 10, 30), 4730 + b, 1.4), P.lemon, { shadow: KP.SH.near, shadowA: .35 });
+    KP.doll(ctx, 150, BY, .95, { seed: 4740, boil: b, coat: true, skin: P.skin2, hair: P.ink, blind: P.lemon, arm: KP.ep(t, T.studies, T.studies + .2, 'out') * .4 });
+    KP.doll(ctx, 830, BY, .95, { seed: 4750, boil: b, shirt: P.pink, skin: P.skin3, hair: P.grape, blind: P.lemon });
+    shuffle(ctx, t, b, T, BY);
+    KP.paper(ctx, KP.jitter(KP.rr(-60, VY - 40, 1200, 700, 10, 30), 4760 + b, 1.4), P.turq, { shadow: [0, -8], shadowA: .3 });
+    [[260, P.skin, P.grape, P.coral], [490, P.skin3, P.ink, P.lemon], [720, P.skin2, P.magenta, P.kombu]].forEach(([x, sk, hair, sh], i) => {
+      const worried = t >= T.made, bob = Math.sin(KP.held(t) * 3 + i * 2) * 4;
+      KP.doll(ctx, x, VY + bob, .95, { seed: 4770 + i * 10, boil: b, skin: sk, hair, shirt: sh, eyes: worried ? 'worried' : 'dot', mouth: worried ? 'wobble' : 'smile' });
+      const ta = KP.arrive(t, T.made + i * .1, .3);
+      if (ta.on) { ctx.save(); KP.pose(ctx, ta, x + 30, 900, 'pop');
+        KP.thought(ctx, x + 36, 840, 74, (c, cx, cy, r) => {
+          KP.shaker(c, cx - 22, cy + 32, 64, { boil: b, seed: 7, shadow: false });
+          if (t >= T.sick && i === 1) { KP.paper(c, KP.jitter(KP.egg(cx + 28, cy + 6, 24, 28, 0, 20), 4790 + b, .6), P.pink, { shadow: false }); KP.brush(c, [[cx + 14, cy + 6], [cx + 22, cy], [cx + 30, cy + 8], [cx + 40, cy + 2]], 4, P.ink, { taper: .3 }); }
+          else KP.text(c, '?', cx + 30, cy + 20, { size: 52, font: 'Young Serif', weight: 400, align: 'center' });
+        }, { boil: b }); ctx.restore(); }
     });
     if (t >= T.dbl) {
-      const ar = KP.arrive(t, T.dbl, .3), out = KP.leave(t, T.s2, .15);
-      ctx.save(); ctx.globalAlpha = 1 - out; KP.pose(ctx, ar, 300, 330, 'pop');
-      KP.slip(ctx, [{ s: 'Double-blind', size: 76, ls: 1 }], 80, 236, { rot: -.03, seed: 70, boil: b, tape: P.lemon, padX: 36, padY: 20 });
+      const ar = KP.arrive(t, T.dbl, .3), out = KP.leave(t, T.s2, .001);
+      ctx.save(); ctx.globalAlpha = out > 0 ? 0 : 1; KP.pose(ctx, ar, 490, 300, 'pop');
+      KP.slip(ctx, [{ s: 'Double-blind', size: 72, ls: 1 }], 280, 226, { rot: -.03, seed: 70, boil: b, tape: P.lemon, padX: 34, padY: 18 });
       ctx.restore();
     }
   }
@@ -85,14 +80,23 @@
     // a flattened Fifth Ripple becomes the baseline
     const flat = KP.ep(t, T.s2, T.s2 + .5, 'out');
     KP.ripple(ctx, 490, 1180, 440, { p: 1, boil: b, squash: KP.lerp(.35, .06, flat) });
-    const bars = [[330, P.gold, 1, T.s2 + .2, 'msg'], [650, P.blue, .96, T.s2 + .45, 'pl']];
-    bars.forEach(([x, c, k, t0, kind], i) => {
-      const hgt = 640 * k * KP.backOut(KP.prog(t, t0, T.often + .1)) * (1 + (t > T.often ? Math.sin(KP.held(t) * 4 + i) * .01 : 0));
+    // test rounds repeat every ~0.45 s: the reaction bars for MSG and for placebo jump up and down unpredictably
+    // (sometimes one is higher, sometimes the other): people couldn't reliably tell them apart. No numbers.
+    const RD = .45, r0 = Math.floor(Math.max(0, t - T.s2) / RD), rt = Math.max(0, t - T.s2) - r0 * RD;
+    const hAt = (r, i) => 200 + KP.hash(r * 7 + 3, i * 11 + 5) * 440;
+    const bars = [[330, P.gold, 'msg'], [650, P.blue, 'pl']];
+    bars.forEach(([x, c, kind], i) => {
+      const grow = KP.ep(t, T.s2 + i * .1, T.s2 + .35 + i * .1, 'out');
+      const hgt = grow * KP.lerp(r0 ? hAt(r0 - 1, i) : hAt(0, i), hAt(r0, i), KP.backOut(KP.prog(rt, 0, .25)));
       if (hgt <= 0) return;
       KP.paper(ctx, KP.jitter(KP.rr(x - 100, 1180 - hgt, 200, hgt, 12, 20), 4800 + i + b, 1.4), c, { shadow: KP.SH.near, shadowA: .35, mis: kind === 'msg' ? P.tomato : P.turq, misOff: [-4, 3], misA: .4 });
-      if (kind === 'msg' && hgt > 200) { KP.paper(ctx, KP.jitter(KP.egg(x, 1180 - hgt + 90, 62, 62, 0, 32), 4810 + b, 1), P.lemon, { shadow: KP.SH.far, shadowA: .3 }); KP.goldie(ctx, x, 1180 - hgt + 94, 80, { boil: b, eyes: 'happy', steam: false, shadow: false }); }
-      if (kind === 'pl' && hgt > 200) { capsule(ctx, x, 1180 - hgt + 90, -.3, b, 4820); }
+      const iy = 1180 - hgt - 70;   // the icon rides on top of its bar from the start
+      if (kind === 'msg') { KP.paper(ctx, KP.jitter(KP.egg(x, iy, 62, 62, 0, 32), 4810 + b, 1), P.lemon, { shadow: KP.SH.far, shadowA: .3 }); KP.goldie(ctx, x, iy + 4, 80, { boil: b, eyes: 'happy', steam: false, shadow: false }); }
+      else { KP.paper(ctx, KP.jitter(KP.egg(x, iy, 62, 62, 0, 32), 4811 + b, 1), P.rice, { shadow: KP.SH.far, shadowA: .3 }); capsule(ctx, x, iy, -.3, b, 4820); }
+      if (rt < .12 && r0 > 0) KP.marks(ctx, x, iy, 70, 4, 4830 + i + r0, { a0: -Math.PI * .9, span: Math.PI * .8, len: 18, w: 5 });
     });
+    // a round counter of little ticks along the baseline (pictures only, no digits) + a shrugging '?'
+    for (let r = 0; r <= Math.min(r0, 12); r++) KP.paper(ctx, KP.jitter(KP.rr(160 + r * 56, 1250, 34, 34, 8, 8), 4840 + r + b, .6), r % 2 ? P.pink : P.lemon, { shadow: KP.SH.far, shadowA: .3 });
     if (t >= T.placebo) {
       const ar = KP.arrive(t, T.placebo, .3);
       ctx.save(); KP.pose(ctx, ar, 650, 430, 'pop');
@@ -145,7 +149,7 @@
     sfx(cues, D) {
       const T = times(cues, D), a = [], e = (t, name, gain) => a.push({ t: Math.max(0, +t.toFixed(3)), name, gain });
       e(.35, 'whoosh', .3); e(T.dbl, 'pop', .35); e(T.studies, 'whoosh', .3); e(T.people, 'whoosh', .3); e(T.made, 'bubble', .35); e(T.sick, 'bubble', .3);
-      e(T.s2 + .1, 'swoosh_up', .4); e(T.often, 'pop_small', .3); e(T.placebo, 'ding', .35);
+      e(T.s2 + .1, 'swoosh_up', .4); e(T.often, 'blip', .3); e(T.often + .45, 'blip', .3); e(T.placebo, 'ding', .35);
       e(T.fda, 'paper', .35); e(T.gen, 'stamp', .8); e(T.gen + .05, 'impact_soft', .4); e(T.safe, 'sparkle', .3); e(T.salt, 'pop', .4); e(D - .45, 'whoosh', .35);
       return a.sort((x, y) => x.t - y.t);
     },

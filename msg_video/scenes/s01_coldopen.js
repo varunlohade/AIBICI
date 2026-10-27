@@ -6,7 +6,7 @@
 //   1 clip 1 on the hero TV; a pink paper brain taped above the TV, zap bolts burst on 'destroys', crackle on 'brain'
 //   2 jump-cut flicker -> clip 2; a shaker on the TV top pours onto a plate that grows on 'hungry' / 'eat more'
 //   (an optional third clip line still works: headache zig-zags + the shaker hops onto the TV)
-//   4 fast pull-back: the whole wall lights up (paused clip frames / lemon play cards); '50 YEARS'
+//   4 fast pull-back: the whole wall lights up (paused clip frames / lemon play cards); '50+ YEARS'
 //   5 paper slide -> restaurant window, NO MSG sign, three tables; an envelope slides onto the top table on 'started'
 //   6 FLASH-FORWARD (~1.7 s): smash cut to the s06 stamp shot (nested draw of s06), landing on '1968'
 //   7 smash cut back + record scratch: the shaker alone under a paper spotlight, '?' on 'bad', pull back to the wall;
@@ -19,7 +19,9 @@
     const ls = i => sp[i] || { start: i * 3.9, end: i * 3.9 + 3.6, words: [] };
     const mid = (i, k) => ls(i).start + (ls(i).end - ls(i).start) * k;
     const narr = cues.find(l => l.voice === 'NARR') || { start: D * .55 };
-    const T = { c2: ls(1).start, wall: narr.start };
+    const clipEnd = sp.length ? sp[sp.length - 1].end : narr.start - .4, first = (narr.words && narr.words[0]) ? narr.words[0].start : narr.start;
+    // cut away from the clip BEFORE the narrator's first word, so 'For fifty years' never reads as the speaker's line
+    const T = { c2: ls(1).start, wall: Math.min(first - .3, Math.max(clipEnd + .05, first - .45)) };
     T.c3 = sp[2] ? sp[2].start : T.wall;                 // a third clip is optional (current cut: two Blaylock clips)
     // beats on the clips: matched by word if the quote contains it, else a fraction of the clip line.
     // clip 1 (hungry): the shaker pours on 'MSG'; the plate grows on 'hungry' and again on 'eat more'
@@ -319,6 +321,7 @@
       screen0: () => { const [x, y, w, h] = HERO, S = KP.tvScreen(x, y, w, h, { panel: 'bottom' }), f = (px, py) => [(px - BIG.cx) * BIG.s + KP.CAM[0], (py - BIG.cy) * BIG.s + KP.CAM[1]];
         const [x0, y0] = f(S.x, S.y), [x1, y1] = f(S.x + S.w, S.y + S.h); return { x: x0, y: y0, w: x1 - x0, h: y1 - y0, world: S }; } },
     heroOverride: null,
+    hideLow: false,
     sfx(cues, D) {
       const T = times(cues, D), a = [], e = (t, name, gain) => a.push({ t: Math.max(0, +t.toFixed(3)), name, gain });
       e(0, 'tv_on', .45); e(T.pour, 'pop', .35); e(T.hungry, 'bubble', .35); e(T.eatMore, 'chomp', .35);
@@ -339,18 +342,18 @@
         const sc = KP.lerp(BIG.s, .6, pull) * (1 - .03 * KP.prog(t, T.wall + 1.0, T.tables0));
         const cx = KP.lerp(BIG.cx + drift, 560, pull), cy = KP.lerp(BIG.cy, 760, pull);
         const shot = t < T.c2 ? 0 : t < T.c3 ? 1 : t < T.wall ? 2 : 3;
-        const flicker = [T.c2, T.c3].some(s => s < T.wall && t >= s - .05 && t < s + .12);
+        const flicker = [T.c2, T.c3].some(s => s < T.wall && t >= s - 1 / 30 && t < s + 1 / 30);   // 2 frames only
         const knob = (t >= T.c2 ? 1.2 : 0) + (t >= T.c3 && T.c3 < T.wall ? 1.2 : 0);
         KP.camera(ctx, cx, cy, sc, () => {
           wall(ctx, t, b, {
             extra: t >= T.wall - .2, knob, cues,
             lit: i => shot < 3 ? 0 : (t >= T.wall + .15 + RANK[i] * Math.max(.03, (T.lit - T.wall) / ALL.length) ? 1 : 0),
-            hero: (c, S) => { const ov = KZ.scenes.s01_coldopen.heroOverride; if (ov) ov(c, S); else if (flicker) KP.static(c, S, Math.floor(t * 30)); else heroClip(c, S, shot >= 3 ? 0 : Math.min(shot, 2), shot >= 3 ? 1.5 : t, b, cues); },
+            hero: (c, S) => { const ov = KZ.scenes.s01_coldopen.heroOverride; if (ov) ov(c, S); else if (flicker) KP.static(c, S, Math.floor(t * 30)); else if (shot >= 3) KP.colorBars(c, S, Math.floor(t * 30)); else heroClip(c, S, Math.min(shot, 2), t, b, cues); },
           });
           if (shot === 2) shakerOnTV(ctx, t, b, T, 3);
         });
         sofa(ctx, b, pull * 700);
-        if (shot < 3) {
+        if (shot < 3 && !KZ.scenes.s01_coldopen.hideLow) {    // (s09's loop hides these until the TV is back in frame)
           if (shot === 0) pourPlate(ctx, t, b, T); else if (shot === 1) brainCut(ctx, t, b, T);
           lowerThirdFor(ctx, shot === 0 ? 0 : 1, 0, t, b, cues);
         } else if (t < T.wall + .25) {   // the LOW cut-outs and the tag fly off as the camera pulls back
@@ -360,7 +363,7 @@
         if (shot === 3 && t >= T.fifty) {
           const r2 = KP.arrive(t, T.fifty, .3);
           ctx.save(); KP.pose(ctx, r2, 300, 330, 'pop');
-          KP.slip(ctx, [{ s: '50 YEARS', size: 96, font: 'Young Serif', weight: 400, ls: 3 }], 90, 220, { rot: -.04, seed: 51, boil: b, tape: P.pink, padX: 40, padY: 22 });
+          KP.slip(ctx, [{ s: '50+ YEARS', size: 96, font: 'Young Serif', weight: 400, ls: 3 }], 90, 220, { rot: -.04, seed: 51, boil: b, tape: P.pink, padX: 40, padY: 22 });
           ctx.restore();
         }
         KP.texture(ctx, 'grain', .1);

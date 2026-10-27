@@ -182,7 +182,7 @@
     const camY = -2600 * (1 - KP.ep(t, T.l3, T.l3 + 1.0, 'out'));
     ctx.save(); ctx.translate(0, -camY); gutB(ctx, t, b, T); ctx.restore();
     BANDS.forEach((c, i) => {
-      const y0 = -2700 + i * 380, k = .85 + (i % 3) * .2, y = y0 - camY * k;
+      const y0 = -3300 + i * 380, k = .85 + (i % 3) * .2, y = y0 - camY * k;
       if (y > KP.H || y + 520 < 0) return;
       KP.paper(ctx, KP.torn(KP.rr(-60, y, KP.W + 120, 520, 10, 60), 200 + i + b, 8, 22), c, { shadow: [0, 16], shadowA: .3, mis: i % 2 ? P.blue : P.grape, misOff: [0, 5], misA: .3 });
     });
@@ -309,7 +309,7 @@
     // shot 6 label: 'Blood-brain barrier' (screen space, TOP)
     if (t >= T.bbb && t < T.s7) {
       const la = KP.arrive(t, T.bbb, .3), out = KP.leave(t, T.s7, .15);
-      ctx.save(); ctx.globalAlpha = 1 - out; KP.pose(ctx, la, 300, 330, 'pop');
+      ctx.save(); ctx.globalAlpha = out > 0 ? 0 : 1; KP.pose(ctx, la, 300, 330, 'pop');
       KP.slip(ctx, [{ s: 'Blood-brain barrier', size: 64, ls: 1 }], 70, 236, { rot: -.03, seed: 77, boil: b, tape: P.lemon, padX: 34, padY: 20 });
       ctx.restore();
     }

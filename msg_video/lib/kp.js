@@ -148,9 +148,11 @@
     s07_tests: P.lemon, s08_twist: P.pink, s06_origin: P.blue, s09_outro: P.plum };
   KP.slide = (ctx, p, fill, inner) => {
     if (p <= 0) return;
-    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.translate(0, (1 - p) * (H + 60));
-    const sheet = KP.rr(-40, 0, W + 80, H + 120, 18, 40);
-    KP.paper(ctx, KP.jitter(sheet, 950, 2), fill, { shadow: [0, -22], shadowA: .4 });
+    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.translate(0, (1 - p) * (H + 80));
+    // a torn top edge (deliberate ripped paper) + a hard shadow leading; straight sides run off-frame
+    const r = KP.rng(951), top = []; for (let x = -60; x <= W + 60; x += 18) top.push([x, (r() - .5) * 26 + (x % 72 === 0 ? 8 : 0)]);
+    const sheet = top.concat([[W + 60, H + 140], [-60, H + 140]]);
+    KP.paper(ctx, sheet, fill, { shadow: [0, -26], shadowA: .45 });
     if (inner) { ctx.save(); ctx.clip(KP.path(sheet)); inner(ctx); ctx.restore(); }
     ctx.restore();
   };
@@ -598,6 +600,27 @@
     ctx.restore();
   };
 
+  // calm colour-bar card for a TV screen (instead of harsh channel static). f = frame index for a gentle drift
+  KP.colorBars = (ctx, S, f = 0, o = {}) => {
+    const cols = o.colors || [P.lemon, P.turq, P.kombu, P.pink, P.coral, P.blue, P.grape], n = cols.length, bw = S.w / n;
+    ctx.save(); ctx.clip(KP.path(KP.rr(S.x, S.y, S.w, S.h, 20)));
+    cols.forEach((c, i) => { ctx.fillStyle = c; ctx.fillRect(S.x + i * bw - 1, S.y, bw + 2, S.h * .72); });
+    for (let i = 0; i < n; i++) { ctx.fillStyle = KP.mix(cols[(i * 3) % n], P.ink, .35); ctx.fillRect(S.x + i * bw - 1, S.y + S.h * .72, bw + 2, S.h * .28); }
+    const y = S.y + ((f * 2) % Math.max(1, Math.round(S.h)));    // one soft roll line
+    ctx.fillStyle = KP.rgba(P.rice, .18); ctx.fillRect(S.x, y, S.w, Math.max(4, S.h * .05));
+    ctx.restore();
+  };
+  // a switched-off screen: dark glass with a diagonal glint and a small power dot (never a blank rectangle)
+  KP.screenOff = (ctx, S) => {
+    ctx.save(); ctx.clip(KP.path(KP.rr(S.x, S.y, S.w, S.h, 20)));
+    ctx.fillStyle = P.screenDim; ctx.fillRect(S.x, S.y, S.w, S.h);
+    const g = KP.mix(P.screenDim, P.rice, .16);
+    KP.paper(ctx, [[S.x + S.w * .58, S.y - 10], [S.x + S.w * .72, S.y - 10], [S.x + S.w * .5, S.y + S.h + 10], [S.x + S.w * .36, S.y + S.h + 10]], g, { shadow: false });
+    KP.paper(ctx, [[S.x + S.w * .76, S.y - 10], [S.x + S.w * .8, S.y - 10], [S.x + S.w * .58, S.y + S.h + 10], [S.x + S.w * .54, S.y + S.h + 10]], g, { shadow: false });
+    ctx.restore();
+    ctx.fillStyle = P.tomato; ctx.beginPath(); ctx.arc(S.x + S.w - Math.min(26, S.w * .06), S.y + S.h - Math.min(26, S.h * .08), Math.max(5, Math.min(S.w, S.h) * .025), 0, TAU); ctx.fill();
+  };
+
   // ---------------------------------------------------------------- shadow puppets (fictional cold-open speakers)
   // Ink silhouette on a stick, profile facing right. (x,y) = neck, s = scale.
   //   kind: 'doctor' (head mirror + stethoscope, pointing) | 'chef' (toque, raised ladle) | 'guru' (topknot, selfie phone)
@@ -761,7 +784,12 @@
     const lines = [];
     if (role) lines.push({ s: role, size: 44, ls: 2, color: P.rice });
     const sub = o.sub === undefined ? 'DRAMATIZATION - fictional character' : o.sub;
-    if (sub) lines.push({ s: sub, size: 30, weight: 700, color: P.lemon });
+    if (sub) {   // credit line at 36px (never smaller); wraps onto two lines at ' · ' (or the middle space) if too wide
+      const st = { size: 36, weight: 700, color: P.lemon };
+      if (KP.measure(ctx, sub, st) <= 760) lines.push({ s: sub, ...st });
+      else { const cut = sub.includes(' · ') ? sub.indexOf(' · ') : sub.lastIndexOf(' ', sub.length / 2);
+        lines.push({ s: sub.slice(0, cut).trim(), ...st }, { s: sub.slice(cut).replace(/^\s*·\s*/, '').trim(), ...st }); }
+    }
     if (!lines.length) return { w: 0, h: 0 };
     return KP.slip(ctx, lines, x, y, { rot: o.rot ?? -.025, seed: o.seed || 12, boil: o.boil, padX: 34, padY: 18, tape: P.pink, fill: P.blue, shadowA: .3 });
   };
@@ -1038,6 +1066,9 @@
     let c = /[.!?]["')]*$|\.\.\.$/.test(last) ? 0 : /[,;:]$/.test(last) ? .5 : BRK.before.has(nx) ? 2 : 6;
     if (BRK.noEnd.has(lastN) && !/[,.;:!?]$/.test(last)) c += 9;
     if (BRK.noStart.has(nx)) c += 6;
+    // inside a noun phrase ('a catchy | headline'): an article/possessive two words back, no punctuation, next word close
+    const prev2 = j >= 2 ? norm(words[j - 2].w) : '';
+    if (!/[,.;:!?]$/.test(last) && /^(a|an|the|his|her|their|your|our|my|this|that|one)$/.test(prev2) && words[j].start - words[j - 1].end < .6) c += 12;
     if (words.keyIn && words.keyIn[j - 1] >= 0 && words.keyIn[j - 1] === words.keyIn[j]) c += 14;   // never split a key phrase
     return c;
   };

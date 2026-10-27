@@ -64,12 +64,14 @@
   }
   // ---- shots 1-2
   function shotLab(ctx, t, b, T) {
-    const walk = KP.ep(t, .3, T.ikeda - .1, 'inOut'), ix = KP.lerp(-80, 330, walk);
+    const walk = KP.ep(t, .9, T.ikeda - .1, 'inOut'), ix = KP.lerp(-80, 330, walk);
+    // OPEN (bridge from s06): close on the soup bowl as the gold drop lands in it (small ripple), then pull back to 1908
+    const close = 1 - KP.ep(t, .45, 1.3, 'inOut'), BW = [ix, 960];
     const step = walk > 0 && walk < 1 ? Math.abs(Math.sin(KP.held(t) * 9)) * 12 : 0;
     const set = t >= T.ikeda;
     const push = KP.ep(t, T.s2, T.l2, 'inOut');
     const camX = KP.lerp(KP.lerp(ix + 170, 500, KP.ease.inOut(walk) * .3), ix + 60, push), camY = KP.lerp(780, 760, push), sc = KP.lerp(1.2, 1.75, KP.ease.inOut(push));
-    KP.camera(ctx, camX + 10, camY, sc, () => {
+    KP.camera(ctx, KP.lerp(camX + 10, BW[0], close), KP.lerp(camY, BW[1], close), KP.lerp(sc, 3, close), () => {
       lab(ctx, b, t);
       // sip: hands to the mouth on 'noticed', down again before 'odd'
       const sip = KP.ep(t, T.noticed - .1, T.noticed + .25, 'out') * (1 - KP.ep(t, T.odd - .55, T.odd - .2, 'inOut'));
@@ -81,6 +83,12 @@
       deskProps(ctx, b);
       if (set && !(bowlUp && t >= T.noticed - .1)) bowl(ctx, ix + 60, 1036, 1, b, t);
       if (bowlUp && (carry || t >= T.noticed - .1)) { const bx = (h.handL[0] + h.handR[0]) / 2, by = (h.handL[1] + h.handR[1]) / 2 + 20; bowl(ctx, bx, by, carry ? .9 : 1, b, t); }
+      // the drop: starts where s06's drop ends on screen (490, 340) and falls into the broth; then a small ripple
+      if (t < .3) { const k = KP.ease.in(KP.prog(t, 0, .3)), y = KP.lerp(BW[1] - 520 / 3, BW[1] - 6, k);
+        KP.paper(ctx, KP.jitter(KP.drop(BW[0], y, 130 / 3), 960 + b, .6), P.gold, { shadow: KP.SH.far, mis: P.tomato, misOff: [-1, 1], misA: .4 });
+        KP.brush(ctx, [[BW[0], y - 50], [BW[0], y - 76]], 2.5, P.ink, { taper: .6 }); }
+      if (t >= .3 && t < 1.3) KP.ripple(ctx, BW[0], BW[1] - 2, 80, { p: KP.ease.out(KP.prog(t, .3, 1.1)), boil: b, squash: .22 });
+      if (t >= .3 && t < .6) KP.marks(ctx, BW[0], BW[1] - 10, 30, 6, 2090 + b, { a0: -Math.PI, span: Math.PI, len: 12, w: 3, color: P.gold });
       // '?' pops above his head on 'odd'
       if (t >= T.odd) { const q = KP.arrive(t, T.odd, .3); ctx.save(); KP.pose(ctx, q, h.head[0] + 130, h.head[1] - 60, 'pop'); KP.qmark(ctx, h.head[0] + 140, h.head[1] - 140, 150, { rot: .12 + KP.wobA(t, 2, .04) }); ctx.restore(); }
     });
@@ -92,7 +100,7 @@
     }
     if (t >= T.y1908 && t < T.s2) {
       const ar = KP.arrive(t, T.y1908, .3), out = KP.leave(t, T.s2, .2);
-      ctx.save(); ctx.globalAlpha = 1 - out; KP.pose(ctx, ar, 230, 330, 'pop');
+      ctx.save(); ctx.globalAlpha = out > 0 ? 0 : 1; KP.pose(ctx, ar, 230, 330, 'pop');
       KP.slip(ctx, [{ s: '1908', size: 110, font: 'Young Serif', weight: 400, ls: 4 }], 70, 222, { rot: -.04, seed: 50, boil: b, tape: P.pink, padX: 36, padY: 20 });
       ctx.restore();
     }
@@ -164,8 +172,8 @@
     });
     // labels: 'Umami' (Young Serif) until the shaker shot, then 'MSG'
     if (t >= T.umami && t < T.s5) {
-      const ar = KP.arrive(t, T.umami, .3), out = KP.leave(t, T.s5, .12);
-      ctx.save(); ctx.globalAlpha = 1 - out; KP.pose(ctx, ar, 490, 340, 'pop');
+      const ar = KP.arrive(t, T.umami, .3), out = KP.leave(t, T.s5, .001);
+      ctx.save(); ctx.globalAlpha = out > 0 ? 0 : 1; KP.pose(ctx, ar, 490, 340, 'pop');
       KP.slip(ctx, [{ s: 'Umami', size: 130, font: 'Young Serif', weight: 400, ls: 4 }], 270, 220, { rot: -.03, seed: 53, boil: b, tape: P.pink, padX: 44, padY: 24 });
       ctx.restore();
     }
@@ -180,7 +188,7 @@
   KP.scene('s03_ikeda', {
     sfx(cues, D) {
       const T = times(cues, D), a = [], e = (t, name, gain) => a.push({ t: Math.max(0, +t.toFixed(3)), name, gain });
-      e(T.y1908, 'pop', .4); e(T.chemist, 'paper', .3); e(T.ikeda, 'pop_small', .3);
+      e(.3, 'bubble', .45); e(.4, 'chime', .3); e(T.y1908, 'pop', .4); e(T.chemist, 'paper', .3); e(T.ikeda, 'pop_small', .3);
       e(T.noticed, 'slurp', .35); e(T.odd, 'pop_small', .35); e(T.seaweed, 'bubble', .3);
       e(T.sweet, 'pop', .35); e(T.sour, 'pop', .35); e(T.salty, 'pop', .35); e(T.bitter, 'pop', .35);
       e(T.umami, 'impact_soft', .6); e(T.umami + .15, 'chime', .4); e(T.turned, 'swoosh_down', .35); e(T.seasoning, 'pop', .35);
