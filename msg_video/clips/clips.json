@@ -1,5 +1,5 @@
 {
- "_doc": "Real interview clips for the cold open. Source files live in clips/src/ (not committed). 'in'/'out' are seconds in the source file. 'quote' is the exact words spoken (verified with a Whisper transcript, word timestamps): it drives the captions. 'credit' is shown on screen. Run `python3 prep_clips.py`, then `python3 build_audio.py`. Optional 'video_hold_after' (seconds into the clip) freezes the picture on the last on-camera frame when the source cuts away.",
+ "_doc": "Real interview clips for the cold open. Source files live in clips/src/ (not committed). 'in'/'out' are seconds in the source file. 'quote' is the exact words spoken (verified with a Whisper transcript, word timestamps): it drives the captions. 'credit' is shown on screen. Run `python3 prep_clips.py`, then `python3 build_audio.py`. Optional 'video_hold_after' (seconds into the clip) freezes the picture on the last on-camera frame when the source cuts away. Optional 'track_face': {zoom} crops to a smoothed window following the speaker's face, keeping lecture-slide text out of frame; 'blur' (sigma) blurs everything but the speaker.",
  "clips": [
   {
    "id": "blaylock_brain",
@@ -9,7 +9,13 @@
    "out": 1447.75,
    "speaker": "Dr. Russell Blaylock",
    "credit": "Neurosurgeon, lecture on MSG, 2012",
-   "quote": "Excitotoxicity destroys brain cells."
+   "quote": "Excitotoxicity destroys brain cells.",
+   "video_hold_after": 0.88,
+   "track_face": {
+    "zoom": 1.35,
+    "blur": 14
+   },
+   "_note": "He turns toward his slide 0.9 s in; the picture holds his last face-forward frame while his audio continues. Background blurred so slide text isn't readable."
   },
   {
    "id": "blaylock_hungry",
@@ -21,7 +27,11 @@
    "credit": "Neurosurgeon, lecture on MSG, 2012",
    "quote": "They put so much MSG in food because it makes you hungry and you eat more of their food.",
    "video_hold_after": 1.25,
-   "_note": "The source fades to black and cuts to a lecture slide 1.3 s in; the video holds his last on-camera frame while his audio continues."
+   "_note": "The source fades to black and cuts to a lecture slide 1.3 s in; the video holds his last on-camera frame while his audio continues.",
+   "track_face": {
+    "zoom": 1.6,
+    "blur": 14
+   }
   }
  ]
 }
