@@ -1,13 +1,14 @@
 """Single source of truth for the MSG explainer script.
 
-Each scene is a list of lines: (voice, text, pause_after_seconds).
+Each scene is a list of lines: (voice, text, pause_after_seconds[, speed]).
+The optional speed multiplies the voice's base pace, e.g. 0.92 to slow down a wry aside.
 Voice "NARR" is the narrator; other keys are the cold-open "talking heads".
 `python3 build_audio.py` turns this into narration WAVs + cues.json,
 and `python3 script.py` writes SCRIPT.md.
 """
 
 VOICES = {
-    "NARR": "am_michael",  # calm, warm documentary narrator
+    "NARR": "bm_george*0.5+am_michael*0.5",  # client pick "voice 9": blend of two Kokoro voices
     "TVDOC": "am_onyx",      # "Daytime TV Doctor"
     "CHEF": "bm_george",     # "Celebrity Chef"
     "GURU": "af_bella",      # "Wellness Influencer"
@@ -31,12 +32,10 @@ SCENES = [{'id': 's01_coldopen',
   'lines': [('TVDOC', 'MSG is an excitotoxin. It overexcites your brain cells.', 0.25),
             ('CHEF', "Never in my kitchen. It's poison, darling.", 0.25),
             ('GURU', "Every time I eat it, I get headaches. It's the MSG, you guys!", 0.6),
-            ('NARR',
-             'For more than fifty years, three little letters have terrified dinner tables around the world.',
-             0.3),
-            ('NARR',
-             "But is MSG actually bad for you? And if it isn't... why does everyone think it is?",
-             1.0)]},
+            ('NARR', 'For fifty years, three little letters have terrified dinner tables.', 0.3),
+            ('NARR', 'But is MSG actually bad for you?', 0.35),
+            ('NARR', "And if it isn't...", 0.15, 0.92),
+            ('NARR', 'why does everyone think it is?', 0.8)]},
  {'id': 's02_title',
   'title': 'Title Card',
   'visual': "Kurzgesagt-style title: a glowing glutamate crystal spins in a starfield. Title 'MSG: The Most "
@@ -50,99 +49,93 @@ SCENES = [{'id': 's01_coldopen',
   'lines': [('NARR',
              'In 1908, a Japanese chemist named Kikunae Ikeda noticed something odd about his seaweed soup.',
              0.25),
-            ('NARR', "It wasn't sweet, sour, salty or bitter. It was something else. Savory.", 0.3),
+            ('NARR', "It wasn't sweet, sour, salty or bitter. It was something else.", 0.25),
             ('NARR', 'So he boiled down a mountain of seaweed, and found the culprit: glutamic acid.', 0.25),
-            ('NARR',
-             'He named the taste umami, and paired it with sodium to make a seasoning. Monosodium glutamate.',
-             0.6)]},
+            ('NARR', 'He named the taste umami, and paired it with sodium to make a seasoning.', 0.2),
+            ('NARR', 'Monosodium glutamate.', 0.5, 0.92)]},
  {'id': 's04_everywhere',
   'title': 'Glutamate Is Everywhere',
   'visual': 'The glutamate molecule zooms out to reveal it inside tomatoes, mushrooms, soy sauce, parmesan, '
             'and a baby bottle / breast milk. Bar chart of free glutamate. Then two identical molecules side '
             "by side: 'from tomato' vs 'from MSG' — an equals sign.",
-  'lines': [('NARR',
-             'Which sounds alarmingly chemical. But glutamate is one of the most common amino acids on '
-             'Earth.',
-             0.25),
+  'lines': [('NARR', 'Which sounds alarmingly chemical.', 0.3, 0.92),
+            ('NARR', 'But glutamate is one of the most common amino acids on Earth.', 0.2),
             ('NARR', "It's in tomatoes, mushrooms, parmesan, even human breast milk.", 0.25),
             ('NARR',
-             'And to your body, glutamate from a tomato and glutamate from MSG are exactly the same '
-             'molecule.',
-             0.6)]},
+             'And to your body, glutamate from a tomato and from MSG is exactly the same molecule.',
+             0.5)]},
  {'id': 's05_body',
   'title': 'What Happens When You Eat It',
   'visual': 'Cutaway of a cute flat-style human body. Glutamate particles land on tongue receptors '
             '(click/glow). Travel down to the gut where little round intestine-cell characters gobble them '
             'up as fuel. 95% counter. Tiny remainder reaches blood, meets the blood-brain barrier as a '
             'castle wall with guards.',
-  'lines': [('NARR', 'So what happens when you eat it?', 0.2),
+  'lines': [('NARR', 'So what happens when you eat it?', 0.25),
+            ('NARR', 'Your tongue tastes it, and tells your brain: protein!', 0.2),
+            ('NARR', 'Then it reaches your gut... and gets eaten.', 0.25),
             ('NARR',
-             'Your tongue tastes it, and tells your brain: protein! Then it reaches your gut, and gets '
-             'eaten.',
+             'The cells lining your intestines burn glutamate as fuel. Around ninety-five percent never even '
+             'makes it into your blood.',
              0.25),
             ('NARR',
-             'The cells lining your intestines burn glutamate as fuel. Around ninety-five percent of it '
-             'never even makes it into your blood.',
-             0.25),
-            ('NARR',
-             'And the little that does runs into the blood-brain barrier, one of the best-guarded borders in '
-             'your body.',
-             0.6)]},
+             'And the rest hits the blood-brain barrier, one of the best-guarded borders in your body.',
+             0.5)]},
  {'id': 's07_tests',
   'title': 'Putting MSG to the Test',
   'visual': 'Clean lab. Two identical capsules, labeled A and B, shuffled under cups. Volunteers with '
             "thought bubbles. Results chart: MSG vs placebo bars nearly equal. FDA-style 'GRAS' stamp lands "
             'next to salt, sugar, baking powder icons.',
   'lines': [('NARR',
-             'Scientists have tested MSG again and again, in double-blind studies, where nobody knows who '
-             'got the real thing.',
+             'Scientists have tested it again and again, in double-blind studies where nobody knows who got '
+             'the real thing.',
              0.25),
             ('NARR', 'People who said they were sensitive to MSG reacted just as often to the fake.', 0.25),
             ('NARR',
              'Today, the FDA classifies MSG as generally recognized as safe. Just like salt and sugar.',
-             0.6)]},
+             0.5)]},
  {'id': 's08_twist',
   'title': 'Plot Twist: MSG vs Salt',
   'visual': 'Two shakers face off on a scale: SALT vs MSG. Sodium atoms pop out: salt has lots, MSG about a '
             'third. A heart icon smiles.',
   'lines': [('NARR',
-             'Plot twist: MSG has only about a third of the sodium of table salt. Swap some in, and your '
-             'food keeps the flavor with less sodium.',
-             0.7)]},
+             'Plot twist: MSG has about a third of the sodium of table salt. Swap some in: same flavor, less '
+             'sodium.',
+             0.5)]},
  {'id': 's06_origin',
   'title': 'How the Rumour Started',
   'visual': '1968: a typewritten letter flutters onto a desk, addressed to the New England Journal of '
             "Medicine. Question marks over wine, salt, MSG. A headline stamp slams down: 'CHINESE-RESTAURANT "
             "SYNDROME'. Newspapers multiply and spin. 1969: lab mouse + giant syringe. Then a split screen: "
             'tomatoes/parmesan (no alarm) vs takeout box (alarm bells).',
-  'lines': [('NARR', 'So how did a seaweed seasoning become a villain?', 0.25),
+  'lines': [('NARR', 'So how did a seaweed seasoning become a villain?', 0.3),
             ('NARR',
-             'In 1968, a doctor wrote a letter to a medical journal. After eating at Chinese restaurants, he '
-             'felt numb and weak.',
-             0.25),
+             'In 1968, a doctor wrote to a medical journal. After eating at Chinese restaurants, he felt '
+             'numb and weak.',
+             0.2),
+            ('NARR', 'Was it the wine? The salt? The MSG? It was a guess.', 0.25),
+            ('NARR', 'But the journal gave it a catchy headline: Chinese Restaurant Syndrome.', 0.3),
+            ('NARR', 'Then scientists injected huge doses into newborn mice, and found brain damage.', 0.2),
             ('NARR',
-             'Was it the wine? The salt? The MSG? It was a guess. But the journal gave it a catchy headline: '
-             'Chinese Restaurant Syndrome.',
-             0.25),
-            ('NARR',
-             'Then scientists injected huge doses into newborn mice, and found brain damage. Scary, until '
-             'you remember a baby mouse injection is nothing like dinner.',
-             0.3),
+             'Scary. Until you remember that a baby mouse injection is nothing like dinner.',
+             0.3,
+             0.95),
             ('NARR',
              'And nobody panicked about tomato sauce or parmesan. The fear stuck to one cuisine, and the '
              'name said it out loud.',
-             0.7)]},
+             0.5)]},
  {'id': 's09_outro',
   'title': 'So... Is MSG Bad for You?',
   'visual': "Callback to the wall of TVs, now switching off one by one. The 'NO MSG' sign flickers and the "
             "'NO' burns out. Final shot: a cozy bowl of ramen with an MSG shaker, camera pulls back into "
             'space. End card.',
-  'lines': [('NARR', 'So, is MSG bad for you? Not really.', 0.3),
+  'lines': [('NARR', 'So, is MSG bad for you?', 0.35),
+            ('NARR', 'Not really.', 0.4, 0.9),
             ('NARR',
-             'The story of MSG is a story about how one guess, a catchy name, and a little prejudice can '
-             'outlive decades of science.',
+             "It's a story about how one guess, a catchy name, and a little prejudice outlived decades of "
+             'science.',
              0.3),
-            ('NARR', 'So next time you see a No MSG sign... maybe reach for the shaker.', 1.5)]}]
+            ('NARR', 'So next time you see a No MSG sign...', 0.2),
+            ('NARR', 'maybe reach for the shaker.', 1.5)]}]
 
 # One Instagram Reel (9:16), under 3 minutes. The earlier 3-part cut is in git history.
 PARTS = [
@@ -176,7 +169,7 @@ def write_markdown(path="SCRIPT.md"):
         sc = by_id[sid]
         n += 1
         out += [f"## Scene {n}: {sc['title']}", "", f"**Visual:** {sc['visual']}", ""]
-        for voice, text, _ in sc["lines"]:
+        for voice, text, *_ in sc["lines"]:
             who = "NARRATOR" if voice == "NARR" else SPEAKER_LABELS[voice].upper()
             out.append(f"**{who}:** {text}  ")
         out.append("")

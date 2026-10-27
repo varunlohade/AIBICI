@@ -66,6 +66,37 @@ def retime_words():
         json.dump(cues, f, indent=1)
 
 
+BASE_SPEED = {"NARR": 1.03}   # natural documentary pace; talking heads run a little faster
+OTHER_SPEED = 1.12
+
+
+def voice_style(k, spec):
+    """'name' or a weighted blend like 'bm_george*0.5+am_michael*0.5'."""
+    if "+" not in spec:
+        return spec
+    return sum(float(w) * k.get_voice_style(n) for n, w in (p.split("*") for p in spec.split("+")))
+
+
+def polish(a):
+    """Gentle voice-over chain: rumble high-pass, low-mid warmth, presence lift,
+    de-ess, soft compression and a very short room."""
+    n = len(a)
+    F = np.fft.rfftfreq(n, 1 / SR)
+    g = 1 / np.sqrt(1 + (70 / np.maximum(F, 1)) ** 4)
+    g *= 1 + 0.25 * np.exp(-((F - 180) / 90) ** 2)
+    g *= 1 + 0.18 * np.exp(-((F - 3500) / 1500) ** 2)
+    g *= 1 - 0.20 * np.exp(-((F - 7000) / 1200) ** 2)
+    a = np.fft.irfft(np.fft.rfft(a) * g, n)
+    env = np.convolve(np.abs(a), np.ones(240) / 240, "same")
+    thr = 0.12
+    gain = np.where(env > thr, (thr + (env - thr) / 3) / np.maximum(env, 1e-9), 1.0)
+    a = a * np.convolve(gain, np.ones(480) / 480, "same")
+    rng = np.random.default_rng(1)
+    ir = rng.standard_normal(int(0.25 * SR)) * np.exp(-np.arange(int(0.25 * SR)) / (0.04 * SR)) * 0.02
+    ir[0] = 1
+    return np.convolve(a, ir)[:n].astype(np.float32)
+
+
 def main():
     kd = os.environ["KOKORO_DIR"]
     k = Kokoro(f"{kd}/kokoro-v1.0.onnx", f"{kd}/voices-v1.0.bin")
@@ -73,16 +104,19 @@ def main():
     cues = {}
     for sc in SCENES:
         chunks, lines, t = [np.zeros(int(LEAD_IN * SR), np.float32)], [], LEAD_IN
-        for voice, text, pause in sc["lines"]:
-            speed = 1.1 if voice == "NARR" else 1.12  # brisk documentary pace
-            a, sr = k.create(text, voice=VOICES[voice], speed=speed, lang="en-us")
+        for voice, text, pause, *rest in sc["lines"]:
+            speed = BASE_SPEED.get(voice, OTHER_SPEED) * (rest[0] if rest else 1.0)
+            a, sr = k.create(text, voice=voice_style(k, VOICES[voice]), speed=speed, lang="en-us")
             assert sr == SR
+            if voice == "NARR":
+                a = polish(a)
             dur = len(a) / SR
             lines.append({"voice": voice, "text": text, "start": round(t, 3), "end": round(t + dur, 3),
                           "words": word_times(text, a, t)})
             chunks += [a.astype(np.float32), np.zeros(int(pause * SR), np.float32)]
             t += dur + pause
         audio = np.concatenate(chunks)
+        audio = audio / max(1e-9, np.max(np.abs(audio))) * 0.89
         sf.write(os.path.join(OUT, sc["id"] + ".wav"), audio, SR)
         cues[sc["id"]] = {"title": sc["title"], "duration": round(len(audio) / SR, 3), "lines": lines}
         print(sc["id"], cues[sc["id"]]["duration"])
