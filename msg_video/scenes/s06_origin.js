@@ -269,6 +269,8 @@
   }
 
   KP.scene('s06_origin', {
+    // for s01's flash-forward: when the stamp hits, and when the whip into the stamp shot settles
+    stampTimes(cues, D) { const T = times(cues, D); return { hit: T.chinese, shot: T.l4 + .3, catchy: T.catchy }; },
     sfx(cues, D) {
       const T = times(cues, D), a = [], e = (t, name, gain) => a.push({ t: Math.max(0, +t.toFixed(3)), name, gain });
       e(T.seaweed, 'whoosh', .35); e(T.villain, 'impact_soft', .45);

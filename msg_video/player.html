@@ -19,6 +19,7 @@ const ctx = canvas.getContext('2d');
 let CUES = {};
 window.setup = async () => {
   CUES = await (await fetch('cues.json')).json();
+  window.CUES = CUES;   // scenes may nest another scene's shot (e.g. s01's flash-forward of the s06 stamp)
   await CLIPS.load();
   await Promise.all(['300 40px Fredoka', '400 40px Fredoka', '500 40px Fredoka', '600 40px Fredoka', '700 40px Fredoka',
     '400 40px Nunito', '700 40px Nunito', '800 40px Nunito', '900 40px Nunito',

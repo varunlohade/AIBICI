@@ -731,10 +731,13 @@
     ctx.restore();
   };
   // torn lower third for the fictional speakers: role (the one label) + the required DRAMATIZATION line
+  // o.sub: second line (credit: outlet, date). Omitted -> the legacy DRAMATIZATION line; null -> no second line.
   KP.lowerThird = (ctx, role, x, y, o = {}) => {
     const lines = [];
     if (role) lines.push({ s: role, size: 44, ls: 2, color: P.rice });
-    lines.push({ s: 'DRAMATIZATION - fictional character', size: 28, weight: 700, color: P.lemon });
+    const sub = o.sub === undefined ? 'DRAMATIZATION - fictional character' : o.sub;
+    if (sub) lines.push({ s: sub, size: 30, weight: 700, color: P.lemon });
+    if (!lines.length) return { w: 0, h: 0 };
     return KP.slip(ctx, lines, x, y, { rot: o.rot ?? -.025, seed: o.seed || 12, boil: o.boil, padX: 34, padY: 18, tape: P.pink, fill: P.blue, shadowA: .3 });
   };
 
