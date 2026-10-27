@@ -12,12 +12,14 @@ canvas { display:block; width:540px; height:960px; }
 <body><canvas id="c" width="1080" height="1920"></canvas>
 <script src="lib/kz.js"></script>
 <script src="lib/kp.js"></script>
+<script src="lib/clips.js"></script>
 <script>
 const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
 let CUES = {};
 window.setup = async () => {
   CUES = await (await fetch('cues.json')).json();
+  await CLIPS.load();
   await Promise.all(['300 40px Fredoka', '400 40px Fredoka', '500 40px Fredoka', '600 40px Fredoka', '700 40px Fredoka',
     '400 40px Nunito', '700 40px Nunito', '800 40px Nunito', '900 40px Nunito',
     '400 40px "Young Serif"', '400 40px "Courier Prime"', '700 40px "Courier Prime"'].map(f => document.fonts.load(f)));

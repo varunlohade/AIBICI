@@ -105,14 +105,20 @@ def main():
     for sc in SCENES:
         chunks, lines, t = [np.zeros(int(LEAD_IN * SR), np.float32)], [], LEAD_IN
         for voice, text, pause, *rest in sc["lines"]:
-            speed = BASE_SPEED.get(voice, OTHER_SPEED) * (rest[0] if rest else 1.0)
-            a, sr = k.create(text, voice=voice_style(k, VOICES[voice]), speed=speed, lang="en-us")
+            if voice.startswith("CLIP:"):
+                # a real interview clip: its own audio, prepared by prep_clips.py; text is its exact quote
+                a, sr = sf.read(os.path.join(HERE, "clips", "prepared", voice[5:] + ".wav"), dtype="float32")
+            else:
+                speed = BASE_SPEED.get(voice, OTHER_SPEED) * (rest[0] if rest else 1.0)
+                a, sr = k.create(text, voice=voice_style(k, VOICES[voice]), speed=speed, lang="en-us")
+                if voice == "NARR":
+                    a = polish(a)
             assert sr == SR
-            if voice == "NARR":
-                a = polish(a)
             dur = len(a) / SR
             lines.append({"voice": voice, "text": text, "start": round(t, 3), "end": round(t + dur, 3),
                           "words": word_times(text, a, t)})
+            if voice.startswith("CLIP:"):
+                lines[-1]["clip"] = voice[5:]
             chunks += [a.astype(np.float32), np.zeros(int(pause * SR), np.float32)]
             t += dur + pause
         audio = np.concatenate(chunks)

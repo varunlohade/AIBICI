@@ -170,7 +170,8 @@ def write_markdown(path="SCRIPT.md"):
         n += 1
         out += [f"## Scene {n}: {sc['title']}", "", f"**Visual:** {sc['visual']}", ""]
         for voice, text, *_ in sc["lines"]:
-            who = "NARRATOR" if voice == "NARR" else SPEAKER_LABELS[voice].upper()
+            who = ("NARRATOR" if voice == "NARR" else f"[REAL CLIP {voice[5:]}]" if voice.startswith("CLIP:")
+                   else SPEAKER_LABELS[voice].upper())
             out.append(f"**{who}:** {text}  ")
         out.append("")
     out += ["## Sources", ""] + [f"- {s}" for s in SOURCES] + [""]
