@@ -87,5 +87,4 @@ _An animated explainer Reel for Instagram (9:16, about 2 minutes). Narration + v
 - US Code of Federal Regulations, 21 CFR 182.1(a): salt, pepper, vinegar, baking powder and monosodium glutamate listed as GRAS.
 - EFSA Panel on Food Additives (2017). Re-evaluation of glutamic acid and glutamates as food additives. EFSA Journal 15(7):4910.
 - FoodNavigator (2019-11-08). Study looks at reducing sodium intake through MSG substitution in salty food categories. https://www.foodnavigator.com/Article/2019/11/08/Study-looks-at-reducing-sodium-intake-through-MSG-substitution-in-salty-food-categories/
-- Foods / J Food Sci (see FACTCHECK.md for the exact citation used).
 - Independent fact-check of every claim in this Reel: FACTCHECK.md.

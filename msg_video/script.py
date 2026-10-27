@@ -144,7 +144,6 @@ SOURCES = ['Kwok, R.H.M. (1968). Chinese-Restaurant Syndrome. N Engl J Med 278:7
  'EFSA Panel on Food Additives (2017). Re-evaluation of glutamic acid and glutamates as food additives. EFSA '
  'Journal 15(7):4910.',
  'FoodNavigator (2019-11-08). Study looks at reducing sodium intake through MSG substitution in salty food categories. https://www.foodnavigator.com/Article/2019/11/08/Study-looks-at-reducing-sodium-intake-through-MSG-substitution-in-salty-food-categories/',
- 'Foods / J Food Sci (see FACTCHECK.md for the exact citation used).',
  'Independent fact-check of every claim in this Reel: FACTCHECK.md.']
 
 
