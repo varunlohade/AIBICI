@@ -1,8 +1,16 @@
 {
  "meta": {
   "project": "MSG: The Most Misunderstood Molecule",
-  "format": "single Instagram Reel, 9:16, loops",
-  "duration": 179.251,
+  "format": "single Instagram Reel, 9:16, loops (viewer-test cut)",
+  "viewer_test_rules": [
+   "no shot holds still > 2 s (validated from sfx/labels/beats)",
+   "mice on a lab tray, never a plate",
+   "bell BIG on the carton, dead still on the parmesan",
+   "seaweed must read as seaweed",
+   "nothing important cropped at frame edges (40 px inside the key box)",
+   "hook within 2 s"
+  ],
+  "duration": 138.373,
   "fps": 30,
   "resolution": [
    1080,
@@ -44,6 +52,7 @@
     ],
     "center_x": 490
    },
+   "edge_margin": 40,
    "zones": {
     "TOP": [
      220,
@@ -61,53 +70,53 @@
   },
   "style": "Kombu Paper (design/APPROVED.md; style frames design/frames/kombu-paper/A,B,C; kit window.KP in frames.js)",
   "time_base": "seconds, scene-relative (the t passed to draw); reel_time = seconds from the start of the Reel",
-  "label_rule": "at most one 1-3 word label at a time besides captions (+ the DRAMATIZATION line under puppets)",
+  "label_rule": "at most one 1-3 word label at a time besides captions (+ the credit line under a real name)",
   "source_of_truth": "cues.json (line + word timings), script.py (PARTS)",
   "generator": "design/gen_shotlist.py (edit there, not here)"
  },
  "build_order": [
   {
    "scene": "s01_coldopen",
-   "why": "Closest to style frame A; builds TV wall, puppets, lower third, sign, shaker, caption usage. The hook."
+   "why": "BUILT - rework: puppets -> real-clip placeholders + name/credit lower third; new flash-forward shot (nested s06.05); old shots 6+7 merged."
   },
   {
    "scene": "s05_body",
-   "why": "Closest to style frame B; builds Goldie streams, gut cells, body layers, 95%, BBB."
+   "why": "BUILT - rework: tongue shot removed, fork shot now ends in the dive; shots 4-7 keep their content."
   },
   {
    "scene": "s06_origin",
-   "why": "Closest to style frame C; builds letter, stamp, headline, newspapers; the sensitive scene, reviewed early."
+   "why": "BUILT - rework: same 9 shots; mice on a lab tray; bell split now parmesan (dead still) vs carton (big ring)."
   },
   {
    "scene": "s02_title",
-   "why": "Short; establishes Goldie + the Fifth Ripple as the title beat."
+   "why": "BUILT - re-time only."
   },
   {
    "scene": "s03_ikeda",
-   "why": "Ikeda, taste rings, skeletal diagram, sodium ion, shaker birth."
+   "why": "scenes/s03_ikeda.js exists from the previous cut (7 shots) - rework to 5: seaweed mountain and sodium shots cut, umami + seasoning merged; clearer kombu blade."
   },
   {
    "scene": "s04_everywhere",
-   "why": "Reuses Goldie, diagram, shaker; food grid."
+   "why": "To build: Earth of Goldies, 3-food stack, equality split."
   },
   {
    "scene": "s07_tests",
-   "why": "Lab, capsules, chart on the ripple baseline, GRAS with the existing stamp."
+   "why": "To build: 3 shots (shuffle + volunteers, chart, GRAS + shelf)."
   },
   {
    "scene": "s08_twist",
-   "why": "Reuses shakers and sodium ions."
+   "why": "To build: scale + ions, pot + meter."
   },
   {
    "scene": "s09_outro",
-   "why": "Last: all callbacks exist by now, and its final frame must match s01 frame 0 for the loop."
+   "why": "To build last: its final frame must match s01 frame 0 for the loop."
   }
  ],
  "scenes": [
   {
    "id": "s01_coldopen",
    "title": "Cold Open: The Accusations",
-   "duration": 23.587,
+   "duration": 22.417,
    "reel_offset": 0.0,
    "build_order": 1,
    "shots": [
@@ -129,22 +138,25 @@
        "text": "MSG is an excitotoxin. It overexcites your brain cells."
       }
      ],
-     "shot_size": "MEDIUM (style frame A)",
-     "on_screen": "HOOK, lit on frame 0 = style frame A: violet TV wall, 8 dim grape sets + the turquoise hero TV spanning two columns with a lemon screen. The TV Doctor shadow puppet (head mirror, stethoscope, orange stick) jabs a finger at a pink paper brain; tomato-red zap bolts burst from it on 'overexcites'.",
+     "shot_size": "MEDIUM (style frame A layout)",
+     "on_screen": "HOOK, lit on frame 0: violet TV wall, grape dim sets, turquoise hero TV spanning two columns. The hero screen plays CLIP 1 (real interview). Pinned beside the TV, outside the clip, a pink paper brain cut-out with tomato-red zap bolts that burst on 'overexcites'.",
      "layout": {
       "TOP": "Dim TV sets",
-      "MID": "Hero TV: TV Doctor puppet + zapping brain",
-      "LOW": "torn-paper lower third: role + 'DRAMATIZATION - fictional character'"
+      "MID": "Hero TV: clip 1 + brain cut-out beside it",
+      "LOW": "torn-paper lower third: real name (the label) + credit line (outlet, date)"
      },
      "camera": "Slow multiplane push-in (3%).",
      "labels": [
       {
-       "text": "TV doctor",
+       "text": "<Name 1>",
        "in": 0.0,
        "out": 4.667
       }
      ],
-     "dramatization_tag": true,
+     "credit_lower_third": true,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.34,
      "transition_in": "NONE: lit on frame 0 (hook; also the loop landing point)",
      "transition_out": "Channel-switch flicker",
      "sfx": [
@@ -171,12 +183,12 @@
      ],
      "props": [
       "TVWALL",
-      "PUPPETS",
-      "DRAMA_LT",
+      "CLIPS",
+      "NAME_LT",
       "CAPTION"
      ],
-     "hero": "Hook: TV Doctor puppet + zapping brain inside 0.3 s",
-     "notes": "Frame 0 must match the last frame of s09 (same TV wall layout) so the Reel loops."
+     "hero": "Hook: real clip + zapping brain inside 0.3 s",
+     "notes": "Real interview clip pending from the client: draw it with CLIPS.draw(ctx, id, tc, ...) inside the hero screen (lib/clips.js; tc = scene time - CLIPS.lineStart) and take name/credit from CLIPS.info(id); until delivered, CLIPS.draw returns false: show a placeholder rectangle. The clip's audio replaces the placeholder voice, so its line must be re-cued. Frame 0 must match the last frame of s09 so the Reel loops."
     },
     {
      "id": "s01.02",
@@ -197,21 +209,24 @@
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "Channel flick: the hero screen now shows the Celebrity Chef puppet (tall toque, ladle) stirring a pot; on 'poison' the ladle flicks the MSG shaker off the counter and a tomato-red X stamp lands on it.",
+     "on_screen": "Channel flick: the hero screen plays CLIP 2. Beside the TV a paper MSG shaker sits on a little shelf; on 'poison' a tomato-red X stamp lands on it.",
      "layout": {
       "TOP": "Dim TV sets",
-      "MID": "Hero TV: Chef puppet + shaker",
-      "LOW": "torn-paper lower third: role + 'DRAMATIZATION - fictional character'"
+      "MID": "Hero TV: clip 2 + shaker on a shelf",
+      "LOW": "torn-paper lower third: real name (the label) + credit line (outlet, date)"
      },
      "camera": "Locked, multiplane drift.",
      "labels": [
       {
-       "text": "Celebrity chef",
+       "text": "<Name 2>",
        "in": 4.667,
        "out": 7.776
       }
      ],
-     "dramatization_tag": true,
+     "credit_lower_third": true,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.73,
      "transition_in": "Channel-switch flicker",
      "transition_out": "Channel-switch flicker",
      "sfx": [
@@ -233,20 +248,20 @@
      ],
      "props": [
       "TVWALL",
-      "PUPPETS",
-      "DRAMA_LT",
+      "CLIPS",
+      "NAME_LT",
       "SHAKER"
      ],
      "hero": null,
-     "notes": null
+     "notes": "Real interview clip pending from the client: draw it with CLIPS.draw(ctx, id, tc, ...) inside the hero screen (lib/clips.js; tc = scene time - CLIPS.lineStart) and take name/credit from CLIPS.info(id); until delivered, CLIPS.draw returns false: show a placeholder rectangle. The clip's audio replaces the placeholder voice, so its line must be re-cued."
     },
     {
      "id": "s01.03",
      "start": 7.776,
-     "end": 12.109,
+     "end": 12.009,
      "reel_time": [
       7.776,
-      12.109
+      12.009
      ],
      "lines": [
       {
@@ -259,21 +274,24 @@
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "Channel flick: the Wellness Influencer puppet (ring-light halo, topknot, phone) clutches its head; tomato-red headache zig-zags on 'headaches'; the MSG shaker pops into the phone frame on 'MSG'.",
+     "on_screen": "Channel flick: the hero screen plays CLIP 3. Beside the TV, tomato-red headache zig-zags pop on 'headaches' and the shaker hops onto the TV's top on 'MSG'.",
      "layout": {
       "TOP": "Dim TV sets",
-      "MID": "Hero TV: Influencer puppet inside a phone shape",
-      "LOW": "torn-paper lower third: role + 'DRAMATIZATION - fictional character'"
+      "MID": "Hero TV: clip 3 + zig-zags",
+      "LOW": "torn-paper lower third: real name (the label) + credit line (outlet, date)"
      },
      "camera": "Locked, multiplane drift.",
      "labels": [
       {
-       "text": "Wellness influencer",
+       "text": "<Name 3>",
        "in": 7.776,
-       "out": 12.109
+       "out": 12.009
       }
      ],
-     "dramatization_tag": true,
+     "credit_lower_third": true,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.59,
      "transition_in": "Channel-switch flicker",
      "transition_out": "Fast pull-back",
      "sfx": [
@@ -295,243 +313,284 @@
      ],
      "props": [
       "TVWALL",
-      "PUPPETS",
-      "DRAMA_LT",
+      "CLIPS",
+      "NAME_LT",
       "SHAKER"
      ],
      "hero": null,
-     "notes": null
+     "notes": "Real interview clip pending from the client: draw it with CLIPS.draw(ctx, id, tc, ...) inside the hero screen (lib/clips.js; tc = scene time - CLIPS.lineStart) and take name/credit from CLIPS.info(id); until delivered, CLIPS.draw returns false: show a placeholder rectangle. The clip's audio replaces the placeholder voice, so its line must be re-cued."
     },
     {
      "id": "s01.04",
-     "start": 12.109,
-     "end": 14.262,
+     "start": 12.009,
+     "end": 14.208,
      "reel_time": [
-      12.109,
-      14.262
+      12.009,
+      14.208
      ],
      "lines": [
       {
        "n": 4,
        "voice": "NARR",
-       "start": 12.109,
-       "end": 16.163,
+       "start": 12.009,
+       "end": 19.711,
        "coverage": "partial",
-       "text": "For fifty years, three little letters have terrified dinner tables."
+       "text": "For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968."
       }
      ],
      "shot_size": "EXTREME WIDE",
-     "on_screen": "Pull back: every set on the wall lights up with the three puppets repeating their claims; the wall keeps receding (it may bleed into the UI zones as decor).",
+     "on_screen": "Pull back: every set on the wall lights up (paused frames of the three clips plus lemon screens); the wall recedes (it may bleed into the UI zones as decor).",
      "layout": {
       "TOP": "Upper TV rows",
-      "MID": "Full TV wall, all screens lit lemon",
+      "MID": "Full TV wall",
       "LOW": "Lower TV rows"
      },
      "camera": "Pull-back, multiplane layers separating.",
      "labels": [
       {
        "text": "50 years",
-       "in": 12.368,
-       "out": 14.262
+       "in": 12.268,
+       "out": 14.208
       }
      ],
-     "dramatization_tag": true,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.02,
      "transition_in": "Fast pull-back",
      "transition_out": "Paper slide",
      "sfx": [
       {
-       "t": 12.109,
+       "t": 12.009,
        "name": "whoosh",
        "gain": 0.45
       },
       {
-       "t": 12.368,
+       "t": 12.268,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 13.928,
+       "t": 13.184,
        "name": "tv_on",
        "gain": 0.3
       }
      ],
      "props": [
-      "TVWALL",
-      "PUPPETS",
-      "DRAMA_LT"
+      "TVWALL"
      ],
      "hero": null,
-     "notes": "Keep the DRAMATIZATION tag on screen while puppets are readable."
+     "notes": "Clip frames here are small and unreadable; no lower third needed. If a face reads, add its credit."
     },
     {
      "id": "s01.05",
-     "start": 14.262,
-     "end": 16.463,
+     "start": 14.208,
+     "end": 17.307,
      "reel_time": [
-      14.262,
-      16.463
+      14.208,
+      17.307
      ],
      "lines": [
       {
        "n": 4,
        "voice": "NARR",
-       "start": 12.109,
-       "end": 16.163,
+       "start": 12.009,
+       "end": 19.711,
        "coverage": "partial",
-       "text": "For fifty years, three little letters have terrified dinner tables."
+       "text": "For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968."
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "Dinner tables around the world: three small tables stacked down the frame (different vivid cloths), each with a folded NO MSG card; at top, a restaurant window with the paper 'neon' NO MSG sign switching on.",
+     "on_screen": "Everyone scared of MSG: a restaurant window with the paper 'neon' NO MSG sign switching on, three small dinner tables stacked below with folded NO MSG cards. On 'it all started' a lemon envelope slides onto the top table.",
      "layout": {
       "TOP": "Restaurant window + NO MSG sign",
       "MID": "Table 1 / table 2",
-      "LOW": "Table 3"
+      "LOW": "Table 3 + envelope arriving"
      },
      "camera": "Tilt down the stack.",
      "labels": [
       {
        "text": "No MSG",
-       "in": 14.579,
-       "out": 16.463
+       "in": 14.308,
+       "out": 17.307
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
+      {
+       "t": 16.098,
+       "action": "envelope slides in"
+      }
+     ],
+     "max_still": 1.13,
      "transition_in": "Paper slide",
-     "transition_out": "Cut",
+     "transition_out": "Smash cut (flash-forward)",
      "sfx": [
       {
-       "t": 14.579,
+       "t": 14.308,
        "name": "neon_flicker",
        "gain": 0.45
       },
       {
-       "t": 15.261,
+       "t": 14.963,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 15.695,
-       "name": "pop_small",
-       "gain": 0.3
+       "t": 16.753,
+       "name": "paper",
+       "gain": 0.35
       }
      ],
      "props": [
-      "SIGN"
+      "SIGN",
+      "LETTER"
      ],
      "hero": null,
      "notes": "First appearance of the NO MSG sign (paid off in s09). Paper 'neon': flat colour tubes, no glow."
     },
     {
      "id": "s01.06",
-     "start": 16.463,
-     "end": 19.287,
+     "start": 17.307,
+     "end": 18.992,
      "reel_time": [
-      16.463,
-      19.287
+      17.307,
+      18.992
      ],
      "lines": [
       {
-       "n": 5,
+       "n": 4,
        "voice": "NARR",
-       "start": 16.463,
-       "end": 18.937,
-       "coverage": "full",
-       "text": "But is MSG actually bad for you?"
+       "start": 12.009,
+       "end": 19.711,
+       "coverage": "partial",
+       "text": "For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968."
       }
      ],
-     "shot_size": "CLOSE",
-     "on_screen": "The MSG shaker alone on a turquoise table under a cut-paper spotlight; a big ink '?' cut-out drops above it on 'bad'.",
+     "shot_size": "CLOSE (flash-forward, style frame C)",
+     "on_screen": "FLASH-FORWARD (~1.7 s): smash cut to the cobalt desk of s06.05: the rubber stamp slams the quoted headline onto the lemon letter on '1968', paper flecks fly. Reuse the s06.05 render (same art, same angle), slightly faster.",
+     "layout": {
+      "TOP": "Stamp handle",
+      "MID": "Stamped quoted headline on the letter",
+      "LOW": "—"
+     },
+     "camera": "Snap push-in, 4-frame shake on impact.",
+     "labels": [
+      {
+       "text": "\"Chinese-Restaurant Syndrome\"",
+       "in": 18.542,
+       "out": 18.992
+      }
+     ],
+     "credit_lower_third": false,
+     "flash": true,
+     "beats": [],
+     "max_still": 1.19,
+     "transition_in": "Smash cut",
+     "transition_out": "Smash cut back + record scratch",
+     "sfx": [
+      {
+       "t": 17.357,
+       "name": "whoosh",
+       "gain": 0.45
+      },
+      {
+       "t": 18.542,
+       "name": "stamp",
+       "gain": 0.8
+      },
+      {
+       "t": 18.592,
+       "name": "impact_big",
+       "gain": 0.4
+      }
+     ],
+     "props": [
+      "HEADLINE",
+      "STAMP",
+      "LETTER"
+     ],
+     "hero": "Flash-forward tease: the 1968 headline stamp",
+     "notes": "Nested draw of s06 at its stamp time; keep any s06.05 changes in sync."
+    },
+    {
+     "id": "s01.07",
+     "start": 18.992,
+     "end": 22.417,
+     "reel_time": [
+      18.992,
+      22.417
+     ],
+     "lines": [
+      {
+       "n": 4,
+       "voice": "NARR",
+       "start": 12.009,
+       "end": 19.711,
+       "coverage": "partial",
+       "text": "For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968."
+      },
+      {
+       "n": 5,
+       "voice": "NARR",
+       "start": 20.061,
+       "end": 21.917,
+       "coverage": "full",
+       "text": "But is it actually bad for you?"
+      }
+     ],
+     "shot_size": "CLOSE -> WIDE",
+     "on_screen": "Record scratch on the cut back: the MSG shaker alone on a turquoise table under a cut-paper spotlight, a small freeze-wobble. An ink '?' drops above it on 'bad'; then a slight pull-back shows the TV wall behind it.",
      "layout": {
       "TOP": "'?' cut-out",
       "MID": "Shaker",
       "LOW": "Table edge"
      },
-     "camera": "Very slow push-in.",
+     "camera": "Freeze-wobble, then slow pull-back.",
      "labels": [],
-     "dramatization_tag": false,
-     "transition_in": "Cut",
-     "transition_out": "Freeze on record scratch",
-     "sfx": [
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
       {
-       "t": 16.923,
-       "name": "pop",
-       "gain": 0.4
+       "t": 20.662,
+       "action": "spotlight swings once"
       },
       {
-       "t": 18.216,
-       "name": "boing",
-       "gain": 0.3
+       "t": 21.629,
+       "action": "pull-back starts"
       }
      ],
-     "props": [
-      "SHAKER"
-     ],
-     "hero": null,
-     "notes": null
-    },
-    {
-     "id": "s01.07",
-     "start": 19.287,
-     "end": 23.587,
-     "reel_time": [
-      19.287,
-      23.587
-     ],
-     "lines": [
-      {
-       "n": 6,
-       "voice": "NARR",
-       "start": 19.287,
-       "end": 20.653,
-       "coverage": "full",
-       "text": "And if it isn't..."
-      },
-      {
-       "n": 7,
-       "voice": "NARR",
-       "start": 20.803,
-       "end": 22.787,
-       "coverage": "full",
-       "text": "why does everyone think it is?"
-      }
-     ],
-     "shot_size": "CLOSE -> WIDE",
-     "on_screen": "Record scratch after 'isn't...': freeze 0.3 s (boil stops). On 'why' pull back: the shaker sits in front of the TV wall, all three puppets pointing at it.",
-     "layout": {
-      "TOP": "TV wall",
-      "MID": "Puppets pointing",
-      "LOW": "Shaker"
-     },
-     "camera": "Freeze, then pull-back.",
-     "labels": [],
-     "dramatization_tag": true,
-     "transition_in": "Freeze (no cut)",
+     "max_still": 1.29,
+     "transition_in": "Smash cut back",
      "transition_out": "Paper slide, the sheet carries a falling gold drop into s02",
      "sfx": [
       {
-       "t": 20.676,
+       "t": 18.992,
        "name": "record_scratch",
-       "gain": 0.65
+       "gain": 0.6
       },
       {
-       "t": 20.826,
+       "t": 20.286,
+       "name": "boing",
+       "gain": 0.3
+      },
+      {
+       "t": 21.254,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 22.987,
+       "t": 21.917,
        "name": "whoosh",
        "gain": 0.4
       }
      ],
      "props": [
       "SHAKER",
-      "TVWALL",
-      "PUPPETS",
-      "DRAMA_LT"
+      "TVWALL"
      ],
-     "hero": "Record scratch: 'why does everyone think it is?'",
+     "hero": null,
      "notes": null
     }
    ]
@@ -539,8 +598,8 @@
   {
    "id": "s02_title",
    "title": "Title Card",
-   "duration": 4.789,
-   "reel_offset": 23.587,
+   "duration": 4.689,
+   "reel_offset": 22.417,
    "build_order": 4,
    "shots": [
     {
@@ -548,8 +607,8 @@
      "start": 0.0,
      "end": 1.2,
      "reel_time": [
-      23.587,
-      24.787
+      22.417,
+      23.617
      ],
      "lines": [
       {
@@ -576,7 +635,10 @@
        "out": 1.2
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 0.77,
      "transition_in": "Paper slide",
      "transition_out": "Continuous",
      "sfx": [
@@ -601,15 +663,15 @@
       "RIPPLE"
      ],
      "hero": null,
-     "notes": "Replace the old 16:9 scenes/s02_title.js (rejected style)."
+     "notes": null
     },
     {
      "id": "s02.02",
      "start": 1.2,
-     "end": 4.789,
+     "end": 4.689,
      "reel_time": [
-      24.787,
-      28.376
+      23.617,
+      27.106
      ],
      "lines": [
       {
@@ -622,7 +684,7 @@
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "Goldie bobs in the gold ring and smiles at camera (canonical Goldie introduction); rings keep spreading.",
+     "on_screen": "Goldie bobs in the gold ring and smiles at camera; rings keep spreading; Goldie waves on 'kitchen'.",
      "layout": {
       "TOP": "—",
       "MID": "Goldie in the ripple",
@@ -633,10 +695,18 @@
       {
        "text": "MSG",
        "in": 1.2,
-       "out": 4.789
+       "out": 4.689
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
+      {
+       "t": 2.559,
+       "action": "new ring spawns"
+      }
+     ],
+     "max_still": 1.21,
      "transition_in": "Continuous",
      "transition_out": "Gold Ripple wipe (act change)",
      "sfx": [
@@ -663,30 +733,30 @@
   {
    "id": "s03_ikeda",
    "title": "1908: The Discovery of Umami",
-   "duration": 24.065,
-   "reel_offset": 28.376,
+   "duration": 15.678,
+   "reel_offset": 27.106,
    "build_order": 5,
    "shots": [
     {
      "id": "s03.01",
      "start": 0.0,
-     "end": 4.309,
+     "end": 4.529,
      "reel_time": [
-      28.376,
-      32.685
+      27.106,
+      31.635
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 7.212,
+       "end": 7.169,
        "coverage": "partial",
-       "text": "In 1908, a Japanese chemist named Kikunae Ikeda noticed something odd about his seaweed soup."
+       "text": "In 1908, a Japanese chemist named Kikunae Ikeda tasted something odd in his seaweed soup."
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "1908: a bright period laboratory-kitchen; Kikunae Ikeda (respectful paper doll: high collar, round glasses, moustache) carries a steaming bowl of seaweed soup to his desk.",
+     "on_screen": "1908: a bright period laboratory-kitchen; Kikunae Ikeda (respectful paper doll: high collar, round glasses, moustache) carries a steaming bowl to his desk.",
      "layout": {
       "TOP": "Date slip",
       "MID": "Ikeda + bowl",
@@ -696,26 +766,34 @@
      "labels": [
       {
        "text": "1908",
-       "in": 0.533,
-       "out": 4.309
+       "in": 0.545,
+       "out": 4.529
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
+      {
+       "t": 2.064,
+       "action": "steam curls off the bowl"
+      }
+     ],
+     "max_still": 1.52,
      "transition_in": "Gold Ripple reveal",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 0.533,
+       "t": 0.545,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 2.606,
+       "t": 2.729,
        "name": "paper",
        "gain": 0.3
       },
       {
-       "t": 3.808,
+       "t": 3.996,
        "name": "pop_small",
        "gain": 0.3
       }
@@ -728,312 +806,219 @@
     },
     {
      "id": "s03.02",
-     "start": 4.309,
-     "end": 7.462,
+     "start": 4.529,
+     "end": 7.419,
      "reel_time": [
-      32.685,
-      35.838
+      31.635,
+      34.525
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 7.212,
+       "end": 7.169,
        "coverage": "partial",
-       "text": "In 1908, a Japanese chemist named Kikunae Ikeda noticed something odd about his seaweed soup."
+       "text": "In 1908, a Japanese chemist named Kikunae Ikeda tasted something odd in his seaweed soup."
       }
      ],
      "shot_size": "MEDIUM-CLOSE",
-     "on_screen": "Ikeda sips; a kombu-green strip floats in the bowl; his eyebrows lift and a '?' cut-out pops on 'odd'.",
+     "on_screen": "Ikeda sips. A long ruffled kombu blade (kelp ribbon with wavy edges and a holdfast) hangs over the bowl's rim, unmistakably seaweed; his eyebrows lift and a '?' pops on 'odd'.",
      "layout": {
       "TOP": "'?' cut-out",
       "MID": "Ikeda sipping",
-      "LOW": "Bowl with kombu strip"
+      "LOW": "Bowl + kombu blade"
      },
      "camera": "Push-in.",
-     "labels": [],
-     "dramatization_tag": false,
+     "labels": [
+      {
+       "text": "Seaweed",
+       "in": 6.349,
+       "out": 7.419
+      }
+     ],
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.09,
      "transition_in": "Continuous",
      "transition_out": "Push into the bowl",
      "sfx": [
       {
-       "t": 4.409,
+       "t": 4.629,
        "name": "slurp",
        "gain": 0.35
       },
       {
-       "t": 5.64,
+       "t": 5.716,
        "name": "pop_small",
        "gain": 0.35
+      },
+      {
+       "t": 6.349,
+       "name": "bubble",
+       "gain": 0.3
       }
      ],
      "props": [
-      "IKEDA"
+      "IKEDA",
+      "KOMBU"
      ],
      "hero": null,
-     "notes": null
+     "notes": "Seaweed must read as seaweed at thumbnail size (check a 50% still)."
     },
     {
      "id": "s03.03",
-     "start": 7.462,
-     "end": 11.616,
+     "start": 7.419,
+     "end": 9.57,
      "reel_time": [
-      35.838,
-      39.992
+      34.525,
+      36.676
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 7.462,
-       "end": 11.366,
-       "coverage": "full",
-       "text": "It wasn't sweet, sour, salty or bitter. It was something else."
+       "start": 7.419,
+       "end": 12.987,
+       "coverage": "partial",
+       "text": "Not sweet, sour, salty or bitter. He called it umami, and turned it into a seasoning."
       }
      ],
      "shot_size": "CLOSE (overhead on bowl)",
-     "on_screen": "Fifth Ripple motif: rings spread from the bowl, each carrying a taste icon that pops on its word (candy = sweet, lemon = sour, salt crystal = salty, coffee bean = bitter). On 'something else' the fifth ring blooms wide and gold and a tiny Goldie rises from the centre.",
+     "on_screen": "Fifth Ripple motif: rings spread from the bowl, each carrying a taste icon that pops on its word (candy, lemon, salt crystal, coffee bean).",
      "layout": {
       "TOP": "Sweet / sour icons",
-      "MID": "Bowl + rings -> fifth gold ring + Goldie",
+      "MID": "Bowl + rings",
       "LOW": "Salty / bitter icons"
      },
-     "camera": "Locked overhead, slight push-in on the fifth ring.",
+     "camera": "Locked overhead.",
      "labels": [],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 0.64,
      "transition_in": "Push-in",
-     "transition_out": "Paper slide",
+     "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 7.866,
+       "t": 7.629,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 8.291,
+       "t": 8.016,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 8.717,
+       "t": 8.403,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 9.298,
+       "t": 8.931,
        "name": "pop",
        "gain": 0.35
-      },
-      {
-       "t": 10.497,
-       "name": "sparkle",
-       "gain": 0.4
-      },
-      {
-       "t": 11.107,
-       "name": "chime",
-       "gain": 0.45
       }
      ],
      "props": [
       "RIPPLE",
       "TASTE_ICONS",
-      "GOLDIE"
+      "KOMBU"
      ],
      "hero": null,
-     "notes": "Icons only, no words: captions say them."
+     "notes": null
     },
     {
      "id": "s03.04",
-     "start": 11.616,
-     "end": 14.095,
+     "start": 9.57,
+     "end": 13.187,
      "reel_time": [
-      39.992,
-      42.471
+      36.676,
+      40.293
      ],
      "lines": [
       {
-       "n": 3,
+       "n": 2,
        "voice": "NARR",
-       "start": 11.616,
-       "end": 16.629,
+       "start": 7.419,
+       "end": 12.987,
        "coverage": "partial",
-       "text": "So he boiled down a mountain of seaweed, and found the culprit: glutamic acid."
+       "text": "Not sweet, sour, salty or bitter. He called it umami, and turned it into a seasoning."
       }
      ],
-     "shot_size": "WIDE (tall)",
-     "on_screen": "A mountain of kombu-green seaweed strips tumbles from the top of frame into a giant pot; Ikeda is tiny beside it.",
-     "layout": {
-      "TOP": "Seaweed falling",
-      "MID": "Seaweed mountain + pot",
-      "LOW": "Ikeda on a stool"
-     },
-     "camera": "Tilt down with the falling seaweed.",
-     "labels": [],
-     "dramatization_tag": false,
-     "transition_in": "Paper slide",
-     "transition_out": "Time-lapse",
-     "sfx": [
-      {
-       "t": 12.052,
-       "name": "thud",
-       "gain": 0.45
-      },
-      {
-       "t": 12.868,
-       "name": "bubbling_pot",
-       "gain": 0.35
-      }
-     ],
-     "props": [
-      "IKEDA"
-     ],
-     "hero": null,
-     "notes": null
-    },
-    {
-     "id": "s03.05",
-     "start": 14.095,
-     "end": 16.879,
-     "reel_time": [
-      42.471,
-      45.255
-     ],
-     "lines": [
-      {
-       "n": 3,
-       "voice": "NARR",
-       "start": 11.616,
-       "end": 16.629,
-       "coverage": "partial",
-       "text": "So he boiled down a mountain of seaweed, and found the culprit: glutamic acid."
-      }
-     ],
-     "shot_size": "MEDIUM",
-     "on_screen": "Time-lapse: the pile boils down in paper steam puffs to a dish of crystals; Goldie peeks out and a flat cut-paper skeletal diagram of glutamic acid slides in beside it.",
-     "layout": {
-      "TOP": "Steam puffs",
-      "MID": "Dish + Goldie + skeletal diagram",
-      "LOW": "—"
-     },
-     "camera": "Tilt down, push-in.",
-     "labels": [
-      {
-       "text": "Glutamic acid",
-       "in": 15.491,
-       "out": 16.879
-      }
-     ],
-     "dramatization_tag": false,
-     "transition_in": "Time-lapse",
-     "transition_out": "Cut",
-     "sfx": [
-      {
-       "t": 14.195,
-       "name": "swoosh_down",
-       "gain": 0.35
-      },
-      {
-       "t": 14.807,
-       "name": "sparkle",
-       "gain": 0.4
-      },
-      {
-       "t": 15.491,
-       "name": "pop",
-       "gain": 0.4
-      }
-     ],
-     "props": [
-      "GOLDIE",
-      "GLU_DIAGRAM"
-     ],
-     "hero": null,
-     "notes": null
-    },
-    {
-     "id": "s03.06",
-     "start": 16.879,
-     "end": 21.474,
-     "reel_time": [
-      45.255,
-      49.85
-     ],
-     "lines": [
-      {
-       "n": 4,
-       "voice": "NARR",
-       "start": 16.879,
-       "end": 21.274,
-       "coverage": "full",
-       "text": "He named the taste umami, and paired it with sodium to make a seasoning."
-      }
-     ],
-     "shot_size": "MEDIUM",
-     "on_screen": "Ikeda holds up the crystal dish; the fifth gold ring returns behind it. Then Goldie meets a small blue sodium ion and they link mittens on 'sodium'.",
+     "shot_size": "CLOSE -> MEDIUM",
+     "on_screen": "The fifth ring blooms wide and gold; Goldie rises from the centre. On 'seasoning' gold crystals pour from the ring into the MSG shaker.",
      "layout": {
       "TOP": "Umami slip (Young Serif)",
-      "MID": "Goldie + sodium ion",
-      "LOW": "Ikeda's hands"
+      "MID": "Fifth gold ring + Goldie",
+      "LOW": "Shaker filling"
      },
-     "camera": "Slow push-in.",
+     "camera": "Slight push-in, then tilt down to the shaker.",
      "labels": [
       {
        "text": "Umami",
-       "in": 17.889,
-       "out": 18.879
+       "in": 10.374,
+       "out": 13.187
       }
      ],
-     "dramatization_tag": false,
-     "transition_in": "Cut",
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.06,
+     "transition_in": "Continuous",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 17.889,
+       "t": 10.374,
        "name": "impact_soft",
        "gain": 0.6
       },
       {
-       "t": 18.039,
+       "t": 10.524,
        "name": "chime",
        "gain": 0.4
       },
       {
-       "t": 19.639,
-       "name": "click",
-       "gain": 0.45
+       "t": 11.289,
+       "name": "swoosh_down",
+       "gain": 0.35
+      },
+      {
+       "t": 12.345,
+       "name": "pop",
+       "gain": 0.35
       }
      ],
      "props": [
-      "IKEDA",
+      "RIPPLE",
       "GOLDIE",
-      "NA",
-      "RIPPLE"
+      "SHAKER"
      ],
      "hero": "Umami is named",
      "notes": null
     },
     {
-     "id": "s03.07",
-     "start": 21.474,
-     "end": 24.065,
+     "id": "s03.05",
+     "start": 13.187,
+     "end": 15.678,
      "reel_time": [
-      49.85,
-      52.441
+      40.293,
+      42.784
      ],
      "lines": [
       {
-       "n": 5,
+       "n": 3,
        "voice": "NARR",
-       "start": 21.474,
-       "end": 23.565,
+       "start": 13.187,
+       "end": 15.278,
        "coverage": "full",
        "text": "Monosodium glutamate."
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "Goldie and the sodium ion hop into the MSG shaker (first canonical appearance); its cap snaps on.",
+     "on_screen": "The shaker's cap snaps on; Goldie sticker presses onto it; the shaker does a little hop.",
      "layout": {
       "TOP": "—",
       "MID": "Shaker",
@@ -1043,33 +1028,35 @@
      "labels": [
       {
        "text": "MSG",
-       "in": 21.517,
-       "out": 24.065
+       "in": 13.231,
+       "out": 15.678
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.12,
      "transition_in": "Continuous",
      "transition_out": "Paper slide",
      "sfx": [
       {
-       "t": 21.517,
-       "name": "pop",
-       "gain": 0.4
-      },
-      {
-       "t": 22.632,
+       "t": 13.231,
        "name": "click",
        "gain": 0.4
       },
       {
-       "t": 23.665,
+       "t": 14.346,
+       "name": "pop",
+       "gain": 0.4
+      },
+      {
+       "t": 15.278,
        "name": "whoosh",
        "gain": 0.35
       }
      ],
      "props": [
       "GOLDIE",
-      "NA",
       "SHAKER"
      ],
      "hero": null,
@@ -1080,17 +1067,17 @@
   {
    "id": "s04_everywhere",
    "title": "Glutamate Is Everywhere",
-   "duration": 18.467,
-   "reel_offset": 52.441,
+   "duration": 14.206,
+   "reel_offset": 42.784,
    "build_order": 6,
    "shots": [
     {
      "id": "s04.01",
      "start": 0.0,
-     "end": 3.075,
+     "end": 3.025,
      "reel_time": [
-      52.441,
-      55.516
+      42.784,
+      45.809
      ],
      "lines": [
       {
@@ -1114,13 +1101,21 @@
       {
        "text": "Chemical?",
        "in": 1.876,
-       "out": 3.075
+       "out": 3.025
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.15,
      "transition_in": "Paper slide (sheet slides over, shadow leading)",
      "transition_out": "Zoom-out",
      "sfx": [
+      {
+       "t": 0.2,
+       "name": "bubble",
+       "gain": 0.3
+      },
       {
        "t": 0.835,
        "name": "bubble",
@@ -1141,55 +1136,52 @@
     },
     {
      "id": "s04.02",
-     "start": 3.075,
-     "end": 7.264,
+     "start": 3.025,
+     "end": 5.081,
      "reel_time": [
-      55.516,
-      59.705
+      45.809,
+      47.865
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 3.075,
-       "end": 7.064,
-       "coverage": "full",
-       "text": "But glutamate is one of the most common amino acids on Earth."
+       "start": 3.025,
+       "end": 7.846,
+       "coverage": "partial",
+       "text": "But glutamate is everywhere: tomatoes, parmesan, even breast milk."
       }
      ],
-     "shot_size": "MEDIUM -> WIDE",
-     "on_screen": "Flasks fall away; zoom out: Goldie is one bead in a long chain of vivid amino-acid beads that wraps around a paper Earth.",
+     "shot_size": "WIDE",
+     "on_screen": "Flasks fall away; zoom out to a paper Earth where little Goldies pop up all over its surface.",
      "layout": {
-      "TOP": "Bead chain",
-      "MID": "Paper Earth wrapped in chains",
+      "TOP": "Goldies popping",
+      "MID": "Paper Earth",
       "LOW": "—"
      },
      "camera": "Zoom-out.",
-     "labels": [
-      {
-       "text": "Amino acid",
-       "in": 5.491,
-       "out": 7.264
-      }
-     ],
-     "dramatization_tag": false,
+     "labels": [],
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 0.98,
      "transition_in": "Continuous",
      "transition_out": "Cut",
      "sfx": [
       {
-       "t": 3.107,
+       "t": 3.057,
        "name": "swoosh_up",
        "gain": 0.4
       },
       {
-       "t": 5.491,
+       "t": 3.259,
        "name": "pop_small",
-       "gain": 0.35
+       "gain": 0.3
       },
       {
-       "t": 6.774,
-       "name": "chime",
-       "gain": 0.35
+       "t": 4.098,
+       "name": "sparkle",
+       "gain": 0.4
       }
      ],
      "props": [
@@ -1200,52 +1192,50 @@
     },
     {
      "id": "s04.03",
-     "start": 7.264,
-     "end": 11.909,
+     "start": 5.081,
+     "end": 8.046,
      "reel_time": [
-      59.705,
-      64.35
+      47.865,
+      50.83
      ],
      "lines": [
       {
-       "n": 3,
+       "n": 2,
        "voice": "NARR",
-       "start": 7.264,
-       "end": 11.659,
-       "coverage": "full",
-       "text": "It's in tomatoes, mushrooms, parmesan, even human breast milk."
+       "start": 3.025,
+       "end": 7.846,
+       "coverage": "partial",
+       "text": "But glutamate is everywhere: tomatoes, parmesan, even breast milk."
       }
      ],
-     "shot_size": "MEDIUM (2x2 grid)",
-     "on_screen": "A 2x2 grid fills cell by cell, each food with a mini Goldie peeking out: tomato, mushrooms, parmesan, a simple milk-drop / baby-bottle icon.",
+     "shot_size": "MEDIUM (3 stacked)",
+     "on_screen": "Three foods pop in a vertical stack, each with a mini Goldie peeking out: tomato, parmesan wedge, a simple milk-drop / baby-bottle icon.",
      "layout": {
-      "TOP": "Tomato | mushrooms",
-      "MID": "Parmesan | milk drop",
-      "LOW": "—"
+      "TOP": "Tomato",
+      "MID": "Parmesan",
+      "LOW": "Milk drop"
      },
-     "camera": "Locked, boil only.",
+     "camera": "Tilt down the stack.",
      "labels": [],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.49,
      "transition_in": "Cut",
      "transition_out": "Split-wipe",
      "sfx": [
       {
-       "t": 7.722,
+       "t": 5.181,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 8.651,
+       "t": 6.061,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 9.365,
-       "name": "pop",
-       "gain": 0.4
-      },
-      {
-       "t": 11.361,
+       "t": 7.548,
        "name": "pop",
        "gain": 0.4
       }
@@ -1255,24 +1245,24 @@
       "GOLDIE"
      ],
      "hero": null,
-     "notes": "Icon-level milk; no nudity. No amounts, no ranking."
+     "notes": "Icon-level milk; no nudity. No amounts."
     },
     {
      "id": "s04.04",
-     "start": 11.909,
-     "end": 15.739,
+     "start": 8.046,
+     "end": 11.737,
      "reel_time": [
-      64.35,
-      68.18
+      50.83,
+      54.521
      ],
      "lines": [
       {
-       "n": 4,
+       "n": 3,
        "voice": "NARR",
-       "start": 11.909,
-       "end": 17.967,
+       "start": 8.046,
+       "end": 13.806,
        "coverage": "partial",
-       "text": "And to your body, glutamate from a tomato and from MSG is exactly the same molecule."
+       "text": "To your body, glutamate from a tomato and from MSG is the exact same molecule."
       }
      ],
      "shot_size": "WIDE (top/bottom split)",
@@ -1284,22 +1274,30 @@
      },
      "camera": "Locked split.",
      "labels": [],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
+      {
+       "t": 9.145,
+       "action": "diagrams slide in"
+      }
+     ],
+     "max_still": 1.06,
      "transition_in": "Split-wipe",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 11.949,
+       "t": 8.08,
        "name": "whoosh",
        "gain": 0.35
       },
       {
-       "t": 14.231,
+       "t": 10.199,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 15.236,
+       "t": 11.223,
        "name": "pop",
        "gain": 0.4
       }
@@ -1315,20 +1313,20 @@
     },
     {
      "id": "s04.05",
-     "start": 15.739,
-     "end": 18.467,
+     "start": 11.737,
+     "end": 14.206,
      "reel_time": [
-      68.18,
-      70.908
+      54.521,
+      56.99
      ],
      "lines": [
       {
-       "n": 4,
+       "n": 3,
        "voice": "NARR",
-       "start": 11.909,
-       "end": 17.967,
+       "start": 8.046,
+       "end": 13.806,
        "coverage": "partial",
-       "text": "And to your body, glutamate from a tomato and from MSG is exactly the same molecule."
+       "text": "To your body, glutamate from a tomato and from MSG is the exact same molecule."
       }
      ],
      "shot_size": "MEDIUM",
@@ -1342,21 +1340,29 @@
      "labels": [
       {
        "text": "Same molecule",
-       "in": 16.844,
-       "out": 18.467
+       "in": 12.656,
+       "out": 14.206
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
+      {
+       "t": 13.461,
+       "action": "the merged Goldie winks"
+      }
+     ],
+     "max_still": 0.8,
      "transition_in": "Continuous",
      "transition_out": "Gold Ripple wipe (act change)",
      "sfx": [
       {
-       "t": 16.04,
+       "t": 12.246,
        "name": "impact_soft",
        "gain": 0.55
       },
       {
-       "t": 16.844,
+       "t": 12.656,
        "name": "success",
        "gain": 0.4
       }
@@ -1373,17 +1379,17 @@
   {
    "id": "s05_body",
    "title": "What Happens When You Eat It",
-   "duration": 22.251,
-   "reel_offset": 70.908,
+   "duration": 15.166,
+   "reel_offset": 56.99,
    "build_order": 2,
    "shots": [
     {
      "id": "s05.01",
      "start": 0.0,
-     "end": 2.47,
+     "end": 2.42,
      "reel_time": [
-      70.908,
-      73.378
+      56.99,
+      59.41
      ],
      "lines": [
       {
@@ -1395,18 +1401,21 @@
        "text": "So what happens when you eat it?"
       }
      ],
-     "shot_size": "MEDIUM",
-     "on_screen": "A fork lifts a bite sprinkled with tiny Goldies up to a paper-doll mouth in profile.",
+     "shot_size": "MEDIUM -> WIDE (dive)",
+     "on_screen": "A fork lifts a bite sprinkled with tiny Goldies to a paper-doll mouth; on the bite the camera dives straight down through layered pink paper into the gut (no tongue beat).",
      "layout": {
       "TOP": "Mouth (profile)",
-      "MID": "Fork rising",
+      "MID": "Fork rising -> pink layers rushing up",
       "LOW": "Plate"
      },
-     "camera": "Tilt up with the fork.",
+     "camera": "Tilt up with the fork, then fast downward dive.",
      "labels": [],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 0.9,
      "transition_in": "Gold Ripple reveal",
-     "transition_out": "Match-cut into the tongue",
+     "transition_out": "Dive lands in the gut",
      "sfx": [
       {
        "t": 0.786,
@@ -1417,146 +1426,36 @@
        "t": 1.687,
        "name": "chomp",
        "gain": 0.45
+      },
+      {
+       "t": 1.913,
+       "name": "whoosh_long",
+       "gain": 0.45
       }
      ],
      "props": [
-      "GOLDIE"
+      "GOLDIE",
+      "BODY"
      ],
      "hero": null,
      "notes": null
     },
     {
      "id": "s05.02",
-     "start": 2.47,
-     "end": 5.785,
+     "start": 2.42,
+     "end": 5.646,
      "reel_time": [
-      73.378,
-      76.693
+      59.41,
+      62.636
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 2.47,
-       "end": 5.585,
-       "coverage": "full",
-       "text": "Your tongue tastes it, and tells your brain: protein!"
-      }
-     ],
-     "shot_size": "CLOSE -> MEDIUM",
-     "on_screen": "Tongue landscape: Goldies land on receptor cups, each dock sends a small gold Fifth Ripple; a signal zips up a brush-stroke nerve to a pink paper brain that pops a speech slip.",
-     "layout": {
-      "TOP": "Brain + speech slip",
-      "MID": "Nerve",
-      "LOW": "Tongue receptors"
-     },
-     "camera": "Tilt up following the signal.",
-     "labels": [
-      {
-       "text": "Protein!",
-       "in": 5.012,
-       "out": 5.785
-      }
-     ],
-     "dramatization_tag": false,
-     "transition_in": "Match-cut",
-     "transition_out": "Dive",
-     "sfx": [
-      {
-       "t": 2.717,
-       "name": "click",
-       "gain": 0.4
-      },
-      {
-       "t": 2.938,
-       "name": "click",
-       "gain": 0.35
-      },
-      {
-       "t": 4.085,
-       "name": "swoosh_up",
-       "gain": 0.35
-      },
-      {
-       "t": 5.012,
-       "name": "ding",
-       "gain": 0.45
-      }
-     ],
-     "props": [
-      "BODY",
-      "GOLDIE",
-      "RIPPLE"
-     ],
-     "hero": null,
-     "notes": null
-    },
-    {
-     "id": "s05.03",
-     "start": 5.785,
-     "end": 8.531,
-     "reel_time": [
-      76.693,
-      79.439
-     ],
-     "lines": [
-      {
-       "n": 3,
-       "voice": "NARR",
-       "start": 5.785,
-       "end": 8.281,
-       "coverage": "full",
-       "text": "Then it reaches your gut... and gets eaten."
-      }
-     ],
-     "shot_size": "WIDE (vertical dive)",
-     "on_screen": "The camera dives down through layered pink paper into the gut; on 'eaten' the first gut cell chomps a Goldie.",
-     "layout": {
-      "TOP": "Pink paper layers rushing up",
-      "MID": "Gut opening",
-      "LOW": "First gut cell"
-     },
-     "camera": "Fast downward dive, ease-out.",
-     "labels": [],
-     "dramatization_tag": false,
-     "transition_in": "Dive",
-     "transition_out": "Continuous",
-     "sfx": [
-      {
-       "t": 5.831,
-       "name": "whoosh_long",
-       "gain": 0.45
-      },
-      {
-       "t": 7.808,
-       "name": "chomp",
-       "gain": 0.45
-      }
-     ],
-     "props": [
-      "BODY",
-      "GUTCELL",
-      "GOLDIE"
-     ],
-     "hero": null,
-     "notes": null
-    },
-    {
-     "id": "s05.04",
-     "start": 8.531,
-     "end": 12.224,
-     "reel_time": [
-      79.439,
-      83.132
-     ],
-     "lines": [
-      {
-       "n": 4,
-       "voice": "NARR",
-       "start": 8.531,
-       "end": 16.531,
+       "start": 2.42,
+       "end": 9.545,
        "coverage": "partial",
-       "text": "The cells lining your intestines burn glutamate as fuel. Around ninety-five percent never even makes it into your blood."
+       "text": "The cells lining your gut burn glutamate as fuel. Around ninety-five percent never even reaches your blood."
       }
      ],
      "shot_size": "MEDIUM (style frame B)",
@@ -1570,31 +1469,34 @@
      "labels": [
       {
        "text": "Fuel!",
-       "in": 11.637,
-       "out": 12.224
+       "in": 5.012,
+       "out": 5.646
       }
      ],
-     "dramatization_tag": false,
-     "transition_in": "Continuous",
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.18,
+     "transition_in": "Dive lands",
      "transition_out": "Pull-back",
      "sfx": [
       {
-       "t": 8.78,
+       "t": 2.682,
        "name": "chomp",
        "gain": 0.4
       },
       {
-       "t": 9.639,
+       "t": 3.601,
        "name": "chomp",
        "gain": 0.35
       },
       {
-       "t": 10.531,
+       "t": 3.83,
        "name": "sizzle",
        "gain": 0.3
       },
       {
-       "t": 11.637,
+       "t": 5.012,
        "name": "pop_small",
        "gain": 0.35
       }
@@ -1608,21 +1510,21 @@
      "notes": null
     },
     {
-     "id": "s05.05",
-     "start": 12.224,
-     "end": 16.781,
+     "id": "s05.03",
+     "start": 5.646,
+     "end": 9.795,
      "reel_time": [
-      83.132,
-      87.689
+      62.636,
+      66.785
      ],
      "lines": [
       {
-       "n": 4,
+       "n": 2,
        "voice": "NARR",
-       "start": 8.531,
-       "end": 16.531,
+       "start": 2.42,
+       "end": 9.545,
        "coverage": "partial",
-       "text": "The cells lining your intestines burn glutamate as fuel. Around ninety-five percent never even makes it into your blood."
+       "text": "The cells lining your gut burn glutamate as fuel. Around ninety-five percent never even reaches your blood."
       }
      ],
      "shot_size": "MEDIUM",
@@ -1636,31 +1538,39 @@
      "labels": [
       {
        "text": "95%",
-       "in": 12.754,
-       "out": 16.781
+       "in": 6.206,
+       "out": 9.795
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
+      {
+       "t": 7.617,
+       "action": "a gut cell burps a tiny flame"
+      }
+     ],
+     "max_still": 1.61,
      "transition_in": "Pull-back",
      "transition_out": "Track up the vessel",
      "sfx": [
       {
-       "t": 12.324,
+       "t": 5.746,
        "name": "tick",
        "gain": 0.2
       },
       {
-       "t": 12.474,
+       "t": 5.896,
        "name": "tick",
        "gain": 0.2
       },
       {
-       "t": 12.754,
+       "t": 6.206,
        "name": "ding",
        "gain": 0.5
       },
       {
-       "t": 16.223,
+       "t": 9.224,
        "name": "bubble",
        "gain": 0.3
       }
@@ -1674,19 +1584,19 @@
      "notes": "Never show '5%'."
     },
     {
-     "id": "s05.06",
-     "start": 16.781,
-     "end": 18.957,
+     "id": "s05.04",
+     "start": 9.795,
+     "end": 11.972,
      "reel_time": [
-      87.689,
-      89.865
+      66.785,
+      68.962
      ],
      "lines": [
       {
-       "n": 5,
+       "n": 3,
        "voice": "NARR",
-       "start": 16.781,
-       "end": 21.751,
+       "start": 9.795,
+       "end": 14.766,
        "coverage": "partial",
        "text": "And the rest hits the blood-brain barrier, one of the best-guarded borders in your body."
       }
@@ -1702,21 +1612,24 @@
      "labels": [
       {
        "text": "Blood-brain barrier",
-       "in": 17.882,
-       "out": 18.957
+       "in": 10.897,
+       "out": 11.972
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.1,
      "transition_in": "Track",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 16.781,
+       "t": 9.795,
        "name": "whoosh",
        "gain": 0.4
       },
       {
-       "t": 17.882,
+       "t": 10.897,
        "name": "thud",
        "gain": 0.45
       }
@@ -1729,19 +1642,19 @@
      "notes": null
     },
     {
-     "id": "s05.07",
-     "start": 18.957,
-     "end": 22.251,
+     "id": "s05.05",
+     "start": 11.972,
+     "end": 15.166,
      "reel_time": [
-      89.865,
-      93.159
+      68.962,
+      72.156
      ],
      "lines": [
       {
-       "n": 5,
+       "n": 3,
        "voice": "NARR",
-       "start": 16.781,
-       "end": 21.751,
+       "start": 9.795,
+       "end": 14.766,
        "coverage": "partial",
        "text": "And the rest hits the blood-brain barrier, one of the best-guarded borders in your body."
       }
@@ -1755,22 +1668,25 @@
      },
      "camera": "Push-in to the gate.",
      "labels": [],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.53,
      "transition_in": "Continuous",
      "transition_out": "Paper slide",
      "sfx": [
       {
-       "t": 19.698,
+       "t": 12.713,
        "name": "click",
        "gain": 0.35
       },
       {
-       "t": 21.225,
+       "t": 14.24,
        "name": "boing",
        "gain": 0.4
       },
       {
-       "t": 21.851,
+       "t": 14.766,
        "name": "whoosh",
        "gain": 0.3
       }
@@ -1787,191 +1703,99 @@
   {
    "id": "s07_tests",
    "title": "Putting MSG to the Test",
-   "duration": 20.799,
-   "reel_offset": 93.159,
+   "duration": 12.449,
+   "reel_offset": 72.156,
    "build_order": 7,
    "shots": [
     {
      "id": "s07.01",
      "start": 0.0,
-     "end": 3.247,
+     "end": 4.341,
      "reel_time": [
-      93.159,
-      96.406
+      72.156,
+      76.497
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 7.383,
+       "end": 7.169,
        "coverage": "partial",
-       "text": "Scientists have tested it again and again, in double-blind studies where nobody knows who got the real thing."
-      }
-     ],
-     "shot_size": "WIDE",
-     "on_screen": "Bright lab on a cobalt graph-paper grid; scientists in all three skin tones run tests; clipboards flip with ticks on each 'again'.",
-     "layout": {
-      "TOP": "Graph-paper wall",
-      "MID": "Scientists at the bench",
-      "LOW": "Clipboards flipping"
-     },
-     "camera": "Slow lateral truck.",
-     "labels": [],
-     "dramatization_tag": false,
-     "transition_in": "Paper slide (sheet slides over, shadow leading)",
-     "transition_out": "Cut",
-     "sfx": [
-      {
-       "t": 1.1,
-       "name": "pop",
-       "gain": 0.35
-      },
-      {
-       "t": 1.832,
-       "name": "click",
-       "gain": 0.35
-      },
-      {
-       "t": 1.832,
-       "name": "click",
-       "gain": 0.35
-      }
-     ],
-     "props": [
-      "LAB"
-     ],
-     "hero": null,
-     "notes": "No study count on screen."
-    },
-    {
-     "id": "s07.02",
-     "start": 3.247,
-     "end": 7.633,
-     "reel_time": [
-      96.406,
-      100.792
-     ],
-     "lines": [
-      {
-       "n": 1,
-       "voice": "NARR",
-       "start": 0.3,
-       "end": 7.383,
-       "coverage": "partial",
-       "text": "Scientists have tested it again and again, in double-blind studies where nobody knows who got the real thing."
+       "text": "In double-blind studies, people who said MSG made them sick reacted just as often to a placebo."
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "Two identical capsules drop under two cups and shuffle; scientist and volunteer both wear paper blindfolds (nobody knows).",
+     "on_screen": "Cobalt graph-paper lab: two identical capsules drop under two cups and shuffle; scientist and volunteer both wear paper blindfolds. On 'MSG made them sick' a row of volunteers (all three skin tones) shows worried thought bubbles.",
      "layout": {
       "TOP": "Scientist (blindfolded)",
       "MID": "Shuffling cups",
-      "LOW": "Volunteer (blindfolded)"
+      "LOW": "Volunteers with thought bubbles"
      },
-     "camera": "Locked.",
+     "camera": "Locked, then tilt down to the volunteers.",
      "labels": [
       {
        "text": "Double-blind",
-       "in": 3.591,
-       "out": 7.633
+       "in": 0.563,
+       "out": 4.341
       }
      ],
-     "dramatization_tag": false,
-     "transition_in": "Cut",
-     "transition_out": "Cut",
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
+      {
+       "t": 3.736,
+       "action": "a volunteer clutches its tummy in a thought bubble"
+      }
+     ],
+     "max_still": 1.65,
+     "transition_in": "Paper slide (sheet slides over, shadow leading)",
+     "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 4.361,
+       "t": 0.328,
        "name": "whoosh",
        "gain": 0.3
       },
       {
-       "t": 4.849,
+       "t": 1.303,
        "name": "whoosh",
        "gain": 0.3
       },
       {
-       "t": 5.094,
-       "name": "pop_small",
-       "gain": 0.3
-      },
-      {
-       "t": 7.048,
-       "name": "click",
+       "t": 2.091,
+       "name": "bubble",
        "gain": 0.35
+      },
+      {
+       "t": 4.206,
+       "name": "bubble",
+       "gain": 0.3
       }
      ],
      "props": [
-      "CAPSULES"
+      "CAPSULES",
+      "VOLUNTEERS"
      ],
      "hero": "Double-blind shuffle",
      "notes": null
     },
     {
-     "id": "s07.03",
-     "start": 7.633,
-     "end": 10.533,
+     "id": "s07.02",
+     "start": 4.341,
+     "end": 7.419,
      "reel_time": [
-      100.792,
-      103.692
+      76.497,
+      79.575
      ],
      "lines": [
       {
-       "n": 2,
+       "n": 1,
        "voice": "NARR",
-       "start": 7.633,
-       "end": 12.859,
+       "start": 0.3,
+       "end": 7.169,
        "coverage": "partial",
-       "text": "People who said they were sensitive to MSG reacted just as often to the fake."
-      }
-     ],
-     "shot_size": "WIDE",
-     "on_screen": "Two tiers of volunteers (all three skin tones) with worried thought bubbles take their cups.",
-     "layout": {
-      "TOP": "Thought bubbles",
-      "MID": "Volunteer tier 1",
-      "LOW": "Volunteer tier 2"
-     },
-     "camera": "Slow tilt down.",
-     "labels": [],
-     "dramatization_tag": false,
-     "transition_in": "Cut",
-     "transition_out": "Continuous",
-     "sfx": [
-      {
-       "t": 7.66,
-       "name": "bubble",
-       "gain": 0.35
-      },
-      {
-       "t": 9.017,
-       "name": "bubble",
-       "gain": 0.3
-      }
-     ],
-     "props": [
-      "VOLUNTEERS"
-     ],
-     "hero": null,
-     "notes": null
-    },
-    {
-     "id": "s07.04",
-     "start": 10.533,
-     "end": 13.109,
-     "reel_time": [
-      103.692,
-      106.268
-     ],
-     "lines": [
-      {
-       "n": 2,
-       "voice": "NARR",
-       "start": 7.633,
-       "end": 12.859,
-       "coverage": "partial",
-       "text": "People who said they were sensitive to MSG reacted just as often to the fake."
+       "text": "In double-blind studies, people who said MSG made them sick reacted just as often to a placebo."
       }
      ],
      "shot_size": "MEDIUM (tall chart)",
@@ -1985,21 +1809,29 @@
      "labels": [
       {
        "text": "Placebo",
-       "in": 11.538,
-       "out": 13.109
+       "in": 6.322,
+       "out": 7.419
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.1,
      "transition_in": "Continuous",
      "transition_out": "Cut",
      "sfx": [
       {
-       "t": 10.633,
+       "t": 4.441,
        "name": "swoosh_up",
        "gain": 0.4
       },
       {
-       "t": 12.442,
+       "t": 5.382,
+       "name": "pop_small",
+       "gain": 0.3
+      },
+      {
+       "t": 6.322,
        "name": "ding",
        "gain": 0.35
       }
@@ -2009,114 +1841,80 @@
       "GOLDIE"
      ],
      "hero": "MSG vs placebo nearly equal",
-     "notes": "No axis numbers; label only the placebo bar (gold = MSG by colour)."
+     "notes": "No axis numbers; only the placebo bar is labelled."
     },
     {
-     "id": "s07.05",
-     "start": 13.109,
-     "end": 18.68,
+     "id": "s07.03",
+     "start": 7.419,
+     "end": 12.449,
      "reel_time": [
-      106.268,
-      111.839
+      79.575,
+      84.605
      ],
      "lines": [
       {
-       "n": 3,
+       "n": 2,
        "voice": "NARR",
-       "start": 13.109,
-       "end": 20.299,
-       "coverage": "partial",
-       "text": "Today, the FDA classifies MSG as generally recognized as safe. Just like salt and sugar."
+       "start": 7.419,
+       "end": 12.049,
+       "coverage": "full",
+       "text": "The FDA calls it generally recognized as safe. Just like salt."
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "A generic official document slides in (no seal, no logo); the distressed rubber stamp slams on.",
+     "on_screen": "A generic official document slides in (no seal, no logo); the rubber stamp slams GRAS on; then the MSG shaker hops onto a shelf beside a salt shaker.",
      "layout": {
       "TOP": "Stamp handle lifting",
       "MID": "Document + GRAS stamp",
-      "LOW": "—"
+      "LOW": "Shelf: salt | MSG"
      },
-     "camera": "Push-in; 4-frame shake on the stamp.",
+     "camera": "Push-in; 4-frame shake on the stamp; pull-back to the shelf.",
      "labels": [
       {
        "text": "GRAS",
-       "in": 16.231,
-       "out": 18.68
+       "in": 8.716,
+       "out": 12.449
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.89,
      "transition_in": "Cut",
-     "transition_out": "Pull-back",
+     "transition_out": "Paper slide",
      "sfx": [
       {
-       "t": 13.146,
+       "t": 7.67,
        "name": "paper",
        "gain": 0.35
       },
       {
-       "t": 16.231,
+       "t": 8.716,
        "name": "stamp",
        "gain": 0.8
       },
       {
-       "t": 16.281,
+       "t": 8.766,
        "name": "impact_soft",
-       "gain": 0.4
-      }
-     ],
-     "props": [
-      "STAMP"
-     ],
-     "hero": "GRAS stamp",
-     "notes": null
-    },
-    {
-     "id": "s07.06",
-     "start": 18.68,
-     "end": 20.799,
-     "reel_time": [
-      111.839,
-      113.958
-     ],
-     "lines": [
-      {
-       "n": 3,
-       "voice": "NARR",
-       "start": 13.109,
-       "end": 20.299,
-       "coverage": "partial",
-       "text": "Today, the FDA classifies MSG as generally recognized as safe. Just like salt and sugar."
-      }
-     ],
-     "shot_size": "MEDIUM",
-     "on_screen": "The MSG shaker hops onto a shelf next to a salt shaker and a sugar bowl.",
-     "layout": {
-      "TOP": "Shelf",
-      "MID": "Salt | MSG | sugar",
-      "LOW": "—"
-     },
-     "camera": "Pull-back, hold.",
-     "labels": [],
-     "dramatization_tag": false,
-     "transition_in": "Pull-back",
-     "transition_out": "Paper slide",
-     "sfx": [
-      {
-       "t": 19.348,
-       "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 19.778,
+       "t": 10.661,
+       "name": "sparkle",
+       "gain": 0.3
+      },
+      {
+       "t": 11.748,
        "name": "pop",
        "gain": 0.4
       }
      ],
      "props": [
+      "STAMP",
       "SHAKER",
       "SALT"
      ],
-     "hero": null,
+     "hero": "GRAS stamp",
      "notes": null
     }
    ]
@@ -2124,26 +1922,26 @@
   {
    "id": "s08_twist",
    "title": "Plot Twist: MSG vs Salt",
-   "duration": 8.352,
-   "reel_offset": 113.958,
+   "duration": 6.332,
+   "reel_offset": 84.605,
    "build_order": 8,
    "shots": [
     {
      "id": "s08.01",
      "start": 0.0,
-     "end": 5.076,
+     "end": 4.124,
      "reel_time": [
-      113.958,
-      119.034
+      84.605,
+      88.729
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 7.852,
+       "end": 5.932,
        "coverage": "partial",
-       "text": "Plot twist: MSG has about a third of the sodium of table salt. Swap some in: same flavor, less sodium."
+       "text": "Plot twist: it has a third of the sodium of table salt. Same flavor, less sodium."
       }
      ],
      "shot_size": "MEDIUM",
@@ -2157,46 +1955,54 @@
      "labels": [
       {
        "text": "Plot twist",
-       "in": 0.324,
-       "out": 1.73
+       "in": 0.323,
+       "out": 1.663
       },
       {
        "text": "1/3 sodium",
-       "in": 2.637,
-       "out": 5.076
+       "in": 1.713,
+       "out": 4.124
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
+      {
+       "t": 3.058,
+       "action": "scale wobbles level"
+      }
+     ],
+     "max_still": 1.07,
      "transition_in": "Page curl",
      "transition_out": "Cut",
      "sfx": [
       {
-       "t": 0.324,
+       "t": 0.323,
        "name": "swoosh_up",
        "gain": 0.45
       },
       {
-       "t": 1.049,
+       "t": 1.265,
        "name": "thud",
        "gain": 0.4
       },
       {
-       "t": 2.337,
+       "t": 1.413,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 2.487,
+       "t": 1.563,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 2.637,
+       "t": 1.713,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 3.317,
+       "t": 2.385,
        "name": "ding",
        "gain": 0.45
       }
@@ -2206,31 +2012,31 @@
       "SHAKER",
       "NA"
      ],
-     "hero": "About a third of the sodium (ions exactly 3:1)",
+     "hero": "A third of the sodium (ions exactly 3:1)",
      "notes": null
     },
     {
      "id": "s08.02",
-     "start": 5.076,
-     "end": 8.352,
+     "start": 4.124,
+     "end": 6.332,
      "reel_time": [
-      119.034,
-      122.31
+      88.729,
+      90.937
      ],
      "lines": [
       {
        "n": 1,
        "voice": "NARR",
        "start": 0.3,
-       "end": 7.852,
+       "end": 5.932,
        "coverage": "partial",
-       "text": "Plot twist: MSG has about a third of the sodium of table salt. Swap some in: same flavor, less sodium."
+       "text": "Plot twist: it has a third of the sodium of table salt. Same flavor, less sodium."
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "A cooking pot: part of a salt spoon is swapped for an MSG spoon; Goldie bobs happily in the broth (flavour kept); a sodium meter beside the pot drops.",
+     "on_screen": "A cooking pot: Goldie bobs happily in the broth (same flavour); a sodium meter beside the pot drops.",
      "layout": {
-      "TOP": "Spoons swapping",
+      "TOP": "Steam",
       "MID": "Pot with happy Goldie",
       "LOW": "Sodium meter dropping"
      },
@@ -2238,37 +2044,39 @@
      "labels": [
       {
        "text": "Less sodium",
-       "in": 7.081,
-       "out": 8.352
+       "in": 5.165,
+       "out": 6.332
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 0.94,
      "transition_in": "Cut",
      "transition_out": "Paper slide to the cobalt desk",
      "sfx": [
       {
-       "t": 5.176,
-       "name": "swoosh_down",
-       "gain": 0.4
-      },
-      {
-       "t": 5.63,
+       "t": 4.224,
        "name": "bubbling_pot",
-       "gain": 0.25
+       "gain": 0.3
       },
       {
-       "t": 6.356,
+       "t": 4.448,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 7.308,
+       "t": 5.165,
+       "name": "swoosh_down",
+       "gain": 0.35
+      },
+      {
+       "t": 5.389,
        "name": "success",
        "gain": 0.4
       }
      ],
      "props": [
-      "SALT",
       "SHAKER",
       "NA",
       "GOLDIE"
@@ -2281,17 +2089,17 @@
   {
    "id": "s06_origin",
    "title": "How the Rumour Started",
-   "duration": 39.555,
-   "reel_offset": 122.31,
+   "duration": 33.217,
+   "reel_offset": 90.937,
    "build_order": 3,
    "shots": [
     {
      "id": "s06.01",
      "start": 0.0,
-     "end": 3.437,
+     "end": 3.387,
      "reel_time": [
-      122.31,
-      125.747
+      90.937,
+      94.324
      ],
      "lines": [
       {
@@ -2304,7 +2112,7 @@
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "A kombu strip curls into the MSG shaker; a tomato-red spotlight snaps on and a cut-paper villain moustache drops onto it.",
+     "on_screen": "A kombu blade curls into the MSG shaker; a tomato-red spotlight snaps on and a cut-paper villain moustache drops onto it.",
      "layout": {
       "TOP": "Spotlight",
       "MID": "Shaker with moustache",
@@ -2315,17 +2123,25 @@
       {
        "text": "Villain?",
        "in": 2.629,
-       "out": 3.437
+       "out": 3.387
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.53,
      "transition_in": "Paper slide (sheet slides over, shadow leading)",
      "transition_out": "Paper slide",
      "sfx": [
       {
-       "t": 1.096,
+       "t": 0.2,
        "name": "whoosh",
-       "gain": 0.35
+       "gain": 0.3
+      },
+      {
+       "t": 1.096,
+       "name": "swoosh_down",
+       "gain": 0.3
       },
       {
        "t": 2.629,
@@ -2334,27 +2150,28 @@
       }
      ],
      "props": [
-      "SHAKER"
+      "SHAKER",
+      "KOMBU"
      ],
      "hero": null,
      "notes": null
     },
     {
      "id": "s06.02",
-     "start": 3.437,
-     "end": 7.979,
+     "start": 3.387,
+     "end": 7.985,
      "reel_time": [
-      125.747,
-      130.289
+      94.324,
+      98.922
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 3.437,
-       "end": 11.843,
+       "start": 3.387,
+       "end": 10.833,
        "coverage": "partial",
-       "text": "In 1968, a doctor wrote to a medical journal. After eating at Chinese restaurants, he felt numb and weak."
+       "text": "In 1968, a doctor wrote to a medical journal: after Chinese food, he felt numb and weak."
       }
      ],
      "shot_size": "MEDIUM (style frame C desk)",
@@ -2368,26 +2185,34 @@
      "labels": [
       {
        "text": "1968",
-       "in": 3.695,
-       "out": 7.979
+       "in": 3.659,
+       "out": 7.985
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
+      {
+       "t": 4.859,
+       "action": "squiggle line 2 writes"
+      }
+     ],
+     "max_still": 1.91,
      "transition_in": "Paper slide",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 3.695,
+       "t": 3.659,
        "name": "pop",
        "gain": 0.4
       },
       {
-       "t": 5.758,
+       "t": 5.377,
        "name": "typewriter",
        "gain": 0.35
       },
       {
-       "t": 7.104,
+       "t": 7.286,
        "name": "paper",
        "gain": 0.4
       }
@@ -2400,24 +2225,24 @@
     },
     {
      "id": "s06.03",
-     "start": 7.979,
-     "end": 12.043,
+     "start": 7.985,
+     "end": 11.033,
      "reel_time": [
-      130.289,
-      134.353
+      98.922,
+      101.97
      ],
      "lines": [
       {
        "n": 2,
        "voice": "NARR",
-       "start": 3.437,
-       "end": 11.843,
+       "start": 3.387,
+       "end": 10.833,
        "coverage": "partial",
-       "text": "In 1968, a doctor wrote to a medical journal. After eating at Chinese restaurants, he felt numb and weak."
+       "text": "In 1968, a doctor wrote to a medical journal: after Chinese food, he felt numb and weak."
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "Two small cut-paper symptom icons pin onto the letter: a mitten hand with pins-and-needles dots (numb) on 'numb', a drooping arm (weak) on 'weak'.",
+     "on_screen": "Two small cut-paper symptom icons pin onto the letter: a mitten hand with pins-and-needles dots (numb), a drooping arm (weak).",
      "layout": {
       "TOP": "—",
       "MID": "Letter + symptom icons",
@@ -2425,17 +2250,30 @@
      },
      "camera": "Locked.",
      "labels": [],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
+      {
+       "t": 9.04,
+       "action": "letter flutters"
+      }
+     ],
+     "max_still": 1.0,
      "transition_in": "Continuous",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 11.073,
+       "t": 8.085,
+       "name": "paper",
+       "gain": 0.25
+      },
+      {
+       "t": 10.042,
        "name": "pop_small",
        "gain": 0.35
       },
       {
-       "t": 11.521,
+       "t": 10.519,
        "name": "pop_small",
        "gain": 0.35
       }
@@ -2444,24 +2282,24 @@
       "LETTER"
      ],
      "hero": null,
-     "notes": "SENSITIVE: no restaurant, no people, no 'oriental' signifiers - paper and objects only."
+     "notes": "SENSITIVE: no restaurant, no people, no faux-Asian signifiers - paper and objects only."
     },
     {
      "id": "s06.04",
-     "start": 12.043,
-     "end": 15.685,
+     "start": 11.033,
+     "end": 13.835,
      "reel_time": [
-      134.353,
-      137.995
+      101.97,
+      104.772
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 12.043,
-       "end": 15.435,
+       "start": 11.033,
+       "end": 13.635,
        "coverage": "full",
-       "text": "Was it the wine? The salt? The MSG? It was a guess."
+       "text": "Wine? Salt? MSG? He was guessing."
       }
      ],
      "shot_size": "MEDIUM",
@@ -2474,32 +2312,35 @@
      "camera": "Locked.",
      "labels": [
       {
-       "text": "A guess",
-       "in": 15.224,
-       "out": 15.685
+       "text": "Guessing",
+       "in": 13.194,
+       "out": 13.835
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.13,
      "transition_in": "Continuous",
      "transition_out": "Whip to the stamp",
      "sfx": [
       {
-       "t": 12.553,
+       "t": 11.061,
        "name": "blip",
        "gain": 0.4
       },
       {
-       "t": 13.229,
+       "t": 11.563,
        "name": "blip",
        "gain": 0.4
       },
       {
-       "t": 13.905,
+       "t": 12.065,
        "name": "blip",
        "gain": 0.45
       },
       {
-       "t": 15.224,
+       "t": 13.194,
        "name": "boing",
        "gain": 0.35
       }
@@ -2514,18 +2355,18 @@
     },
     {
      "id": "s06.05",
-     "start": 15.685,
-     "end": 20.145,
+     "start": 13.835,
+     "end": 18.295,
      "reel_time": [
-      137.995,
-      142.455
+      104.772,
+      109.232
      ],
      "lines": [
       {
        "n": 4,
        "voice": "NARR",
-       "start": 15.685,
-       "end": 19.845,
+       "start": 13.835,
+       "end": 17.995,
        "coverage": "full",
        "text": "But the journal gave it a catchy headline: Chinese Restaurant Syndrome."
       }
@@ -2537,35 +2378,43 @@
       "MID": "Stamped quoted headline",
       "LOW": "Turquoise card + newspapers sliding"
      },
-     "camera": "Whip-in, 6-frame shake, hold.",
+     "camera": "Whip-in, 6-frame shake, hold with drift.",
      "labels": [
       {
        "text": "\"Chinese-Restaurant Syndrome\"",
-       "in": 18.254,
-       "out": 20.145
+       "in": 16.404,
+       "out": 18.295
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.1,
      "transition_in": "Whip",
      "transition_out": "Continuous",
      "sfx": [
       {
-       "t": 17.157,
+       "t": 14.284,
+       "name": "swoosh_down",
+       "gain": 0.3
+      },
+      {
+       "t": 15.308,
        "name": "swoosh_down",
        "gain": 0.35
       },
       {
-       "t": 18.254,
+       "t": 16.404,
        "name": "stamp",
        "gain": 0.8
       },
       {
-       "t": 18.304,
+       "t": 16.454,
        "name": "impact_big",
        "gain": 0.45
       },
       {
-       "t": 19.309,
+       "t": 17.46,
        "name": "paper",
        "gain": 0.35
       }
@@ -2576,58 +2425,66 @@
       "LETTER",
       "RIPPLE"
      ],
-     "hero": "Headline stamp (style frame C)",
+     "hero": "Headline stamp (style frame C; also the s01 flash-forward)",
      "notes": "Young Serif, hyphenated, in quotes; framed as the thing being criticised."
     },
     {
      "id": "s06.06",
-     "start": 20.145,
-     "end": 25.913,
+     "start": 18.295,
+     "end": 22.033,
      "reel_time": [
-      142.455,
-      148.223
+      109.232,
+      112.97
      ],
      "lines": [
       {
        "n": 5,
        "voice": "NARR",
-       "start": 20.145,
-       "end": 25.713,
-       "coverage": "full",
-       "text": "Then scientists injected huge doses into newborn mice, and found brain damage."
+       "start": 18.295,
+       "end": 26.231,
+       "coverage": "partial",
+       "text": "Then mice injected with huge doses got brain damage. But injecting a baby mouse is nothing like eating dinner."
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "A bright lab: pink newborn mouse pups in a nest; a comically giant syringe lowers from the top (never touches them). On 'brain damage' the coral newspapers sliding around the edges grow bigger tomato-red headline bars.",
+     "on_screen": "Mouse pups on a cobalt LAB TRAY (with a tray rim and a lab label tab, never a plate); a comically giant syringe lowers from the top (never touches them). On 'brain damage' the coral newspapers at the edges grow bigger tomato-red headline bars.",
      "layout": {
       "TOP": "Giant syringe",
-      "MID": "Mouse pups in nest",
+      "MID": "Mouse pups on the lab tray",
       "LOW": "Newspapers at the edges"
      },
      "camera": "Slow push-in.",
      "labels": [
       {
        "text": "Huge doses",
-       "in": 21.869,
-       "out": 25.913
+       "in": 19.849,
+       "out": 22.033
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.24,
      "transition_in": "Cut",
      "transition_out": "Split-wipe",
      "sfx": [
       {
-       "t": 21.026,
-       "name": "swoosh_down",
-       "gain": 0.4
+       "t": 18.57,
+       "name": "pop_small",
+       "gain": 0.3
       },
       {
-       "t": 21.869,
+       "t": 18.819,
+       "name": "swoosh_down",
+       "gain": 0.35
+      },
+      {
+       "t": 19.849,
        "name": "impact_soft",
        "gain": 0.4
       },
       {
-       "t": 25.132,
+       "t": 21.09,
        "name": "alarm",
        "gain": 0.25
       }
@@ -2637,51 +2494,59 @@
       "SYRINGE"
      ],
      "hero": null,
-     "notes": "No gore, no needle contact."
+     "notes": "Lab tray, never a plate (viewer test). No gore, no needle contact."
     },
     {
      "id": "s06.07",
-     "start": 25.913,
-     "end": 31.269,
+     "start": 22.033,
+     "end": 26.481,
      "reel_time": [
-      148.223,
-      153.579
+      112.97,
+      117.418
      ],
      "lines": [
       {
-       "n": 6,
+       "n": 5,
        "voice": "NARR",
-       "start": 25.913,
-       "end": 30.969,
-       "coverage": "full",
-       "text": "Scary. Until you remember that a baby mouse injection is nothing like dinner."
+       "start": 18.295,
+       "end": 26.231,
+       "coverage": "partial",
+       "text": "Then mice injected with huge doses got brain damage. But injecting a baby mouse is nothing like eating dinner."
       }
      ],
      "shot_size": "WIDE (top/bottom split)",
-     "on_screen": "Top: giant syringe over a tiny mouse pup. Bottom: a dinner bowl with a spoon and Goldies, and a tiny gut cell with a bib chomping one (callback to s05). A big '≠' cut-out on the divider.",
+     "on_screen": "Top: giant syringe over a tiny pup on its lab tray. Bottom: a dinner bowl with a spoon and Goldies, and a tiny gut cell with a bib chomping one (callback to s05). A big '≠' cut-out on the divider.",
      "layout": {
-      "TOP": "Syringe + pup (top half)",
+      "TOP": "Syringe + pup on tray (top half)",
       "MID": "'≠' on the divider",
       "LOW": "Dinner bowl + gut-cell cameo (bottom half)"
      },
      "camera": "Locked split.",
      "labels": [],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.78,
      "transition_in": "Split-wipe",
      "transition_out": "Split-wipe",
      "sfx": [
       {
-       "t": 25.946,
+       "t": 22.133,
        "name": "whoosh",
        "gain": 0.35
       },
       {
-       "t": 29.866,
+       "t": 23.908,
+       "name": "pop_small",
+       "gain": 0.3
+      },
+      {
+       "t": 24.404,
        "name": "impact_soft",
        "gain": 0.5
       },
       {
-       "t": 30.469,
+       "t": 25.645,
        "name": "chomp",
        "gain": 0.35
       }
@@ -2697,70 +2562,77 @@
     },
     {
      "id": "s06.08",
-     "start": 31.269,
-     "end": 35.495,
+     "start": 26.481,
+     "end": 29.441,
      "reel_time": [
-      153.579,
-      157.805
+      117.418,
+      120.378
      ],
      "lines": [
       {
-       "n": 7,
+       "n": 6,
        "voice": "NARR",
-       "start": 31.269,
-       "end": 39.055,
+       "start": 26.481,
+       "end": 32.817,
        "coverage": "partial",
-       "text": "And nobody panicked about tomato sauce or parmesan. The fear stuck to one cuisine, and the name said it out loud."
+       "text": "And nobody panicked about parmesan. The fear stuck to one cuisine, and the name said it out loud."
       }
      ],
      "shot_size": "WIDE (top/bottom split)",
-     "on_screen": "Top: pasta with tomato sauce and parmesan under a silent tomato-red bell. Bottom: a plain white takeout carton under the same bell, ringing. Identical Goldies float over both.",
+     "on_screen": "Top: a parmesan wedge under a tomato-red bell that stays DEAD STILL (no boil on the bell, no wobble). Bottom: a plain white takeout carton under a HUGE bell that rings hard: big swings, motion marks, the bottom half shakes. Identical Goldies float over both.",
      "layout": {
-      "TOP": "Pasta + silent bell (top half)",
+      "TOP": "Parmesan + dead-still bell (top half)",
       "MID": "Divider",
-      "LOW": "Carton + ringing bell (bottom half)"
+      "LOW": "Carton + big ringing bell (bottom half)"
      },
-     "camera": "Locked split.",
+     "camera": "Locked split; only the bottom half shakes.",
      "labels": [],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.07,
      "transition_in": "Split-wipe",
      "transition_out": "Collapse",
      "sfx": [
       {
-       "t": 33.315,
+       "t": 26.725,
        "name": "pop_small",
        "gain": 0.3
       },
       {
-       "t": 34.416,
+       "t": 27.351,
        "name": "alarm",
-       "gain": 0.3
+       "gain": 0.5
+      },
+      {
+       "t": 28.425,
+       "name": "alarm",
+       "gain": 0.45
       }
      ],
      "props": [
-      "TOMATO",
       "TAKEOUT",
       "GOLDIE"
      ],
-     "hero": "Double standard split",
-     "notes": null
+     "hero": "Double standard: big bell on the carton, silent bell on the parmesan",
+     "notes": "Viewer test: the contrast must be obvious at a glance. Narration no longer mentions tomato sauce."
     },
     {
      "id": "s06.09",
-     "start": 35.495,
-     "end": 39.555,
+     "start": 29.441,
+     "end": 33.217,
      "reel_time": [
-      157.805,
-      161.865
+      120.378,
+      124.154
      ],
      "lines": [
       {
-       "n": 7,
+       "n": 6,
        "voice": "NARR",
-       "start": 31.269,
-       "end": 39.055,
+       "start": 26.481,
+       "end": 32.817,
        "coverage": "partial",
-       "text": "And nobody panicked about tomato sauce or parmesan. The fear stuck to one cuisine, and the name said it out loud."
+       "text": "And nobody panicked about parmesan. The fear stuck to one cuisine, and the name said it out loud."
       }
      ],
      "shot_size": "CLOSE",
@@ -2774,21 +2646,34 @@
      "labels": [
       {
        "text": "\"Chinese-Restaurant Syndrome\"",
-       "in": 35.595,
-       "out": 39.555
+       "in": 29.541,
+       "out": 33.217
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [
+      {
+       "t": 32.733,
+       "action": "a newspaper slides off"
+      }
+     ],
+     "max_still": 1.12,
      "transition_in": "Collapse",
      "transition_out": "Paper slide back to the TV wall",
      "sfx": [
       {
-       "t": 35.815,
+       "t": 29.749,
        "name": "swoosh_down",
        "gain": 0.3
       },
       {
-       "t": 37.874,
+       "t": 30.583,
+       "name": "paper",
+       "gain": 0.3
+      },
+      {
+       "t": 31.699,
        "name": "impact_soft",
        "gain": 0.4
       }
@@ -2805,17 +2690,17 @@
   {
    "id": "s09_outro",
    "title": "So... Is MSG Bad for You?",
-   "duration": 17.386,
-   "reel_offset": 161.865,
+   "duration": 14.219,
+   "reel_offset": 124.154,
    "build_order": 9,
    "shots": [
     {
      "id": "s09.01",
      "start": 0.0,
-     "end": 4.165,
+     "end": 4.065,
      "reel_time": [
-      161.865,
-      166.03
+      124.154,
+      128.219
      ],
      "lines": [
       {
@@ -2829,77 +2714,83 @@
       {
        "n": 2,
        "voice": "NARR",
-       "start": 2.634,
-       "end": 3.765,
+       "start": 2.584,
+       "end": 3.715,
        "coverage": "full",
        "text": "Not really."
       }
      ],
      "shot_size": "WIDE",
-     "on_screen": "TV wall callback: the three puppets still mouth their claims; the shaker sits in front with a '?'; on 'Not really' the '?' flips and Goldie pops out of the shaker smiling.",
+     "on_screen": "TV wall callback: every screen shows vivid riso channel static (no faces); the shaker sits in front with a '?'; on 'Not really' the '?' flips and Goldie pops out of the shaker smiling.",
      "layout": {
-      "TOP": "TV wall",
-      "MID": "Puppets on their screens",
-      "LOW": "Shaker + Goldie"
+      "TOP": "TV wall (static)",
+      "MID": "Shaker + '?'",
+      "LOW": "Goldie"
      },
      "camera": "Slow push-in.",
      "labels": [
       {
        "text": "Not really",
-       "in": 2.66,
-       "out": 4.165
+       "in": 2.61,
+       "out": 4.065
       }
      ],
-     "dramatization_tag": true,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.63,
      "transition_in": "Paper slide (sheet slides over, shadow leading)",
      "transition_out": "Continuous",
      "sfx": [
+      {
+       "t": 0.2,
+       "name": "static",
+       "gain": 0.25
+      },
       {
        "t": 0.979,
        "name": "pop",
        "gain": 0.35
       },
       {
-       "t": 2.66,
+       "t": 2.61,
        "name": "boing",
        "gain": 0.35
       },
       {
-       "t": 2.982,
+       "t": 2.932,
        "name": "sparkle",
        "gain": 0.35
       }
      ],
      "props": [
       "TVWALL",
-      "PUPPETS",
-      "DRAMA_LT",
       "SHAKER",
       "GOLDIE"
      ],
      "hero": null,
-     "notes": null
+     "notes": "No clip faces here (avoids re-crediting and a second label)."
     },
     {
      "id": "s09.02",
-     "start": 4.165,
-     "end": 8.778,
+     "start": 4.065,
+     "end": 6.961,
      "reel_time": [
-      166.03,
-      170.643
+      128.219,
+      131.115
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 4.165,
-       "end": 10.65,
+       "start": 4.065,
+       "end": 8.758,
        "coverage": "partial",
-       "text": "It's a story about how one guess, a catchy name, and a little prejudice outlived decades of science."
+       "text": "A guess, a catchy name, and a little prejudice outlived decades of science."
       }
      ],
      "shot_size": "MEDIUM",
-     "on_screen": "The TV wall stays behind (puppets dimmed, unreadable); three objects drop onto the shaker like weights, each on its phrase: an ink '?' (guess), a mini tomato-red stamp impression (catchy name), a tomato-red tag on a string (prejudice).",
+     "on_screen": "Three objects drop onto the shaker like weights, each on its phrase: an ink '?' (guess), a mini tomato-red stamp impression (catchy name), a tomato-red tag on a string (prejudice).",
      "layout": {
       "TOP": "Falling object",
       "MID": "Shaker under the weights",
@@ -2907,27 +2798,25 @@
      },
      "camera": "Locked.",
      "labels": [],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.59,
      "transition_in": "Continuous",
      "transition_out": "Pull-back",
      "sfx": [
       {
-       "t": 4.215,
-       "name": "whoosh",
-       "gain": 0.3
-      },
-      {
-       "t": 5.862,
+       "t": 4.288,
        "name": "thud",
        "gain": 0.35
       },
       {
-       "t": 6.525,
+       "t": 4.909,
        "name": "stamp",
        "gain": 0.35
       },
       {
-       "t": 8.225,
+       "t": 6.5,
        "name": "thud",
        "gain": 0.4
       }
@@ -2941,20 +2830,20 @@
     },
     {
      "id": "s09.03",
-     "start": 8.778,
-     "end": 10.95,
+     "start": 6.961,
+     "end": 9.008,
      "reel_time": [
-      170.643,
-      172.815
+      131.115,
+      133.162
      ],
      "lines": [
       {
        "n": 3,
        "voice": "NARR",
-       "start": 4.165,
-       "end": 10.65,
+       "start": 4.065,
+       "end": 8.758,
        "coverage": "partial",
-       "text": "It's a story about how one guess, a catchy name, and a little prejudice outlived decades of science."
+       "text": "A guess, a catchy name, and a little prejudice outlived decades of science."
       }
      ],
      "shot_size": "WIDE",
@@ -2966,55 +2855,56 @@
      },
      "camera": "Pull-back.",
      "labels": [],
-     "dramatization_tag": true,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 0.61,
      "transition_in": "Pull-back",
      "transition_out": "Paper slide",
      "sfx": [
       {
-       "t": 8.878,
+       "t": 7.111,
        "name": "tv_off",
        "gain": 0.45
       },
       {
-       "t": 9.532,
+       "t": 7.722,
        "name": "tv_off",
        "gain": 0.45
       },
       {
-       "t": 10.154,
+       "t": 8.304,
        "name": "tv_off",
        "gain": 0.45
       },
       {
-       "t": 10.361,
+       "t": 8.498,
        "name": "paper",
        "gain": 0.4
       }
      ],
      "props": [
-      "TVWALL",
-      "PUPPETS",
-      "DRAMA_LT"
+      "TVWALL"
      ],
      "hero": "TVs switch off",
      "notes": null
     },
     {
      "id": "s09.04",
-     "start": 10.95,
-     "end": 14.115,
+     "start": 9.008,
+     "end": 11.765,
      "reel_time": [
-      172.815,
-      175.98
+      133.162,
+      135.919
      ],
      "lines": [
       {
        "n": 4,
        "voice": "NARR",
-       "start": 10.95,
-       "end": 13.915,
-       "coverage": "full",
-       "text": "So next time you see a No MSG sign..."
+       "start": 9.008,
+       "end": 13.019,
+       "coverage": "partial",
+       "text": "So next time you see a No MSG sign... reach for the shaker."
       }
      ],
      "shot_size": "MEDIUM",
@@ -3028,31 +2918,39 @@
      "labels": [
       {
        "text": "No MSG",
-       "in": 10.95,
-       "out": 13.542
+       "in": 9.008,
+       "out": 11.181
       },
       {
        "text": "MSG",
-       "in": 13.542,
-       "out": 14.115
+       "in": 11.181,
+       "out": 11.765
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 1.22,
      "transition_in": "Paper slide",
      "transition_out": "Dissolve through the window",
      "sfx": [
       {
-       "t": 12.519,
+       "t": 9.108,
+       "name": "neon_buzz",
+       "gain": 0.3
+      },
+      {
+       "t": 10.326,
        "name": "neon_flicker",
        "gain": 0.45
       },
       {
-       "t": 13.542,
+       "t": 11.181,
        "name": "click",
        "gain": 0.45
       },
       {
-       "t": 13.842,
+       "t": 11.481,
        "name": "sparkle",
        "gain": 0.35
       }
@@ -3065,24 +2963,24 @@
     },
     {
      "id": "s09.05",
-     "start": 14.115,
-     "end": 17.386,
+     "start": 11.765,
+     "end": 14.219,
      "reel_time": [
-      175.98,
-      179.251
+      135.919,
+      138.373
      ],
      "lines": [
       {
-       "n": 5,
+       "n": 4,
        "voice": "NARR",
-       "start": 14.115,
-       "end": 15.886,
-       "coverage": "full",
-       "text": "maybe reach for the shaker."
+       "start": 9.008,
+       "end": 13.019,
+       "coverage": "partial",
+       "text": "So next time you see a No MSG sign... reach for the shaker."
       }
      ],
      "shot_size": "CLOSE -> WIDE (LOOP)",
-     "on_screen": "Lamp-lit kitchen table: ramen bowl; a mitten hand reaches for the MSG shaker and shakes; one gold drop hits the broth and makes the Fifth Ripple (end card: 'MSG' slip on the ripple). Then pull back: the bowl is on the hero TV's lemon screen in the TV wall, framed exactly like s01 frame 0; a channel flicker hands over to the TV Doctor.",
+     "on_screen": "Lamp-lit kitchen table: ramen bowl; a mitten hand reaches for the MSG shaker and shakes; one gold drop hits the broth and makes the Fifth Ripple (end card: 'MSG' slip on the ripple). Then pull back: the bowl is on the hero TV's screen in the TV wall, framed exactly like s01 frame 0; a channel flicker hands over to clip 1.",
      "layout": {
       "TOP": "TV wall (end)",
       "MID": "Ramen ripple -> hero TV",
@@ -3092,36 +2990,39 @@
      "labels": [
       {
        "text": "MSG",
-       "in": 15.252,
-       "out": 17.386
+       "in": 12.507,
+       "out": 14.219
       }
      ],
-     "dramatization_tag": false,
+     "credit_lower_third": false,
+     "flash": false,
+     "beats": [],
+     "max_still": 0.96,
      "transition_in": "Dissolve",
      "transition_out": "LOOP: last frame = s01 frame 0 layout; flicker on the final frames",
      "sfx": [
       {
-       "t": 14.429,
+       "t": 11.865,
        "name": "pop_small",
        "gain": 0.35
       },
       {
-       "t": 15.252,
+       "t": 12.507,
        "name": "pop_small",
        "gain": 0.35
       },
       {
-       "t": 15.652,
+       "t": 12.907,
        "name": "bubble",
        "gain": 0.4
       },
       {
-       "t": 15.852,
+       "t": 13.107,
        "name": "chime",
        "gain": 0.4
       },
       {
-       "t": 17.236,
+       "t": 14.069,
        "name": "channel_switch",
        "gain": 0.45
       }
@@ -3134,7 +3035,7 @@
       "END_CARD"
      ],
      "hero": "End card -> loop into the hook",
-     "notes": "Hero TV size/position and wall layout identical to s01.01 frame 0. No fade to black."
+     "notes": "Hero TV size/position and wall layout identical to s01.01 frame 0 (minus the clip). No fade to black."
     }
    ]
   }
@@ -3148,165 +3049,165 @@
     0.0,
     4.667
    ],
-   "beat": "Hook: TV Doctor puppet + zapping brain inside 0.3 s"
+   "beat": "Hook: real clip + zapping brain inside 0.3 s"
   },
   {
-   "shot": "s01.07",
-   "start": 19.287,
-   "end": 23.587,
+   "shot": "s01.06",
+   "start": 17.307,
+   "end": 18.992,
    "reel_time": [
-    19.287,
-    23.587
+    17.307,
+    18.992
    ],
-   "beat": "Record scratch: 'why does everyone think it is?'"
+   "beat": "Flash-forward tease: the 1968 headline stamp"
   },
   {
    "shot": "s02.02",
    "start": 1.2,
-   "end": 4.789,
+   "end": 4.689,
    "reel_time": [
-    24.787,
-    28.376
+    23.617,
+    27.106
    ],
    "beat": "Title: Goldie and the Fifth Ripple"
   },
   {
-   "shot": "s03.06",
-   "start": 16.879,
-   "end": 21.474,
+   "shot": "s03.04",
+   "start": 9.57,
+   "end": 13.187,
    "reel_time": [
-    45.255,
-    49.85
+    36.676,
+    40.293
    ],
    "beat": "Umami is named"
   },
   {
    "shot": "s04.05",
-   "start": 15.739,
-   "end": 18.467,
+   "start": 11.737,
+   "end": 14.206,
    "reel_time": [
-    68.18,
-    70.908
+    54.521,
+    56.99
    ],
    "beat": "Tomato glutamate = MSG glutamate (copies identical)"
   },
   {
-   "shot": "s05.04",
-   "start": 8.531,
-   "end": 12.224,
+   "shot": "s05.02",
+   "start": 2.42,
+   "end": 5.646,
    "reel_time": [
-    79.439,
-    83.132
+    59.41,
+    62.636
    ],
    "beat": "Gut cells eat glutamate as fuel (style frame B)"
   },
   {
-   "shot": "s05.05",
-   "start": 12.224,
-   "end": 16.781,
+   "shot": "s05.03",
+   "start": 5.646,
+   "end": 9.795,
    "reel_time": [
-    83.132,
-    87.689
+    62.636,
+    66.785
    ],
    "beat": "95% lands on 'ninety-five'"
   },
   {
-   "shot": "s07.02",
-   "start": 3.247,
-   "end": 7.633,
+   "shot": "s07.01",
+   "start": 0.0,
+   "end": 4.341,
    "reel_time": [
-    96.406,
-    100.792
+    72.156,
+    76.497
    ],
    "beat": "Double-blind shuffle"
   },
   {
-   "shot": "s07.04",
-   "start": 10.533,
-   "end": 13.109,
+   "shot": "s07.02",
+   "start": 4.341,
+   "end": 7.419,
    "reel_time": [
-    103.692,
-    106.268
+    76.497,
+    79.575
    ],
    "beat": "MSG vs placebo nearly equal"
   },
   {
-   "shot": "s07.05",
-   "start": 13.109,
-   "end": 18.68,
+   "shot": "s07.03",
+   "start": 7.419,
+   "end": 12.449,
    "reel_time": [
-    106.268,
-    111.839
+    79.575,
+    84.605
    ],
    "beat": "GRAS stamp"
   },
   {
    "shot": "s08.01",
    "start": 0.0,
-   "end": 5.076,
+   "end": 4.124,
    "reel_time": [
-    113.958,
-    119.034
+    84.605,
+    88.729
    ],
-   "beat": "About a third of the sodium (ions exactly 3:1)"
+   "beat": "A third of the sodium (ions exactly 3:1)"
   },
   {
    "shot": "s06.05",
-   "start": 15.685,
-   "end": 20.145,
+   "start": 13.835,
+   "end": 18.295,
    "reel_time": [
-    137.995,
-    142.455
+    104.772,
+    109.232
    ],
-   "beat": "Headline stamp (style frame C)"
+   "beat": "Headline stamp (style frame C; also the s01 flash-forward)"
   },
   {
    "shot": "s06.07",
-   "start": 25.913,
-   "end": 31.269,
+   "start": 22.033,
+   "end": 26.481,
    "reel_time": [
-    148.223,
-    153.579
+    112.97,
+    117.418
    ],
    "beat": "Injection is not dinner"
   },
   {
    "shot": "s06.08",
-   "start": 31.269,
-   "end": 35.495,
+   "start": 26.481,
+   "end": 29.441,
    "reel_time": [
-    153.579,
-    157.805
+    117.418,
+    120.378
    ],
-   "beat": "Double standard split"
+   "beat": "Double standard: big bell on the carton, silent bell on the parmesan"
   },
   {
    "shot": "s09.03",
-   "start": 8.778,
-   "end": 10.95,
+   "start": 6.961,
+   "end": 9.008,
    "reel_time": [
-    170.643,
-    172.815
+    131.115,
+    133.162
    ],
    "beat": "TVs switch off"
   },
   {
    "shot": "s09.04",
-   "start": 10.95,
-   "end": 14.115,
+   "start": 9.008,
+   "end": 11.765,
    "reel_time": [
-    172.815,
-    175.98
+    133.162,
+    135.919
    ],
    "beat": "'NO' burns out"
   },
   {
    "shot": "s09.05",
-   "start": 14.115,
-   "end": 17.386,
+   "start": 11.765,
+   "end": 14.219,
    "reel_time": [
-    175.98,
-    179.251
+    135.919,
+    138.373
    ],
    "beat": "End card -> loop into the hook"
   }
@@ -3315,14 +3216,12 @@
   {
    "id": "GOLDIE",
    "name": "Goldie, the broth droplet",
-   "rules": "KP.goldie: gold #FFB000 droplet, dot eyes, pink cheeks, steam curl. Gold is reserved for glutamate. In streams, many small Goldies. Friendly, never menacing; s04 copies identical.",
+   "rules": "KP.goldie: gold #FFB000 droplet, dot eyes, pink cheeks, steam curl. Gold is reserved for glutamate. Friendly, never menacing; s04 copies identical.",
    "appears_in": [
     "s02.01",
     "s02.02",
-    "s03.03",
+    "s03.04",
     "s03.05",
-    "s03.06",
-    "s03.07",
     "s04.01",
     "s04.02",
     "s04.03",
@@ -3333,9 +3232,7 @@
     "s05.03",
     "s05.04",
     "s05.05",
-    "s05.06",
-    "s05.07",
-    "s07.04",
+    "s07.02",
     "s08.02",
     "s06.07",
     "s06.08",
@@ -3345,10 +3242,9 @@
   },
   {
    "id": "GLU_DIAGRAM",
-   "name": "Glutamic-acid skeletal diagram",
-   "rules": "Flat cut-paper five-carbon zigzag beside Goldie when chemistry matters (s03, s04), so the droplet is never read as the literal molecule.",
+   "name": "Glutamate skeletal diagram",
+   "rules": "Flat cut-paper five-carbon zigzag beside Goldie in s04, so the droplet is never read as the literal molecule.",
    "appears_in": [
-    "s03.05",
     "s04.04",
     "s04.05"
    ]
@@ -3360,12 +3256,12 @@
    "appears_in": [
     "s01.02",
     "s01.03",
-    "s01.06",
     "s01.07",
-    "s03.07",
+    "s03.04",
+    "s03.05",
     "s04.01",
     "s04.04",
-    "s07.06",
+    "s07.03",
     "s08.01",
     "s08.02",
     "s06.01",
@@ -3380,16 +3276,15 @@
    "name": "Salt shaker",
    "rules": "Same silhouette, white crystals and ink-dot cap; no lettering.",
    "appears_in": [
-    "s07.06",
+    "s07.03",
     "s08.01",
-    "s08.02",
     "s06.04"
    ]
   },
   {
    "id": "TVWALL",
-   "name": "TV wall (style frame A)",
-   "rules": "Violet wall, grape dim sets, turquoise hero TV spanning two columns with a lemon screen, layout exactly as frame A. s01.01 frame 0 and the last frame of s09 use the identical layout.",
+   "name": "TV wall (style frame A layout)",
+   "rules": "Violet wall, grape dim sets, turquoise hero TV spanning two columns. s01.01 frame 0 and the last frame of s09 use the identical layout.",
    "appears_in": [
     "s01.01",
     "s01.02",
@@ -3402,31 +3297,23 @@
    ]
   },
   {
-   "id": "PUPPETS",
-   "name": "Shadow-puppet talking heads",
-   "rules": "Ink silhouettes on orange sticks, identity from props only: TV Doctor (head mirror, stethoscope; KP.puppetDoctor), Celebrity Chef (toque, ladle), Wellness Influencer (ring-light halo, topknot, phone). Fictional; no likeness to real people. Host and Aunt are cut.",
+   "id": "CLIPS",
+   "name": "Real interview clips",
+   "rules": "Three real clips (pending from the client; lib/clips.js) play only inside the hero TV screen, unaltered in content, with paper cut-outs (brain, shaker, zig-zags) placed beside the screen, never on the person. Placeholder rectangle until delivered.",
    "appears_in": [
     "s01.01",
     "s01.02",
-    "s01.03",
-    "s01.04",
-    "s01.07",
-    "s09.01",
-    "s09.03"
+    "s01.03"
    ]
   },
   {
-   "id": "DRAMA_LT",
-   "name": "Torn-paper lower third",
-   "rules": "Blue torn slip: role (the shot's one label) + 'DRAMATIZATION - fictional character' on every frame where a puppet is readable.",
+   "id": "NAME_LT",
+   "name": "Name + credit lower third",
+   "rules": "Blue torn-paper slip: the person's real name (the shot's one label) + a smaller credit line (outlet, date). On every frame a clip face is readable. Replaces the old DRAMATIZATION tag.",
    "appears_in": [
     "s01.01",
     "s01.02",
-    "s01.03",
-    "s01.04",
-    "s01.07",
-    "s09.01",
-    "s09.03"
+    "s01.03"
    ]
   },
   {
@@ -3441,29 +3328,27 @@
   {
    "id": "GUTCELL",
    "name": "Gut cells with bibs",
-   "rules": "KP.cell: pink cells with white bibs, two tiers (3 behind, eater + burning cell in front), chomp and gold-flame states. Canonical in s05.04; cameo in s06.",
+   "rules": "KP.cell: pink cells with white bibs, two tiers, chomp and gold-flame states. Canonical in s05.02; cameo in s06.",
    "appears_in": [
+    "s05.02",
     "s05.03",
-    "s05.04",
-    "s05.05",
     "s06.07"
    ]
   },
   {
    "id": "BADGE95",
    "name": "95% number",
-   "rules": "Young Serif big number; only percentage in the film.",
+   "rules": "Young Serif big number; the only percentage in the film.",
    "appears_in": [
-    "s05.05"
+    "s05.03"
    ]
   },
   {
    "id": "BODY",
    "name": "Body interior",
-   "rules": "Layered pink paper tints; tongue, nerve, brain and vessel as cut paper.",
+   "rules": "Layered pink paper tints for the dive in s05.01.",
    "appears_in": [
-    "s05.02",
-    "s05.03"
+    "s05.01"
    ]
   },
   {
@@ -3471,17 +3356,15 @@
    "name": "Blood-brain barrier",
    "rules": "Cobalt cut-paper castle wall with friendly paper-doll guards.",
    "appears_in": [
-    "s05.06",
-    "s05.07"
+    "s05.04",
+    "s05.05"
    ]
   },
   {
    "id": "NA",
    "name": "Sodium ion",
-   "rules": "Small cobalt 'Na'-free paper dot (no lettering), same in s03 and s08; s08 count exactly 3:1.",
+   "rules": "Small cobalt paper dot, no lettering; s08 count exactly 3:1.",
    "appears_in": [
-    "s03.06",
-    "s03.07",
     "s08.01",
     "s08.02"
    ]
@@ -3489,24 +3372,32 @@
   {
    "id": "TOMATO",
    "name": "Tomato",
-   "rules": "Same ripe tomato paper cut in s04 and s06.",
+   "rules": "Same ripe tomato paper cut throughout s04.",
    "appears_in": [
     "s04.03",
-    "s04.04",
-    "s06.08"
+    "s04.04"
+   ]
+  },
+  {
+   "id": "KOMBU",
+   "name": "Kombu seaweed",
+   "rules": "A long ruffled kelp blade: wavy edges, a midrib, a small holdfast, kombu green with turquoise under-print and a few bubbles. Must read as seaweed at thumbnail size (s03, s06).",
+   "appears_in": [
+    "s03.02",
+    "s03.03",
+    "s06.01"
    ]
   },
   {
    "id": "RIPPLE",
    "name": "The Fifth Ripple",
-   "rules": "KP.ripple: drop + 5 rings, the fifth gold and wider. Used in s02 (title), s03 (taste rings), s05 (receptor docks), s06 (newspaper anti-ripple), s07 (chart baseline), s09 (ramen, end card).",
+   "rules": "KP.ripple: drop + 5 rings, the fifth gold and wider: s02, s03, s06 (anti-ripple), s07 (chart baseline), s09 (ramen, end card).",
    "appears_in": [
     "s02.01",
     "s02.02",
     "s03.03",
-    "s03.06",
-    "s05.02",
-    "s07.04",
+    "s03.04",
+    "s07.02",
     "s06.05",
     "s09.05"
    ]
@@ -3514,8 +3405,9 @@
   {
    "id": "HEADLINE",
    "name": "Stamped headline",
-   "rules": "KP.stamp, Young Serif, '\"CHINESE-RESTAURANT SYNDROME\"' over two lines, tomato red, distressed.",
+   "rules": "KP.stamp, Young Serif, '\"CHINESE-RESTAURANT SYNDROME\"' over two lines, tomato red, distressed. One render, used in s06.05 and the s01 flash-forward.",
    "appears_in": [
+    "s01.06",
     "s06.05",
     "s06.09"
    ]
@@ -3525,7 +3417,8 @@
    "name": "Rubber stamp",
    "rules": "Ink handle with tomato-red pad; same prop for the headline, GRAS and the s09 mini stamp.",
    "appears_in": [
-    "s07.05",
+    "s01.06",
+    "s07.03",
     "s06.05",
     "s06.09",
     "s09.02"
@@ -3534,8 +3427,10 @@
   {
    "id": "LETTER",
    "name": "1968 letter",
-   "rules": "Lemon letter on hot-pink underlay, squiggle lines only (KP.squiggle), no legible words.",
+   "rules": "Lemon letter on hot-pink underlay, squiggle lines only (KP.squiggle), no legible words; the envelope also arrives in s01.05.",
    "appears_in": [
+    "s01.05",
+    "s01.06",
     "s06.02",
     "s06.03",
     "s06.04",
@@ -3556,18 +3451,16 @@
    "rules": "Respectful paper doll, high collar, round glasses, moustache; never comedic.",
    "appears_in": [
     "s03.01",
-    "s03.02",
-    "s03.04",
-    "s03.06"
+    "s03.02"
    ]
   },
   {
    "id": "CAPTION",
    "name": "Caption strip",
-   "rules": "KP.caption: torn white strip, Nunito Black 64 px, spoken words ink, upcoming lavender, current word on a raised chip (pink cold open, gold on glutamate, tomato red in s06).",
+   "rules": "KP.caption: torn white strip, Nunito Black, spoken words ink, upcoming lavender, current word on a raised chip (pink cold open, gold on glutamate, tomato red in s06).",
    "appears_in": [
     "s01.01",
-    "s05.04"
+    "s05.02"
    ]
   },
   {
@@ -3581,29 +3474,30 @@
  ],
  "guardrails": {
   "allowed_numbers_and_claims": [
-   "s01: the three puppets' claims (fictional, DRAMATIZATION); 'for fifty years' -> label '50 years'",
-   "s03: 1908; Japanese chemist Kikunae Ikeda; seaweed soup; not sweet/sour/salty/bitter but 'something else'; boiled down seaweed; glutamic acid; named umami; paired with sodium -> monosodium glutamate",
-   "s04: glutamate is one of the most common amino acids on Earth; in tomatoes, mushrooms, parmesan, human breast milk; tomato glutamate = MSG glutamate",
-   "s05: tongue tastes it -> brain: protein; gut cells burn it as fuel; ~95% never reaches the blood; the rest hits the blood-brain barrier, one of the best-guarded borders",
-   "s07: double-blind studies; MSG-sensitive people reacted as often to placebo; FDA: generally recognized as safe (GRAS), like salt and sugar",
-   "s08: ~1/3 the sodium of table salt; swap some in: same flavour, less sodium",
-   "s06: 1968 letter from a doctor to a medical journal; felt numb and weak after eating at Chinese restaurants; wine/salt/MSG was a guess; the journal's headline 'Chinese Restaurant Syndrome'; scientists injected huge doses into newborn mice and found brain damage; a mouse injection is nothing like dinner; nobody panicked about tomato sauce or parmesan",
-   "s09: 'Not really'; one guess, a catchy name and a little prejudice outlived decades of science; next time you see a No MSG sign, maybe reach for the shaker"
+   "s01: the three real clips' own words (unaltered, in context); narrator: 'for fifty years' (label '50 years'), everyone has been scared of MSG, it started with one letter in 1968",
+   "s03: 1908; Japanese chemist Kikunae Ikeda tasted something odd in his seaweed soup; not sweet, sour, salty or bitter; called it umami; turned it into a seasoning: monosodium glutamate",
+   "s04: glutamate is everywhere: tomatoes, parmesan, even breast milk; tomato glutamate and MSG glutamate are the exact same molecule",
+   "s05: gut cells burn glutamate as fuel; ~95% never reaches the blood; the rest hits the blood-brain barrier, one of the best-guarded borders",
+   "s07: in double-blind studies, people who said MSG made them sick reacted as often to a placebo; the FDA calls it generally recognized as safe (GRAS), like salt",
+   "s08: a third of the sodium of table salt; same flavour, less sodium",
+   "s06: 1968 doctor's letter to a medical journal; after Chinese food he felt numb and weak; wine, salt, MSG: he was guessing; the journal's headline 'Chinese Restaurant Syndrome'; mice injected with huge doses got brain damage; injecting a baby mouse is nothing like eating dinner; nobody panicked about parmesan",
+   "s09: 'Not really'; a guess, a catchy name and a little prejudice outlived decades of science; No MSG sign; reach for the shaker"
   ],
   "forbidden": [
-   "Anything the rewrite cut: Tokyo label, 'within a year', soy sauce, '~10x' milk, 'body makes its own', palpitations, the journal's name, 1969, 'Italian Restaurant Syndrome', baking powder, 'even water', 'tomato on your pizza', huge doses on an empty stomach, 'savory' (cut from s03), 'more than fifty years'.",
+   "Anything this cut removed: tongue/receptors/'protein', amino acid, mushrooms, glutamic acid, sodium pairing in s03, the seaweed mountain, sugar, tomato sauce in s06, 'savory', 'Tokyo', '~10x', 1969, the journal's name, 'Italian Restaurant Syndrome', 'even water'.",
    "Any number, %, axis value, study count, dose or date not listed above; never '5%'.",
-   "Health claims beyond the script; real logos, seals, mastheads, networks, platforms or brands; recognisable real people.",
-   "Gore: no needle touching an animal.",
-   "Dull colours (grey, beige, cream, muddy brown, desaturated); glows and gradients (Kombu Paper is flat paper).",
-   "More than one 1-3 word label at a time (the DRAMATIZATION line in the lower third is the only extra text)."
+   "Health claims beyond the script; real logos, seals, mastheads or brands (except as they appear inside a licensed clip); real people other than the three credited clips and Ikeda.",
+   "Editing, overlaying or re-timing a real clip so it says something the person did not say; cut-outs sit beside the screen, never on the person.",
+   "Gore: no needle touching an animal. Mice on a lab tray, never a plate.",
+   "Dull colours (grey, beige, cream, muddy brown, desaturated); glows and gradients.",
+   "More than one 1-3 word label at a time (the credit line under a real name is the only extra text)."
   ],
-  "dramatization": "Every frame with a readable puppet (s01.01-04 and s01.07, s09.01, s09.03) carries the torn-paper lower third with the role and 'DRAMATIZATION - fictional character'.",
+  "real_clips": "Every frame with a readable clip face (s01.01-03) carries the name + credit lower third. Clip rights, exact attribution and context must be cleared by the client before publishing; captions for those lines must match the clip audio.",
   "sensitive_1960s_section": [
-   "s06 shows only paper, type, a bottle, a salt cellar, a shaker, mice, food and a plain white carton: no restaurants, no staff, no diners.",
+   "s06 shows only paper, type, a bottle, a salt cellar, a shaker, mice on a lab tray, parmesan, a dinner bowl and a plain white carton: no restaurants, staff or diners.",
    "No faux-Asian fonts or signifiers (pagodas, lanterns, dragons, chopsticks as decoration, conical hats); the carton is plain white.",
-   "The headline is quoted, hyphenated and stamped as the thing being criticised; never a joke or a brand.",
-   "The prejudice beat is a bell over one food and silence over another; no people are shown being othered.",
+   "The headline is quoted, hyphenated and stamped as the thing being criticised; never a joke or a brand (also in the s01 flash-forward).",
+   "The prejudice beat is a big ringing bell over the carton and a dead-still bell over the parmesan; no people are shown being othered.",
    "Ikeda is drawn respectfully; the letter author and the mouse researchers are never named or drawn."
   ]
  }

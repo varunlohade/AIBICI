@@ -27,11 +27,14 @@
         // overhead-ish bowl: coral table, a big white rim, the turquoise broth with kombu, scallion rings and steam
         ctx.fillStyle = P.coral; ctx.fillRect(-400, -400, 1900, 2800);
         for (let i = -3; i < 12; i++) KP.paper(ctx, KP.jitter(KP.rr(-20 + i * 136, -400, 60, 2800, 10, 60), 60 + i + b, 1.2), KP.mix(P.coral, P.pink, .35), { shadow: false });
-        KP.paper(ctx, KP.jitter(KP.ell(CX, CY + 40, 660, 300, 72), 80 + b, 2), P.rice, { shadow: [14, 20], shadowA: .35, mis: P.blue, misOff: [-5, 4], misA: .4 });
-        KP.paper(ctx, KP.jitter(KP.ell(CX, CY + 40, 590, 250, 72), 81 + b, 1.6), P.turq, { shadow: false });
-        for (let i = 0; i < 4; i++) KP.paper(ctx, KP.jitter(KP.ell(CX, CY + 40, 200 + i * 110, (200 + i * 110) * .4, 60), 70 + i + b, 2), i % 2 ? KP.mix(P.turq, P.blue, .12) : P.turq, { shadow: false });
-        KP.brush(ctx, KP.curve([[CX - 470, CY + 120], [CX - 380, CY + 80 + Math.sin(KP.held(t) * 2) * 8], [CX - 290, CY + 140], [CX - 210, CY + 110]], false, 8), 30, P.kombu, { taper: .3 });
-        for (const [sx, sy] of [[CX + 330, CY - 20], [CX + 400, CY + 90], [CX - 300, CY - 60]]) { const rp = KP.jitter(KP.ell(sx, sy, 22, 12, 20), 90 + sx + b, .6); rp.push(rp[0]); KP.brush(ctx, rp, 8, P.kombu, { taper: 0 }); }
+        // bowl body (side band below the rim) so it reads as a bowl, not a pool
+        KP.paper(ctx, KP.jitter(KP.curve([[CX - 530, CY + 40], [CX + 530, CY + 40], [CX + 470, CY + 240], [CX + 300, CY + 380], [CX - 300, CY + 380], [CX - 470, CY + 240]], true, 8), 79 + b, 2), P.blue, { shadow: [14, 20], shadowA: .35, mis: P.grape, misOff: [-5, 4], misA: .4 });
+        for (let i = 0; i < 7; i++) KP.paper(ctx, KP.jitter(KP.egg(CX - 360 + i * 120, CY + 250 - Math.abs(i - 3) * 22, 26, 26, 0, 20), 85 + i + b, 1), P.lemon, { shadow: false });
+        KP.paper(ctx, KP.jitter(KP.ell(CX, CY + 40, 540, 230, 72), 80 + b, 2), P.rice, { shadow: KP.SH.near, shadowA: .3 });
+        KP.paper(ctx, KP.jitter(KP.ell(CX, CY + 40, 480, 196, 72), 81 + b, 1.6), P.turq, { shadow: false });
+        for (let i = 0; i < 3; i++) KP.paper(ctx, KP.jitter(KP.ell(CX, CY + 40, 180 + i * 110, (180 + i * 110) * .4, 60), 70 + i + b, 2), i % 2 ? KP.mix(P.turq, P.blue, .12) : P.turq, { shadow: false });
+        KP.brush(ctx, KP.curve([[CX - 380, CY + 90], [CX - 300, CY + 60 + Math.sin(KP.held(t) * 2) * 8], [CX - 220, CY + 110], [CX - 150, CY + 90]], false, 8), 30, P.kombu, { taper: .3 });
+        for (const [sx, sy] of [[CX + 280, CY - 10], [CX + 330, CY + 90], [CX - 260, CY - 30]]) { const rp = KP.jitter(KP.ell(sx, sy, 22, 12, 20), 90 + sx + b, .6); rp.push(rp[0]); KP.brush(ctx, rp, 8, P.kombu, { taper: 0 }); }
         for (let i = 0; i < 3; i++) { const sx = CX - 160 + i * 160, ph = KP.held(t) * 2.5 + i; KP.brush(ctx, KP.curve([[sx, CY - 160], [sx + 18 * Math.sin(ph), CY - 230], [sx - 14 * Math.sin(ph), CY - 300], [sx + 8, CY - 360]], false, 6), 10, P.rice, { taper: .7 }); }
         // the drop falling in, then the Fifth Ripple (a new set of rings every 1.6 s)
         if (t < T.land) {
@@ -43,7 +46,7 @@
           const t0 = T.land + k * 1.6;
           if (t < t0) continue;
           const p = KP.ease.out(KP.prog(t, t0, t0 + 2.2));
-          KP.ripple(ctx, CX, CY + 40, 520 + p * 120, { p, boil: b + k * 5, squash: .38 });
+          KP.ripple(ctx, CX, CY + 40, 400 + p * 70, { p, boil: b + k * 5, squash: .4 });
         }
         // Goldie pops up out of the centre and bobs in the gold ring
         const ar = KP.arrive(t, T.pop, .35);
