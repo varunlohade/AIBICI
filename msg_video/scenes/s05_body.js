@@ -30,22 +30,22 @@
     ctx.fillStyle = P.turq; ctx.fillRect(0, 0, KP.W, KP.H);
     const camY = KP.lerp(110, 0, KP.ep(t, T.happens - .3, T.eat, 'inOut'));
     ctx.save(); ctx.translate(0, camY);
+    // the diner (behind the table)
+    const open = KP.ep(t, T.eat - .55, T.eat - .2, 'out') * (1 - KP.ep(t, T.eat, T.eat + .12, 'out'));
+    const chew = t > T.eat ? .5 + .5 * Math.sin(KP.held(t) * 16) : 0;
+    head(ctx, 520, 520, b, open, t > T.eat ? 'happy' : 'dot', chew * (t < T.eat + 1.2 ? 1 : 0), t);
     // table + plate (LOW)
     KP.paper(ctx, KP.jitter(KP.rr(-60, 990, 1200, 1100, 12, 40), 10 + b, 1.6), P.coral, { shadow: [0, -10], shadowA: .3, mis: P.pink, misOff: [0, -4], misA: .4 });
     for (let i = 0; i < 6; i++) KP.paper(ctx, KP.jitter(KP.rr(-40 + i * 200, 990, 90, 1100, 6, 40), 11 + i + b, 1.2), KP.mix(P.coral, P.pink, .35), { shadow: false });
     KP.paper(ctx, KP.jitter(KP.ell(420, 1070, 250, 62, 48), 12 + b, 1.4), P.rice, { shadow: KP.SH.near, shadowA: .35, mis: P.turq, misOff: [-3, 3], misA: .4 });
     KP.paper(ctx, KP.jitter(KP.ell(420, 1066, 170, 38, 40), 13 + b, 1), P.pink30, { shadow: false });
     for (const [x, y, s] of [[360, 1050, 1], [470, 1060, .9], [420, 1038, .8]]) bite(ctx, x, y, s * .8, b, 20 + x);
-    // the head in profile, facing left (TOP)
-    const open = KP.ep(t, T.eat - .55, T.eat - .2, 'out') * (1 - KP.ep(t, T.eat, T.eat + .12, 'out'));
-    const chew = t > T.eat ? .5 + .5 * Math.sin(KP.held(t) * 16) : 0;
-    head(ctx, 700, 520, b, open, t > T.eat ? 'happy' : 'dot', chew * (t < T.eat + 1.2 ? 1 : 0));
     // the fork: rises from the plate to the mouth, delivers the bite, retracts
     const up = KP.ep(t, T.happens, T.eat - .1, 'inOut'), back = KP.ep(t, T.eat + .1, T.eat + .7, 'inOut');
-    const tip = [KP.lerp(430, 478, up) - back * 60, KP.lerp(1010, 735, up) + back * 420];
-    fork(ctx, tip[0], tip[1], -.5 + up * .25, b, t < T.eat);
+    const tip = [KP.lerp(400, 520, up) - back * 80, KP.lerp(1010, 850, up) + back * 420];
+    fork(ctx, tip[0], tip[1], KP.lerp(-.35, 0, up) - back * .3, b, t < T.eat);
     ctx.restore();
-    if (t > T.eat && t < T.eat + .35) KP.marks(ctx, 470, 600 + camY, 60, 4, 30 + b, { a0: 2, span: 2.4, len: 24 });
+    if (t > T.eat && t < T.eat + .35) KP.marks(ctx, 520, 690 + camY, 120, 6, 30 + b, { a0: Math.PI * .9, span: Math.PI * 1.2, len: 26 });
   }
   function bite(ctx, x, y, s, b, sd) {
     KP.paper(ctx, KP.jitter(KP.egg(x, y, 44 * s, 32 * s, .1, 28), sd + b, 1), P.tomato, { shadow: KP.SH.far, mis: P.pink, misOff: [-2, 2], misA: .45 });
@@ -64,25 +64,32 @@
     if (loaded) bite(ctx, 0, -150, 1.1, b, 60);
     ctx.restore();
   }
-  function head(ctx, x, y, b, open, eyes, chew) {
-    // neck + shoulder
-    KP.paper(ctx, KP.jitter(KP.curve([[x - 40, y + 200], [x + 160, y + 160], [x + 420, y + 330], [x + 420, y + 800], [x - 120, y + 800], [x - 60, y + 420]], true, 6), 70 + b, 1.6), P.pink, { shadow: KP.SH.near, mis: P.blue, misOff: [3, -2], misA: .3 });
-    // head (egg) + nose bump + jaw piece (separate, hinged)
-    const jawA = open * .38 + chew * .08;
-    ctx.save(); ctx.translate(x - 20, y + 60); ctx.rotate(-jawA); ctx.translate(-(x - 20), -(y + 60));
-    KP.paper(ctx, KP.jitter(KP.curve([[x - 230, y + 60], [x - 210, y + 150], [x - 120, y + 210], [x + 40, y + 200], [x + 60, y + 60]], true, 8), 71 + b, 1.4), P.bubble, { shadow: KP.SH.near, shadowA: .3 });
+  // a front-facing paper-doll diner: two eyes, cheeks, a mouth that opens for the bite and chews
+  function head(ctx, x, y, b, open, eyes, chew, t) {
+    const bob = Math.sin(KP.held(t) * 3) * 4;
+    // shoulders + neck
+    KP.paper(ctx, KP.jitter(KP.curve([[x - 330, y + 560], [x - 280, y + 320], [x - 120, y + 260], [x + 120, y + 260], [x + 280, y + 320], [x + 330, y + 560]], true, 8), 70 + b, 1.6), P.blue, { shadow: KP.SH.near, mis: P.grape, misOff: [3, -2], misA: .35 });
+    KP.paper(ctx, KP.jitter(KP.rr(x - 50, y + 170, 100, 110, 20, 12), 71 + b, 1), P.skin, { shadow: KP.SH.far, shadowA: .25 });
+    ctx.save(); ctx.translate(0, bob);
+    // hair back, head, ears, hair fringe
+    KP.paper(ctx, KP.jitter(KP.egg(x, y - 20, 230, 240, 0, 56), 72 + b, 1.6), P.grape, { shadow: KP.SH.near, shadowA: .3 });
+    for (const sx of [-1, 1]) KP.paper(ctx, KP.jitter(KP.egg(x + sx * 196, y + 30, 30, 40, 0, 20), 73 + sx + b, 1), P.skin, { shadow: KP.SH.far, shadowA: .25 });
+    KP.paper(ctx, KP.jitter(KP.egg(x, y + 20, 196, 214, .06, 56), 74 + b, 1.5), P.skin, { shadow: KP.SH.near, shadowA: .3, mis: P.coral, misOff: [-3, 2], misA: .35 });
+    KP.paper(ctx, KP.jitter(KP.curve([[x - 200, y - 40], [x - 170, y - 150], [x - 60, y - 200], [x + 70, y - 200], [x + 180, y - 140], [x + 204, y - 30], [x + 120, y - 110], [x - 10, y - 130], [x - 120, y - 100]], true, 8), 75 + b, 1.4), P.grape, { shadow: KP.SH.far, shadowA: .3 });
+    // cheeks (puffed while chewing), eyes, mouth
+    ctx.save(); ctx.globalCompositeOperation = 'multiply'; ctx.globalAlpha = .45; ctx.fillStyle = P.pink;
+    for (const sx of [-1, 1]) { ctx.beginPath(); ctx.ellipse(x + sx * 110, y + 90, 42 + chew * 14, 28 + chew * 10, 0, 0, TAU); ctx.fill(); }
     ctx.restore();
-    if (open > .05) KP.paper(ctx, KP.jitter(KP.curve([[x - 236, y + 60], [x - 200, y + 60 + open * 80], [x - 120, y + 70 + open * 90], [x - 60, y + 60]], true, 6), 72, .8), P.mouth, { shadow: false });
-    KP.paper(ctx, KP.jitter(KP.egg(x, y - 40, 250, 230, -.06, 64), 73 + b, 1.6), P.bubble, { shadow: KP.SH.near, mis: P.blue, misOff: [3, -2], misA: .3 });
-    KP.paper(ctx, KP.jitter(KP.egg(x - 248, y - 10, 46, 38, 0, 24), 74 + b, 1), P.bubble, { shadow: KP.SH.far });
-    // hair: grape cut paper cap at the back, ear
-    KP.paper(ctx, KP.jitter(KP.curve([[x - 120, y - 250], [x + 60, y - 290], [x + 230, y - 200], [x + 270, y - 20], [x + 200, y + 20], [x + 120, y - 120], [x - 20, y - 180], [x - 160, y - 190]], true, 8), 75 + b, 1.4), P.grape, { shadow: KP.SH.far, shadowA: .3 });
-    KP.paper(ctx, KP.jitter(KP.egg(x + 110, y + 10, 40, 52, 0, 24), 76 + b, 1), P.pink, { shadow: KP.SH.far });
-    // eye + cheek (multiply)
-    ctx.save(); ctx.globalCompositeOperation = 'multiply'; ctx.globalAlpha = .45; ctx.fillStyle = P.magenta; ctx.beginPath(); ctx.ellipse(x - 110, y + 40, 34, 24, 0, 0, TAU); ctx.fill(); ctx.restore();
-    if (eyes === 'happy') KP.brush(ctx, KP.arcPts(x - 130, y - 40, 22, 18, Math.PI * 1.1, Math.PI * 1.9, 8), 10, P.ink, { taper: .3 });
-    else { ctx.fillStyle = P.ink; ctx.beginPath(); ctx.ellipse(x - 130, y - 40, 11, 13, 0, 0, TAU); ctx.fill(); }
-    if (chew > 0) KP.paper(ctx, KP.jitter(KP.egg(x - 140, y + 90, 50 + chew * 12, 40 + chew * 10, 0, 24), 77 + b, 1), P.bubble, { shadow: KP.SH.far, shadowA: .2 }); // full cheek
+    for (const sx of [-1, 1]) {
+      const ex = x + sx * 72, ey = y + 10;
+      if (eyes === 'happy') KP.brush(ctx, KP.arcPts(ex, ey + 8, 22, 18, Math.PI * 1.1, Math.PI * 1.9, 8), 11, P.ink, { taper: .3 });
+      else { ctx.fillStyle = P.ink; ctx.beginPath(); ctx.ellipse(ex, ey, 14, 17, 0, 0, TAU); ctx.fill(); ctx.fillStyle = P.rice; ctx.beginPath(); ctx.arc(ex - 4, ey - 6, 4, 0, TAU); ctx.fill(); }
+      KP.brush(ctx, [[ex - 26, ey - 46 - open * 10], [ex + 22, ey - 50 - open * 12]], 9, P.ink, { taper: .4 });
+    }
+    const my = y + 160;
+    if (open > .05) { ctx.fillStyle = P.mouth; ctx.beginPath(); ctx.ellipse(x, my, 34 + open * 26, 10 + open * 46, 0, 0, TAU); ctx.fill(); ctx.fillStyle = P.pink; ctx.beginPath(); ctx.ellipse(x, my + open * 26, 22 + open * 10, 8 + open * 10, 0, 0, TAU); ctx.fill(); }
+    else KP.brush(ctx, KP.arcPts(x, my - 14 + chew * 6, 34, 18, Math.PI * .15, Math.PI * .85, 10), 9, P.ink, { taper: .4 });
+    ctx.restore();
   }
 
   // ======================================================== shot 2: tongue -> nerve -> brain
@@ -262,7 +269,7 @@
       KP.paper(ctx, KP.jitter(KP.ell(x + (i % 3 - 1) * 12, y + (i % 2) * 6, 22, 15, 18), 320 + i + b, .8), P.tomato, { shadow: KP.SH.far, shadowA: .25 });
     }
     // the castle wall at the head end (cobalt), a peeking brain, the gate + guards
-    KP.brain(ctx, 470, -960, 160, { boil: b, eyes: 'happy', mouth: 'smile' });
+    KP.brain(ctx, 730, -935, 150, { boil: b, eyes: 'happy', mouth: 'smile' });
     const wall = [[-600, -820]];
     for (let x = -600; x < 1700; x += 130) wall.push([x, -900], [x + 70, -900], [x + 70, -820], [x + 130, -820]);
     wall.push([1700, -820], [1700, -450], [-600, -450]);
@@ -270,6 +277,12 @@
     ctx.save(); ctx.clip(wp);
     for (let r = 0; r < 4; r++) for (let x = -620 + (r % 2) * 60; x < 1700; x += 120) KP.brush(ctx, [[x + 8, -780 + r * 86], [x + 104, -780 + r * 86]], 7, KP.mix(P.blue, P.turq, .4), { taper: .4 });
     ctx.restore();
+    // pennants on the battlements, flapping on the boil
+    for (const [px, c] of [[340, P.lemon], [600, P.pink], [1000, P.lemon], [1260, P.pink]]) {
+      const fl = Math.sin(KP.held(t) * 7 + px) * 14;
+      KP.brush(ctx, [[px, -900], [px, -1040]], 7, P.ink, { taper: .05 });
+      KP.paper(ctx, KP.jitter([[px, -1040], [px + 90, -1016 + fl], [px, -990]], 330 + px + b, 1), c, { shadow: KP.SH.far, shadowA: .3 });
+    }
     // gate arch
     KP.paper(ctx, KP.jitter(KP.curve([[700, -450], [700, -600], [740, -660], [800, -676], [860, -660], [900, -600], [900, -450]], true, 6), 301 + b, 1.2), P.plum, { shadow: false });
     for (const gx of [730, 770, 810, 850]) KP.brush(ctx, [[gx, -640], [gx, -470]], 7, P.grape, { taper: .1 });
@@ -326,7 +339,7 @@
   }
   function shotMap(ctx, t, b, T, D) {
     // camera: pull back from the wall (shot 5), track up the vessel (6), push in to the gate (7)
-    const pull = KP.ep(t, T.s5, T.s5 + .7, 'out');
+    const pull = KP.ep(t, T.s5, T.s5 + .45, 'out');
     let s = KP.lerp(2.1, 1, pull), cx = KP.lerp(330, 490, pull), cy = KP.lerp(860, 860, pull);
     const up = KP.ep(t, T.l5, T.bbb + .6, 'inOut');
     cx = KP.lerp(cx, 640, up); cy = KP.lerp(cy, -560, up);
@@ -335,12 +348,12 @@
     KP.camera(ctx, cx, cy, s, () => {
       mapWorld(ctx, t, b, T);
       // the one label in shot 5: '95%' rolls up from 80 and lands on 'ninety-five' (never shows '5%')
-      if (t >= T.around - .1 && t < T.l5 + .2) {
+      if (t >= Math.max(T.around - .1, T.s5 + .4) && t < T.l5 + .2) {
         const v = Math.round(KP.lerp(80, 95, KP.ease.out(KP.prog(KP.held(t), T.around - .1, T.ninety))));
-        const la = KP.arrive(t, T.around - .1, .3), land = KP.arrive(t, T.ninety, .2);
+        const la = KP.arrive(t, Math.max(T.around - .1, T.s5 + .4), .3), land = KP.arrive(t, T.ninety, .2);
         const gone = 1 - KP.ease.in(KP.prog(t, T.l5 - .05, T.l5 + .2));   // pops off before the camera tracks up
         ctx.save(); KP.pose(ctx, { ...la, p: la.p * gone, sy: la.sy * (t >= T.ninety ? land.sy : 1) }, 490, 470, 'pop');
-        KP.slip(ctx, [{ s: v + '%', size: 190, font: 'Young Serif', weight: 400, ls: 4 }], 220, 200, { rot: -.03, seed: 95, boil: b, tape: P.pink, padX: 50, padY: 26 });
+        KP.slip(ctx, [{ s: v + '%', size: 190, font: 'Young Serif', weight: 400, ls: 4 }], 220, 200, { rot: -.03 + Math.sin(KP.held(t) * 2.4) * .03, seed: 95, boil: b, tape: P.pink, padX: 50, padY: 26 });
         ctx.restore();
       }
     });

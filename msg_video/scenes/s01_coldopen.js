@@ -315,7 +315,11 @@
     KP.paper(ctx, KP.jitter(KP.ell(SHK[0], SHK[1] + 6, 230, 46, 44), 901 + b, 1.5), P.turq, { shadow: [10, 14], shadowA: .45, mis: P.blue, misOff: [-4, 3], misA: .45 });
     const ar = KP.arrive(t, T.msgA - .15, .3);
     const sweat = t > T.bad + .3 ? 1 : 0;
-    ctx.save(); KP.pose(ctx, ar, SHK[0], SHK[1], 'drop', 500);
+    // nervous secondary motion while it waits under the light: little hops + a tremble (stops in the freeze)
+    const since = tb - T.msgA - .3, ph = since > 0 ? (since / .75) % 1 : 0, hop = since > 0 ? Math.pow(Math.sin(Math.PI * ph), 3) * 26 : 0;
+    const [tx] = since > 0 ? KP.wob(tb, 12, 3) : [0];
+    ctx.save(); KP.pose(ctx, ar, SHK[0], SHK[1], 'drop', 500); ctx.translate(tx, -hop);
+    if (hop < 2 && since > 0) { ctx.translate(SHK[0], SHK[1]); ctx.scale(1.04, .96); ctx.translate(-SHK[0], -SHK[1]); }
     KP.shaker(ctx, SHK[0], SHK[1], 330, { boil: tb, seed: 7, shadowA: .4 });
     ctx.restore();
     if (sweat) KP.marks(ctx, SHK[0], SHK[1] - 170, 190, 4, 70 + tb, { a0: -2.6, span: 2.1, len: 26 });
@@ -324,7 +328,7 @@
     if (q.on) {
       const qx = SHK[0] + 10 + back * 210, qy = SHK[1] - 470 + back * 250, dropY = (1 - q.p) * -600;
       ctx.save(); ctx.translate(qx, qy + 90); ctx.scale(q.sx, q.sy); ctx.translate(-qx, -qy - 90);
-      KP.qmark(ctx, qx, qy + dropY, 230 - back * 60, { rot: .08 + KP.wobA(tb / KP.BOIL_FPS, 3, .03) });
+      KP.qmark(ctx, qx, qy + dropY + Math.sin(KP.held(tb) * 3) * 12 * q.k, 230 - back * 60, { rot: .08 + Math.sin(KP.held(tb) * 2) * .08 });
       ctx.restore();
     }
   }
@@ -354,7 +358,7 @@
       e(T.tables0 - .05, 'paper', .4); e(T.terrified, 'neon_flicker', .45); T.pops.forEach((p, i) => e(p, 'pop_small', i === 1 ? .2 : .3));
       e(T.msgA, 'pop', .4); e(T.bad, 'boing', .3);
       e(T.scratch, 'record_scratch', .65); e(T.why, 'pop', .4);
-      e(D - .6, 'whoosh', .4);
+      e(D - .45, 'whoosh', .4);
       return a.sort((x, y) => x.t - y.t);
     },
     draw(ctx, t, cues, D) {
@@ -442,6 +446,8 @@
           ctx.save(); ctx.translate(0, -back * 2100);
           KP.paper(ctx, KP.jitter(KP.rr(-40, -200, KP.W + 80, KP.H + 260, 18, 40), 940 + b, 2), P.plum, { shadow: [0, 24], shadowA: .4 });
           KP.paper(ctx, KP.jitter([[380, -200], [600, -200], [1000, 1700], [-20, 1700]], 941 + b, 2), P.grape, { shadow: false });
+          // dust motes drifting up through the paper spotlight (stop-motion steps)
+          for (let i = 0; i < 18; i++) { const r = KP.hash(i, 7), y = 1500 - ((KP.held(tb) * (40 + r * 50) + i * 97) % 1500), x = 490 + (KP.hash(i, 9) - .5) * (220 + (1500 - y) * -.1 + 300); ctx.fillStyle = i % 3 ? P.lemon : P.pink30; ctx.fillRect(x, y, 6 + r * 6, 6 + r * 6); }
           ctx.restore();
         }
         KP.camera(ctx, cx, cy, sc, () => {
@@ -459,12 +465,11 @@
         KP.texture(ctx, 'speck', .22, 17, 41);
       }
       // ===== out: paper slide carrying a falling gold drop into s02
-      const outP = KP.ep(t, D - .6, D, 'inOut');
+      const outP = KP.ep(t, D - .45, D, 'inOut');
       if (outP > 0) {
         sheetSlide(ctx, outP, P.turq, c => {
-          const dy = 300 + KP.ep(t, D - .5, D, 'in') * 380;
-          KP.paper(c, KP.jitter(KP.drop(490, dy, 130), 960 + b, 1.2), P.gold, { shadow: KP.SH.near, mis: P.tomato, misOff: [-3, 2], misA: .4 });
-          KP.brush(c, [[490, dy - 150], [490, dy - 230]], 6, P.ink, { taper: .6 });
+          const next = KZ.scenes.s02_title;
+          if (next) { c.save(); next.draw(c, 0, [{ words: [] }], 4.6); c.restore(); }
         });
       }
     },

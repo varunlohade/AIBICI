@@ -183,7 +183,7 @@
   function desk(ctx, t, b, T, o) {
     if (!o.noGround) { ctx.fillStyle = P.blue; ctx.fillRect(-1500, -1500, 4000, 5000); }
     underlay(ctx, b);
-    letter(ctx, b, o.write, { clearZone: o.clearZone, sy: o.sy, icons: c => icons(c, t, b, T) });
+    letter(ctx, b, o.write, { clearZone: o.clearZone, sy: o.sy, icons: o.clearZone ? null : c => icons(c, t, b, T) });
     if (o.env) envelope(ctx, 600 + o.env[0], 1110 + o.env[1], b, o.post || 0);
     if (o.card) card(ctx, b, o.q || [0, 0, 0], o.merge || 0);
   }
