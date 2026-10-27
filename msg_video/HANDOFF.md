@@ -38,3 +38,19 @@ Then, from the repo root:
 4. **Render and mix:** `./build.sh`. The output is `out/msg_reel.mp4`.
 
 The full Reel must stay under 3:00. Commit `audio/tts_cache/`, `audio/narration/` and `cues.json` after rendering.
+
+## Real interview clips for the cold open (client request)
+
+1. Candidates are researched in `clips/CANDIDATES.md`, with URL, timestamps, verbatim quote and confidence. The client picks which ones to use.
+   - Only use VERIFIED or LIKELY quotes.
+   - The on-screen credit must name the speaker, the show or outlet, and the year.
+2. Add the chosen clips to `clips/clips.json`. Each one needs `id`, `url`, `in`/`out` (seconds in the original video), `speaker`, `credit` and `quote` (exact words).
+3. Download only those segments. This needs network access to youtube.com, *.googlevideo.com, youtubei.googleapis.com and i.ytimg.com, added under the environment's Allowed domains:
+
+       pip install yt-dlp && python3 fetch_clips.py && python3 prep_clips.py
+
+4. In `script.py` s01, replace the TVDOC/CHEF/GURU lines with `("CLIP:<id>", "<exact quote>", pause)`, then run build_audio.py.
+5. Adapt `scenes/s01_coldopen.js`:
+   - The hero TV screens play `CLIPS.draw(...)` instead of the puppets.
+   - The lower third shows the real name and credit, with no DRAMATIZATION line.
+   - `heroDoctor`, `heroChef` and `heroGuru` are the swap points.
