@@ -41,6 +41,7 @@
     blue: '#1F5BFF', turq: '#00C2C7', kombu: '#00B26B', grape: '#7B3FF2', brass: '#FFC21A',
     lavender: '#A58BFF',
   };
+  P.unread = mix(P.grape, P.ink, .45);   // caption words not yet spoken: dark violet ink (viewer test: lavender too faint)
   P.kraft = P.brass;
   P.pink60 = P.bubble; P.pink30 = '#FFA8D2';
   P.pinkDeep = P.magenta;
@@ -478,6 +479,7 @@
       KP.brush(ctx, KP.curve([[0, b], [s * .14, b - s * .18], [-s * .06, b - s * .34], [s * .1, b - s * .52]], false, 6), Math.max(4, h * .055), P.goldLight, { taper: .7 });
     }
     KP.face(ctx, o.look || 0, h * .1, h * .62, { eyes: o.eyes || 'dot', mouth: o.mouth || 'smile' });
+    if (o.mitts) o.mitts.forEach((ang, i) => { const sx = i ? 1 : -1, bx = sx * h * .4, by = h * .18, ex = bx + Math.sin(ang * sx) * h * .2 * sx, ey = by - Math.cos(ang) * h * .2 * -1; KP.paper(ctx, KP.jitter(KP.egg(ex, ey, h * .1, h * .09, 0, 16), seed + 20 + i, .6), P.gold, { shadow: KP.SH.far, shadowA: .3 }); });
     ctx.restore();
   };
   // gut cell character: (x, y) = body centre, w,h = body size. returns face info
@@ -710,11 +712,13 @@
     ctx.restore();
     // two short slanted glints (cut turquoise slivers)
     for (const [gx, gy, gl] of [[-w * .3, top * .86, h * .07], [-w * .3, top * .7, h * .03]]) KP.brush(ctx, [[gx, gy], [gx + gl * .5, gy + gl]], h * .026, P.turq, { taper: .5 });
-    // cap: short dome with a rim
+    // cap: short dome with a rim (o.capDy / o.capRot lift it off)
+    ctx.save(); ctx.translate(0, o.capDy || 0); if (o.capRot) { ctx.translate(0, top); ctx.rotate(o.capRot); ctx.translate(0, -top); }
     const cap = KP.jitter(KP.curve([[-w * .5, top + 2], [-w * .46, top - h * .14], [-w * .22, top - h * .25], [w * .22, top - h * .25], [w * .46, top - h * .14], [w * .5, top + 2]], true, 6), sd + 5 + b, 1.2);
     KP.paper(ctx, cap, o.cap || P.pink, { shadow: KP.SH.far, shadowA: .3, mis: P.tomato, misOff: [-3, 2], misA: .45 });
     KP.paper(ctx, KP.jitter(KP.rr(-w * .54, top - h * .04, w * 1.08, h * .07, 6, 10), sd + 6 + b, 1), KP.mix(o.cap || P.pink, P.ink, .25), { shadow: false });
     ctx.fillStyle = P.ink; for (const [hx, hy] of [[-w * .18, top - h * .16], [0, top - h * .2], [w * .18, top - h * .16]]) { ctx.beginPath(); ctx.arc(hx, hy, h * .02, 0, TAU); ctx.fill(); }
+    ctx.restore();
     ctx.restore();
   };
   // big '?' cut from ink paper with a hard shadow and a misregistered under-print
@@ -732,6 +736,107 @@
     if (role) lines.push({ s: role, size: 44, ls: 2, color: P.rice });
     lines.push({ s: 'DRAMATIZATION - fictional character', size: 28, weight: 700, color: P.lemon });
     return KP.slip(ctx, lines, x, y, { rot: o.rot ?? -.025, seed: o.seed || 12, boil: o.boil, padX: 34, padY: 18, tape: P.pink, fill: P.blue, shadowA: .3 });
+  };
+
+  // ---------------------------------------------------------------- shared props for discovery / science acts
+  P.skin = '#FFAE78';   // vivid apricot paper for human dolls (client rule: no muddy/beige tones)
+  P.suit = mix(P.blue, P.ink, .38);
+  // IKEDA: Kikunae Ikeda as a respectful front-facing paper doll (high collar, round glasses, neat moustache, period
+  // suit). (x, y) = feet centre, s = scale (~560 px tall at s=1). o.armL/armR = arm angles (rad, 0 = straight down),
+  // o.brows 0..1 lift, o.eyes, o.mouth, o.boil. Returns {handL, handR, mouth, head}.
+  KP.ikeda = (ctx, x, y, s, o = {}) => {
+    const b = o.boil || 0, sd = o.seed || 1400, T = (px, py) => [x + px * s, y + py * s];
+    const J = (pts, k, a = 1.2) => KP.jitter(pts.map(([px, py]) => T(px, py)), sd + k + b, a);
+    const trous = mix(P.suit, P.ink, .35);
+    KP.paper(ctx, J(KP.rr(-62, -170, 54, 170, 14, 14), 1), trous, { shadow: KP.SH.far, shadowA: .3 });
+    KP.paper(ctx, J(KP.rr(8, -170, 54, 170, 14, 14), 2), trous, { shadow: KP.SH.far, shadowA: .3 });
+    for (const fx of [-36, 36]) KP.paper(ctx, J(KP.egg(fx, -6, 40, 16, 0, 20), 3 + fx), P.ink, { shadow: false });
+    // arms behind the coat edge, pivoting at the shoulders
+    const sh = [[-92, -390], [92, -390]], L = 150, aL = o.armL ?? .15, aR = o.armR ?? -.15;
+    const hands = sh.map(([sx, sy], i) => { const a = i ? aR : aL; return [sx + Math.sin(-a) * L * (i ? 1 : 1), sy + Math.cos(a) * L]; });
+    sh.forEach(([sx, sy], i) => {
+      const a = i ? aR : aL, [hx, hy] = hands[i];
+      const pts = KP.curve([[sx, sy], [(sx + hx) / 2 + (i ? 6 : -6), (sy + hy) / 2], [hx, hy]], false, 6);
+      KP.brush(ctx, pts.map(([px, py]) => { const [X, Y] = T(px, py); return [X + 4 * s, Y + 6 * s]; }), 46 * s, rgba(P.ink, .22), { taper: .1 });
+      KP.brush(ctx, pts.map(([px, py]) => T(px, py)), 46 * s, P.suit, { taper: .1 });
+      KP.paper(ctx, J(KP.egg(hx, hy + 8, 26, 24, 0, 20), 10 + i), P.skin, { shadow: KP.SH.far, shadowA: .25 });
+      KP.fastener(ctx, ...T(sx, sy + 6), 6 * s);
+    });
+    // coat
+    KP.paper(ctx, J(KP.curve([[-60, -440], [60, -440], [104, -400], [100, -260], [84, -150], [-84, -150], [-100, -260], [-104, -400]], true, 8), 20, 1.4), P.suit, { shadow: KP.SH.near, mis: P.grape, misOff: [-3, 2], misA: .4 });
+    KP.paper(ctx, J([[-30, -440], [30, -440], [0, -330]], 21, .8), P.rice, { shadow: false });           // shirt
+    KP.paper(ctx, J([[-12, -420], [12, -420], [8, -360], [-8, -360]], 22, .6), P.magenta, { shadow: false }); // cravat
+    KP.brush(ctx, [T(-28, -438), T(0, -330), T(28, -438)].map(p => p), 5 * s, mix(P.suit, P.ink, .4), { taper: .2 });
+    for (const by of [-300, -240, -180]) KP.fastener(ctx, ...T(0, by), 5 * s);
+    // high collar + head
+    KP.paper(ctx, J(KP.rr(-40, -476, 80, 44, 10, 10), 23, .8), P.rice, { shadow: KP.SH.far, shadowA: .25 });
+    KP.paper(ctx, J(KP.egg(0, -560, 86, 98, -.04, 48), 24, 1.2), P.skin, { shadow: KP.SH.near, shadowA: .3, mis: P.coral, misOff: [-2, 2], misA: .35 });
+    for (const ex of [-1, 1]) KP.paper(ctx, J(KP.egg(ex * 88, -556, 14, 20, 0, 16), 25 + ex), P.skin, { shadow: false });
+    // hair: short, side-parted (ink cut paper)
+    KP.paper(ctx, J(KP.curve([[-88, -580], [-84, -640], [-40, -668], [20, -670], [70, -648], [90, -590], [70, -612], [30, -630], [-16, -620], [-60, -604]], true, 6), 26), P.ink, { shadow: false });
+    // face: eyes behind round glasses, brows, neat moustache, small mouth
+    const ey = -560, br = (o.brows || 0) * 12;
+    ctx.fillStyle = P.ink;
+    for (const ex of [-34, 34]) { const [X, Y] = T(ex, ey); ctx.beginPath(); ctx.ellipse(X, Y, 6.5 * s, 7.5 * s, 0, 0, TAU); ctx.fill(); }
+    ctx.lineWidth = 5 * s; ctx.strokeStyle = P.ink;
+    for (const ex of [-34, 34]) { const [X, Y] = T(ex, ey); ctx.beginPath(); ctx.arc(X, Y, 25 * s, 0, TAU); ctx.stroke(); }
+    KP.brush(ctx, [T(-10, ey - 4), T(10, ey - 4)], 4 * s, P.ink, { taper: .1 });
+    for (const ex of [-1, 1]) KP.brush(ctx, [T(ex * 52, ey - 31 - br), T(ex * 18, ey - 35 - br * 1.3)], 6 * s, P.ink, { taper: .4 });
+    KP.paper(ctx, J(KP.curve([[-34, -510], [-16, -522], [0, -516], [16, -522], [34, -510], [16, -506], [0, -510], [-16, -506]], true, 4), 27, .6), P.ink, { shadow: false });
+    if ((o.mouth || 'smile') === 'smile') KP.brush(ctx, KP.arcPts(x, y - 500 * s, 12 * s, 7 * s, Math.PI * .15, Math.PI * .85, 8), 4 * s, P.ink, { taper: .4 });
+    else if (o.mouth === 'o') { ctx.fillStyle = P.mouth; ctx.beginPath(); ctx.ellipse(x, y - 494 * s, 8 * s, 10 * s, 0, 0, TAU); ctx.fill(); }
+    ctx.save(); ctx.globalCompositeOperation = 'multiply'; ctx.globalAlpha *= .35; ctx.fillStyle = P.pink;
+    for (const ex of [-1, 1]) { const [X, Y] = T(ex * 56, -522); ctx.beginPath(); ctx.ellipse(X, Y, 14 * s, 9 * s, 0, 0, TAU); ctx.fill(); }
+    ctx.restore();
+    return { handL: T(...hands[0]), handR: T(...hands[1]), mouth: T(0, -500), head: T(0, -560) };
+  };
+  // NA: a small cobalt sodium ion paper bead with a face and stub mittens (no lettering). o.arm = mitten raise 0..1
+  KP.na = (ctx, x, y, r, o = {}) => {
+    const b = o.boil || 0, sd = o.seed || 1500, a = o.arm || 0;
+    for (const sx of [-1, 1]) KP.paper(ctx, KP.jitter(KP.egg(x + sx * r * (1.02 + .1 * a), y + r * (.25 - .7 * a * (sx === (o.side || 1) ? 1 : .2)), r * .3, r * .26, 0, 18), sd + sx + b, .8), P.blue, { shadow: KP.SH.far, shadowA: .3 });
+    KP.paper(ctx, KP.jitter(KP.egg(x, y, r, r, .05, 40), sd + b, 1.2), P.blue, { shadow: KP.SH.near, mis: P.turq, misOff: [-3, 2], misA: .45 });
+    KP.paper(ctx, KP.jitter(KP.egg(x - r * .3, y - r * .35, r * .28, r * .18, 0, 20), sd + 3, .6), mix(P.blue, P.turq, .5), { shadow: false });
+    KP.face(ctx, x, y + r * .05, r * 1.25, { eyes: o.eyes || 'dot', mouth: o.mouth || 'smile', ink: P.ink, cheek: P.pink });
+  };
+  // GLU_DIAGRAM: flat cut-paper skeletal diagram of glutamic acid on a white card (five-carbon zigzag, two
+  // carboxyl groups, amino group on the alpha carbon). No lettering. (x, y) = centre, s = scale (~380x200 at s=1).
+  KP.glu = (ctx, x, y, s, o = {}) => {
+    const b = o.boil || 0, T = (px, py) => [x + px * s, y + py * s];
+    if (o.card !== false) KP.paper(ctx, KP.jitter(KP.rr(x - 200 * s, y - 100 * s, 400 * s, 200 * s, 16 * s, 16), (o.seed || 1600) + b, 1.2), o.fill || P.rice, { shadow: KP.SH.near, shadowA: .3, mis: P.turq, misOff: [-3, 2], misA: .35 });
+    const C = [[-120, 20], [-60, -14], [0, 20], [60, -14], [120, 20]];
+    const bond = (a, c, w = 7) => KP.brush(ctx, [T(...a), T(...c)], w * s, P.ink, { taper: .1 });
+    for (let i = 0; i < 4; i++) bond(C[i], C[i + 1]);
+    // carboxyl groups at both ends: C=O (double) and C-O
+    const ox = [[[-150, -24], [-160, 56]], [[150, -24], [160, 56]]];
+    [[C[0], ox[0]], [C[4], ox[1]]].forEach(([c, [o1, o2]]) => {
+      bond(c, o1); const dx = (o1[0] - c[0]), dy = (o1[1] - c[1]), l = Math.hypot(dx, dy); bond([c[0] - dy / l * 9, c[1] + dx / l * 9], [o1[0] - dy / l * 9, o1[1] + dx / l * 9], 5);
+      bond(c, o2);
+      for (const oo of [o1, o2]) { const [X, Y] = T(...oo); KP.paper(ctx, KP.jitter(KP.egg(X, Y, 15 * s, 15 * s, 0, 18), 1610 + oo[0] + b, .6), P.tomato, { shadow: KP.SH.far, shadowA: .3 }); }
+    });
+    // amino group on the alpha carbon (C[1] next to the left carboxyl)
+    bond(C[1], [-60, -70]); { const [X, Y] = T(-60, -74); KP.paper(ctx, KP.jitter(KP.egg(X, Y, 16 * s, 16 * s, 0, 18), 1620 + b, .6), P.blue, { shadow: KP.SH.far, shadowA: .3 }); }
+    for (const c of C) { const [X, Y] = T(...c); ctx.fillStyle = P.ink; ctx.beginPath(); ctx.arc(X, Y, 8 * s, 0, TAU); ctx.fill(); }
+  };
+  // TOMATO: red paper tomato with a kombu-green calyx. (x, y) centre, r radius
+  KP.tomato = (ctx, x, y, r, o = {}) => {
+    const b = o.boil || 0, sd = o.seed || 1700;
+    KP.paper(ctx, KP.jitter(KP.egg(x, y, r * 1.08, r * .92, -.05, 48), sd + b, 1.3), P.tomato, { shadow: KP.SH.near, mis: P.pink, misOff: [-3, 2], misA: .45 });
+    KP.paper(ctx, KP.jitter(KP.egg(x - r * .4, y - r * .3, r * .22, r * .14, 0, 18), sd + 1, .6), P.coral, { shadow: false });
+    const st = []; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i / 10 * TAU, rr = i % 2 ? r * .14 : r * .42; st.push([x + Math.cos(a) * rr, y - r * .86 + Math.sin(a) * rr * .45]); }
+    KP.paper(ctx, KP.jitter(st, sd + 2 + b, .8), P.kombu, { shadow: KP.SH.far, shadowA: .3 });
+    KP.brush(ctx, [[x, y - r * .9], [x + r * .08, y - r * 1.15]], r * .1, P.kombu, { taper: .2 });
+  };
+  // a lab flask (cut paper) with bubbling liquid. (x, y) = base centre, h = height; o.t for bubbles
+  KP.flask = (ctx, x, y, h, liquid, o = {}) => {
+    const b = o.boil || 0, sd = o.seed || 1800, w = h * .7;
+    const body = KP.jitter(KP.curve([[x - h * .1, y - h], [x + h * .1, y - h], [x + h * .1, y - h * .62], [x + w / 2, y - h * .05], [x + w / 2 - 8, y], [x - w / 2 + 8, y], [x - w / 2, y - h * .05], [x - h * .1, y - h * .62]], true, 6), sd + b, 1);
+    KP.paper(ctx, body, P.rice, { shadow: KP.SH.near, shadowA: .3, mis: P.turq, misOff: [-3, 2], misA: .4 });
+    ctx.save(); ctx.clip(KP.path(body));
+    KP.paper(ctx, KP.jitter(KP.rr(x - w, y - h * .42, w * 2, h * .5, 6, 12), sd + 1 + b, 1), liquid, { shadow: false });
+    const r = KP.rng(sd + 2);
+    for (let i = 0; i < 5; i++) { const ph = ((o.t || 0) * .9 + r()) % 1, bx = x + (r() - .5) * w * .5, by = y - h * (.08 + ph * .6); ctx.fillStyle = P.rice; ctx.beginPath(); ctx.arc(bx, by, h * .035 * (1 - ph * .4), 0, TAU); ctx.fill(); }
+    ctx.restore();
+    KP.paper(ctx, KP.jitter(KP.rr(x - h * .14, y - h - 12, h * .28, 18, 6, 8), sd + 3 + b, .8), liquid, { shadow: KP.SH.far });
   };
 
   // ---------------------------------------------------------------- distressed rubber stamp (cached canvas)
@@ -760,8 +865,8 @@
   // with a hard shadow + misregistered under-print. Chip colour by act (see KP.CAP.accent).
   // words = [{s, state: 'done'|'on'|'later'}], lines = [[wordIndex...], ...]
   KP.CAP = {
-    size: 58, cx: 470, cy: 1390, lh: 1.18, padY: 14, maxW: 780, maxWords: 7, maxChars: 34,
-    lavender: P.lavender,
+    size: 64, cx: 470, cy: 1390, lh: 1.1, padY: 9, maxW: 780, maxWords: 7, maxChars: 34,
+    lavender: P.unread,
     // per-scene chip colour; [fill, under-print ink, text colour]. Approved: pink cold open, gold glutamate, red 1960s.
     accent: {
       s01_coldopen: [P.pink, P.tomato, P.ink], s02_title: [P.pink, P.tomato, P.ink],
@@ -775,7 +880,7 @@
   };
   // draw one strip. chip = {i (word index), from (prev index), u (hop progress 0..1), land (0..1 after landing)}
   KP.caption = (ctx, words, lines, cx, cy, o = {}) => {
-    const size = o.size || KP.CAP.size, lh = size * KP.CAP.lh, padX = 38, padY = KP.CAP.padY, sp = size * .28;
+    const size = o.size || KP.CAP.size, lh = size * KP.CAP.lh, padX = 32, padY = KP.CAP.padY, sp = size * .26;
     const fnt = { size, font: 'Nunito', weight: 900 };
     const ww = words.map(w => KP.measure(ctx, w.s, fnt));
     const lw = lines.map(l => l.reduce((a, i, k) => a + ww[i] + (k ? sp : 0), 0));
@@ -832,7 +937,7 @@
   };
   // lay a chunk out in 1-2 lines (balanced, top line longer); shrink the font if it still does not fit
   const layoutChunk = ws => {
-    const C = KP.CAP, sp = C.size * .28, fnt = { size: C.size, font: 'Nunito', weight: 900 };
+    const C = KP.CAP, sp = C.size * .26, fnt = { size: C.size, font: 'Nunito', weight: 900 };
     const w = ws.map(s => KP.measure(null, s, fnt)), tot = w.reduce((a, b) => a + b, 0) + sp * (ws.length - 1);
     const idx = ws.map((_, i) => i);
     if (tot <= 560 || ws.length < 2) return { lines: [idx], size: tot > C.maxW ? Math.floor(C.size * C.maxW / tot) : C.size };
@@ -858,7 +963,8 @@
     chunks.forEach((c, i) => {
       const nx = chunks[i + 1];
       const hold = c.wEnd + .45;                       // a strip lingers briefly after its last word
-      c.t1 = nx ? (nx.t0 - hold < .5 ? nx.t0 : hold) : hold;
+      // within a narration line the strip never disappears; between lines it hides only across a real pause
+      c.t1 = nx ? (nx.line === c.line || nx.t0 - hold < .5 ? nx.t0 : hold) : hold;
       c.joined = !!(nx && c.t1 === nx.t0);              // next strip replaces this one directly
       c.seed = 9 + i * 13;
       c.rot = (KP.hash(i, 77) - .5) * .03 - .006;
@@ -883,13 +989,13 @@
       chip = { i: k, from: k - 1, u: k > 0 ? KP.prog(t, ts, ts + hopD) : 1, land: KP.prog(t, ts + (k > 0 ? hopD : 0), ts + (k > 0 ? hopD : 0) + 4 * KP.F) };
     }
     // entrance: pop + slide up (a fresh strip being slapped down), quicker when it replaces a strip
-    const ar = KP.arrive(t, c.t0, prevJoined ? .16 : .24);
+    const ar = KP.arrive(t, c.t0, prevJoined ? .14 : .2);
     const out = c.joined ? 0 : KP.leave(t, c.t1, .16);
     ctx.save();
     ctx.globalAlpha = 1 - out;
-    const cy = KP.CAP.cy + (1 - ar.p) * 18 + out * 14, s0 = prevJoined ? .94 : .82;
+    const cy = KP.CAP.cy + (1 - ar.p) * 12 + out * 10, s0 = prevJoined ? .94 : .7;
     ctx.translate(KP.CAP.cx, cy + 60); ctx.scale((s0 + (1 - s0) * ar.p) * ar.sx * (1 - out * .06), (s0 + (1 - s0) * ar.p) * ar.sy * (1 - out * .06)); ctx.translate(-KP.CAP.cx, -cy - 60);
-    ctx.globalAlpha *= KP.clamp(ar.k * 3);
+    // no fade-in: paper is slapped down (scale + settle), so the strip never looks washed out
     KP.caption(ctx, words, c.lines, KP.CAP.cx, cy, { size: c.size, boil: KP.boil(t), seed: c.seed, rot: c.rot, accent, chip });
     ctx.restore();
   };
