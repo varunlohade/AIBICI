@@ -122,7 +122,7 @@
     });
     if (merge > 0) {
       const wob = Math.sin(KP.held(merge * 30) * 2.4) * .12;
-      KP.qmark(ctx, 0, -240, 64 + KP.ease.out(merge) * 110, { rot: wob });
+      KP.qmark(ctx, -20, -250, 64 + KP.ease.out(merge) * 170, { rot: wob });
     }
     ctx.restore();
   }
@@ -231,9 +231,10 @@
     KP.paper(ctx, KP.jitter([[x + 20, y - 140], [x + 70, y - 190], [x + 110, y - 140]], 962 + b, .8), P.rice, { shadow: KP.SH.far, shadowA: .25 });
     KP.brush(ctx, [[x, y - 140], [x, y + 66]], 4, P.lavender, { taper: .2 });
   }
-  function halves(ctx, t, t0, top, bottom, divider) {
-    // split-wipe: the halves slide in from opposite sides
+  function halves(ctx, t, t0, top, bottom, divider, under) {
+    // split-wipe: the halves slide in from opposite sides over the previous shot (held on its last frame)
     const p = KP.ep(t, t0, t0 + .35, 'out');
+    if (p < 1 && under) { ctx.save(); under(t0 - 1 / 60); ctx.restore(); }
     ctx.save(); ctx.beginPath(); ctx.rect(0, 0, KP.W, 760); ctx.clip(); ctx.translate((1 - p) * -KP.W, 0); top(ctx); ctx.restore();
     ctx.save(); ctx.beginPath(); ctx.rect(0, 760, KP.W, KP.H - 760); ctx.clip(); ctx.translate((1 - p) * KP.W, 0); bottom(ctx); ctx.restore();
     KP.paper(ctx, KP.jitter(KP.torn(KP.rr(-40, 746, KP.W + 80, 28, 6, 40), 990, 3, 12), 991, 1), P.ink, { shadow: [0, 6], shadowA: .3 });
@@ -254,8 +255,9 @@
       e(T.s9 + .2, 'swoosh_down', .3); e(T.name, 'impact_soft', .4); e(D - .5, 'whoosh', .4);
       return a.sort((x, y) => x.t - y.t);
     },
-    draw(ctx, t, cues, D) {
+    draw(ctx, t, cues, D, nested) {
       const T = times(cues, D), b = KP.boil(t);
+      const prev = tp => this.draw(ctx, tp, cues, D, true);
       let label = null;
       if (t < T.l2) {
         // ---- 1: kombu -> shaker, villain spotlight + moustache
@@ -304,7 +306,7 @@
         });
         ctx.restore();
         if (t >= T.y1968 && t < T.l3 - .2) label = c => { const ar = KP.arrive(t, T.y1968, .3), out = KP.leave(t, T.after - .1, .2); c.save(); c.globalAlpha = 1 - out; KP.pose(c, ar, 760, 330, 'pop'); KP.slip(c, [{ s: '1968', size: 96, font: 'Young Serif', weight: 400, ls: 3 }], 620, 226, { rot: .05, seed: 41, boil: b, tape: P.pink, padX: 34, padY: 18 }); c.restore(); };
-        if (t >= T.guess) label = c => { const ar = KP.arrive(t, T.guess, .25); c.save(); KP.pose(c, ar, 700, 330, 'pop'); KP.slip(c, [{ s: 'A guess', size: 80, ls: 1 }], 560, 240, { rot: .04, seed: 42, boil: b, tape: P.pink, padX: 36, padY: 20 }); c.restore(); };
+        if (t >= T.guess) label = c => { const ar = KP.arrive(t, T.guess, .25); c.save(); KP.pose(c, ar, 760, 360, 'pop'); KP.slip(c, [{ s: 'A guess', size: 80, ls: 1 }], 600, 270, { rot: .04, seed: 42, boil: b, tape: P.pink, padX: 36, padY: 20 }); c.restore(); };
       } else if (t < T.l5) {
         // ---- 5: whip to style frame C, the stamp slams the headline, newspapers slide out
         const whip = KP.ep(t, T.l4, T.l4 + .28, 'out');
@@ -338,17 +340,17 @@
         KP.camera(ctx, 490, 860, push, () => {
           graph(ctx, -200, -200, 1300, 2200, P.lemon, KP.mix(P.lemon, P.turq, .35));
           KP.paper(ctx, KP.jitter(KP.rr(-100, 1060, 1300, 900, 10, 40), 650 + b, 1.5), P.turq, { shadow: [0, -10], shadowA: .3 });
-          nest(ctx, 490, 1000, b, t, 1.3);
+          nest(ctx, 400, 1000, b, t, 1.3);
           const low = KP.ep(t, T.injected - .2, T.huge - .1, 'out'), grow = KP.arrive(t, T.huge, .35);
           const tipY = KP.lerp(-300, 720, low), s = t >= T.huge ? 1 + .35 * grow.p : 1;
-          syringe(ctx, 490, tipY + (t >= T.huge ? -(s - 1) * 120 : 0), s, b);
+          syringe(ctx, 400, tipY + (t >= T.huge ? -(s - 1) * 120 : 0), s, b);
           const bar = t >= T.brain ? 22 + 30 * KP.backOut(KP.prog(t, T.brain, T.brain + .3)) : 22;
           const jig = t >= T.brain ? KP.wob(t, 7, 4) : [0, 0];
           ctx.save(); ctx.translate(jig[0], jig[1]);
-          newspaper(ctx, 1010, 1150, 260, 300, .2, 66, P.coral, b, bar); newspaper(ctx, -10, 1180, 240, 280, -.22, 67, P.coral, b, bar); newspaper(ctx, 1030, 420, 220, 260, .28, 68, P.coral, b, bar);
+          newspaper(ctx, 1010, 1150, 260, 300, .2, 66, P.coral, b, bar); newspaper(ctx, -10, 1180, 240, 280, -.22, 67, P.coral, b, bar); newspaper(ctx, 1040, 760, 220, 260, .28, 68, P.coral, b, bar);
           ctx.restore();
         });
-        if (t >= T.huge) label = c => { const ar = KP.arrive(t, T.huge, .3); c.save(); KP.pose(c, ar, 220, 320, 'pop'); KP.slip(c, [{ s: 'Huge doses', size: 62, ls: 1 }], 50, 236, { rot: -.04, seed: 43, boil: b, tape: P.pink, padX: 36, padY: 20 }); c.restore(); };
+        if (t >= T.huge) label = c => { const ar = KP.arrive(t, T.huge, .3); c.save(); KP.pose(c, ar, 760, 320, 'pop'); KP.slip(c, [{ s: 'Huge doses', size: 62, ls: 1 }], 600, 236, { rot: -.04, seed: 43, boil: b, tape: P.pink, padX: 36, padY: 20 }); c.restore(); };
       } else if (t < T.l7) {
         // ---- 7: split: injection  ≠  dinner
         halves(ctx, t, T.l6, c => {
