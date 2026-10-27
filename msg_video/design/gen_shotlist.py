@@ -79,8 +79,8 @@ def shot(start, end, size, action, top, mid, low, camera, labels, t_in, t_out, s
         sfx=[dict(t=round(a, 3), name=b, gain=c) for a, b, c in sfx], props=list(props), hero=hero, notes=notes))
 
 
-SLIDE_IN, SLIDE_OUT = "Paper slide (sheet slides over, shadow leading)", "Paper slide"
-RIPPLE_OUT = "Gold Ripple wipe (act change)"
+SLIDE_IN, SLIDE_OUT = "Paper slide in, already carrying this shot's art", "Paper slide carrying the next shot's art (never a blank sheet)"
+RIPPLE_OUT = "Gold Ripple wipe (the ring reveals the next scene inside it)"
 CREDIT = "torn-paper lower third: real name (the label) + credit line (outlet, date)"
 CLIP_NOTE = ("Real interview clip (delivered): draw it with CLIPS.draw(ctx, id, tc, ...) inside the hero "
              "screen (lib/clips.js; tc = scene time - CLIPS.lineStart) and take name/credit from CLIPS.info(id); until "
@@ -88,32 +88,34 @@ CLIP_NOTE = ("Real interview clip (delivered): draw it with CLIPS.draw(ctx, id, 
 
 # ================================================================ s01 cold open (HOOK)
 scene("s01_coldopen")
-shot(0.0, L(2), "MEDIUM (style frame A layout)",
-     "HOOK, lit on frame 0: violet TV wall, grape dim sets, turquoise hero TV spanning two columns. The hero screen "
-     "plays clip blaylock_brain ('Excitotoxicity destroys brain cells.'). Pinned beside the TV, outside the clip, a "
-     "pink paper brain cut-out whose tomato-red zap bolts burst on 'destroys' and crackle on 'brain'.",
-     "Dim TV sets", "Hero TV: clip blaylock_brain + brain cut-out beside it", CREDIT,
-     "Slow multiplane push-in (3%).",
+shot(0.0, L(2), "CLOSE (pushed in on the hero TV)",
+     "HOOK, lit on frame 0: the camera is pushed in so the hero TV's screen fills most of the frame (screen about "
+     "860 px wide across TOP+MID, paper TV bezel at the edges). It plays clip blaylock_hungry. In LOW, beside/below the "
+     "screen, a paper MSG shaker tips and pours gold crystals onto a plate on 'MSG'; the plate grows on 'hungry' and "
+     "swells again, piled high, on 'eat more'.",
+     "Hero TV screen (top part)", "Clip blaylock_hungry, large", CREDIT + "; shaker + growing plate beside it",
+     "Locked close, slight multiplane drift.",
      [("Russell Blaylock", 0.0, None)], "NONE: lit on frame 0 (hook; also the loop landing point)", "Jump-cut flicker (same speaker, next clip)",
-     [(0.0, "tv_on", 0.5), (W(1, "excitotoxicity"), "static", 0.25), (W(1, "destroys"), "glitch", 0.4), (W(1, "brain"), "blip", 0.3)],
-     ["TVWALL", "CLIPS", "NAME_LT", "CAPTION"], hero="Hook: real clip + zapping brain inside 0.3 s", credit=True,
-     notes=CLIP_NOTE + " Credit: 'Neurosurgeon, lecture on MSG, 2012' (CLIPS.info). Frame 0 must match the last frame of s09 so the Reel loops.")
-shot(L(2), L(3), "MEDIUM",
-     "Jump-cut flicker: the hero screen plays clip blaylock_hungry. Beside the screen, a paper MSG shaker tips and "
-     "pours gold crystals onto a plate on 'MSG'; on 'hungry' the plate starts growing, and on 'eat more' it swells "
-     "again, piled higher with food.",
-     "Shaker tipping", "Hero TV: clip blaylock_hungry | plate beside it", CREDIT,
-     "Locked, multiplane drift.",
+     [(0.0, "tv_on", 0.45), (W(1, "msg"), "pop", 0.35), (W(1, "hungry"), "bubble", 0.35), (W(1, "eat"), "chomp", 0.35)],
+     ["TVWALL", "CLIPS", "NAME_LT", "SHAKER", "CAPTION"], hero="Hook: big real clip + MSG pouring onto a growing plate",
+     credit=True, beats=[(W(1, "food.", 2), "crystals keep pouring")],
+     notes=CLIP_NOTE + " Credit: 'Neurosurgeon, lecture on MSG, 2012' (CLIPS.info). The clip must read big at a glance "
+     "(client). Frame 0 must equal the last frame of s09 so the Reel loops.")
+shot(L(2), L(3), "CLOSE (pushed in on the hero TV)",
+     "Jump-cut flicker: same big framing, the screen plays clip blaylock_brain. Beside the screen, a pink paper brain "
+     "cut-out whose tomato-red zap bolts burst on 'destroys' and crackle on 'brain'.",
+     "Hero TV screen (top part)", "Clip blaylock_brain, large", CREDIT + "; brain cut-out beside it",
+     "Locked close, slight drift.",
      [("Russell Blaylock", L(2), None)], "Jump-cut flicker", "Fast pull-back",
-     [(L(2) - 0.05, "channel_switch", 0.45), (W(2, "msg"), "pop", 0.35), (W(2, "hungry"), "bubble", 0.35), (W(2, "eat"), "chomp", 0.35)],
-     ["TVWALL", "CLIPS", "NAME_LT", "SHAKER"], credit=True, beats=[(W(2, "food", 1), "crystals keep pouring")],
-     notes=CLIP_NOTE + " The shaker and plate sit beside the screen, never over the speaker.")
-shot(L(3), B(3, "of"), "EXTREME WIDE",
-     "Pull back: every set on the wall lights up (paused frames of the two clips plus lemon screens); the wall "
-     "recedes (it may bleed into the UI zones as decor).",
+     [(L(2) - 0.05, "channel_switch", 0.45), (W(2, "excitotoxicity"), "static", 0.25), (W(2, "destroys"), "glitch", 0.4), (W(2, "brain"), "blip", 0.3)],
+     ["TVWALL", "CLIPS", "NAME_LT"], credit=True, beats=[(W(2, "excitotoxicity") + 0.8, "brain cut-out trembles")],
+     notes=CLIP_NOTE + " Cut-outs sit beside the screen, never over the speaker.")
+shot(L(3), B(3, "of"), "CLOSE -> EXTREME WIDE",
+     "Fast pull-back from the big screen: every set on the wall lights up (paused frames of the two clips plus lemon "
+     "screens); the wall recedes (it may bleed into the UI zones as decor).",
      "Upper TV rows", "Full TV wall", "Lower TV rows",
-     "Pull-back, multiplane layers separating.",
-     [("50 years", W(3, "fifty"), None)], "Fast pull-back", "Paper slide",
+     "Fast pull-back, multiplane layers separating.",
+     [("50 years", W(3, "fifty"), None)], "Fast pull-back", "Paper slide carrying the restaurant window",
      [(L(3), "whoosh", 0.45), (W(3, "fifty"), "pop", 0.4), (W(3, "everyone"), "tv_on", 0.3)],
      ["TVWALL"], notes="Clip frames here are small and unreadable; no lower third needed. If a face reads, add its credit.")
 shot(B(3, "of"), B(3, "one"), "MEDIUM",
@@ -121,27 +123,19 @@ shot(B(3, "of"), B(3, "one"), "MEDIUM",
      "tables stacked below with folded NO MSG cards. On 'it all started' a lemon envelope slides onto the top table.",
      "Restaurant window + NO MSG sign", "Table 1 / table 2", "Table 3 + envelope arriving",
      "Tilt down the stack.",
-     [("No MSG", W(3, "of"), None)], "Paper slide", "Smash cut (flash-forward)",
+     [("No MSG", W(3, "of"), None)], "Paper slide carrying the restaurant window", "Push into the envelope",
      [(W(3, "of"), "neon_flicker", 0.45), (W(3, "msg."), "pop_small", 0.3), (W(3, "started"), "paper", 0.35)],
      ["SIGN", "LETTER"], beats=[(W(3, "and"), "envelope slides in")],
      notes="First appearance of the NO MSG sign (paid off in s09). Paper 'neon': flat colour tubes, no glow.")
-shot(B(3, "one"), W(3, "1968.") + 0.45, "CLOSE (flash-forward, style frame C)",
-     "FLASH-FORWARD (~1.5 s): smash cut to the cobalt desk of s06.05: the rubber stamp slams the quoted headline onto "
-     "the lemon letter on '1968', paper flecks fly. Reuse the s06.05 render (same art, same angle), slightly faster.",
-     "Stamp handle", "Stamped quoted headline on the letter", "—",
-     "Snap push-in, 4-frame shake on impact.",
-     [("\"Chinese-Restaurant Syndrome\"", W(3, "1968."), None)], "Smash cut", "Smash cut back + record scratch",
-     [(W(3, "one") - 0.05, "whoosh", 0.45), (W(3, "1968."), "stamp", 0.8), (W(3, "1968.") + 0.05, "impact_big", 0.4)],
-     ["HEADLINE", "STAMP", "LETTER"], flash=True, hero="Flash-forward tease: the 1968 headline stamp",
-     notes="Nested draw of s06 at its stamp time; keep any s06.05 changes in sync.")
-shot(W(3, "1968.") + 0.45, D(), "CLOSE -> WIDE",
-     "Record scratch on the cut back: the MSG shaker alone on a turquoise table under a cut-paper spotlight, a small "
-     "freeze-wobble. An ink '?' drops above it on 'bad'; then a slight pull-back shows the TV wall behind it.",
-     "'?' cut-out", "Shaker", "Table edge",
-     "Freeze-wobble, then slow pull-back.",
-     [], "Smash cut back", "Paper slide, the sheet carries a falling gold drop into s02",
-     [(W(3, "1968.") + 0.45, "record_scratch", 0.6), (W(4, "is"), "boing", 0.3), (W(4, "bad"), "pop", 0.4), (D() - 0.5, "whoosh", 0.4)],
-     ["SHAKER", "TVWALL"], beats=[(W(4, "actually"), "spotlight swings once"), (W(4, "you?"), "pull-back starts")])
+shot(B(3, "one"), D(), "CLOSE",
+     "HANDOFF TO s06: the sealed lemon envelope lifts off the table toward camera on 'one letter' and lands on the "
+     "cobalt desk of s06 (hot-pink underlay, turquoise card at the edge). A '1968' date slip is pinned to it on '1968'. "
+     "The last frame is s06.01's first frame (same desk, same envelope).",
+     "Date slip", "Sealed envelope on the cobalt desk", "Turquoise card edge",
+     "Push-in following the envelope, then lock.",
+     [("1968", W(3, "1968."), None)], "Push into the envelope", "Match cut into s06.01 (same desk; no blank frame)",
+     [(W(3, "one"), "whoosh", 0.4), (W(3, "letter,"), "paper", 0.4), (W(3, "1968."), "pop", 0.45)],
+     ["LETTER"], beats=[(W(3, "1968.") + 1.0, "the envelope's flap lifts a little")])
 
 # ================================================================ s02 title
 scene("s02_title")
@@ -150,7 +144,7 @@ shot(0.0, 1.2, "MEDIUM",
      "gold and wider); Goldie pops up out of the centre.",
      "Drop falling", "Fifth Ripple + Goldie", "Title slip",
      "Locked.",
-     [("MSG", W(1, "msg."), None)], "Paper slide", "Continuous",
+     [("MSG", W(1, "msg."), None)], "Match: the gold drop from s06.10 lands", "Continuous",
      [(0.05, "swoosh_down", 0.4), (W(1, "msg."), "bubble", 0.5), (W(1, "msg.") + 0.1, "impact_soft", 0.6)],
      ["GOLDIE", "RIPPLE"])
 shot(1.2, D(), "MEDIUM",
@@ -331,27 +325,28 @@ shot(B(1, "same"), D(), "MEDIUM",
      "A cooking pot: Goldie bobs happily in the broth (same flavour); a sodium meter beside the pot drops.",
      "Steam", "Pot with happy Goldie", "Sodium meter dropping",
      "Locked.",
-     [("Less sodium", W(1, "less"), None)], "Cut", "Paper slide to the cobalt desk",
+     [("Less sodium", W(1, "less"), None)], "Cut", "Paper slide carrying s09's TV wall",
      [(W(1, "same"), "bubbling_pot", 0.3), (W(1, "flavor,"), "pop", 0.35), (W(1, "less"), "swoosh_down", 0.35), (W(1, "sodium.", 2), "success", 0.4)],
      ["SHAKER", "NA", "GOLDIE"], notes="No % reduction on screen.")
 
 # ================================================================ s06 origin (style frame C)
 scene("s06_origin")
-shot(0.0, L(2), "MEDIUM",
-     "A kombu blade curls into the MSG shaker; a tomato-red spotlight snaps on and a cut-paper villain moustache drops onto it.",
-     "Spotlight", "Shaker with moustache", "—",
+shot(0.0, L(2), "MEDIUM (cobalt desk)",
+     "Same cobalt desk as the end of s01, the sealed envelope beside it: a kombu blade curls into the MSG shaker; a "
+     "tomato-red spotlight snaps on and a cut-paper villain moustache drops onto it (viewer favourite: keep).",
+     "Spotlight", "Shaker with moustache", "Envelope on the desk",
      "Push-in.",
-     [("Villain?", W(1, "villain?"), None)], SLIDE_IN, "Paper slide",
+     [("Villain?", W(1, "villain?"), None)], "Match cut from s01.05 (same desk)", "Pan to the envelope (continuous)",
      [(0.2, "whoosh", 0.3), (W(1, "seaweed"), "swoosh_down", 0.3), (W(1, "villain?"), "impact_soft", 0.45)],
-     ["SHAKER", "KOMBU"])
+     ["SHAKER", "KOMBU", "LETTER"])
 shot(L(2), B(2, "after"), "MEDIUM (style frame C desk)",
-     "Cobalt desk: a lemon letter on a hot-pink underlay slides in and writes itself in squiggle lines (no legible "
-     "text); it folds into an envelope addressed in squiggles on 'journal'.",
+     "The envelope opens; a lemon letter on a hot-pink underlay slides out and writes itself in squiggle lines (no "
+     "legible text); on 'journal' it is addressed in squiggles.",
      "Date slip", "Lemon letter writing itself", "Envelope",
      "Overhead, slow push.",
-     [("1968", W(2, "1968,"), None)], "Paper slide", "Continuous",
+     [("1968", W(2, "1968,"), None)], "Pan (continuous)", "Continuous",
      [(W(2, "1968,"), "pop", 0.4), (W(2, "doctor"), "typewriter", 0.35), (W(2, "journal:"), "paper", 0.4)],
-     ["LETTER"], beats=[(W(2, "1968,") + 1.2, "squiggle line 2 writes")], notes="Author not named or drawn; journal not named.")
+     ["LETTER"], beats=[(W(2, "1968,") + 1.1, "squiggle line 2 writes")], notes="Author not named or drawn; journal not named.")
 shot(B(2, "after"), L(3), "MEDIUM",
      "Two small cut-paper symptom icons pin onto the letter: a mitten hand with pins-and-needles dots (numb), a "
      "drooping arm (weak).",
@@ -368,51 +363,68 @@ shot(L(3), L(4), "MEDIUM",
      "Locked.",
      [("Guessing", W(3, "guessing."), None)], "Continuous", "Whip to the stamp",
      [(W(3, "wine?"), "blip", 0.4), (W(3, "salt?"), "blip", 0.4), (W(3, "msg?"), "blip", 0.45), (W(3, "guessing."), "boing", 0.35)],
-     ["LETTER", "SHAKER", "SALT"])
+     ["LETTER", "SHAKER", "SALT"], beats=[(W(3, "he"), "the three '?' drift together")])
 shot(L(4), L(5), "MEDIUM (style frame C)",
      "Style frame C: the stamp handle slams the quoted headline across the letter; paper flecks fly; coral "
      "newspapers start sliding out from the stamp like a tomato-red anti-ripple.",
      "Stamp handle lifting", "Stamped quoted headline", "Turquoise card + newspapers sliding",
      "Whip-in, 6-frame shake, hold with drift.",
-     [("\"Chinese-Restaurant Syndrome\"", W(4, "chinese"), None)], "Whip", "Continuous",
+     [("\"Chinese-Restaurant Syndrome\"", W(4, "chinese"), None)], "Whip", "Cut",
      [(W(4, "journal"), "swoosh_down", 0.3), (W(4, "catchy"), "swoosh_down", 0.35), (W(4, "chinese"), "stamp", 0.8),
       (W(4, "chinese") + 0.05, "impact_big", 0.45), (W(4, "syndrome."), "paper", 0.35)],
-     ["HEADLINE", "STAMP", "LETTER", "RIPPLE"], hero="Headline stamp (style frame C; also the s01 flash-forward)",
+     ["HEADLINE", "STAMP", "LETTER", "RIPPLE"], hero="Headline stamp (style frame C)",
      notes="Young Serif, hyphenated, in quotes; framed as the thing being criticised.")
 shot(L(5), B(5, "but"), "MEDIUM",
-     "Mouse pups on a cobalt LAB TRAY (with a tray rim and a lab label tab, never a plate); a comically giant "
-     "syringe lowers from the top (never touches them). On 'brain damage' the coral newspapers at the edges grow "
-     "bigger tomato-red headline bars.",
+     "Mouse pups on a cobalt LAB TRAY (tray rim and a lab label tab, never a plate); a comically giant syringe lowers "
+     "from the top (never touches them). On 'brain damage' the coral newspapers at the edges grow bigger tomato-red "
+     "headline bars.",
      "Giant syringe", "Mouse pups on the lab tray", "Newspapers at the edges",
      "Slow push-in.",
      [("Huge doses", W(5, "huge"), None)], "Cut", "Split-wipe",
      [(W(5, "mice"), "pop_small", 0.3), (W(5, "injected"), "swoosh_down", 0.35), (W(5, "huge"), "impact_soft", 0.4), (W(5, "damage."), "alarm", 0.25)],
      ["MOUSE", "SYRINGE"], notes="Lab tray, never a plate (viewer test). No gore, no needle contact.")
 shot(B(5, "but"), L(6), "WIDE (top/bottom split)",
-     "Top: giant syringe over a tiny pup on its lab tray. Bottom: a dinner bowl with a spoon and Goldies, and a tiny "
-     "gut cell with a bib chomping one (callback to s05). A big '≠' cut-out on the divider.",
-     "Syringe + pup on tray (top half)", "'≠' on the divider", "Dinner bowl + gut-cell cameo (bottom half)",
+     "Top: giant syringe over a tiny pup on its lab tray. Bottom: a dinner bowl with a spoon and Goldies. A big '≠' "
+     "cut-out on the divider.",
+     "Syringe + pup on tray (top half)", "'≠' on the divider", "Dinner bowl + Goldies (bottom half)",
      "Locked split.",
      [], "Split-wipe", "Split-wipe",
      [(W(5, "but"), "whoosh", 0.35), (W(5, "mouse"), "pop_small", 0.3), (W(5, "nothing"), "impact_soft", 0.5), (W(5, "dinner."), "chomp", 0.35)],
-     ["MOUSE", "SYRINGE", "GOLDIE", "GUTCELL"], hero="Injection is not dinner")
+     ["MOUSE", "SYRINGE", "GOLDIE"], hero="Injection is not dinner",
+     notes="s06 now plays before s05, so no gut-cell cameo here (the gut cells have not been introduced yet).")
 shot(L(6), B(6, "the"), "WIDE (top/bottom split)",
      "Top: a parmesan wedge under a tomato-red bell that stays DEAD STILL (no boil on the bell, no wobble). Bottom: a "
      "plain white takeout carton under a HUGE bell that rings hard: big swings, motion marks, the bottom half shakes. "
      "Identical Goldies float over both.",
      "Parmesan + dead-still bell (top half)", "Divider", "Carton + big ringing bell (bottom half)",
      "Locked split; only the bottom half shakes.",
-     [], "Split-wipe", "Collapse",
+     [], "Split-wipe", "Collapse onto the carton",
      [(W(6, "nobody"), "pop_small", 0.3), (W(6, "panicked"), "alarm", 0.5), (W(6, "parmesan."), "alarm", 0.45)],
      ["TAKEOUT", "GOLDIE"], hero="Double standard: big bell on the carton, silent bell on the parmesan",
-     notes="Viewer test: the contrast must be obvious at a glance. Narration no longer mentions tomato sauce.")
-shot(B(6, "the"), D(), "CLOSE",
-     "The split collapses; the stamped headline slides back in; push in on it on 'name'.",
-     "—", "Stamped quoted headline", "—",
-     "Slow push-in.",
-     [("\"Chinese-Restaurant Syndrome\"", W(6, "the"), None)], "Collapse", SLIDE_OUT + " back to the TV wall",
-     [(W(6, "fear"), "swoosh_down", 0.3), (W(6, "cuisine,"), "paper", 0.3), (W(6, "name"), "impact_soft", 0.4)],
-     ["HEADLINE", "STAMP"], beats=[(W(6, "loud.") + 0.2, "a newspaper slides off")])
+     notes="Viewer test: the contrast must be obvious at a glance.")
+shot(B(6, "the"), L(7), "MEDIUM -> CLOSE",
+     "THE FEAR STICKS (strong, full frame): the split collapses onto the plain white carton, now big in MID. The stamp "
+     "handle slams the quoted headline straight onto the carton's side on 'stuck', and it stays stuck: the coral "
+     "newspapers swirl round the carton in a tight tomato-red anti-ripple and three ringing bells crowd in around it. "
+     "Push in on the stamped name on 'name'.",
+     "Ringing bells crowding in", "Carton with the headline stamped on it", "Newspapers swirling round its base",
+     "Push-in, 4-frame shake on the stamp, slow push on 'name'.",
+     [("\"Chinese-Restaurant Syndrome\"", W(6, "stuck"), None)], "Collapse", "Continuous",
+     [(W(6, "fear"), "swoosh_down", 0.3), (W(6, "stuck"), "stamp", 0.7), (W(6, "cuisine,"), "alarm", 0.35), (W(6, "name"), "impact_soft", 0.45)],
+     ["HEADLINE", "STAMP", "TAKEOUT", "RIPPLE"], hero="The fear stuck to one cuisine (strong visual, no empty frame)",
+     beats=[(W(6, "loud."), "a newspaper wraps round the carton")],
+     notes="The stamp on the carton shows the label sticking to one cuisine, framed as the injustice. Plain carton, quoted "
+     "headline, no people, no faux-Asian signifiers.")
+shot(L(7), D(), "MEDIUM",
+     "BRIDGE TO THE SCIENCE: a giant ink '?' cut-out drops onto the stamped carton on 'right?'. Then the villain shaker "
+     "steps into the foreground and turns to look straight at camera on 'Is MSG'; its moustache wobbles loose on 'bad'. "
+     "On 'you?' a single gold drop falls from the top of frame toward it: that drop continues into s02's title ripple.",
+     "Gold drop falling (end)", "Shaker looking at camera", "Carton with '?' behind",
+     "Slow push-in on the shaker.",
+     [], "Continuous", "Match: the gold drop falls into s02 (no blank frame)",
+     [(W(7, "right?"), "thud", 0.45), (W(7, "msg"), "boing", 0.3), (W(7, "bad"), "pop_small", 0.35), (W(7, "you?"), "swoosh_down", 0.4)],
+     ["SHAKER", "TAKEOUT", "HEADLINE"], hero="Bridge: 'Is MSG actually bad for you?' -> title",
+     beats=[(W(7, "you?") + 0.15, "the drop enters frame")])
 
 # ================================================================ s09 outro (LOOP)
 scene("s09_outro")
@@ -436,27 +448,28 @@ shot(round(W(3, "outlived") - 0.15, 3), L(4), "WIDE",
      "TVs switch off one by one while a tall stack of vivid research papers rises beside them; the weights slide off.",
      "Paper stack top", "TV wall switching off", "Stack base",
      "Pull-back.",
-     [], "Pull-back", "Paper slide",
+     [], "Pull-back", "Paper slide carrying the NO MSG window",
      [(W(3, "outlived"), "tv_off", 0.45), (W(3, "decades"), "tv_off", 0.45), (W(3, "of"), "tv_off", 0.45), (W(3, "science."), "paper", 0.4)],
      ["TVWALL"], hero="TVs switch off")
 shot(L(4), B(4, "reach"), "MEDIUM",
      "The NO MSG sign from s01 in its window; the 'NO' tube flickers and goes out on 'sign...', leaving 'MSG' lit gold.",
      "Window top", "Sign", "Window sill",
      "Slow push-in.",
-     [("No MSG", L(4), W(4, "sign...")), ("MSG", W(4, "sign..."), None)], "Paper slide", "Dissolve through the window",
+     [("No MSG", L(4), W(4, "sign...")), ("MSG", W(4, "sign..."), None)], "Paper slide carrying the NO MSG window", "Dissolve through the window",
      [(L(4) + 0.1, "neon_buzz", 0.3), (W(4, "no"), "neon_flicker", 0.45), (W(4, "sign..."), "click", 0.45), (W(4, "sign...") + 0.3, "sparkle", 0.35)],
      ["SIGN"], hero="'NO' burns out")
 shot(B(4, "reach"), D(), "CLOSE -> WIDE (LOOP)",
      "Lamp-lit kitchen table: ramen bowl; a mitten hand reaches for the MSG shaker and shakes; one gold drop hits the "
      "broth and makes the Fifth Ripple (end card: 'MSG' slip on the ripple). Then pull back: the bowl is on the hero "
-     "TV's screen in the TV wall, framed exactly like s01 frame 0; a channel flicker hands over to clip blaylock_brain.",
+     "TV's screen; push in until the screen fills the frame exactly like s01 frame 0, and on the last frames the screen "
+     "flickers to clip blaylock_hungry's first frame with the name lower third, so the last frame equals s01 frame 0.",
      "TV wall (end)", "Ramen ripple -> hero TV", "'MSG' end-card slip",
-     "Push-in, then pull-back to the s01 framing.",
+     "Push-in on the ramen, pull-back to the hero TV, push-in to the s01.01 framing.",
      [("MSG", W(4, "shaker."), None)], "Dissolve", "LOOP: last frame = s01 frame 0 layout; flicker on the final frames",
      [(W(4, "reach"), "pop_small", 0.35), (W(4, "shaker."), "pop_small", 0.35), (W(4, "shaker.") + 0.4, "bubble", 0.4),
       (W(4, "shaker.") + 0.6, "chime", 0.4), (D() - 0.15, "channel_switch", 0.45)],
      ["SHAKER", "GOLDIE", "RIPPLE", "TVWALL", "END_CARD"], hero="End card -> loop into the hook",
-     notes="Hero TV size/position and wall layout identical to s01.01 frame 0 (minus the clip). No fade to black.")
+     notes="Last frame = s01 frame 0: big hero screen showing blaylock_hungry frame 0 + lower third. No fade, no blank frame.")
 
 # ================================================================ continuity, guardrails
 CONTINUITY = {
@@ -468,7 +481,8 @@ CONTINUITY = {
                "the shot's one label."),
     "SALT": ("Salt shaker", "Same silhouette, white crystals and ink-dot cap; no lettering."),
     "TVWALL": ("TV wall (style frame A layout)", "Violet wall, grape dim sets, turquoise hero TV spanning two columns. "
-               "s01.01 frame 0 and the last frame of s09 use the identical layout."),
+               "s01.01-02 are pushed in so the hero screen fills most of the frame (client: clip big); s01.01 frame 0 and the "
+               "last frame of s09 are identical (blaylock_hungry frame 0 at that framing)."),
     "CLIPS": ("Real interview clips", "Two real clips of Dr. Russell Blaylock (blaylock_brain, blaylock_hungry; lib/clips.js) play only inside the hero "
               "TV screen, unaltered in content, with paper cut-outs (brain, shaker, zig-zags) placed beside the screen, never on "
               "the person. Placeholder rectangle until delivered."),
@@ -477,7 +491,7 @@ CONTINUITY = {
                 "DRAMATIZATION tag."),
     "SIGN": ("NO MSG sign", "Paper 'neon': separate NO and MSG tubes, flat colour, no glow; same window and angle in s01 and s09."),
     "GUTCELL": ("Gut cells with bibs", "KP.cell: pink cells with white bibs, two tiers, chomp and gold-flame states. "
-                "Canonical in s05.02; cameo in s06."),
+                "Canonical in s05.02."),
     "BADGE95": ("95% number", "Young Serif big number; the only percentage in the film."),
     "BODY": ("Body interior", "Layered pink paper tints for the dive in s05.01."),
     "BBB": ("Blood-brain barrier", "Cobalt cut-paper castle wall with friendly paper-doll guards."),
@@ -488,10 +502,10 @@ CONTINUITY = {
     "RIPPLE": ("The Fifth Ripple", "KP.ripple: drop + 5 rings, the fifth gold and wider: s02, s03, s06 (anti-ripple), "
                "s07 (chart baseline), s09 (ramen, end card)."),
     "HEADLINE": ("Stamped headline", "KP.stamp, Young Serif, '\"CHINESE-RESTAURANT SYNDROME\"' over two lines, tomato "
-                 "red, distressed. One render, used in s06.05 and the s01 flash-forward."),
+                 "red, distressed. One render, used in s06.05 and stamped onto the carton in s06.09."),
     "STAMP": ("Rubber stamp", "Ink handle with tomato-red pad; same prop for the headline, GRAS and the s09 mini stamp."),
     "LETTER": ("1968 letter", "Lemon letter on hot-pink underlay, squiggle lines only (KP.squiggle), no legible words; "
-               "the envelope also arrives in s01.05."),
+               "the sealed envelope arrives in s01.04-05 and carries the match cut into s06."),
     "TASTE_ICONS": ("Four taste icons", "Candy, lemon, salt crystal, coffee bean; riding the first four rings."),
     "IKEDA": ("Kikunae Ikeda", "Respectful paper doll, high collar, round glasses, moustache; never comedic."),
     "CAPTION": ("Caption strip", "KP.caption: torn white strip, Nunito Black, spoken words ink, upcoming lavender, "
@@ -502,13 +516,13 @@ INCIDENTAL = {"TAKEOUT", "MOUSE", "SYRINGE", "CAPSULES", "VOLUNTEERS"}
 
 GUARDRAILS = {
     "allowed_numbers_and_claims": [
-        "s01: the two Blaylock clips' own words, unaltered and in context ('Excitotoxicity destroys brain cells.'; 'They put so much MSG in food because it makes you hungry...'), credited 'Neurosurgeon, lecture on MSG, 2012'; narrator: 'for fifty years' (label '50 years'), everyone has been scared of MSG, it started with one letter in 1968",
+        "s01: the two Blaylock clips' own words, unaltered and in context ('They put so much MSG in food because it makes you hungry...'; 'Excitotoxicity destroys brain cells.'), credited 'Neurosurgeon, lecture on MSG, 2012'; narrator: 'for fifty years' (label '50 years'), everyone has been scared of MSG, it started with one letter in 1968",
         "s03: 1908; Japanese chemist Kikunae Ikeda tasted something odd in his seaweed soup; not sweet, sour, salty or bitter; called it umami; turned it into a seasoning: monosodium glutamate",
         "s04: glutamate is everywhere: tomatoes, parmesan, even breast milk; tomato glutamate and MSG glutamate are the exact same molecule",
         "s05: gut cells burn glutamate as fuel; ~95% never reaches the blood; the rest hits the blood-brain barrier, one of the best-guarded borders",
         "s07: in double-blind studies, people who said MSG made them sick reacted as often to a placebo; the FDA calls it generally recognized as safe (GRAS), like salt",
         "s08: a third of the sodium of table salt; same flavour, less sodium",
-        "s06: 1968 doctor's letter to a medical journal; after Chinese food he felt numb and weak; wine, salt, MSG: he was guessing; the journal's headline 'Chinese Restaurant Syndrome'; mice injected with huge doses got brain damage; injecting a baby mouse is nothing like eating dinner; nobody panicked about parmesan",
+        "s06: 1968 doctor's letter to a medical journal; after Chinese food he felt numb and weak; wine, salt, MSG: he was guessing; the journal's headline 'Chinese Restaurant Syndrome'; mice injected with huge doses got brain damage; injecting a baby mouse is nothing like eating dinner; nobody panicked about parmesan; the fear stuck to one cuisine; 'But was he right? Is MSG actually bad for you?'",
         "s09: 'Not really'; a guess, a catchy name and a little prejudice outlived decades of science; No MSG sign; reach for the shaker",
     ],
     "forbidden": [
@@ -524,23 +538,23 @@ GUARDRAILS = {
     "sensitive_1960s_section": [
         "s06 shows only paper, type, a bottle, a salt cellar, a shaker, mice on a lab tray, parmesan, a dinner bowl and a plain white carton: no restaurants, staff or diners.",
         "No faux-Asian fonts or signifiers (pagodas, lanterns, dragons, chopsticks as decoration, conical hats); the carton is plain white.",
-        "The headline is quoted, hyphenated and stamped as the thing being criticised; never a joke or a brand (also in the s01 flash-forward).",
+        "The headline is quoted, hyphenated and stamped as the thing being criticised; never a joke or a brand; stamped onto the carton in s06.09 as the injustice.",
         "The prejudice beat is a big ringing bell over the carton and a dead-still bell over the parmesan; no people are shown being othered.",
         "Ikeda is drawn respectfully; the letter author and the mouse researchers are never named or drawn.",
     ],
 }
 
-ORDER = ["s01_coldopen", "s05_body", "s06_origin", "s02_title", "s03_ikeda", "s04_everywhere", "s07_tests", "s08_twist", "s09_outro"]
+ORDER = ["s01_coldopen", "s06_origin", "s05_body", "s02_title", "s03_ikeda", "s04_everywhere", "s07_tests", "s08_twist", "s09_outro"]
 ORDER_WHY = {
-    "s01_coldopen": "BUILT - rework: puppets -> real-clip placeholders + name/credit lower third; new flash-forward shot (nested s06.05); old shots 6+7 merged.",
-    "s05_body": "BUILT - rework: tongue shot removed, fork shot now ends in the dive; shots 4-7 keep their content.",
-    "s06_origin": "BUILT - rework: same 9 shots; mice on a lab tray; bell split now parmesan (dead still) vs carton (big ring).",
-    "s02_title": "BUILT - re-time only.",
-    "s03_ikeda": "scenes/s03_ikeda.js exists from the previous cut (7 shots) - rework to 5: seaweed mountain and sodium shots cut, umami + seasoning merged; clearer kombu blade.",
+    "s01_coldopen": "BUILT - rework: clip order swapped (hungry first), camera pushed in so the clip is big, flash-forward removed, last shot hands the envelope over to s06 by match cut.",
+    "s06_origin": "BUILT - rework: now 2nd in the Reel; opens on the s01 desk; gut-cell cameo removed; s06.09 'fear stuck' becomes a full-frame stamp-on-carton beat; new s06.10 bridge ('Is MSG actually bad for you?') drops the gold drop into s02.",
+    "s05_body": "BUILT - re-time only (still between s04 and s07).",
+    "s02_title": "BUILT - re-time; opens on the gold drop handed over from s06.10.",
+    "s03_ikeda": "scenes/s03_ikeda.js exists (previous cut) - rework to 5 shots.",
     "s04_everywhere": "To build: Earth of Goldies, 3-food stack, equality split.",
     "s07_tests": "To build: 3 shots (shuffle + volunteers, chart, GRAS + shelf).",
-    "s08_twist": "To build: scale + ions, pot + meter.",
-    "s09_outro": "To build last: its final frame must match s01 frame 0 for the loop.",
+    "s08_twist": "To build: scale + ions, pot + meter; now hands straight into s09.",
+    "s09_outro": "To build last: its final frame must equal s01 frame 0 (big blaylock_hungry frame 0).",
 }
 
 # ================================================================ build + validate
@@ -558,6 +572,9 @@ for sid in reel["scenes"]:
         dur = sh["end"] - sh["start"]
         if (dur < 2.0 and sid != "s02_title" and not sh["flash"]) or dur > 6.5: errors.append(f"{sh['id']}: duration {dur:.2f}")
         if sh["flash"] and not 1.2 <= dur <= 2.0: errors.append(f"{sh['id']}: flash-forward should be ~1.5 s, is {dur:.2f}")
+        for tr in (sh["transition_in"], sh["transition_out"]):  # viewer test: no blank paper slides
+            if "slide" in tr.lower() and "carrying" not in tr.lower(): errors.append(f"{sh['id']}: slide transition must carry content: '{tr}'")
+            if re.search(r"\b(black|blank|empty)\b", tr, re.I) and not re.search(r"\b(no|never)\b", tr, re.I): errors.append(f"{sh['id']}: empty transition '{tr}'")
         ev = sorted([sh["start"], sh["end"], *[x["t"] for x in sh["sfx"]], *[x["in"] for x in sh["labels"]],
                      *[x["t"] for x in sh["beats"]]])
         ev = [min(max(e, sh["start"]), sh["end"]) for e in ev]
@@ -599,7 +616,10 @@ for sid in reel["scenes"]:
 first, last = all_shots["s01.01"], all_shots[f"{reel['scenes'][-1][:3]}.{len(SCENES[reel['scenes'][-1]]):02d}"]
 if not first["labels"] or first["labels"][0]["in"] > 0.3: errors.append("hook: label must be up by 0.3 s")
 if first["transition_in"].split(":")[0] != "NONE": errors.append("hook: s01 must open lit on frame 0")
-if not any(s["flash"] for s in all_shots.values()): errors.append("s01 flash-forward missing")
+order = reel["scenes"]
+for x, y in zip(order, order[1:]):  # every scene join must hand content across (no blank frame)
+    out_tr = SCENES[x][-1]["transition_out"]; in_tr = SCENES[y][0]["transition_in"]
+    if not re.search(r"carrying|match|ripple|continu|cut", out_tr + " " + in_tr, re.I): errors.append(f"join {x}->{y}: no content carried")
 if "TVWALL" not in last["props"] or "END_CARD" not in last["props"]: errors.append("loop: last shot must end on the TV wall end card")
 if offset >= 180: errors.append(f"Reel is {offset:.1f}s (must be under 3 min)")
 if errors:
@@ -671,7 +691,9 @@ y 1920 └───────────────────────�
 - **Kombu Paper vocabulary:** cut paper with hard offset shadows and riso misregistration, boil on twos, no
   outlines, no glows, no gradients, vivid riso stock only, gold reserved for glutamate (Goldie). Use the `KP` kit
   (`design/frames/kombu-paper/frames.js`).
-- **Transitions:** paper slide (default), Gold Ripple wipe on act changes (s02→s03, s04→s05), channel flicker on
+- **Transitions:** every paper slide carries the next shot's art on the sheet (viewer test: two slides flashed a
+  blank colour; never again). Gold Ripple wipe on act changes, match cuts at s01→s06 (envelope) and s06→s02 (gold
+  drop), channel flicker on
   the TV wall. No dips to black anywhere: the Reel opens lit and loops.
 - **Timing:** shot boundaries are line starts or `word start - 0.1 s`; labels and SFX land on real word starts.
   Times are scene-relative; `reel_time` in the JSON is the Reel clock.
