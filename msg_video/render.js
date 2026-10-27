@@ -21,7 +21,7 @@ function serve() {
 }
 
 async function openPage(browser, port) {
-  const page = await browser.newPage({ viewport: { width: 960, height: 540 } });
+  const page = await browser.newPage({ viewport: { width: 540, height: 960 } });
   page.on('pageerror', e => console.error('PAGE ERROR:', e.message));
   page.on('console', m => { if (m.type() === 'error') console.error('CONSOLE:', m.text()); });
   await page.goto(`http://127.0.0.1:${port}/player.html`);
@@ -70,16 +70,16 @@ async function renderVideo(browser, port, id) {
           console.log(f);
         }
       } else {
-        // contact sheet: N evenly spaced frames in a 4-wide grid at 480x270
+        // contact sheet: N evenly spaced frames in a 4-wide grid at 270x480
         const N = Number(args[1] || 12), D = cues[id].duration;
         const times = Array.from({ length: N }, (_, i) => +(D * (i + .5) / N).toFixed(2));
         const data = await page.evaluate(async ([id, times]) => {
           const cols = 4, rows = Math.ceil(times.length / cols), sheet = document.createElement('canvas');
-          sheet.width = cols * 480; sheet.height = rows * 270; const sc = sheet.getContext('2d');
+          sheet.width = cols * 270; sheet.height = rows * 480; const sc = sheet.getContext('2d');
           times.forEach((t, i) => {
-            renderFrame(id, t); sc.drawImage(document.getElementById('c'), (i % cols) * 480, Math.floor(i / cols) * 270, 480, 270);
-            sc.fillStyle = 'rgba(0,0,0,.6)'; sc.fillRect((i % cols) * 480, Math.floor(i / cols) * 270, 110, 34);
-            sc.fillStyle = '#fff'; sc.font = '24px sans-serif'; sc.fillText('t=' + t, (i % cols) * 480 + 8, Math.floor(i / cols) * 270 + 25);
+            renderFrame(id, t); sc.drawImage(document.getElementById('c'), (i % cols) * 270, Math.floor(i / cols) * 480, 270, 480);
+            sc.fillStyle = 'rgba(0,0,0,.6)'; sc.fillRect((i % cols) * 270, Math.floor(i / cols) * 480, 110, 34);
+            sc.fillStyle = '#fff'; sc.font = '24px sans-serif'; sc.fillText('t=' + t, (i % cols) * 270 + 8, Math.floor(i / cols) * 480 + 25);
           });
           return sheet.toDataURL('image/png');
         }, [id, times]);

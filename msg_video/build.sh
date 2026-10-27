@@ -10,11 +10,17 @@ python3 script.py
 node render.js --video all --jobs 4
 node render.js --sfx
 python3 mix_audio.py
+# One Instagram Reel per part (1080x1920), plus the full-length cut.
 python3 - <<'PY'
-import json
-ids = list(json.load(open("cues.json")))
-open("out/concat.txt", "w").write("".join(f"file 'scenes/{i}.mp4'\n" for i in ids))
+from script import PARTS, SCENES
+groups = {p["id"]: p["scenes"] for p in PARTS}
+groups["full"] = [s["id"] for s in SCENES]
+for name, ids in groups.items():
+    open(f"out/concat_{name}.txt", "w").write("".join(f"file 'scenes/{i}.mp4'\n" for i in ids))
 PY
-ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -i out/final_audio.wav \
-  -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart out/msg_explainer.mp4
-echo "Done: $(pwd)/out/msg_explainer.mp4"
+for name in part1 part2 part3 full; do
+  audio="out/${name}_audio.wav"; [[ $name == full ]] && audio="out/final_audio.wav"
+  ffmpeg -y -loglevel error -f concat -safe 0 -i "out/concat_${name}.txt" -i "$audio" \
+    -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart "out/msg_${name}.mp4"
+  echo "Done: $(pwd)/out/msg_${name}.mp4"
+done
