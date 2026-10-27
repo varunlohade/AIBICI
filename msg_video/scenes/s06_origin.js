@@ -317,7 +317,7 @@
       for (let i = 0; i < 7; i++) {
         const a = i / 7 * TAU + KP.held(t) * .6, r = KP.lerp(1000, 560, sw) + (i % 2) * 40;
         if (sw <= 0) continue;
-        newspaper(ctx, 490 + Math.cos(a) * r, 760 + Math.sin(a) * r * .95, 180, 210, a + 1.2, 70 + i, P.coral, b, 26);
+        newspaper(ctx, 490 + Math.cos(a) * r, 700 + Math.sin(a) * r * .62, 180, 210, a + 1.2, 70 + i, P.coral, b, 26);
       }
       // the carton: grows from the split's bottom half into MID
       const k = KP.lerp(.5, 1, col), x = KP.lerp(380, CX0, col), y = KP.lerp(1200, CY0, col), s = CS * k;

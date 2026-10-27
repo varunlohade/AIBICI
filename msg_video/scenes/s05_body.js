@@ -189,7 +189,7 @@
   }
 
   // ======================================================== shots 5-7: the map (gut wall -> vessel -> castle)
-  const VESSEL = KP.curve([[-160, 1170], [300, 1170], [640, 1160], [790, 1060], [810, 800], [800, 400], [800, -100], [800, -460]], false, 24);
+  const VESSEL = KP.curve([[-900, 1180], [-400, 1160], [300, 1170], [640, 1160], [790, 1060], [810, 800], [800, 400], [800, -100], [800, -460]], false, 24);
   const VLEN = []; { let L = 0; VESSEL.forEach((p, i) => { if (i) L += Math.hypot(p[0] - VESSEL[i - 1][0], p[1] - VESSEL[i - 1][1]); VLEN.push(L); }); }
   const vAt = s => { s = KP.clamp(s, 0, VLEN[VLEN.length - 1]); let i = 1; while (i < VLEN.length - 1 && VLEN[i] < s) i++; const k = (s - VLEN[i - 1]) / ((VLEN[i] - VLEN[i - 1]) || 1), p = VESSEL[i - 1], q = VESSEL[i]; return [p[0] + (q[0] - p[0]) * k, p[1] + (q[1] - p[1]) * k]; };
   const SGATE = VLEN[VLEN.length - 1];
@@ -204,6 +204,11 @@
     [[[700, -260], [520, -320], [380, -250], [220, -330]], [[700, 160], [560, 230], [420, 180]], [[900, -120], [1060, -190], [1200, -120]], [[900, 300], [1040, 360]]].forEach((c, i) => {
       const pts = KP.curve(c, false, 8); KP.brush(ctx, pts, 22, P.coral, { taper: .7 }); KP.brush(ctx, pts, 8, P.pink30, { taper: .7 });
     });
+    // tissue below the gut wall (fills the lower half in the 95% shot): layered pink paper + capillaries + a few cells
+    KP.paper(ctx, KP.torn(KP.rr(-900, 1040, 2800, 1400, 10, 60), 314 + b, 10, 26), P.pink30, { shadow: [0, -10], shadowA: .25, mis: P.blue, misOff: [3, -2], misA: .25 });
+    KP.paper(ctx, KP.torn(KP.curve([[-900, 1300], [-200, 1260], [500, 1320], [1200, 1270], [1900, 1300], [1900, 2400], [-900, 2400]], true, 10), 315 + b, 8, 22), P.bubble, { shadow: [0, -8], shadowA: .2 });
+    [[[-300, 1380], [0, 1460], [260, 1420]], [[420, 1500], [640, 1440], [900, 1520]], [[1000, 1380], [1200, 1450]]].forEach(c => { const pts = KP.curve(c, false, 8); KP.brush(ctx, pts, 22, P.coral, { taper: .7 }); KP.brush(ctx, pts, 8, P.pink30, { taper: .7 }); });
+    for (let i = 0; i < 9; i++) KP.paper(ctx, KP.jitter(KP.egg(-200 + i * 170, 1330 + (i % 2) * 70, 40, 30, .1, 20), 316 + i + b, 1), P.pink, { shadow: KP.SH.far, shadowA: .2 });
     // the vessel (behind the gut wall and the castle)
     const vs = VESSEL;
     KP.brush(ctx, vs.map(([x, y]) => [x + 10, y + 12]), 130, KP.rgba(P.ink, .25), { taper: 0 });

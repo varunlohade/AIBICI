@@ -119,7 +119,7 @@
       KP.paper(ctx, [[220, 400], [760, 400], [760, 408], [220, 408]], P.coral, { shadow: false });
       for (let i = 0; i < 10; i++) { if (i > 2 && i < 7) continue; KP.squiggle(ctx, 230, 230 + (i % 3 ? 500 : 340), 460 + i * 60, 4850 + i, { amp: 5, wl: 22, w: 6 }); }
       ctx.restore();
-      if (t >= hit) { const st = KP.stamp('gras', ['GRAS'], 520, 240, { size: 140, ls: 10, seed: 57, ink: P.kombu }); ctx.save(); ctx.translate(490, 700); ctx.rotate(-.12); const sa = KP.arrive(t, hit, .12); ctx.scale(1 + (1 - sa.p) * .3, 1 + (1 - sa.p) * .3); ctx.drawImage(st, -260, -120); ctx.restore(); }
+      if (t >= hit) { const st = KP.stamp('safe', ['SAFE'], 520, 240, { size: 140, ls: 10, seed: 57, ink: P.kombu }); ctx.save(); ctx.translate(490, 700); ctx.rotate(-.12); const sa = KP.arrive(t, hit, .12); ctx.scale(1 + (1 - sa.p) * .3, 1 + (1 - sa.p) * .3); ctx.drawImage(st, -260, -120); ctx.restore(); }
       // the stamp handle: descends, hits on 'generally', lifts away
       const down = KP.ease.in(KP.prog(t, hit - .45, hit)), up = KP.ep(t, hit + .1, hit + .5, 'out');
       if (t > hit - .45 && up < 1) {
@@ -130,7 +130,8 @@
         KP.paper(ctx, KP.jitter(KP.rr(336, y + 124, 308, 14, 4, 16), 4863 + b, 1), P.kombu, { shadow: false });
       }
       // shelf with the salt shaker slides up from below on 'Just'; the MSG shaker hops on beside it on 'salt'
-      ctx.save(); ctx.translate(0, (1 - KP.ep(t, T.just - .3, T.just + .1, 'out')) * 900);
+      const shA = KP.arrive(t, T.just - .15, .3);   // the shelf pops in (scale), never peeking up from the frame edge
+      if (!shA.on) { ctx.save(); ctx.globalAlpha = 0; } else { ctx.save(); KP.pose(ctx, shA, 490, 1440, 'pop'); }
       KP.paper(ctx, KP.jitter(KP.rr(140, 1420, 700, 34, 8, 20), 4870 + b, 1.2), P.coral, { shadow: KP.SH.near, shadowA: .35 });
       for (const bx of [200, 780]) KP.paper(ctx, KP.jitter([[bx - 20, 1454], [bx + 20, 1454], [bx, 1520]], 4871 + bx + b, .8), P.coral, { shadow: KP.SH.far });
       KP.shaker(ctx, 380, 1422, 320, { boil: b, seed: 8, salt: true });

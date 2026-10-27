@@ -165,7 +165,7 @@
     const cues01 = window.CUES && window.CUES.s01_coldopen;
     ctx.save(); ctx.translate(ox, oy); ctx.scale(Z, Z); ctx.translate(-scx, -scy);
     const sc = s01(), clean = t >= T.clean - 1e-6;   // the last 4 frames are exactly s01 frame 0
-    sc.hideLow = t < T.flick - 1e-6;                 // credit tag + shelf only once the bowl is gone and the TV is in frame
+    sc.hideLow = t < T.clean - 1e-6;   // tag only in the final frames, when the screen shows his clip frame (= s01 frame 0)                 // credit tag + shelf only once the bowl is gone and the TV is in frame
     sc.heroOverride = clean ? null : (c, SS) => {
       if (t >= T.flick) { KP.colorBars(c, SS, Math.floor(t * 30)); return; }
       const k = Math.max(SS.w / KP.W, SS.h / KP.H), dw = KP.W * k, dh = KP.H * k;

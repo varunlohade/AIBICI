@@ -42,6 +42,7 @@
     T.letter = w(/letter/i, { after: T.ff0, fb: T.ff0 + .3 });
     T.y1968 = w(/1968/, { after: T.started, fb: T.ff0 + 1.1 });
     T.land = Math.min(T.y1968 - .15, T.letter + .7);                             // the envelope lands on the s06 desk
+    T.myth = Math.min(T.c2 - .5, inside(w(/msg/i, { fb: -1 }), 0, T.c2, .9) + .35);   // the 'MYTH?' stamp lands ~1.5 s in
     T.terrified = T.tables0 + .1; T.pops = [T.msgN, T.msgN + .15, T.msgN + .3];
     return T;
   };
@@ -141,6 +142,24 @@
   function shelf(ctx, b) {
     KP.paper(ctx, KP.jitter(KP.rr(560, 1270, 380, 22, 8, 16), 3290 + b, 1.2), P.coral, { shadow: KP.SH.near, shadowA: .4 });
     for (const bx of [600, 900]) KP.paper(ctx, KP.jitter([[bx - 16, 1292], [bx + 16, 1292], [bx, 1340]], 3291 + bx + b, .8), P.coral, { shadow: KP.SH.far });
+  }
+  // the one label: a red rubber-stamp 'MYTH?' slammed onto the TV's top-right bezel corner (outside the footage),
+  // from ~1.5 s through clip 2, so the hook reads as a debunk
+  function mythStamp(ctx, t, b, T) {
+    if (t < T.myth - .2) return;
+    const S = KZ.scenes.s01_coldopen.api.screen0(), x = S.x + S.w - 110, y = S.y - 78;
+    const down = KP.ease.in(KP.prog(t, T.myth - .2, T.myth)), sa = KP.arrive(t, T.myth, .14);
+    if (t < T.myth) {   // the stamp handle coming down
+      ctx.save(); ctx.translate(x, KP.lerp(y - 700, y - 60, down)); ctx.rotate(-.12);
+      KP.paper(ctx, KP.jitter(KP.rr(-150, -10, 300, 60, 10, 14), 3400 + b, 1.2), P.ink, { shadow: KP.SH.near, shadowA: .35 });
+      KP.paper(ctx, KP.jitter(KP.rr(-36, -170, 72, 170, 20, 14), 3401 + b, 1.2), P.ink, { shadow: false });
+      ctx.restore(); return;
+    }
+    const st = KP.stamp('myth', ['MYTH?'], 320, 130, { size: 76, ls: 4, seed: 58, ink: P.tomato, wear: .35 });
+    ctx.save(); ctx.translate(x, y); ctx.rotate(-.12); ctx.scale(1 + (1 - sa.p) * .35, 1 + (1 - sa.p) * .35);
+    KP.paper(ctx, KP.jitter(KP.rr(-168, -73, 336, 146, 12, 16), 3402 + b, 1.2), P.rice, { shadow: KP.SH.near, shadowA: .4 });
+    ctx.drawImage(st, -160, -65); ctx.restore();
+    if (t < T.myth + .3) KP.marks(ctx, x, y, 190, 8, 3403 + b, { len: 26, w: 6, color: P.tomato });
   }
   // clip 1: the shaker tips and pours gold crystals onto a plate; the plate grows on 'hungry' and again on 'eat more'
   function pourPlate(ctx, t, b, T) {
@@ -324,7 +343,7 @@
     hideLow: false,
     sfx(cues, D) {
       const T = times(cues, D), a = [], e = (t, name, gain) => a.push({ t: Math.max(0, +t.toFixed(3)), name, gain });
-      e(0, 'tv_on', .45); e(T.pour, 'pop', .35); e(T.hungry, 'bubble', .35); e(T.eatMore, 'chomp', .35);
+      e(0, 'tv_on', .45); e(T.myth, 'stamp', .55); e(T.pour, 'pop', .35); e(T.hungry, 'bubble', .35); e(T.eatMore, 'chomp', .35);
       e(T.c2 - .05, 'channel_switch', .45); e(T.c2, 'static', .25); e(T.over, 'glitch', .4); e(T.brainW, 'blip', .3);
       if (T.c3 < T.wall) { e(T.c3 - .05, 'channel_switch', .55); e(T.headache, 'pop_small', .35); e(T.msgG, 'pop', .35); }
       e(T.wall, 'whoosh', .45); e(T.fifty, 'pop', .4); e(T.lit, 'tv_on', .3);
@@ -356,9 +375,11 @@
         if (shot < 3 && !KZ.scenes.s01_coldopen.hideLow) {    // (s09's loop hides these until the TV is back in frame)
           if (shot === 0) pourPlate(ctx, t, b, T); else if (shot === 1) brainCut(ctx, t, b, T);
           lowerThirdFor(ctx, shot === 0 ? 0 : 1, 0, t, b, cues);
-        } else if (t < T.wall + .25) {   // the LOW cut-outs and the tag fly off as the camera pulls back
+          mythStamp(ctx, t, b, T);
+        } else if (shot === 3 && t < T.wall + .25) {   // the LOW cut-outs and the tag fly off as the camera pulls back
           const k = KP.ep(t, T.wall, T.wall + .25, 'in');
           ctx.save(); ctx.translate(0, k * 900); brainCut(ctx, t, b, T); lowerThirdFor(ctx, 1, 0, t, b, cues); ctx.restore();
+          ctx.save(); ctx.translate(k * 900, -k * 300); mythStamp(ctx, t, b, T); ctx.restore();
         }
         if (shot === 3 && t >= T.fifty) {
           const r2 = KP.arrive(t, T.fifty, .3);

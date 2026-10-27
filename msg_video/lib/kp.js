@@ -942,9 +942,11 @@
     const fs = o.size || 80, lh = fs * 1.12, top = h / 2 - (lines.length * lh) / 2 + fs * .82;
     g.font = `400 ${fs}px "Young Serif"`; g.letterSpacing = (o.ls || 2) + 'px';
     lines.forEach((s, i) => { g.fillText(s, w / 2, top + i * lh, w - 130); });
+    // ink wear: o.wear 0..1 (default 1). Small labels need light wear to stay legible.
+    const wear = o.wear ?? 1;
     g.globalCompositeOperation = 'destination-out';
-    for (let i = 0; i < 2600; i++) { const x = r() * w, y = r() * h, fall = Math.max(0, (x / w) * .6 + (1 - y / h) * .5 - .35); g.fillStyle = `rgba(0,0,0,${Math.min(1, .25 + fall * 1.4)})`; g.beginPath(); g.arc(x, y, .6 + r() * (1.2 + fall * 3), 0, TAU); g.fill(); }
-    for (let i = 0; i < 26; i++) { const x = w * (.55 + r() * .45), y = h * r() * .55; g.fillStyle = `rgba(0,0,0,${.35 + r() * .5})`; g.beginPath(); g.ellipse(x, y, 6 + r() * 26, 3 + r() * 10, r() * 3, 0, TAU); g.fill(); }
+    for (let i = 0; i < 2600 * wear; i++) { const x = r() * w, y = r() * h, fall = Math.max(0, (x / w) * .6 + (1 - y / h) * .5 - .35); g.fillStyle = `rgba(0,0,0,${Math.min(1, .25 + fall * 1.4)})`; g.beginPath(); g.arc(x, y, .6 + r() * (1.2 + fall * 3), 0, TAU); g.fill(); }
+    for (let i = 0; i < (wear > .6 ? 26 : 0); i++) { const x = w * (.55 + r() * .45), y = h * r() * .55; g.fillStyle = `rgba(0,0,0,${.35 + r() * .5})`; g.beginPath(); g.ellipse(x, y, 6 + r() * 26, 3 + r() * 10, r() * 3, 0, TAU); g.fill(); }
     for (let i = 0; i < 9; i++) { const y = r() * h; g.fillStyle = `rgba(0,0,0,${.15 + r() * .25})`; g.fillRect(r() * w * .5, y, w * (.3 + r() * .5), 1.5 + r() * 2.5); }
     g.globalCompositeOperation = 'source-over';
     return (stamps[key] = c);
@@ -1144,9 +1146,9 @@
       for (let i = span[0]; i <= span[1]; i++) if (KP.CAP.goldWord.test(c.words[i].w)) accent = KP.CAP.gold;
     }
     const ar = KP.arrive(t, c.t0, prevJoined ? .14 : .2);
-    const out = c.joined ? 0 : KP.leave(t, c.t1, .16);
+    const out = 0;   // strips change instantly: scale-pop in, gone on the next frame; alpha is always 1
     ctx.save();
-    ctx.globalAlpha = 1 - out;
+    ctx.globalAlpha = 1;
     const cy = KP.CAP.cy + (1 - ar.p) * 12 + out * 10, s0 = prevJoined ? .94 : .7;
     ctx.translate(KP.CAP.cx, cy + 60); ctx.scale((s0 + (1 - s0) * ar.p) * ar.sx * (1 - out * .06), (s0 + (1 - s0) * ar.p) * ar.sy * (1 - out * .06)); ctx.translate(-KP.CAP.cx, -cy - 60);
     KP.caption(ctx, words, c.lines, KP.CAP.cx, cy, { size: c.size, boil: KP.boil(t), seed: c.seed, rot: c.rot, accent, chip });

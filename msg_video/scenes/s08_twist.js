@@ -58,7 +58,7 @@
     // page curl (plot twist): the previous (lemon) page peels away from the bottom-right corner
     const c = KP.ep(t, 0, T.plot + .5, 'inOut');
     if (c < 1) {
-      const d = c * 2600;   // fold line distance from the corner
+      const d = 420 + c * 2200;   // fold line distance from the corner (starts already peeled, so no stray corner chip)
       const fx = KP.W, fy = KP.H, ux = -.6, uy = -.8;
       const pt = (s, n) => [fx + ux * s - uy * n, fy + uy * s + ux * n];
       const rem = [[0, 0], [KP.W, 0], [KP.W, KP.H], [0, KP.H]].filter(([x, y]) => ((x - fx) * ux + (y - fy) * uy) > d);
