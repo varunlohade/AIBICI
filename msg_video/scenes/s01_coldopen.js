@@ -21,28 +21,26 @@
     const narr = cues.find(l => l.voice === 'NARR') || { start: D * .55 };
     const T = { c2: ls(1).start, wall: narr.start };
     T.c3 = sp[2] ? sp[2].start : T.wall;                 // a third clip is optional (current cut: two Blaylock clips)
-    // beats on the clips: matched by word if the quote contains it, else a fraction of the clip line
-    T.over = w(/destroy|overexc/i, { fb: mid(0, .5) }); if (T.over >= T.c2) T.over = mid(0, .5);
-    T.brainW = w(/^brain/i, { after: T.over, fb: T.over + .5 }); if (T.brainW >= T.c2) T.brainW = T.over + .5;
-    // clip 2: shaker pours on 'MSG'; the plate grows on 'hungry' and again on 'eat more'
-    T.pour = w(/msg/i, { after: T.c2, fb: mid(1, .2) }); if (T.pour >= T.c3) T.pour = mid(1, .2);
-    T.hungry = w(/hungry/i, { after: T.c2, fb: mid(1, .6) }); if (T.hungry >= T.c3) T.hungry = mid(1, .6);
-    T.eatMore = w(/^eat$/i, { after: T.hungry, fb: mid(1, .8) }); if (T.eatMore >= T.c3) T.eatMore = mid(1, .8);
-    T.poison = w(/poison/i, { fb: mid(1, .6) }); if (T.poison < T.c2 || T.poison >= T.c3) T.poison = mid(1, .6);
-    T.headache = w(/headache/i, { fb: mid(2, .4) }); if (T.headache < T.c3 || T.headache >= T.wall) T.headache = mid(2, .4);
-    T.msgG = w(/msg/i, { after: T.headache, fb: mid(2, .75) }); if (T.msgG >= T.wall) T.msgG = mid(2, .75);
+    // beats on the clips: matched by word if the quote contains it, else a fraction of the clip line.
+    // clip 1 (hungry): the shaker pours on 'MSG'; the plate grows on 'hungry' and again on 'eat more'
+    const inside = (v, a, z, fb) => (v >= a && v < z ? v : fb);
+    T.pour = inside(w(/msg/i, { fb: -1 }), 0, T.c2, mid(0, .2));
+    T.hungry = inside(w(/hungry/i, { fb: -1 }), 0, T.c2, mid(0, .6));
+    T.eatMore = inside(w(/^eat$/i, { after: T.hungry, fb: -1 }), 0, T.c2, mid(0, .8));
+    // clip 2 (brain): zap bolts burst on 'destroys' and crackle on 'brain'
+    T.over = inside(w(/destroy|overexc/i, { after: T.c2, fb: -1 }), T.c2, T.wall, mid(1, .55));
+    T.brainW = inside(w(/^brain/i, { after: T.over, fb: -1 }), T.c2, T.wall, T.over + .4);
     T.fifty = w(/fifty|years/i, { after: T.wall, fb: T.wall + .3 });
     T.lit = w(/everyone/i, { after: T.wall, fb: T.wall + 1.2 });
     T.scared = w(/scared|afraid/i, { after: T.wall, fb: T.wall + 2.2 });
     T.tables0 = w(/^of$/i, { after: T.scared, fb: T.scared + .35 }) - .1;   // cut just before 'of'; the sign switches on there
     T.msgN = w(/msg/i, { after: T.tables0, fb: T.tables0 + .7 });
     T.and = w(/^and$/i, { after: T.msgN, fb: T.msgN + 1 }); T.started = w(/started/i, { after: T.msgN, fb: T.and + .6 });
-    T.ff0 = w(/^one$/i, { after: T.started, fb: T.started + .6 }) - .1;
-    T.y1968 = w(/1968/, { after: T.started, fb: T.ff0 + 1.2 }); T.ff1 = Math.max(T.y1968 + .4, w(/1968/, { after: T.started, end: 1, fb: T.y1968 + .45 }));
-    T.is = w(/^is$/i, { after: T.ff1, fb: T.ff1 + .9 }); T.actually = w(/actually/i, { after: T.ff1, fb: T.is + .4 });
-    T.bad = w(/^bad/i, { after: T.ff1, fb: T.actually + .6 }); T.you = w(/^you/i, { after: T.bad, fb: T.bad + .4 });
-    T.out = D - .45;
-    T.terrified = T.tables0 + .1; T.pops = [T.msgN, T.msgN + .15, T.msgN + .3]; T.msgA = T.ff1 - .3;
+    T.ff0 = w(/^one$/i, { after: T.started, fb: T.started + .6 }) - .1;           // shot 5: the envelope handoff
+    T.letter = w(/letter/i, { after: T.ff0, fb: T.ff0 + .3 });
+    T.y1968 = w(/1968/, { after: T.started, fb: T.ff0 + 1.1 });
+    T.land = Math.min(T.y1968 - .15, T.letter + .7);                             // the envelope lands on the s06 desk
+    T.terrified = T.tables0 + .1; T.pops = [T.msgN, T.msgN + .15, T.msgN + .3];
     return T;
   };
 
@@ -130,67 +128,59 @@
     const name = (info && info.speaker) || 'Clip ' + (i + 1), credit = info ? (info.credit || null) : null;
     const ar = t0 <= 0 ? { p: 1, sx: 1, sy: 1 } : KP.arrive(t, t0, .32);
     if (t0 > 0 && !ar.on) return;
-    const [hx] = HERO, y = 372 + 50 + 520 - 112;
-    ctx.save(); KP.pose(ctx, ar, hx + 30, y + 50, 'left', 760);
-    KP.lowerThird(ctx, name.toUpperCase(), hx + 30, y, { boil: b, seed: 12 + i, sub: credit });
+    const x = 48, y = 1012;                                     // LOW zone, over the TV's bottom panel, clear of the screen + captions
+    ctx.save(); KP.pose(ctx, ar, x, y + 50, 'left', 760);
+    KP.lowerThird(ctx, name.toUpperCase(), x, y, { boil: b, seed: 12, sub: credit });
     ctx.restore();
   }
-  // paper cut-outs beside the TV (never on the clip)
+  // ---- the big-screen framing (s01.01-.02): the hero screen is ~860 px wide across TOP+MID (client: clip big)
+  const BIG = { cx: 470, cy: 826, s: 1.114 };
+  // screen-space shelf in LOW (right of the lower third) for the cut-outs; top edge at y 1282, clear of captions
+  function shelf(ctx, b) {
+    KP.paper(ctx, KP.jitter(KP.rr(560, 1270, 380, 22, 8, 16), 3290 + b, 1.2), P.coral, { shadow: KP.SH.near, shadowA: .4 });
+    for (const bx of [600, 900]) KP.paper(ctx, KP.jitter([[bx - 16, 1292], [bx + 16, 1292], [bx, 1340]], 3291 + bx + b, .8), P.coral, { shadow: KP.SH.far });
+  }
+  // clip 1: the shaker tips and pours gold crystals onto a plate; the plate grows on 'hungry' and again on 'eat more'
+  function pourPlate(ctx, t, b, T) {
+    shelf(ctx, b);
+    const px = 700, py = 1270, sx = 880, sy = 1270;
+    const grow = 1 + .45 * KP.backOut(KP.prog(t, T.hungry, T.hungry + .35)) + .5 * KP.backOut(KP.prog(t, T.eatMore, T.eatMore + .35));
+    ctx.save(); ctx.translate(px, py); ctx.scale(grow, grow);
+    KP.paper(ctx, KP.jitter(KP.ell(0, -8, 92, 20, 32), 3300 + b, 1), P.rice, { shadow: KP.SH.far, shadowA: .35, mis: P.turq, misOff: [-2, 2], misA: .4 });
+    const heap = KP.prog(t, T.pour, T.pour + 1) * .3 + (grow - 1) * .35;
+    if (heap > 0) {
+      KP.paper(ctx, KP.jitter(KP.egg(0, -18, 74 * Math.min(1, .55 + heap), 8 + 40 * heap, -.2, 28), 3301 + b, 1), P.lemon, { shadow: false, mis: P.coral, misOff: [-2, 2], misA: .5 });
+      for (let i = 0; i < 3; i++) KP.brush(ctx, KP.curve([[-40 + i * 30, -20], [-30 + i * 30, -22 - 30 * heap], [-44 + i * 30, -24 - 44 * heap]], false, 5), 7, P.coral, { taper: .3 });
+    }
+    const r = KP.rng(3302);
+    for (let i = 0; i < Math.floor(KP.prog(t, T.pour, T.pour + 1.6) * 24); i++) { const x = (r() - .5) * 110, y = -14 - r() * 30 * (1 + heap); KP.paper(ctx, KP.rot([[x - 5, y - 5], [x + 5, y - 5], [x + 5, y + 5], [x - 5, y + 5]], x, y, r() * 3), P.gold, { shadow: false }); }
+    ctx.restore();
+    if (t >= T.hungry && t < T.hungry + .35) KP.marks(ctx, px, py - 40, 110 * grow, 6, 3303 + b, { a0: -Math.PI, span: Math.PI, len: 24, w: 6 });
+    if (t >= T.eatMore && t < T.eatMore + .35) KP.marks(ctx, px, py - 50, 120 * grow, 7, 3304 + b, { a0: -Math.PI, span: Math.PI, len: 28, w: 6 });
+    // the shaker on the right of the shelf tips left toward the plate; crystals stream while it pours
+    const tip = KP.ep(t, T.pour - .25, T.pour, 'out'), shk = t >= T.pour ? Math.sin(KP.held(t) * 30) * .06 : 0;
+    ctx.save(); ctx.translate(sx, sy - 70); ctx.rotate(-(tip * 1.25 + shk)); ctx.translate(0, 70); KP.shaker(ctx, 0, 0, 150, { boil: b, seed: 7 }); ctx.restore();
+    if (t >= T.pour) {
+      const rr = KP.rng(3305), ox = sx - Math.sin(1.25) * 75 + 30, oy = sy - 70 - Math.cos(1.25) * 75;
+      for (let i = 0; i < 14; i++) { const ph = ((t - T.pour) * 1.8 + rr()) % 1, x = KP.lerp(ox, px + 30 + (rr() - .5) * 50, ph), y = KP.lerp(oy, py - 24, ph) - Math.sin(Math.PI * ph) * 18, cs = 6 + rr() * 4;
+        KP.paper(ctx, KP.rot([[x - cs, y - cs], [x + cs, y - cs], [x + cs, y + cs], [x - cs, y + cs]], x, y, ph * 5), i % 3 ? P.gold : P.lemon, { shadow: false }); }
+    }
+  }
+  // clip 2: a pink paper brain on the shelf; zap bolts burst on 'destroys' and crackle on 'brain'; it trembles
   function brainCut(ctx, t, b, T) {
-    const bx = 720, by = 318, br = 86, wb = t >= T.over ? KP.wob(t, 5, 4) : [0, 0];
-    ctx.save(); ctx.translate(wb[0], wb[1]);
+    shelf(ctx, b);
+    const ba = KP.arrive(t, T.c2 + .05, .3), bx = 740, by = 1170, br = 90, wb = t >= T.c2 + .8 ? KP.wob(t, 5, t >= T.over ? 5 : 2) : [0, 0];
+    if (!ba.on) return;
+    ctx.save(); KP.pose(ctx, ba, bx, 1270, 'pop'); ctx.translate(wb[0], wb[1]);
     [[-2.6, 1], [-1.9, .9], [-.9, 1.1], [-.2, 1], [.5, .85], [2.6, .7], [-1.3, .6], [3.0, .65]].forEach(([a, k], i) => {
-      let sc = i < 5 ? .75 : 0;
-      if (t >= T.over) sc = KP.lerp(sc, 1.2, KP.arrive(t, T.over + i * .04, .22).p);
-      if (sc <= 0 || (t > .05 && t < T.over && KP.hash(i, b) < .25)) return;
+      if (t < T.over) return;
+      const sc = 1.2 * KP.arrive(t, T.over + i * .04, .22).p;
+      if (sc <= 0 || (t > T.over + .5 && KP.hash(i, b) < .25)) return;
       KP.paper(ctx, KP.jitter(KP.bolt(bx + Math.cos(a) * br * 1.05, by + Math.sin(a) * br * .8, 54 * k * sc, a, 15 * Math.min(1.2, sc), 20 + i), 400 + i + b, 1.2), P.tomato, { shadow: KP.SH.far, mis: P.pink, misOff: [-4, 3], misA: .6 });
     });
-    if (t >= T.brainW && t < T.brainW + .6) KP.marks(ctx, bx, by, br + 30, 8, 420 + b, { len: 26, w: 6, color: P.tomato });   // crackle on 'brain'
+    if (t >= T.brainW && t < T.brainW + .6) KP.marks(ctx, bx, by, br + 30, 8, 420 + b, { len: 26, w: 6, color: P.tomato });
     KP.brain(ctx, bx, by, br, { boil: b, eyes: t >= T.over ? 'worried' : 'dot', mouth: 'wobble' });
     ctx.restore();
-    KP.paper(ctx, KP.jitter(KP.rot(KP.rr(bx - 60, by - br - 14, 120, 30, 4, 10), bx, by - br, -.2), 410 + b, .8), KP.rgba(P.pink, .85), { shadow: false });  // tape
-  }
-  function shakerOnTV(ctx, t, b, T, phase) {
-    if (phase === 2) {       // the shaker tips and pours gold crystals onto a plate on the TV's top edge; the plate grows
-      const tip = KP.ep(t, T.pour - .25, T.pour, 'out'), sx = 190, sy = 372;
-      const grow = 1 + .45 * KP.backOut(KP.prog(t, T.hungry, T.hungry + .35)) + .5 * KP.backOut(KP.prog(t, T.eatMore, T.eatMore + .35));
-      const px = 470, py = 372;
-      // plate + a pile of food that heaps up with each grow step
-      ctx.save(); ctx.translate(px, py); ctx.scale(grow, grow);
-      KP.paper(ctx, KP.jitter(KP.ell(0, -8, 92, 20, 32), 3300 + b, 1), P.rice, { shadow: KP.SH.far, shadowA: .35, mis: P.turq, misOff: [-2, 2], misA: .4 });
-      const heap = KP.prog(t, T.pour, T.pour + 1) * .3 + (grow - 1) * .35;
-      if (heap > 0) {
-        KP.paper(ctx, KP.jitter(KP.egg(0, -18, 74 * Math.min(1, .55 + heap), 8 + 40 * heap, -.2, 28), 3301 + b, 1), P.lemon, { shadow: false, mis: P.coral, misOff: [-2, 2], misA: .5 });   // a heap of noodles
-        for (let i = 0; i < 3; i++) KP.brush(ctx, KP.curve([[-40 + i * 30, -20], [-30 + i * 30, -22 - 30 * heap], [-44 + i * 30, -24 - 44 * heap]], false, 5), 7, P.coral, { taper: .3 });
-      }
-      const r = KP.rng(3302);
-      for (let i = 0; i < Math.floor(KP.prog(t, T.pour, T.pour + 1.6) * 24); i++) { const x = (r() - .5) * 110, y = -14 - r() * 30 * (1 + heap); KP.paper(ctx, KP.rot([[x - 5, y - 5], [x + 5, y - 5], [x + 5, y + 5], [x - 5, y + 5]], x, y, r() * 3), P.gold, { shadow: false }); }
-      ctx.restore();
-      if (t >= T.hungry && t < T.hungry + .35) KP.marks(ctx, px, py - 40, 110 * grow, 6, 3303 + b, { a0: -Math.PI, span: Math.PI, len: 24, w: 6 });
-      if (t >= T.eatMore && t < T.eatMore + .35) KP.marks(ctx, px, py - 50, 120 * grow, 7, 3304 + b, { a0: -Math.PI, span: Math.PI, len: 28, w: 6 });
-      // the shaker, tipping toward the plate; crystals stream while it pours
-      const shk = t >= T.pour ? Math.sin(KP.held(t) * 30) * .06 : 0;
-      ctx.save(); ctx.translate(sx, sy - 70); ctx.rotate(tip * 1.25 + shk); ctx.translate(0, 70); KP.shaker(ctx, 0, 0, 150, { boil: b, seed: 7 }); ctx.restore();
-      if (t >= T.pour && t < T.c3 - .1) {
-        const rr = KP.rng(3305), ox = sx + Math.sin(1.25) * 75 - 30, oy = sy - 70 - Math.cos(1.25) * 75;
-        for (let i = 0; i < 14; i++) { const ph = ((t - T.pour) * 1.8 + rr()) % 1, x = KP.lerp(ox, px - 30 + (rr() - .5) * 50, ph), y = KP.lerp(oy, py - 24, ph) - Math.sin(Math.PI * ph) * 18, cs = 6 + rr() * 4;
-          KP.paper(ctx, KP.rot([[x - cs, y - cs], [x + cs, y - cs], [x + cs, y + cs], [x - cs, y + cs]], x, y, ph * 5), i % 3 ? P.gold : P.lemon, { shadow: false }); }
-      }
-    } else {                 // clip 3: headache zig-zags beside the TV, then the shaker hops onto it on 'MSG'
-      if (t >= T.headache) [[-2.5, 0], [-1.9, .06], [-1.2, .12]].forEach(([a, dl], i) => {
-        const ar = KP.arrive(t, T.headache + dl, .2), cx = 170, cy = 300;
-        if (!ar.on || (KP.hash(i, b) < .2 && t > T.headache + .5)) return;
-        ctx.save(); ctx.translate(cx, cy); ctx.scale(ar.p, ar.p); ctx.translate(-cx, -cy);
-        KP.paper(ctx, KP.jitter(KP.bolt(cx + Math.cos(a) * 50, cy + Math.sin(a) * 50, 100, a, 24, 30 + i), 720 + i + b, 1), P.tomato, { shadow: KP.SH.far, mis: P.pink, misOff: [-3, 2], misA: .5 });
-        ctx.restore();
-      });
-      if (t >= T.msgG - .35) {
-        const k = KP.ease.out(KP.prog(t, T.msgG - .35, T.msgG)), x = KP.lerp(1080, 720, k), y = 378 - Math.sin(Math.PI * k) * 220;
-        const land = KP.arrive(t, T.msgG, .2);
-        KP.shaker(ctx, x, y, 150, { boil: b, seed: 7, sy: t >= T.msgG ? land.sy : 1, rot: (1 - k) * .6 });
-        if (t >= T.msgG && t < T.msgG + .4) KP.marks(ctx, x, y - 70, 90, 5, 9 + b, { a0: -2.8, span: 2.4, len: 22, w: 5 });
-      }
-    }
   }
 
   // ---------- shot 5: restaurant window + dinner tables (separate sheet)
@@ -295,46 +285,50 @@
     ctx.restore();
   }
 
+  function handoff(ctx, t, b, T, D) { tablesSheetFull(ctx, t, b, T); }
+  function tablesSheetFull(ctx, t, b, T) { ctx.save(); ctx.translate(0, -50); tablesSheet(ctx, t, b, T); ctx.restore(); }
   KP.scene('s01_coldopen', {
     // shared with s09 (the loop): the TV wall drawer + a hero-screen override hook (set only around a nested draw)
     api: { wall: (...a) => wall(...a), HERO, ALL, FAR },
     heroOverride: null,
     sfx(cues, D) {
       const T = times(cues, D), a = [], e = (t, name, gain) => a.push({ t: Math.max(0, +t.toFixed(3)), name, gain });
-      e(0, 'tv_on', .5); e(.3, 'static', .25); e(T.over, 'glitch', .4); e(T.brainW, 'blip', .3);
-      e(T.c2 - .05, 'channel_switch', .45); e(T.pour, 'pop', .35); e(T.hungry, 'bubble', .35); e(T.eatMore, 'chomp', .35);
+      e(0, 'tv_on', .45); e(T.pour, 'pop', .35); e(T.hungry, 'bubble', .35); e(T.eatMore, 'chomp', .35);
+      e(T.c2 - .05, 'channel_switch', .45); e(T.c2, 'static', .25); e(T.over, 'glitch', .4); e(T.brainW, 'blip', .3);
       if (T.c3 < T.wall) { e(T.c3 - .05, 'channel_switch', .55); e(T.headache, 'pop_small', .35); e(T.msgG, 'pop', .35); }
       e(T.wall, 'whoosh', .45); e(T.fifty, 'pop', .4); e(T.lit, 'tv_on', .3);
       e(T.tables0 - .05, 'paper', .35); e(T.tables0 + .1, 'neon_flicker', .45); e(T.msgN, 'pop_small', .3); e(T.started, 'paper', .35);
-      e(T.ff0 + .05, 'whoosh', .45); e(T.y1968, 'stamp', .8); e(T.y1968 + .05, 'impact_big', .4);
-      e(T.ff1, 'record_scratch', .6); e(T.is, 'boing', .3); e(T.bad, 'pop', .4); e(T.out, 'whoosh', .4);
+      e(T.ff0 + .1, 'whoosh', .4); e(T.letter, 'paper', .4); e(T.y1968, 'pop', .45);
       return a.sort((x, y) => x.t - y.t);
     },
     draw(ctx, t, cues, D) {
       const T = times(cues, D), b = KP.boil(t);
       ctx.fillStyle = P.plum; ctx.fillRect(0, 0, KP.W, KP.H);
       if (t < T.tables0 + .32) {
-        // ===== shots 1-4: the TV wall
-        const pull = KP.ep(t, T.wall, T.wall + 1.2, 'out');
-        const push = 1 + .03 * KP.ep(t, 0, T.wall, 'inOut');
-        const sc = t < T.wall ? push : KP.lerp(1.03, .6, pull) * (1 - .03 * KP.prog(t, T.wall + 1.2, T.tables0));
-        const cx = KP.lerp(KP.CAM[0], 560, pull), cy = KP.lerp(KP.CAM[1], 760, pull);
-        const truck = Math.sin(t * .3) * 6;
+        // ===== shots 1-3: big screen (two clips, jump-cut flicker), then a fast pull-back to the whole TV wall
+        const pull = KP.ep(t, T.wall, T.wall + 1.0, 'out');
+        const drift = Math.sin(KP.held(t, 30) * .6) * 4 * (1 - pull);
+        const sc = KP.lerp(BIG.s, .6, pull) * (1 - .03 * KP.prog(t, T.wall + 1.0, T.tables0));
+        const cx = KP.lerp(BIG.cx + drift, 560, pull), cy = KP.lerp(BIG.cy, 760, pull);
         const shot = t < T.c2 ? 0 : t < T.c3 ? 1 : t < T.wall ? 2 : 3;
         const flicker = [T.c2, T.c3].some(s => s < T.wall && t >= s - .05 && t < s + .12);
         const knob = (t >= T.c2 ? 1.2 : 0) + (t >= T.c3 && T.c3 < T.wall ? 1.2 : 0);
-        KP.camera(ctx, cx + truck * .4, cy, sc, () => {
+        KP.camera(ctx, cx, cy, sc, () => {
           wall(ctx, t, b, {
             extra: t >= T.wall - .2, knob, cues,
             lit: i => shot < 3 ? 0 : (t >= T.wall + .15 + RANK[i] * Math.max(.03, (T.lit - T.wall) / ALL.length) ? 1 : 0),
             hero: (c, S) => { const ov = KZ.scenes.s01_coldopen.heroOverride; if (ov) ov(c, S); else if (flicker) KP.static(c, S, Math.floor(t * 30)); else heroClip(c, S, shot >= 3 ? 0 : Math.min(shot, 2), shot >= 3 ? 1.5 : t, b, cues); },
           });
-          if (shot === 0 || shot === 3) brainCut(ctx, t, b, T);
-          if (shot === 1) shakerOnTV(ctx, t, b, T, 2);
           if (shot === 2) shakerOnTV(ctx, t, b, T, 3);
         });
         sofa(ctx, b, pull * 700);
-        if (shot < 3) lowerThirdFor(ctx, shot, shot === 0 ? 0 : [0, T.c2, T.c3][shot], t, b, cues);
+        if (shot < 3) {
+          if (shot === 0) pourPlate(ctx, t, b, T); else if (shot === 1) brainCut(ctx, t, b, T);
+          lowerThirdFor(ctx, shot === 0 ? 0 : 1, 0, t, b, cues);
+        } else if (t < T.wall + .25) {   // the LOW cut-outs and the tag fly off as the camera pulls back
+          const k = KP.ep(t, T.wall, T.wall + .25, 'in');
+          ctx.save(); ctx.translate(0, k * 900); brainCut(ctx, t, b, T); lowerThirdFor(ctx, 1, 0, t, b, cues); ctx.restore();
+        }
         if (shot === 3 && t >= T.fifty) {
           const r2 = KP.arrive(t, T.fifty, .3);
           ctx.save(); KP.pose(ctx, r2, 300, 330, 'pop');
@@ -345,54 +339,12 @@
         KP.texture(ctx, 'speck', .28, 17, 41);
       }
       if (t >= T.tables0 && t < T.ff0) {
-        // ===== shot 5: paper slide in, restaurant + tables; the envelope arrives on 'started'
+        // ===== shot 4: paper slide carrying the restaurant window + tables; the envelope arrives on 'started'
         const p = KP.ep(t, T.tables0, T.tables0 + .32, 'out'), tilt = KP.ep(t, T.tables0, T.ff0, 'inOut') * 110;
         sheetSlide(ctx, p, P.blue, c => { c.translate(0, 60 - tilt); tablesSheet(c, t, b, T); });
         if (p >= 1) KP.texture(ctx, 'grain', .1);
       }
-      if (t >= T.ff0 && t < T.ff1) {
-        // ===== shot 6: FLASH-FORWARD, the s06 stamp shot nested (same art, slightly faster), landing on '1968'
-        const s6 = window.CUES && window.CUES.s06_origin, sc6 = KZ.scenes.s06_origin;
-        if (s6 && sc6 && sc6.stampTimes) {
-          const st = sc6.stampTimes(s6.lines, s6.duration);
-          const ts = Math.max(st.shot, st.catchy - .05, st.hit + (t - T.y1968) * 1.25);
-          const snap = 1 + .08 * KP.ep(t, T.ff0, T.ff0 + .2, 'out'), sh = t >= T.y1968 && t < T.y1968 + 4 / 30 ? KP.wob(t * 2, 4, 12) : [0, 0];
-          ctx.save(); ctx.translate(490 + sh[0], 860 + sh[1]); ctx.scale(snap, snap); ctx.translate(-490, -860);
-          sc6.draw(ctx, ts, s6.lines, s6.duration, true);
-          ctx.restore();
-          KP.texture(ctx, 'news', .05); KP.texture(ctx, 'grain', .1, 101, 57);
-        }
-      }
-      if (t >= T.ff1) {
-        // ===== shot 7: smash cut back + record scratch; shaker under the spotlight; '?' on 'bad'; pull back to the wall
-        const back = KP.ep(t, T.you, T.out, 'out');
-        const wobble = t < T.ff1 + .35 ? Math.sin((t - T.ff1) * 60) * 8 * (1 - KP.prog(t, T.ff1, T.ff1 + .35)) : 0;
-        const sc = KP.lerp(1.55, 1.0, back), cx = KP.lerp(SHK[0], 490, back), cy = KP.lerp(SHK[1] - 230, 900, back);
-        const swing = Math.sin(Math.PI * 2 * KP.prog(t, T.actually, T.actually + .9)) * .12 * (1 - KP.prog(t, T.actually, T.actually + .9));
-        ctx.save(); ctx.translate(wobble, 0);
-        KP.camera(ctx, cx, cy, sc, () => {
-          wall(ctx, t, b, { extra: true, cues, lit: i => back > .2 && i < 8 && t >= T.you + .1 + i * .04 ? 1 : 0, heroScreen: back > 0 ? P.lemon : P.screenDim, hero: back > 0 ? (c, S) => heroClip(c, S, 0, 1.5, b, cues) : null });
-        });
-        if (back < 1) {
-          ctx.save(); ctx.translate(0, -back * 2100);
-          KP.paper(ctx, KP.jitter(KP.rr(-40, -200, KP.W + 80, KP.H + 260, 18, 40), 940 + b, 2), P.plum, { shadow: [0, 24], shadowA: .4 });
-          ctx.save(); ctx.translate(490, -200); ctx.rotate(swing); ctx.translate(-490, 200);
-          KP.paper(ctx, KP.jitter([[380, -200], [600, -200], [1000, 1700], [-20, 1700]], 941 + b, 2), P.grape, { shadow: false });
-          ctx.restore();
-          for (let i = 0; i < 18; i++) { const r = KP.hash(i, 7), y = 1500 - ((KP.held(t) * (40 + r * 50) + i * 97) % 1500), x = 490 + (KP.hash(i, 9) - .5) * 360; ctx.fillStyle = i % 3 ? P.lemon : P.pink30; ctx.fillRect(x, y, 6 + r * 6, 6 + r * 6); }
-          ctx.restore();
-        }
-        KP.camera(ctx, cx, cy, sc, () => {
-          if (back < .05) spotlight(ctx);
-          shakerTable(ctx, t, b, T, KP.boil(t), back);
-        });
-        ctx.restore();
-        KP.texture(ctx, 'grain', .1);
-        KP.texture(ctx, 'speck', .22, 17, 41);
-      }
-      // ===== out: paper slide carrying s02's first frame
-      const outP = KP.ep(t, T.out, D, 'inOut');
-      if (outP > 0) sheetSlide(ctx, outP, P.turq, c => { const next = KZ.scenes.s02_title; if (next) { c.save(); next.draw(c, 0, [{ words: [] }], 4.6); c.restore(); } });
+      if (t >= T.ff0) handoff(ctx, t, b, T, D);
     },
   });
 })();
