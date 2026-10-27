@@ -3,33 +3,48 @@
 <style>
 @font-face { font-family: 'Fredoka'; src: url('assets/Fredoka.ttf'); font-weight: 300 700; }
 @font-face { font-family: 'Nunito'; src: url('assets/Nunito.ttf'); font-weight: 200 1000; }
+@font-face { font-family: 'Young Serif'; src: url('assets/YoungSerif.ttf'); font-weight: 400; }
+@font-face { font-family: 'Courier Prime'; src: url('assets/CourierPrime-Regular.ttf'); font-weight: 400; }
+@font-face { font-family: 'Courier Prime'; src: url('assets/CourierPrime-Bold.ttf'); font-weight: 700; }
 html,body { margin:0; background:#000; }
 canvas { display:block; width:540px; height:960px; }
 </style></head>
 <body><canvas id="c" width="1080" height="1920"></canvas>
 <script src="lib/kz.js"></script>
+<script src="lib/kp.js"></script>
 <script>
 const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
 let CUES = {};
 window.setup = async () => {
   CUES = await (await fetch('cues.json')).json();
-  await Promise.all(['300 40px Fredoka', '400 40px Fredoka', '500 40px Fredoka', '600 40px Fredoka', '700 40px Fredoka', '400 40px Nunito', '800 40px Nunito'].map(f => document.fonts.load(f)));
+  await Promise.all(['300 40px Fredoka', '400 40px Fredoka', '500 40px Fredoka', '600 40px Fredoka', '700 40px Fredoka',
+    '400 40px Nunito', '700 40px Nunito', '800 40px Nunito', '900 40px Nunito',
+    '400 40px "Young Serif"', '400 40px "Courier Prime"', '700 40px "Courier Prime"'].map(f => document.fonts.load(f)));
+  // bake the shared riso textures once, before the first frame
+  ['grain:0:0', 'grain:101:57', 'speck:17:41'].forEach(k => { const [n, x, y] = k.split(':'); KP.full(n, +x, +y); });
   return Object.keys(CUES);
 };
 function placeholder(id, t, D) {
-  KZ.bg(ctx); KZ.stars(ctx, t);
-  KZ.text(ctx, CUES[id].title, KZ.W / 2, 480, { size: 80 });
-  KZ.text(ctx, `[${id}] scene not animated yet — t=${t.toFixed(2)}/${D}`, KZ.W / 2, 600, { size: 36, color: KZ.C.grey });
+  ctx.fillStyle = KP.P.plum; ctx.fillRect(0, 0, KP.W, KP.H);
+  KP.slip(ctx, [{ s: CUES[id].title, size: 54 }], 80, 500, { seed: 4 });
+  KP.text(ctx, `[${id}] not animated yet  t=${t.toFixed(2)}/${D}`, 80, 720, { size: 40, color: KP.P.lemon });
 }
 window.renderFrame = (id, t) => {
   const D = CUES[id].duration, cues = CUES[id].lines;
   ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.filter = 'none';
   ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
-  ctx.clearRect(0, 0, KZ.W, KZ.H);
+  ctx.clearRect(0, 0, KP.W, KP.H);
   const sc = KZ.scenes[id];
+  ctx.save();
   if (sc) sc.draw(ctx, t, cues, D); else placeholder(id, t, D);
+  ctx.restore();
+  // burned-in caption layer, on top of every scene (a scene opts out with `captions: false`)
+  if (!sc || sc.captions !== false) {
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+    KP.captionLayer(ctx, t, id, cues);
+  }
   ctx.restore();
 };
 window.grab = (type, q) => canvas.toDataURL(type, q);

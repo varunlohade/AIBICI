@@ -1,41 +1,68 @@
-// Scene 2 — Title card. Reference scene for style: layered depth, glow, gentle motion, pop-ins.
-KZ.scene('s02_title', {
-  sfx: (cues, D) => [
-    { t: 0.0, name: 'whoosh_long', gain: 0.8 },
-    { t: 0.9, name: 'sparkle', gain: 0.7 },
-    { t: 1.6, name: 'impact_soft', gain: 0.9 },
-    { t: 2.3, name: 'pop', gain: 0.6 },
-  ],
-  draw(ctx, t, cues, D) {
-    const { C, W, H } = KZ;
-    // slow push-in camera for the whole scene
-    const zoom = KZ.lerp(1.0, 1.08, KZ.ep(t, 0, D, 'linear'));
-    KZ.bg(ctx, C.indigo, C.night);
-    KZ.camera(ctx, W / 2, H / 2, zoom, () => {
-      KZ.stars(ctx, t, 11, 220, 8);
-      // distant planet-like plate of food silhouettes
-      KZ.glow(ctx, W / 2, 470, 520, C.violet, .5);
-      // crystals orbiting
-      const r = KZ.rng(5);
-      for (let i = 0; i < 14; i++) {
-        const a = i / 14 * Math.PI * 2 + t * .25, rad = 330 + r() * 90;
-        const x = W / 2 + Math.cos(a) * rad, y = 450 + Math.sin(a) * rad * .35;
-        const s = (.6 + r() * .6) * KZ.pop(t, .3 + i * .05);
-        const front = Math.sin(a) > 0;
-        if (!front) continue;
-        KZ.withT(ctx, x, y, s, a * 2, () => KZ.poly(ctx, [[0, -26], [18, 0], [0, 26], [-18, 0]], C.cream));
+// s02_title: Title card (Kombu Paper). Picks up s01's out-slide: a turquoise surface with a falling gold drop.
+// On 'MSG.' the drop lands, the Fifth Ripple spreads (4 white rings + a wide gold 5th), Goldie pops up out of
+// the centre and the 'MSG' title slip is slapped down. Out: Gold Ripple wipe (act change).
+// All times come from cues.json word timings.
+(function () {
+  const P = KP.P, CX = 490, CY = 760;
+  const times = (cues, D) => {
+    const ws = (cues[0] && cues[0].words) || [], find = re => (ws.find(w => re.test(w.w)) || {}).start;
+    const land = find(/msg/i) ?? .35, mis = find(/misunder/i) ?? land + 1.4;
+    return { land, mis, pop: land + .3, wipe: D - .45 };
+  };
+  KP.scene('s02_title', {
+    sfx(cues, D) {
+      const T = times(cues, D);
+      const r = x => Math.max(0, +x.toFixed(3));
+      return [
+        { t: r(T.land - .3), name: 'swoosh_down', gain: .4 }, { t: r(T.land), name: 'bubble', gain: .5 },
+        { t: r(T.land + .08), name: 'impact_soft', gain: .55 }, { t: r(T.pop), name: 'pop', gain: .4 },
+        { t: r(T.mis), name: 'sparkle', gain: .45 }, { t: r(T.wipe), name: 'whoosh', gain: .4 },
+      ];
+    },
+    draw(ctx, t, cues, D) {
+      const T = times(cues, D), b = KP.boil(t);
+      ctx.fillStyle = P.turq; ctx.fillRect(0, 0, KP.W, KP.H);
+      const push = 1 + .04 * KP.ep(t, T.land, D, 'inOut');
+      KP.camera(ctx, CX, CY + 100, push, () => {
+        // faint paper 'current' bands on the surface
+        for (let i = 0; i < 6; i++) KP.paper(ctx, KP.jitter(KP.ell(CX, CY + 40, 300 + i * 170, (300 + i * 170) * .35, 60), 70 + i + b, 2), i % 2 ? KP.mix(P.turq, P.blue, .12) : P.turq, { shadow: false });
+        // the drop falling in, then the Fifth Ripple (a new set of rings every 1.6 s)
+        if (t < T.land) {
+          const y = KP.lerp(CY - 560, CY, KP.ease.in(KP.prog(t, T.land - .5, T.land)));
+          KP.paper(ctx, KP.jitter(KP.drop(CX, y, 130), 960 + b, 1.2), P.gold, { shadow: KP.SH.near, mis: P.tomato, misOff: [-3, 2], misA: .4 });
+          KP.brush(ctx, [[CX, y - 150], [CX, y - 230]], 6, P.ink, { taper: .6 });
+        }
+        for (let k = 0; k < 3; k++) {
+          const t0 = T.land + k * 1.6;
+          if (t < t0) continue;
+          const p = KP.ease.out(KP.prog(t, t0, t0 + 2.2));
+          KP.ripple(ctx, CX, CY + 40, 520 + p * 120, { p, boil: b + k * 5, squash: .38 });
+        }
+        // Goldie pops up out of the centre and bobs in the gold ring
+        const ar = KP.arrive(t, T.pop, .35);
+        if (ar.on) {
+          const bob = Math.sin(KP.held(t) * 3.2) * 8;
+          ctx.save(); KP.pose(ctx, ar, CX, CY + 60, 'up', 220);
+          KP.goldie(ctx, CX, CY - 40 + bob, 260, { boil: b, eyes: t > T.mis ? 'happy' : 'dot', mouth: 'smile', look: 0 });
+          ctx.restore();
+          // splash flecks
+          if (t < T.pop + .6) KP.marks(ctx, CX, CY - 40, 170 + 60 * KP.prog(t, T.pop, T.pop + .6), 7, 30 + b, { a0: -Math.PI, span: Math.PI, len: 30, color: P.rice });
+        }
+      });
+      // the one label: the title slip (Young Serif), slapped down on 'MSG.'
+      const s = KP.arrive(t, T.land + .05, .3);
+      if (s.on) {
+        ctx.save(); KP.pose(ctx, s, 490, 1250, 'pop');
+        KP.slip(ctx, [{ s: 'MSG', size: 150, font: 'Young Serif', weight: 400, ls: 6 }], 270, 1030, { rot: -.03, seed: 41, boil: b, tape: P.pink, padX: 50, padY: 26, align: 'center' });
+        ctx.restore();
       }
-      // hero molecule
-      const ms = KZ.pop(t, .7, .8) * 1.35;
-      KZ.glutamate(ctx, W / 2, 440 + Math.sin(t * 1.5) * 10, t, { s: ms, glow: 1, rot: Math.sin(t * .6) * .08, face: true });
-    });
-    // title
-    const tp = KZ.ep(t, 1.4, 2.2, 'outBack');
-    KZ.text(ctx, 'MSG', W / 2, 760 + (1 - tp) * 60, { size: 150, weight: 700, alpha: KZ.prog(t, 1.4, 1.8), color: C.yellow, shadow: C.gold, shadowBlur: 40 });
-    KZ.text(ctx, 'The Most Misunderstood Molecule', W / 2, 880, { size: 62, weight: 500, alpha: KZ.prog(t, 2.2, 2.8), letterSpacing: 2 });
-    KZ.dust(ctx, t, 9, 30, C.cream, .18);
-    KZ.vignette(ctx, .55);
-    KZ.fade(ctx, 1 - KZ.prog(t, 0, .5));
-    KZ.fade(ctx, KZ.prog(t, D - .5, D));
-  },
-});
+      // out: Gold Ripple wipe, a wide gold ring sweeping out past the frame
+      if (t > T.wipe) {
+        const p = KP.ease.in(KP.prog(t, T.wipe, D));
+        const r = 340 + p * 1400, pts = KP.jitter(KP.ell(CX, 860, r, r * (.38 + .62 * p), 72), 990 + b, 2); pts.push(pts[0]);
+        KP.brush(ctx, pts, 24 + p * 220, P.gold, { taper: .05 });
+      }
+      KP.texture(ctx, 'grain', .1);
+    },
+  });
+})();
