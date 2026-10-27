@@ -404,7 +404,7 @@
         // ---- 1: kombu -> shaker, villain spotlight + moustache
         const push = 1 + .06 * KP.ep(t, 0, T.l2, 'inOut'), pan = KP.ep(t, T.l2 - .45, T.l2, 'inOut');
         ctx.fillStyle = P.blue; ctx.fillRect(0, 0, KP.W, KP.H);
-        if (pan > 0) { ctx.save(); ctx.translate(KP.W * (1 - pan), 0); desk(ctx, T.l2, b, T, { write: .5, env: null, post: 0, card: false, letterK: 0, noGround: false }); ctx.restore(); }
+        if (pan > 0) { ctx.save(); ctx.translate(KP.W * (1 - pan), 0); desk(ctx, T.l2, b, T, { write: .5, env: null, post: 0, card: false, letterK: KP.ep(t, T.l2 - .45, T.doctor - .1, 'out'), noGround: false }); ctx.restore(); }
         ctx.save(); ctx.translate(-KP.W * pan, 0);
         KP.camera(ctx, 490, 900, push, () => {
           // the cobalt desk of style frame C (hot-pink underlay + turquoise card at the edges, the sealed envelope)
@@ -439,7 +439,7 @@
         if (t >= T.villain) label = c => { const ar = KP.arrive(t, T.villain, .3); c.save(); KP.pose(c, ar, 330, 380, 'pop'); KP.slip(c, [{ s: 'Villain?', size: 84, ls: 1 }], 160, 260, { rot: -.05, seed: 40, boil: b, tape: P.lemon, padX: 38, padY: 22 }); c.restore(); };
       } else if (t < T.l4) {
         // ---- 2-4: the letter on the cobalt desk; 4 = close on the card
-        const slideIn = 1, letterK = KP.ep(t, T.l2, T.doctor - .1, 'out');
+        const slideIn = 1, letterK = KP.ep(t, T.l2 - .45, T.doctor - .1, 'out');
         const write = Math.max(.5, KP.ep(t, T.doctor - .3, T.journal, 'inOut') * .55 + KP.ep(t, T.after, T.numb - .2, 'inOut') * .45);
         const fold = (t >= T.journal && t < T.journal + .45 ? .92 + .08 * KP.ease.out(KP.prog(t, T.journal + .15, T.journal + .45)) : 1) * (t >= T.food && t < T.food + .5 ? 1 + .04 * Math.sin((t - T.food) * 40) * (1 - KP.prog(t, T.food, T.food + .5)) : 1);
         const envOut = KP.ep(t, T.l3 - .3, T.l3 + .1, 'in');
