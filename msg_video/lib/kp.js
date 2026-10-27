@@ -900,11 +900,11 @@
   };
 
   // ================================================================= CAPTIONS
-  // Torn white paper strip, Nunito Black 58px (shrunk from the frames' 64px so the strip stays inside y 1300-1480). Spoken words ink, upcoming lavender, current word on a raised chip
+  // Torn white paper strip, Nunito Black 64px, inside y 1300-1480. Spoken words ink, unread words violet ink; the raised chip sits on KEY words only
   // with a hard shadow + misregistered under-print. Chip colour by act (see KP.CAP.accent).
   // words = [{s, state: 'done'|'on'|'later'}], lines = [[wordIndex...], ...]
   KP.CAP = {
-    size: 64, cx: 470, cy: 1390, lh: 1.1, padY: 9, maxW: 780, maxWords: 7, maxChars: 34,
+    size: 64, cx: 470, cy: 1390, lh: 1.1, padY: 9, maxW: 780, maxWords: 7, maxChars: 38,
     lavender: P.unread,
     // per-scene chip colour; [fill, under-print ink, text colour]. Approved: pink cold open, gold glutamate, red 1960s.
     accent: {
@@ -917,7 +917,45 @@
     gold: [P.gold, P.tomato, P.ink],
     goldWord: /glutam/i,
   };
-  // draw one strip. chip = {i (word index), from (prev index), u (hop progress 0..1), land (0..1 after landing)}
+  // ---- KEY WORDS (client, 2nd viewer test): the chip only lands on key words, never on 'the', 'a', 'of', 'he'.
+  // Phrases are matched across words (normalised: lower case, punctuation stripped). Longest match wins.
+  KP.CAP.keyPhrases = [
+    'chinese restaurant syndrome', 'blood-brain barrier', 'blood brain barrier', 'ninety-five percent', 'same molecule', 'one cuisine',
+    'brain cells', 'not really', 'generally recognized as safe', 'double-blind', 'breast milk', 'one letter', 'huge doses', 'brain damage',
+    'msg', 'monosodium', 'glutamate', 'glutamic', 'umami', 'hungry', 'excitotoxicity', 'villain', 'guessing', 'guess', 'parmesan', 'fuel',
+    'placebo', 'safe', 'third', 'sodium', 'shaker', 'seaweed', 'kombu', 'tomato', 'tomatoes', 'mice', 'prejudice', 'catchy', 'headline',
+    'everywhere', 'chemical', 'protein', 'gut', 'poison', 'fda', 'gras', 'ikeda', 'kikunae', 'blaylock', 'salt', 'flavor', 'flavour',
+    'dinner', 'science', 'decades', 'fifty', 'years', 'numb',
+  ].map(p => p.split(' '));
+  KP.CAP.numberRe = /^(\d[\d,.%]*|fifty|ninety-five|ninety|twenty|thirty|forty|hundred|thousand|million)$/;
+  KP.CAP.stop = new Set(('a an the of to in on at for with by from as is are was were be been being it its it\'s he she they them his her their ' +
+    'you your we our i me my and or but so if not no that this these those who what which when where why how just even ' +
+    'there here than then after before do does did has have had can could will would should may might about into over up out more most very').split(' '));
+  // never chipped on its own (only inside the quoted headline phrase)
+  KP.CAP.noChip = new Set(['chinese', 'restaurant', 'restaurants']);
+  const norm = w => w.toLowerCase().replace(/[^a-z0-9%'-]/g, '').replace(/^-+|-+$/g, '');
+  // groups of word indices [a, b] (inclusive) that get the chip, in order; fallback: the longest content word
+  KP.keyGroups = words => {
+    const n = words.map(w => norm(w.w)), out = [];
+    for (let i = 0; i < n.length; i++) {
+      let best = 0;
+      for (const ph of KP.CAP.keyPhrases) {
+        if (ph.length <= best || i + ph.length > n.length) continue;
+        let ok = true; for (let k = 0; k < ph.length; k++) if (n[i + k] !== ph[k] && !(k === ph.length - 1 && n[i + k].replace(/s$/, '') === ph[k])) { ok = false; break; }
+        if (ok) best = ph.length;
+      }
+      if (!best && KP.CAP.numberRe.test(n[i])) best = 1;
+      if (best) { out.push([i, i + best - 1]); i += best - 1; }
+    }
+    if (!out.length) {
+      let bi = -1, bl = 0;
+      n.forEach((w, i) => { if (!KP.CAP.stop.has(w) && !KP.CAP.noChip.has(w) && w.length > bl) { bl = w.length; bi = i; } });
+      if (bi >= 0) out.push([bi, bi]);
+    }
+    return out;
+  };
+
+  // draw one strip. chip = {span: [a, b], from: [a, b] | null, u (slide 0..1), land (0..1 after landing)}
   KP.caption = (ctx, words, lines, cx, cy, o = {}) => {
     const size = o.size || KP.CAP.size, lh = size * KP.CAP.lh, padX = 32, padY = KP.CAP.padY, sp = size * .26;
     const fnt = { size, font: 'Nunito', weight: 900 };
@@ -925,92 +963,115 @@
     const lw = lines.map(l => l.reduce((a, i, k) => a + ww[i] + (k ? sp : 0), 0));
     const w = Math.max(...lw) + padX * 2, h = lines.length * lh + padY * 2 - (lh - size) * .5;
     const x0 = cx - w / 2, y = cy - h / 2;
-    // word boxes
-    const box = [];
-    lines.forEach((l, li) => { let xx = cx - lw[li] / 2; const by = y + padY + li * lh + size * .82; l.forEach(i => { box[i] = [xx, by, ww[i]]; xx += ww[i] + sp; }); });
+    const box = [], lineOf = [];
+    lines.forEach((l, li) => { let xx = cx - lw[li] / 2; const by = y + padY + li * lh + size * .82; l.forEach(i => { box[i] = [xx, by, ww[i]]; lineOf[i] = li; xx += ww[i] + sp; }); });
+    // a span's chip rectangles: one per strip line it touches [x, baseline, width]
+    const spanRects = ([a, b2]) => { const r = []; for (let i = a; i <= b2; i++) { const L = r.length && r[r.length - 1].li === lineOf[i] ? r[r.length - 1] : null; if (L) { L.w = box[i][0] + box[i][2] - L.x; } else r.push({ li: lineOf[i], x: box[i][0], y: box[i][1], w: box[i][2] }); } return r; };
     ctx.save();
     ctx.translate(cx, cy); ctx.rotate(o.rot ?? -.012); ctx.translate(-cx, -cy);
     const strip = KP.paper(ctx, KP.jitter(KP.tornRect(x0, y, w, h, o.seed || 9, 6), (o.seed || 9) + (o.boil || 0), 1), o.fill || P.rice, { shadow: KP.SH.near, shadowA: o.shadowA ?? .4 });
     if (o.grain !== false) KP.grainIn(ctx, strip, .1, KP.devBox(ctx, x0 - 12, y - 6, x0 + w + 12, y + h + 6));
     const ch = o.chip, [fill, mis, txt] = o.accent || KP.CAP.accent.s01_coldopen;
-    let lift = null;
-    if (ch && ch.i >= 0) {
-      // the raised chip hops from the previous word, then settles (squash); drawn under the words
-      const A = box[ch.i], B = ch.from != null && ch.from >= 0 && ch.u < 1 ? box[ch.from] : A, u = KP.ease.out(ch.u ?? 1);
-      const bx = KP.lerp(B[0], A[0], u), by = KP.lerp(B[1], A[1], u), bw = KP.lerp(B[2], A[2], u);
-      const hop = B === A ? 0 : Math.sin(Math.PI * u) * 16;
+    let lift = null, onSet = new Set();
+    if (ch && ch.span) {
+      const A = spanRects(ch.span), B = ch.from && ch.u < 1 ? spanRects(ch.from) : null, u = KP.ease.out(ch.u ?? 1);
       const sq = ch.land == null ? 1 : .9 + .1 * KP.ease.out(ch.land);
-      lift = [bx + bw / 2, by + size * .28, sq, hop];
-      ctx.save();
-      ctx.translate(lift[0], lift[1]); ctx.scale(1 + (1 - sq) * .5, sq); ctx.translate(-lift[0], -lift[1]);
-      ctx.translate(-3, -6 - hop);
-      const cp = KP.jitter(KP.rr(bx - 14, by - size * .9, bw + 28, size * 1.18, 10, 10), 21 + (o.boil || 0), 1);
-      KP.paper(ctx, cp, fill, { shadow: [7, 10 + hop * .5], shadowA: .3, mis, misOff: [-3, 2], misA: .45 });
-      ctx.restore();
+      const c0 = A[0];
+      lift = [c0.x + c0.w / 2, c0.y + size * .28, sq];
+      for (let i = ch.span[0]; i <= ch.span[1]; i++) onSet.add(i);
+      A.forEach((r, k) => {
+        let { x, y: by, w: bw } = r;
+        if (B && B[0] && k === 0) { x = KP.lerp(B[0].x, x, u); by = KP.lerp(B[0].y, by, u); bw = KP.lerp(B[0].w, bw, u); }
+        const hop = B && k === 0 ? Math.sin(Math.PI * u) * 16 : 0;
+        ctx.save();
+        ctx.translate(x + bw / 2, by + size * .28); ctx.scale(1 + (1 - sq) * .5, sq); ctx.translate(-(x + bw / 2), -(by + size * .28));
+        ctx.translate(-3, -6 - hop);
+        const cp = KP.jitter(KP.rr(x - 14, by - size * .9, bw + 28, size * 1.18, 10, 10), 21 + k + (o.boil || 0), 1);
+        KP.paper(ctx, cp, fill, { shadow: [7, 10 + hop * .5], shadowA: .3, mis, misOff: [-3, 2], misA: .45 });
+        ctx.restore();
+      });
     }
     words.forEach((wd, i) => {
-      if (wd.state !== 'on') return KP.text(ctx, wd.s, box[i][0], box[i][1], { ...fnt, color: wd.state === 'done' ? P.ink : KP.CAP.lavender });
+      if (!onSet.has(i)) return KP.text(ctx, wd.s, box[i][0], box[i][1], { ...fnt, color: wd.state === 'later' ? KP.CAP.lavender : P.ink });
       ctx.save();
-      if (lift) { ctx.translate(lift[0], lift[1]); ctx.scale(1 + (1 - lift[2]) * .5, lift[2]); ctx.translate(-lift[0], -lift[1]); ctx.translate(-3, -6); }
-      KP.text(ctx, wd.s, box[i][0], box[i][1], { ...fnt, color: txt });
+      const r = box[i], cxw = r[0] + r[2] / 2;
+      if (lift) { ctx.translate(cxw, r[1] + size * .28); ctx.scale(1 + (1 - lift[2]) * .5, lift[2]); ctx.translate(-cxw, -(r[1] + size * .28)); ctx.translate(-3, -6); }
+      KP.text(ctx, wd.s, r[0], r[1], { ...fnt, color: txt });
       ctx.restore();
     });
     ctx.restore();
     return { w, h };
   };
 
-  // split a cues line into phrase chunks (<= maxWords, <= maxChars), preferring breaks after punctuation
+  // ---- strip breaking. Prefer breaks at punctuation, then before conjunctions / prepositions; never end a strip on an
+  // article, preposition, auxiliary or subject pronoun; never start one with a dangling object pronoun.
+  const BRK = {
+    before: new Set('and but or so because which who that than to of in on at for with as about into from after until like just'.split(' ')),
+    noEnd: new Set('a an the of to in on at for with by from as is are was were be been has have had his her their your my our its it\'s he she they we i you who that this very so and but or than into about made makes'.split(' ')),
+    noStart: new Set('them it him her us me itself who whom whose'.split(' ')),
+  };
+  const breakCost = (words, j) => {   // cost of ending a strip after word j-1 (0 < j < n)
+    const last = words[j - 1].w, nx = norm(words[j].w), lastN = norm(last);
+    let c = /[.!?]["')]*$|\.\.\.$/.test(last) ? 0 : /[,;:]$/.test(last) ? .5 : BRK.before.has(nx) ? 2 : 6;
+    if (BRK.noEnd.has(lastN) && !/[,.;:!?]$/.test(last)) c += 9;
+    if (BRK.noStart.has(nx)) c += 6;
+    if (words.keyIn && words.keyIn[j - 1] >= 0 && words.keyIn[j - 1] === words.keyIn[j]) c += 14;   // never split a key phrase
+    return c;
+  };
   const chunkLine = words => {
+    words.keyIn = new Array(words.length).fill(-1); KP.keyGroups(words).forEach(([a, z], g) => { for (let i = a; i <= z; i++) words.keyIn[i] = g; });
     const n = words.length, C = KP.CAP, best = new Array(n + 1).fill(Infinity), prev = new Array(n + 1).fill(0);
     best[0] = 0;
     const len = (i, j) => words.slice(i, j).reduce((a, w) => a + w.w.length, 0) + (j - i - 1);
     for (let j = 1; j <= n; j++) for (let i = Math.max(0, j - C.maxWords); i < j; i++) {
       const k = j - i, ch = len(i, j);
       if (ch > C.maxChars && k > 1) continue;
-      const last = words[j - 1].w, punct = /[.!?]["')]*$|\.\.\.$/.test(last) ? 0 : /[,;:]$/.test(last) ? 1 : (j === n ? 0 : 5);
-      const c = best[i] + punct + (k < 3 ? (3 - k) * 2.5 : 0) + Math.pow(Math.max(0, ch - 24) / 4, 2) + 1.5;
+      let mid = 0; for (let q = i; q < j - 1; q++) if (/[.!?]["')]*$|\.\.\.$/.test(words[q].w)) mid += 7;   // a sentence ends inside the strip
+      const c = best[i] + (j === n ? 0 : breakCost(words, j)) + (k < 4 ? (4 - k) * 2 : 0) + Math.pow(Math.max(0, ch - 30) / 5, 2) + 3 + mid;
       if (c < best[j]) { best[j] = c; prev[j] = i; }
     }
     const out = []; let j = n; while (j > 0) { out.unshift([prev[j], j]); j = prev[j]; }
     return out;
   };
-  // lay a chunk out in 1-2 lines (balanced, top line longer); shrink the font if it still does not fit
-  const layoutChunk = ws => {
-    const C = KP.CAP, sp = C.size * .26, fnt = { size: C.size, font: 'Nunito', weight: 900 };
+  // lay a chunk out in 1-2 lines: balanced widths, but the line break also follows the break-cost rules
+  const layoutChunk = cw => {
+    const ws = cw.map(w => w.w), C = KP.CAP, sp = C.size * .26, fnt = { size: C.size, font: 'Nunito', weight: 900 };
     const w = ws.map(s => KP.measure(null, s, fnt)), tot = w.reduce((a, b) => a + b, 0) + sp * (ws.length - 1);
     const idx = ws.map((_, i) => i);
     if (tot <= 560 || ws.length < 2) return { lines: [idx], size: tot > C.maxW ? Math.floor(C.size * C.maxW / tot) : C.size };
-    let bestK = 1, bestV = Infinity;
+    let bestK = 1, bestV = Infinity, bestW = 0;
     for (let k = 1; k < ws.length; k++) {
       const a = w.slice(0, k).reduce((x, y) => x + y, 0) + sp * (k - 1), b = w.slice(k).reduce((x, y) => x + y, 0) + sp * (ws.length - k - 1);
-      const v = Math.max(a, b) + (b > a ? 30 : 0);
-      if (v < bestV) { bestV = v; bestK = k; }
+      const width = Math.max(a, b), v = width + (b > a ? 30 : 0) + breakCost(cw, k) * 22;
+      if (v < bestV) { bestV = v; bestK = k; bestW = width; }
     }
-    return { lines: [idx.slice(0, bestK), idx.slice(bestK)], size: bestV > C.maxW ? Math.floor(C.size * C.maxW / bestV) : C.size };
+    return { lines: [idx.slice(0, bestK), idx.slice(bestK)], size: bestW > C.maxW ? Math.floor(C.size * C.maxW / bestW) : C.size };
   };
   const capCache = {};
   KP.captionChunks = (id, cueLines) => {
-    if (capCache[id]) return capCache[id];
+    const key = id + ':' + cueLines.length + ':' + (cueLines[0] && cueLines[0].start);
+    if (capCache[key]) return capCache[key];
     const chunks = [];
     cueLines.forEach((L, li) => {
       const words = L.words || [];
       chunkLine(words).forEach(([a, b]) => {
         const ws = words.slice(a, b);
-        chunks.push({ line: li, words: ws, t0: ws[0].start - .1, wEnd: ws[ws.length - 1].end, lineEnd: L.end, ...layoutChunk(ws.map(w => w.w)) });
+        chunks.push({ line: li, words: ws, t0: ws[0].start - .1, wEnd: ws[ws.length - 1].end, lineEnd: L.end, keys: KP.keyGroups(ws), ...layoutChunk(ws) });
       });
     });
     chunks.forEach((c, i) => {
       const nx = chunks[i + 1];
-      const hold = c.wEnd + .45;                       // a strip lingers briefly after its last word
-      // within a narration line the strip never disappears; between lines it hides only across a real pause
+      const hold = c.wEnd + .45;
       c.t1 = nx ? (nx.line === c.line || nx.t0 - hold < .5 ? nx.t0 : hold) : hold;
-      c.joined = !!(nx && c.t1 === nx.t0);              // next strip replaces this one directly
+      c.joined = !!(nx && c.t1 === nx.t0);
       c.seed = 9 + i * 13;
       c.rot = (KP.hash(i, 77) - .5) * .03 - .006;
     });
-    return (capCache[id] = chunks);
+    return (capCache[key] = chunks);
   };
-  // the caption layer, drawn by player.html on top of every scene (unless the scene sets captions: false)
+  // the caption layer, drawn by player.html on top of every scene (unless the scene sets captions: false).
+  // Ink progresses word by word; the chip lands on each KEY group when its first word is spoken and stays there
+  // (sliding to the next key group, if any) until the strip changes.
   KP.captionLayer = (ctx, t, id, cueLines) => {
     if (!cueLines || !cueLines.length) return;
     const chunks = KP.captionChunks(id, cueLines);
@@ -1019,22 +1080,21 @@
     if (ci < 0) return;
     const c = chunks[ci], prevJoined = ci > 0 && chunks[ci - 1].joined;
     const k = KP.wordAt(c.words, t);
-    const words = c.words.map((w, i) => ({ s: w.w, state: i < k ? 'done' : i === k ? 'on' : 'later' }));
+    const words = c.words.map((w, i) => ({ s: w.w, state: i < k ? 'done' : i === k ? 'now' : 'later' }));
+    let g = -1; c.keys.forEach(([a], gi) => { if (a <= k) g = gi; });
     const acc = KP.CAP.accent[id] || KP.CAP.accent.s01_coldopen;
-    const accent = k >= 0 && KP.CAP.goldWord.test(c.words[k].w) ? KP.CAP.gold : acc;
-    let chip = null;
-    if (k >= 0) {
-      const ts = c.words[k].start, hopD = .09;
-      chip = { i: k, from: k - 1, u: k > 0 ? KP.prog(t, ts, ts + hopD) : 1, land: KP.prog(t, ts + (k > 0 ? hopD : 0), ts + (k > 0 ? hopD : 0) + 4 * KP.F) };
+    let chip = null, accent = acc;
+    if (g >= 0) {
+      const span = c.keys[g], ts = c.words[span[0]].start, hopD = .12, from = g > 0 ? c.keys[g - 1] : null;
+      chip = { span, from, u: from ? KP.prog(t, ts, ts + hopD) : 1, land: KP.prog(t, ts + (from ? hopD : 0), ts + (from ? hopD : 0) + 4 * KP.F) };
+      for (let i = span[0]; i <= span[1]; i++) if (KP.CAP.goldWord.test(c.words[i].w)) accent = KP.CAP.gold;
     }
-    // entrance: pop + slide up (a fresh strip being slapped down), quicker when it replaces a strip
     const ar = KP.arrive(t, c.t0, prevJoined ? .14 : .2);
     const out = c.joined ? 0 : KP.leave(t, c.t1, .16);
     ctx.save();
     ctx.globalAlpha = 1 - out;
     const cy = KP.CAP.cy + (1 - ar.p) * 12 + out * 10, s0 = prevJoined ? .94 : .7;
     ctx.translate(KP.CAP.cx, cy + 60); ctx.scale((s0 + (1 - s0) * ar.p) * ar.sx * (1 - out * .06), (s0 + (1 - s0) * ar.p) * ar.sy * (1 - out * .06)); ctx.translate(-KP.CAP.cx, -cy - 60);
-    // no fade-in: paper is slapped down (scale + settle), so the strip never looks washed out
     KP.caption(ctx, words, c.lines, KP.CAP.cx, cy, { size: c.size, boil: KP.boil(t), seed: c.seed, rot: c.rot, accent, chip });
     ctx.restore();
   };
