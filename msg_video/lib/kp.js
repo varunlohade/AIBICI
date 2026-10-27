@@ -713,7 +713,7 @@
     // two short slanted glints (cut turquoise slivers)
     for (const [gx, gy, gl] of [[-w * .3, top * .86, h * .07], [-w * .3, top * .7, h * .03]]) KP.brush(ctx, [[gx, gy], [gx + gl * .5, gy + gl]], h * .026, P.turq, { taper: .5 });
     // cap: short dome with a rim (o.capDy / o.capRot lift it off)
-    ctx.save(); ctx.translate(0, o.capDy || 0); if (o.capRot) { ctx.translate(0, top); ctx.rotate(o.capRot); ctx.translate(0, -top); }
+    ctx.save(); ctx.translate(o.capDx || 0, o.capDy || 0); if (o.capRot) { ctx.translate(0, top); ctx.rotate(o.capRot); ctx.translate(0, -top); }
     const cap = KP.jitter(KP.curve([[-w * .5, top + 2], [-w * .46, top - h * .14], [-w * .22, top - h * .25], [w * .22, top - h * .25], [w * .46, top - h * .14], [w * .5, top + 2]], true, 6), sd + 5 + b, 1.2);
     KP.paper(ctx, cap, o.cap || P.pink, { shadow: KP.SH.far, shadowA: .3, mis: P.tomato, misOff: [-3, 2], misA: .45 });
     KP.paper(ctx, KP.jitter(KP.rr(-w * .54, top - h * .04, w * 1.08, h * .07, 6, 10), sd + 6 + b, 1), KP.mix(o.cap || P.pink, P.ink, .25), { shadow: false });

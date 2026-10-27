@@ -27,7 +27,8 @@
     T.msgG = w(/msg/i, { after: T.headache, fb: mid(2, .75) }); if (T.msgG >= T.wall) T.msgG = mid(2, .75);
     T.fifty = w(/fifty|years/i, { after: T.wall, fb: T.wall + .3 });
     T.lit = w(/everyone/i, { after: T.wall, fb: T.wall + 1.2 });
-    T.tables0 = w(/scared|afraid/i, { after: T.wall, fb: T.wall + 2.2 }) - .1;
+    T.scared = w(/scared|afraid/i, { after: T.wall, fb: T.wall + 2.2 });
+    T.tables0 = w(/^of$/i, { after: T.scared, fb: T.scared + .35 }) - .1;   // cut just before 'of'; the sign switches on there
     T.msgN = w(/msg/i, { after: T.tables0, fb: T.tables0 + .7 });
     T.and = w(/^and$/i, { after: T.msgN, fb: T.msgN + 1 }); T.started = w(/started/i, { after: T.msgN, fb: T.and + .6 });
     T.ff0 = w(/^one$/i, { after: T.started, fb: T.started + .6 }) - .1;

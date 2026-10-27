@@ -150,7 +150,7 @@
       const hop = t >= T.glutamate + .25 ? Math.pow(Math.sin(Math.PI * KP.prog(t, T.glutamate + .25, T.glutamate + .65)), 1) * 60 : 0;
       if (t >= T.turned - .2) {
         ctx.save(); ctx.translate(0, -hop);
-        KP.shaker(ctx, sx, sy, 400, { boil: b, seed: 7, capDy: -150 * cap, capRot: -.5 * cap });
+        KP.shaker(ctx, sx, sy, 400, { boil: b, seed: 7, capDx: 190 * cap, capDy: -90 * cap, capRot: .5 * cap });
         // Goldie sticker presses onto the shaker on 'glutamate'
         if (t >= T.glutamate) { const st = KP.arrive(t, T.glutamate, .22); ctx.save(); KP.pose(ctx, st, sx, sy - 120, 'pop');
           KP.paper(ctx, KP.jitter(KP.egg(sx, sy - 150, 62, 62, 0, 32), 2190 + b, 1), P.lemon, { shadow: KP.SH.far, shadowA: .3, mis: P.tomato, misOff: [-2, 2], misA: .4 });

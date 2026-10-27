@@ -22,7 +22,7 @@
     T.l5 = w(/barrier/i, { line: 1, fb: T.blood + .6 }); T.bbb = w(/blood-brain|barrier/i, { after: T.l5 - .01, fb: T.l5 + 1.1 });
     T.one = w(/^one$/i, { after: T.bbb, fb: T.bbb + 1.1 });
     T.best = w(/guarded|best/i, { after: T.bbb, fb: T.one + .6 }); T.body = w(/^body/i, { after: T.bbb, fb: T.best + 1.5 });
-    T.s5 = T.around - .1; T.s7 = T.one - .1;
+    T.s5 = T.around - .1; T.s7 = w(/^of$/i, { after: T.one, fb: T.one + .2 }) - .1;   // cut just before 'of'
     T.chomps = [T.cells, T.gut, (T.burn + T.fuel) / 2];
     return T;
   };
