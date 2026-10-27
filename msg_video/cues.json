@@ -1,315 +1,279 @@
 {
  "s01_coldopen": {
   "title": "Cold Open: The Accusations",
-  "duration": 21.451,
+  "duration": 16.911,
   "lines": [
    {
-    "voice": "TVDOC",
-    "text": "MSG is an excitotoxin. It overexcites your brain cells.",
+    "voice": "CLIP:blaylock_brain",
+    "text": "Excitotoxicity destroys brain cells.",
     "start": 0.3,
-    "end": 4.417,
+    "end": 2.85,
     "words": [
      {
-      "w": "MSG",
-      "start": 0.339,
-      "end": 0.821
+      "w": "Excitotoxicity",
+      "start": 0.3,
+      "end": 1.892
      },
      {
-      "w": "is",
-      "start": 0.821,
-      "end": 0.982
-     },
-     {
-      "w": "an",
-      "start": 0.982,
-      "end": 1.142
-     },
-     {
-      "w": "excitotoxin.",
-      "start": 1.142,
-      "end": 1.969
-     },
-     {
-      "w": "It",
-      "start": 2.323,
-      "end": 2.483
-     },
-     {
-      "w": "overexcites",
-      "start": 2.483,
-      "end": 3.31
-     },
-     {
-      "w": "your",
-      "start": 3.31,
-      "end": 3.471
+      "w": "destroys",
+      "start": 1.892,
+      "end": 2.371
      },
      {
       "w": "brain",
-      "start": 3.471,
-      "end": 3.631
+      "start": 2.371,
+      "end": 2.593
      },
      {
       "w": "cells.",
-      "start": 3.631,
-      "end": 3.792
+      "start": 2.593,
+      "end": 2.816
      }
-    ]
+    ],
+    "clip": "blaylock_brain"
    },
    {
-    "voice": "CHEF",
-    "text": "Never in my kitchen. It's poison, darling.",
-    "start": 4.667,
-    "end": 7.526,
+    "voice": "CLIP:blaylock_hungry",
+    "text": "They put so much MSG in food because it makes you hungry and you eat more of their food.",
+    "start": 3.2,
+    "end": 6.97,
     "words": [
      {
-      "w": "Never",
-      "start": 4.705,
-      "end": 5.075
+      "w": "They",
+      "start": 3.2,
+      "end": 3.357
+     },
+     {
+      "w": "put",
+      "start": 3.357,
+      "end": 3.514
+     },
+     {
+      "w": "so",
+      "start": 3.514,
+      "end": 3.671
+     },
+     {
+      "w": "much",
+      "start": 3.671,
+      "end": 3.828
+     },
+     {
+      "w": "MSG",
+      "start": 3.828,
+      "end": 4.299
      },
      {
       "w": "in",
-      "start": 5.075,
-      "end": 5.26
+      "start": 4.299,
+      "end": 4.457
      },
      {
-      "w": "my",
-      "start": 5.26,
-      "end": 5.444
+      "w": "food",
+      "start": 4.457,
+      "end": 4.614
      },
      {
-      "w": "kitchen.",
-      "start": 5.444,
-      "end": 5.842
+      "w": "because",
+      "start": 4.614,
+      "end": 4.928
      },
      {
-      "w": "It's",
-      "start": 6.249,
-      "end": 6.434
+      "w": "it",
+      "start": 4.928,
+      "end": 5.085
      },
      {
-      "w": "poison,",
-      "start": 6.434,
-      "end": 6.803
-     },
-     {
-      "w": "darling.",
-      "start": 7.025,
-      "end": 7.423
-     }
-    ]
-   },
-   {
-    "voice": "GURU",
-    "text": "Every time I eat it, I get headaches. It's the MSG, you guys!",
-    "start": 7.776,
-    "end": 11.509,
-    "words": [
-     {
-      "w": "Every",
-      "start": 7.802,
-      "end": 8.262
-     },
-     {
-      "w": "time",
-      "start": 8.262,
-      "end": 8.415
-     },
-     {
-      "w": "I",
-      "start": 8.415,
-      "end": 8.569
-     },
-     {
-      "w": "eat",
-      "start": 8.569,
-      "end": 8.722
-     },
-     {
-      "w": "it,",
-      "start": 8.722,
-      "end": 8.875
-     },
-     {
-      "w": "I",
-      "start": 9.059,
-      "end": 9.212
-     },
-     {
-      "w": "get",
-      "start": 9.212,
-      "end": 9.365
-     },
-     {
-      "w": "headaches.",
-      "start": 9.365,
-      "end": 9.848
-     },
-     {
-      "w": "It's",
-      "start": 10.185,
-      "end": 10.338
-     },
-     {
-      "w": "the",
-      "start": 10.338,
-      "end": 10.492
-     },
-     {
-      "w": "MSG,",
-      "start": 10.492,
-      "end": 10.951
+      "w": "makes",
+      "start": 5.085,
+      "end": 5.399
      },
      {
       "w": "you",
-      "start": 11.135,
-      "end": 11.289
+      "start": 5.399,
+      "end": 5.556
      },
      {
-      "w": "guys!",
-      "start": 11.289,
-      "end": 11.442
+      "w": "hungry",
+      "start": 5.556,
+      "end": 5.87
+     },
+     {
+      "w": "and",
+      "start": 5.87,
+      "end": 6.027
+     },
+     {
+      "w": "you",
+      "start": 6.027,
+      "end": 6.184
+     },
+     {
+      "w": "eat",
+      "start": 6.184,
+      "end": 6.342
+     },
+     {
+      "w": "more",
+      "start": 6.342,
+      "end": 6.499
+     },
+     {
+      "w": "of",
+      "start": 6.499,
+      "end": 6.656
+     },
+     {
+      "w": "their",
+      "start": 6.656,
+      "end": 6.813
+     },
+     {
+      "w": "food.",
+      "start": 6.813,
+      "end": 6.97
      }
-    ]
+    ],
+    "clip": "blaylock_hungry"
    },
    {
     "voice": "NARR",
     "text": "For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968.",
-    "start": 12.009,
-    "end": 18.975,
+    "start": 7.47,
+    "end": 14.436,
     "words": [
      {
       "w": "For",
-      "start": 12.08,
-      "end": 12.261
+      "start": 7.541,
+      "end": 7.722
      },
      {
       "w": "fifty",
-      "start": 12.261,
-      "end": 12.623
+      "start": 7.722,
+      "end": 8.084
      },
      {
       "w": "years,",
-      "start": 12.623,
-      "end": 12.804
+      "start": 8.084,
+      "end": 8.265
      },
      {
       "w": "everyone",
-      "start": 13.022,
-      "end": 13.592
+      "start": 8.482,
+      "end": 9.052
      },
      {
       "w": "has",
-      "start": 13.592,
-      "end": 13.773
+      "start": 9.052,
+      "end": 9.233
      },
      {
       "w": "been",
-      "start": 13.773,
-      "end": 13.954
+      "start": 9.233,
+      "end": 9.414
      },
      {
       "w": "scared",
-      "start": 13.954,
-      "end": 14.316
+      "start": 9.414,
+      "end": 9.776
      },
      {
       "w": "of",
-      "start": 14.316,
-      "end": 14.497
+      "start": 9.776,
+      "end": 9.957
      },
      {
       "w": "MSG.",
-      "start": 14.497,
-      "end": 15.04
+      "start": 9.957,
+      "end": 10.5
      },
      {
       "w": "And",
-      "start": 15.438,
-      "end": 15.619
+      "start": 10.898,
+      "end": 11.079
      },
      {
       "w": "it",
-      "start": 15.619,
-      "end": 15.8
+      "start": 11.079,
+      "end": 11.26
      },
      {
       "w": "all",
-      "start": 15.8,
-      "end": 15.981
+      "start": 11.26,
+      "end": 11.441
      },
      {
       "w": "started",
-      "start": 15.981,
-      "end": 16.343
+      "start": 11.441,
+      "end": 11.803
      },
      {
       "w": "with",
-      "start": 16.343,
-      "end": 16.524
+      "start": 11.803,
+      "end": 11.984
      },
      {
       "w": "one",
-      "start": 16.524,
-      "end": 16.705
+      "start": 11.984,
+      "end": 12.165
      },
      {
       "w": "letter,",
-      "start": 16.705,
-      "end": 17.067
+      "start": 12.165,
+      "end": 12.527
      },
      {
       "w": "in",
-      "start": 17.284,
-      "end": 17.465
+      "start": 12.745,
+      "end": 12.926
      },
      {
       "w": "1968.",
-      "start": 17.465,
-      "end": 18.37
+      "start": 12.926,
+      "end": 13.831
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "But is it actually bad for you?",
-    "start": 19.325,
-    "end": 20.951,
+    "start": 14.786,
+    "end": 16.411,
     "words": [
      {
       "w": "But",
-      "start": 19.389,
-      "end": 19.56
+      "start": 14.85,
+      "end": 15.021
      },
      {
       "w": "is",
-      "start": 19.56,
-      "end": 19.731
+      "start": 15.021,
+      "end": 15.191
      },
      {
       "w": "it",
-      "start": 19.731,
-      "end": 19.901
+      "start": 15.191,
+      "end": 15.362
      },
      {
       "w": "actually",
-      "start": 19.901,
-      "end": 20.439
+      "start": 15.362,
+      "end": 15.899
      },
      {
       "w": "bad",
-      "start": 20.439,
-      "end": 20.609
+      "start": 15.899,
+      "end": 16.07
      },
      {
       "w": "for",
-      "start": 20.609,
-      "end": 20.78
+      "start": 16.07,
+      "end": 16.241
      },
      {
       "w": "you?",
-      "start": 20.78,
-      "end": 20.951
+      "start": 16.241,
+      "end": 16.411
      }
     ]
    }

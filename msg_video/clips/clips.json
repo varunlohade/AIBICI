@@ -1,4 +1,25 @@
 {
-  "_doc": "Real interview clips for the cold open. Put source files in clips/src/ (not committed). 'in'/'out' are seconds in the source file. 'quote' must be the exact words spoken: it drives the captions. 'credit' is shown on screen. Run `python3 prep_clips.py` after editing, then `python3 build_audio.py`.",
-  "clips": []
+  "_doc": "Real interview clips for the cold open. Source files live in clips/src/ (not committed). 'in'/'out' are seconds in the source file. 'quote' is the exact words spoken (verified with a Whisper transcript, word timestamps): it drives the captions. 'credit' is shown on screen. Run `python3 prep_clips.py`, then `python3 build_audio.py`.",
+  "clips": [
+    {
+      "id": "blaylock_brain",
+      "url": "https://archive.org/details/youtube-Y0kvaulUIfc",
+      "file": "dl/blaylock.mp4",
+      "in": 1445.2,
+      "out": 1447.75,
+      "speaker": "Dr. Russell Blaylock",
+      "credit": "Neurosurgeon, lecture on MSG, 2012",
+      "quote": "Excitotoxicity destroys brain cells."
+    },
+    {
+      "id": "blaylock_hungry",
+      "url": "https://archive.org/details/youtube-Y0kvaulUIfc",
+      "file": "dl/blaylock.mp4",
+      "in": 1376.98,
+      "out": 1380.75,
+      "speaker": "Dr. Russell Blaylock",
+      "credit": "Neurosurgeon, lecture on MSG, 2012",
+      "quote": "They put so much MSG in food because it makes you hungry and you eat more of their food."
+    }
+  ]
 }

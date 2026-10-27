@@ -29,9 +29,10 @@ SCENES = [{'id': 's01_coldopen',
   'visual': "Wall of retro TV screens. Each lights up with a flat-vector silhouette 'celebrity' "
             "(dramatization) making a claim. Glitchy channel-switch between them. Ends with a neon 'NO MSG' "
             'restaurant sign buzzing on, then a record scratch.',
-  'lines': [('TVDOC', 'MSG is an excitotoxin. It overexcites your brain cells.', 0.25),
-            ('CHEF', "Never in my kitchen. It's poison, darling.", 0.25),
-            ('GURU', "Every time I eat it, I get headaches. It's the MSG, you guys!", 0.5),
+  'lines': [('CLIP:blaylock_brain', 'Excitotoxicity destroys brain cells.', 0.35),
+            ('CLIP:blaylock_hungry',
+             'They put so much MSG in food because it makes you hungry and you eat more of their food.',
+             0.5),
             ('NARR',
              'For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968.',
              0.35),
@@ -142,10 +143,10 @@ SOURCES = ['Kwok, R.H.M. (1968). Chinese-Restaurant Syndrome. N Engl J Med 278:7
 
 def write_markdown(path="SCRIPT.md"):
     out = ["# MSG: The Most Misunderstood Molecule", "",
-           "_An animated explainer series for Instagram Reels (9:16, three parts). Narration + visual direction._", "",
-           "> The cold-open 'celebrities' are fictional, silhouetted composite characters "
-           "(dramatization) voiced by synthetic voices, representing claims commonly made on TV "
-           "and social media. No real person is depicted or quoted.", ""]
+           "_An animated explainer Reel for Instagram (9:16, about 2 minutes). Narration + visual direction._", "",
+           "> The cold open uses two real, attributed clips of Dr. Russell Blaylock from a 2012 lecture "
+           "(archived at https://archive.org/details/youtube-Y0kvaulUIfc), quoted verbatim and verified against "
+           "a transcript. See clips/clips.json and clips/CANDIDATES.md.", ""]
     by_id = {sc["id"]: sc for sc in SCENES}
     n = 0
     for part in PARTS:
