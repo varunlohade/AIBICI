@@ -692,7 +692,7 @@
       ctx.fillStyle = on ? (o.letter || P.lemon) : dimC; ctx.fillText(s, cx + jx, cy + jy);
       ctx.restore();
     };
-    const dim = P.pink;
+    const dim = o.dim || P.pink;
     word('NO', x, y0 + h * .29, sz1, (o.no ?? 1) > .5, dim);
     word('MSG', x, y0 + h * .64, sz2, (o.msg ?? 1) > .5, dim);
     return { x: x0, y: y0, w, h };
@@ -708,15 +708,17 @@
     KP.paper(ctx, body, P.rice, { shadow: o.shadow || KP.SH.near, shadowA: o.shadowA ?? .35, mis: P.turq, misOff: [-3, 2], misA: .45 });
     const r = KP.rng(sd * 3 + 1);
     ctx.save(); ctx.clip(KP.path(body));
-    for (let i = 0; i < 46; i++) { const cx = (r() - .5) * w * .95, cy = top * Math.pow(r(), 1.6) * .5, cs = h * (.016 + r() * .014); KP.paper(ctx, KP.rot([[cx - cs, cy - cs], [cx + cs, cy - cs], [cx + cs, cy + cs], [cx - cs, cy + cs]], cx, cy, r() * 3), P.gold, { shadow: false }); }
+    const crys = o.salt ? P.turq : P.gold;   // SALT variant: white crystals with turquoise edges, cobalt cap
+    if (o.salt) KP.paper(ctx, KP.jitter(KP.curve([[-w * .6, top * .45], [0, top * .52], [w * .6, top * .46], [w * .6, h * .1], [-w * .6, h * .1]], true, 6), sd + 2, 1), P.pink30, { shadow: false });
+    for (let i = 0; i < 46; i++) { const cx = (r() - .5) * w * .95, cy = top * Math.pow(r(), 1.6) * .5, cs = h * (.016 + r() * .014); KP.paper(ctx, KP.rot([[cx - cs, cy - cs], [cx + cs, cy - cs], [cx + cs, cy + cs], [cx - cs, cy + cs]], cx, cy, r() * 3), o.salt ? (i % 2 ? P.rice : crys) : P.gold, { shadow: false }); }
     ctx.restore();
     // two short slanted glints (cut turquoise slivers)
     for (const [gx, gy, gl] of [[-w * .3, top * .86, h * .07], [-w * .3, top * .7, h * .03]]) KP.brush(ctx, [[gx, gy], [gx + gl * .5, gy + gl]], h * .026, P.turq, { taper: .5 });
     // cap: short dome with a rim (o.capDy / o.capRot lift it off)
     ctx.save(); ctx.translate(o.capDx || 0, o.capDy || 0); if (o.capRot) { ctx.translate(0, top); ctx.rotate(o.capRot); ctx.translate(0, -top); }
     const cap = KP.jitter(KP.curve([[-w * .5, top + 2], [-w * .46, top - h * .14], [-w * .22, top - h * .25], [w * .22, top - h * .25], [w * .46, top - h * .14], [w * .5, top + 2]], true, 6), sd + 5 + b, 1.2);
-    KP.paper(ctx, cap, o.cap || P.pink, { shadow: KP.SH.far, shadowA: .3, mis: P.tomato, misOff: [-3, 2], misA: .45 });
-    KP.paper(ctx, KP.jitter(KP.rr(-w * .54, top - h * .04, w * 1.08, h * .07, 6, 10), sd + 6 + b, 1), KP.mix(o.cap || P.pink, P.ink, .25), { shadow: false });
+    KP.paper(ctx, cap, o.cap || (o.salt ? P.blue : P.pink), { shadow: KP.SH.far, shadowA: .3, mis: P.tomato, misOff: [-3, 2], misA: .45 });
+    KP.paper(ctx, KP.jitter(KP.rr(-w * .54, top - h * .04, w * 1.08, h * .07, 6, 10), sd + 6 + b, 1), KP.mix(o.cap || (o.salt ? P.blue : P.pink), P.ink, .25), { shadow: false });
     ctx.fillStyle = P.ink; for (const [hx, hy] of [[-w * .18, top - h * .16], [0, top - h * .2], [w * .18, top - h * .16]]) { ctx.beginPath(); ctx.arc(hx, hy, h * .02, 0, TAU); ctx.fill(); }
     ctx.restore();
     ctx.restore();
@@ -840,6 +842,40 @@
     for (let i = 0; i < 5; i++) { const ph = ((o.t || 0) * .9 + r()) % 1, bx = x + (r() - .5) * w * .5, by = y - h * (.08 + ph * .6); ctx.fillStyle = P.rice; ctx.beginPath(); ctx.arc(bx, by, h * .035 * (1 - ph * .4), 0, TAU); ctx.fill(); }
     ctx.restore();
     KP.paper(ctx, KP.jitter(KP.rr(x - h * .14, y - h - 12, h * .28, 18, 6, 8), sd + 3 + b, .8), liquid, { shadow: KP.SH.far });
+  };
+
+  // a simple paper-doll person (volunteers / scientists). (x, y) = feet centre, s = scale (~300 px tall at s=1).
+  // o.skin, o.shirt, o.hair, o.blind (paper blindfold), o.coat (white lab coat), o.eyes, o.mouth, o.arm (raise 0..1)
+  P.skin2 = '#E8833F'; P.skin3 = '#8E3B1E';   // vivid apricot / caramel / deep sienna (three tones, saturated)
+  KP.doll = (ctx, x, y, s, o = {}) => {
+    const b = o.boil || 0, sd = o.seed || 4500, T = (px, py) => [x + px * s, y + py * s];
+    const J = (pts, k, a = 1) => KP.jitter(pts.map(([px, py]) => T(px, py)), sd + k + b, a);
+    const shirt = o.coat ? P.rice : (o.shirt || P.turq);
+    KP.paper(ctx, J(KP.curve([[-70, -150], [70, -150], [86, -40], [80, 0], [-80, 0], [-86, -40]], true, 6), 1, 1.2), shirt, { shadow: KP.SH.near, shadowA: .3, mis: o.coat ? P.turq : P.blue, misOff: [-2, 2], misA: .3 });
+    for (const sx of [-1, 1]) {
+      const raise = sx === 1 ? (o.arm || 0) : 0, a = sx * (.25 + raise * 2.1);
+      ctx.save(); ctx.translate(...T(sx * 66, -138)); ctx.rotate(-a);
+      KP.paper(ctx, KP.jitter(KP.rr(-14 * s, 0, 28 * s, 110 * s, 12 * s, 10), sd + 2 + sx + b, .8), shirt, { shadow: KP.SH.far, shadowA: .25 });
+      KP.paper(ctx, KP.jitter(KP.egg(0, 116 * s, 18 * s, 16 * s, 0, 16), sd + 4 + sx + b, .6), o.skin || P.skin, { shadow: false });
+      ctx.restore();
+    }
+    KP.paper(ctx, J(KP.rr(-16, -176, 32, 32, 8, 8), 5), o.skin || P.skin, { shadow: false });
+    KP.paper(ctx, J(KP.egg(0, -230, 62, 68, -.05, 40), 6, 1.2), o.skin || P.skin, { shadow: KP.SH.near, shadowA: .25 });
+    KP.paper(ctx, J(KP.curve([[-64, -236], [-58, -290], [0, -306], [58, -290], [64, -236], [40, -262], [-40, -262]], true, 6), 7), o.hair || P.ink, { shadow: false });
+    if (o.blind) { KP.paper(ctx, J(KP.rr(-68, -250, 136, 28, 6, 10), 8, .8), o.blind, { shadow: KP.SH.far, shadowA: .3 }); KP.paper(ctx, J([[60, -240], [96, -260], [90, -222]], 9, .6), o.blind, { shadow: false }); }
+    else KP.face(ctx, x, y - 230 * s, 110 * s, { eyes: o.eyes || 'dot', mouth: 'none', cheek: P.pink });
+    const m = o.mouth || 'smile', mx = x, my = y - 200 * s;
+    if (m === 'smile') KP.brush(ctx, KP.arcPts(mx, my - 6 * s, 12 * s, 8 * s, Math.PI * .15, Math.PI * .85, 8), 5 * s, P.ink, { taper: .4 });
+    else if (m === 'wobble') KP.brush(ctx, [[mx - 12 * s, my], [mx - 6 * s, my - 4 * s], [mx, my], [mx + 6 * s, my - 4 * s], [mx + 12 * s, my]], 4.5 * s, P.ink, { taper: .4 });
+    if (o.coat) for (const by of [-120, -80, -40]) KP.fastener(ctx, ...T(0, by), 4 * s);
+  };
+  // thought bubble with a small picture drawn by fn(ctx, cx, cy, r)
+  KP.thought = (ctx, x, y, r, fn, o = {}) => {
+    const b = o.boil || 0;
+    for (const [dx, dy, rr] of [[-r * .7, r * 1.25, r * .12], [-r * .45, r * .95, r * .2]]) KP.paper(ctx, KP.jitter(KP.egg(x + dx, y + dy, rr, rr, 0, 16), 4600 + dx + b, .6), P.rice, { shadow: KP.SH.far, shadowA: .3 });
+    const pts = []; for (let i = 0; i < 64; i++) { const a = i / 64 * TAU, bump = 1 + .08 * Math.abs(Math.sin(a * 4)); pts.push([x + Math.cos(a) * r * bump, y + Math.sin(a) * r * .8 * bump]); }
+    KP.paper(ctx, KP.jitter(pts, 4610 + b, 1), P.rice, { shadow: KP.SH.near, shadowA: .3 });
+    if (fn) fn(ctx, x, y, r);
   };
 
   // ---------------------------------------------------------------- distressed rubber stamp (cached canvas)

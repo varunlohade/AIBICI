@@ -92,7 +92,7 @@
       const [x, y, w, h, opt] = tv;
       const lit = o.lit ? o.lit(i) : 0;
       KP.tv(ctx, x, y, w, h, { seed: 100 + i * 7, boil: b, shadow: [8, 11], shadowA: .45, panel: opt.panel || 'right', antenna: opt.antenna, feet: opt.feet, body: P.grape, screen: P.screenDim, antColor: P.ink, lit: lit > 0 });
-      if (lit > 0) smallLit(ctx, tv, i, t, b, o.cues || [], o.litOpts ? o.litOpts(i) : {});
+      if (lit > 0) { if (o.litDraw) o.litDraw(ctx, KP.tvScreen(x, y, w, h, { panel: opt.panel || 'right' }), i); else smallLit(ctx, tv, i, t, b, o.cues || [], o.litOpts ? o.litOpts(i) : {}); }
     });
     sideboard(ctx, b, o.extra);
     KP.brush(ctx, KP.curve([[930, 380], [905, 560], [915, 760]], false, 8), 9, KP.mix(P.plum, P.ink, .45), { taper: .1 });
@@ -273,6 +273,9 @@
   }
 
   KP.scene('s01_coldopen', {
+    // shared with s09 (the loop): the TV wall drawer + a hero-screen override hook (set only around a nested draw)
+    api: { wall: (...a) => wall(...a), HERO, ALL, FAR },
+    heroOverride: null,
     sfx(cues, D) {
       const T = times(cues, D), a = [], e = (t, name, gain) => a.push({ t: Math.max(0, +t.toFixed(3)), name, gain });
       e(0, 'tv_on', .5); e(T.over, 'glitch', .35);
@@ -301,7 +304,7 @@
           wall(ctx, t, b, {
             extra: t >= T.wall - .2, knob, cues,
             lit: i => shot < 3 ? 0 : (t >= T.wall + .15 + RANK[i] * Math.max(.03, (T.lit - T.wall) / ALL.length) ? 1 : 0),
-            hero: (c, S) => { if (flicker) KP.static(c, S, Math.floor(t * 30)); else heroClip(c, S, Math.min(shot, 2), t, b, cues); },
+            hero: (c, S) => { const ov = KZ.scenes.s01_coldopen.heroOverride; if (ov) ov(c, S); else if (flicker) KP.static(c, S, Math.floor(t * 30)); else heroClip(c, S, Math.min(shot, 2), t, b, cues); },
           });
           if (shot === 0 || shot === 3) brainCut(ctx, t, b, T);
           if (shot === 1) shakerOnTV(ctx, t, b, T, 2);
