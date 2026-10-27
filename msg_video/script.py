@@ -25,10 +25,11 @@ SPEAKER_LABELS = {
 }
 
 SCENES = [{'id': 's01_coldopen',
-  'title': 'Cold Open: The Accusations',
-  'visual': "Wall of retro TV screens. Each lights up with a flat-vector silhouette 'celebrity' "
-            "(dramatization) making a claim. Glitchy channel-switch between them. Ends with a neon 'NO MSG' "
-            'restaurant sign buzzing on, then a record scratch.',
+  'title': 'Cold Open: The Claim',
+  'visual': 'Two real, attributed clips of Dr. Russell Blaylock (retired neurosurgeon, lecture video posted '
+            '2012) play inside a paper TV on a wall of TVs, with a name and credit tag. Pull back to the TV '
+            "wall ('50+ years'), the NO MSG sign over restaurant tables, then an envelope lands on a 1968 "
+            'desk and hands into the rumour story.',
   'lines': [('CLIP:blaylock_hungry',
              "That's why they put so much MSG in food because it makes you hungry and you eat more of their "
              'food.',
@@ -134,7 +135,17 @@ SOURCES = ['Kwok, R.H.M. (1968). Chinese-Restaurant Syndrome. N Engl J Med 278:7
  'US FDA. Questions and Answers on Monosodium Glutamate (MSG).',
  "JECFA (1988). L-glutamic acid and its salts: ADI 'not specified'.",
  'Agostoni, C. et al. (2000). Free glutamine and glutamic acid increase in human milk through a three-month '
- 'lactation period. J Pediatr Gastroenterol Nutr 31:508-512.']
+ 'lactation period. J Pediatr Gastroenterol Nutr 31:508-512.',
+ 'Hawkins, R.A. (2009). The blood-brain barrier and glutamate. Am J Clin Nutr 90(3):867S-874S.',
+ "Mosby, I. (2009). 'That won-ton soup headache': the Chinese restaurant syndrome, MSG and the making of "
+ 'American food, 1968-1980. Soc Hist Med 22(1):133-151. https://doi.org/10.1093/shm/hkn098',
+ 'US Code of Federal Regulations, 21 CFR 182.1(a): salt, pepper, vinegar, baking powder and monosodium '
+ 'glutamate listed as GRAS.',
+ 'EFSA Panel on Food Additives (2017). Re-evaluation of glutamic acid and glutamates as food additives. EFSA '
+ 'Journal 15(7):4910.',
+ 'FoodNavigator (2019-11-08). Study looks at reducing sodium intake through MSG substitution in salty food categories. https://www.foodnavigator.com/Article/2019/11/08/Study-looks-at-reducing-sodium-intake-through-MSG-substitution-in-salty-food-categories/',
+ 'Foods / J Food Sci (see FACTCHECK.md for the exact citation used).',
+ 'Independent fact-check of every claim in this Reel: FACTCHECK.md.']
 
 
 def write_markdown(path="SCRIPT.md"):
