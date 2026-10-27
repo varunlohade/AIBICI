@@ -12,16 +12,18 @@
   const times = (cues, D) => {
     const w = (re, o) => KP.word(cues, re, o);
     const T = { happens: w(/happens/i, { fb: .8 }), eat: w(/^eat/i, { fb: 1.7 }) };
-    T.l2 = w(/tongue/i, { line: 1, fb: 2.47 }); T.tongue = w(/tongue/i, { fb: 2.7 }); T.tastes = w(/tastes/i, { fb: 2.9 });
-    T.tells = w(/tells/i, { fb: 4.1 }); T.protein = w(/protein/i, { fb: 5 });
-    T.l3 = w(/^gut/i, { line: 1, fb: 5.8 }); T.eaten = w(/eaten/i, { fb: 7.8 });
-    T.l4 = w(/^cells/i, { line: 1, fb: 8.5 }); T.cells = w(/^cells/i, { fb: 8.8 }); T.intest = w(/intestines/i, { fb: 9.6 });
-    T.burn = w(/^burn/i, { fb: 10.5 }); T.fuel = w(/fuel/i, { fb: 11.6 });
-    T.around = w(/^around/i, { fb: 12.3 }); T.ninety = w(/ninety|95/i, { fb: 12.75 }); T.blood = w(/^blood\.?$/i, { fb: 16.2 });
-    T.l5 = w(/barrier/i, { line: 1, fb: 16.8 }); T.bbb = w(/blood-brain|barrier/i, { fb: 17.9 }); T.one = w(/^one$/i, { after: T.bbb, fb: 19 });
-    T.best = w(/guarded|best/i, { after: T.bbb, fb: 19.7 }); T.body = w(/^body/i, { after: T.bbb, fb: 21.2 });
+    T.dive = w(/^it/i, { after: T.eat, fb: T.eat + .2 });                  // the dive starts on the bite
+    T.l3 = T.dive;
+    T.l4 = w(/^cells/i, { line: 1, fb: T.dive + .5 }); T.cells = w(/^cells/i, { fb: T.l4 + .25 });
+    T.gut = w(/^gut/i, { after: T.cells, fb: T.cells + .9 }); T.burn = w(/^burn/i, { fb: T.gut + .25 }); T.fuel = w(/fuel/i, { fb: T.burn + 1.2 });
+    T.eaten = T.cells;
+    T.around = w(/^around/i, { fb: T.fuel + .7 }); T.ninety = w(/ninety|95/i, { fb: T.around + .45 });
+    T.never = w(/^never/i, { after: T.ninety, fb: T.ninety + 1.4 }); T.blood = w(/^blood\.?$/i, { fb: T.never + 1.6 });
+    T.l5 = w(/barrier/i, { line: 1, fb: T.blood + .6 }); T.bbb = w(/blood-brain|barrier/i, { after: T.l5 - .01, fb: T.l5 + 1.1 });
+    T.one = w(/^one$/i, { after: T.bbb, fb: T.bbb + 1.1 });
+    T.best = w(/guarded|best/i, { after: T.bbb, fb: T.one + .6 }); T.body = w(/^body/i, { after: T.bbb, fb: T.best + 1.5 });
     T.s5 = T.around - .1; T.s7 = T.one - .1;
-    T.chomps = [T.eaten, T.cells, T.intest, (T.burn + T.fuel) / 2 + .2];
+    T.chomps = [T.cells, T.gut, (T.burn + T.fuel) / 2];
     return T;
   };
 
@@ -90,61 +92,6 @@
     if (open > .05) { ctx.fillStyle = P.mouth; ctx.beginPath(); ctx.ellipse(x, my, 34 + open * 26, 10 + open * 46, 0, 0, TAU); ctx.fill(); ctx.fillStyle = P.pink; ctx.beginPath(); ctx.ellipse(x, my + open * 26, 22 + open * 10, 8 + open * 10, 0, 0, TAU); ctx.fill(); }
     else KP.brush(ctx, KP.arcPts(x, my - 14 + chew * 6, 34, 18, Math.PI * .15, Math.PI * .85, 10), 9, P.ink, { taper: .4 });
     ctx.restore();
-  }
-
-  // ======================================================== shot 2: tongue -> nerve -> brain
-  const CUPS = [[250, 1100], [490, 1070], [730, 1100]];
-  function shotTongue(ctx, t, b, T) {
-    ctx.fillStyle = P.turq; ctx.fillRect(0, 0, KP.W, KP.H);
-    const camY = KP.lerp(-30, 50, KP.ep(t, T.tells, T.protein, 'inOut'));
-    ctx.save(); ctx.translate(0, camY);
-    // the nerve: a tapered pink brush stroke from the middle receptor up to the brain
-    const nerve = KP.curve([[490, 1040], [440, 930], [550, 820], [470, 720], [410, 660]], false, 14);
-    KP.brush(ctx, nerve.map(([x, y]) => [x + 6, y + 8]), 26, KP.rgba(P.ink, .2), { taper: .3 });
-    KP.brush(ctx, nerve, 26, P.pink30, { taper: .3 });
-    KP.brush(ctx, nerve, 8, P.magenta, { taper: .3 });
-    // brain (TOP)
-    const sig = KP.prog(t, T.tells, T.protein - .1), got = t >= T.protein - .1;
-    const bp = got ? KP.arrive(t, T.protein - .1, .25) : { p: 1, sx: 1, sy: 1 };
-    ctx.save(); KP.pose(ctx, { ...bp, p: 1 }, 380, 680, 'pop');
-    KP.brain(ctx, 380, 560, 140, { boil: b, eyes: got ? 'happy' : 'dot', mouth: got ? 'open' : 'smile' });
-    ctx.restore();
-    // the signal: a white spark zipping up the nerve (stop-motion steps)
-    if (t >= T.tells && !got) {
-      const k = Math.min(nerve.length - 1, Math.floor(KP.ease.inOut(KP.prog(KP.held(t), T.tells, T.protein - .1)) * (nerve.length - 1)));
-      const [sx, sy] = nerve[k];
-      const st = r => [[sx, sy - r], [sx + r * .3, sy - r * .3], [sx + r, sy], [sx + r * .3, sy + r * .3], [sx, sy + r], [sx - r * .3, sy + r * .3], [sx - r, sy], [sx - r * .3, sy - r * .3]];
-      KP.paper(ctx, KP.jitter(st(34), 80 + b, 1), P.rice, { shadow: KP.SH.far, shadowA: .3, mis: P.tomato, misOff: [-3, 2], misA: .5 });
-      KP.marks(ctx, sx, sy, 44, 3, 81 + b, { a0: Math.PI * .3, span: Math.PI * .5, len: 22, w: 5 });
-    }
-    void sig;
-    // tongue (LOW): layered pink paper with papillae and three receptor cups
-    KP.paper(ctx, KP.jitter(KP.curve([[-80, 1220], [160, 1080], [490, 1040], [820, 1080], [1160, 1220], [1160, 1700], [-80, 1700]], true, 10), 90 + b, 2), P.pink, { shadow: [0, -10], shadowA: .3, mis: P.magenta, misOff: [0, -4], misA: .4 });
-    KP.paper(ctx, KP.jitter(KP.curve([[-80, 1330], [300, 1260], [700, 1280], [1160, 1340], [1160, 1700], [-80, 1700]], true, 10), 91 + b, 2), P.magenta, { shadow: [0, -8], shadowA: .25 });
-    const pr = KP.rng(92);
-    for (let i = 0; i < 16; i++) { const x = pr() * 1080, y = 1140 + pr() * 90; if (Math.abs(x - 250) < 70 || Math.abs(x - 490) < 70 || Math.abs(x - 730) < 70) continue; KP.paper(ctx, KP.jitter(KP.egg(x, y, 12, 9, 0, 14), 93 + i + b, .6), P.bubble, { shadow: false }); }
-    const docks = [T.tongue, T.tastes, (T.tastes + T.tells) / 2];
-    CUPS.forEach(([x, y], i) => {
-      // receptor cup
-      KP.paper(ctx, KP.jitter(KP.curve([[x - 60, y - 30], [x + 60, y - 30], [x + 48, y + 20], [x, y + 36], [x - 48, y + 20]], true, 6), 95 + i + b, 1), P.bubble, { shadow: KP.SH.near, shadowA: .3, mis: P.blue, misOff: [2, -2], misA: .3 });
-      KP.paper(ctx, KP.jitter(KP.ell(x, y - 28, 52, 13, 24), 96 + i + b, .8), P.mouth, { shadow: false });
-      // a Goldie drops in and docks; a small Fifth Ripple
-      const td = docks[i], ar = KP.arrive(t, td - .25, .25);
-      if (t > td - .5) {
-        const fall = KP.ease.in(KP.prog(t, td - .5, td)), gy = KP.lerp(y - 700, y - 62, fall);
-        const sq = t >= td ? ar.sy : 1;
-        KP.goldie(ctx, x, gy, 92, { seed: 5 + i, boil: b, squash: sq, eyes: t >= td ? 'happy' : 'dot', mouth: t >= td ? 'smile' : 'o' });
-        if (t >= td) KP.ripple(ctx, x, y - 26, 150, { p: KP.ease.out(KP.prog(t, td, td + .7)), boil: b, squash: .3 });
-      }
-    });
-    ctx.restore();
-    // the one label: 'Protein!' speech slip from the brain
-    const pa = KP.arrive(t, T.protein, .3);
-    if (pa.on) {
-      ctx.save(); KP.pose(ctx, pa, 640, 420 + camY, 'pop');
-      KP.slip(ctx, [{ s: 'Protein!', size: 84, ls: 1 }], 560, 300 + camY, { rot: .05, seed: 33, boil: b, tape: P.blue, padX: 36, padY: 20 });
-      ctx.restore();
-    }
   }
 
   // ======================================================== shots 3-4: dive into the gut, style frame B
@@ -232,7 +179,7 @@
   }
   function shotDive(ctx, t, b, T) {
     // camera dives from 2600 px above the gut, fast then easing out; pink paper layers rush up past it
-    const camY = -2600 * (1 - KP.ep(t, T.l3, T.l3 + 1.5, 'out'));
+    const camY = -2600 * (1 - KP.ep(t, T.l3, T.l3 + 1.0, 'out'));
     ctx.save(); ctx.translate(0, -camY); gutB(ctx, t, b, T); ctx.restore();
     BANDS.forEach((c, i) => {
       const y0 = -2700 + i * 380, k = .85 + (i % 3) * .2, y = y0 - camY * k;
@@ -299,6 +246,8 @@
       if (t < reach) { if (x > -60) KP.goldie(ctx, x, 600 + Math.sin(x * .02) * 14, 52, { seed: j, boil: b, steam: false, shadow: KP.SH.far, eyes: j % 3 ? 'dot' : 'happy' }); }
       else if (t < reach + .16) KP.goldie(ctx, tx - 20, KP.lerp(600, 740, KP.prog(t, reach, reach + .16)), 52 * (1 - KP.prog(t, reach, reach + .16) * .5), { seed: j, boil: b, steam: false, shadow: false });
     }
+    const burp = KP.prog(t, T.never, T.never + .7);
+    if (burp > 0 && burp < 1) { const [cx, cy] = WALLC[2], sc = Math.sin(Math.PI * burp); KP.paper(ctx, KP.jitter(KP.curve([[cx, cy - 250 - 60 * sc], [cx + 26 * sc, cy - 200], [cx + 20 * sc, cy - 170], [cx - 20 * sc, cy - 170], [cx - 26 * sc, cy - 200]], true, 6), 340 + b, 1), P.gold, { shadow: KP.SH.far, mis: P.tomato, misOff: [-2, 2], misA: .4 }); }
     WALLC.forEach(([cx, cy, id], i) => {
       let chomp = false;
       for (let j = i; j < 60; j += 4) { const sj = t0 + j * .32, reach = sj + (cx + 120) / 520; if (t >= reach && t < reach + .22) chomp = true; }
@@ -369,19 +318,16 @@
   KP.scene('s05_body', {
     sfx(cues, D) {
       const T = times(cues, D), a = [], e = (t, name, gain) => a.push({ t: Math.max(0, +t.toFixed(3)), name, gain });
-      e(0, 'swoosh_up', .35); e(T.happens, 'whoosh', .35); e(T.eat, 'chomp', .45);
-      e(T.tongue, 'click', .4); e(T.tastes, 'click', .35); e((T.tastes + T.tells) / 2, 'click', .3); e(T.tells, 'swoosh_up', .35); e(T.protein, 'ding', .45);
-      e(T.l3, 'whoosh_long', .45); e(T.eaten, 'chomp', .45);
-      e(T.cells, 'chomp', .4); e(T.intest, 'chomp', .35); e(T.burn, 'sizzle', .3); e(T.fuel, 'pop_small', .35);
-      e(T.s5, 'whoosh', .3); e(T.around, 'tick', .2); e((T.around + T.ninety) / 2, 'tick', .2); e(T.ninety, 'ding', .5); e(T.blood, 'bubble', .3);
+      e(T.happens, 'whoosh', .35); e(T.eat, 'chomp', .45); e(T.dive, 'whoosh_long', .45);
+      e(T.cells, 'chomp', .4); e(T.gut, 'chomp', .35); e(T.burn, 'sizzle', .3); e(T.fuel, 'pop_small', .35);
+      e(T.s5 + .1, 'tick', .2); e(T.s5 + .25, 'tick', .2); e(T.ninety, 'ding', .5); e(T.never, 'sizzle', .2); e(T.blood, 'bubble', .3);
       e(T.l5, 'whoosh', .4); e(T.bbb, 'thud', .45); e(T.best, 'click', .35); e(T.body, 'boing', .4); e(D - .45, 'whoosh', .3);
       return a.sort((x, y) => x.t - y.t);
     },
     draw(ctx, t, cues, D) {
       const T = times(cues, D), b = KP.boil(t);
-      if (t < T.l2) shotFork(ctx, t, b, T);
-      else if (t < T.l3) shotTongue(ctx, t, b, T);
-      else if (t < T.l4) shotDive(ctx, t, b, T);
+      if (t < T.dive) shotFork(ctx, t, b, T);
+      else if (t < T.dive + 1.0) shotDive(ctx, t, b, T);
       else if (t < T.s5) { gutB(ctx, t, b, T); }
       else shotMap(ctx, t, b, T, D);
       // shot 4 label: 'Fuel!' (taped slip, TOP)
