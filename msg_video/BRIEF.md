@@ -1,5 +1,13 @@
 # Production brief — "MSG: The Most Misunderstood Molecule"
 
+## Client rules (override everything below)
+- Format: vertical 9:16 Instagram Reels, 1080x1920, three standalone parts (see PARTS in script.py).
+  Safe zones: no key content in the top ~220px or bottom ~440px, keep ~140px clear on the right.
+- Animated word-by-word captions in a band at about y=1300–1480 (word timings in cues.json `words`).
+- Avoid too much text: besides captions, at most one short label (1–3 words) on screen at a time. Tell it with pictures.
+- Never use dull colours: no greys, beige, muddy browns or desaturated tones. Everything vivid and saturated.
+- The visual style is chosen by the client from design/DIRECTIONS.md; nothing is animated before approval.
+
 Kurzgesagt-style explainer (~6 min, 1920x1080, 30fps). Read `script.py` (narration + visual direction) and `cues.json`
 (exact start/end second of each narration line per scene — sync visuals to these!).
 
