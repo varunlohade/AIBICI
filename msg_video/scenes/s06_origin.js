@@ -31,6 +31,10 @@
     T.s9 = w(/^the$/i, { after: T.parm, fb: T.fear - .2 }) - .1;
     T.panicked = w(/panick/i, { fb: T.l7 + .8 }); T.food = w(/food|restaurant/i, { after: T.after, fb: T.after + .9 }); T.mice = w(/^mice/i, { fb: T.l5 + .3 });
     T.loud = w(/loud/i, { after: T.name, fb: D - .5 });
+    T.stuck = w(/stuck/i, { after: T.fear - .01, fb: T.fear + .2 }); T.cuisine = w(/cuisine/i, { after: T.fear, fb: T.stuck + .6 });
+    T.s10 = w(/right/i, { line: 1, fb: D - 3.9 }); T.right = w(/right/i, { fb: T.s10 + .6 });
+    T.isMSG = w(/^is$/i, { after: T.right, fb: T.right + .6 }); T.bad = w(/^bad/i, { after: T.right, fb: T.isMSG + 1.5 });
+    T.you = w(/^you/i, { after: T.bad, fb: T.bad + .4 }); T.l2end = T.l2 + .45;
     return T;
   };
 
@@ -111,6 +115,22 @@
       ctx.restore();
     }
   }
+  const E1 = [745, 470], E2 = [600, 1110];
+  // the sealed envelope at E1 + the pinned '1968' slip (fluttering off from t = .15). s01's handoff overrides this.
+  function envelope1(ctx, t, b, opts = {}) {
+    const ov = KZ.scenes.s06_origin && KZ.scenes.s06_origin.envOverride;
+    if (ov) { ov(ctx); return; }
+    envelope(ctx, E1[0], E1[1], b, 0);
+    slip1968(ctx, t, b);
+  }
+  function slip1968(ctx, t, b, ar) {
+    const off = KP.ep(t, .15, .8, 'in');
+    if (off >= 1) return;
+    ctx.save(); ctx.translate(E1[0] - 60 + off * 120, E1[1] - 150 + off * 1400); ctx.rotate(.06 + off * 2.2);
+    if (ar) { ctx.translate(0, 60); ctx.scale(ar.p * ar.sx, ar.p * ar.sy); ctx.translate(0, -60); }
+    KP.slip(ctx, [{ s: '1968', size: 96, font: 'Young Serif', weight: 400, ls: 3 }], -110, -55, { seed: 41, boil: b, tape: P.pink, padX: 34, padY: 18 });
+    ctx.restore();
+  }
   function underlay(ctx, b) { KP.paper(ctx, KP.rot(KP.jitter(KP.rr(150, 300, 740, 990, 6, 30), 2 + b, 1.5), 520, 800, .06), P.pink, { shadow: KP.SH.near, shadowA: .3 }); }
   function envelope(ctx, x, y, b, post) {
     ctx.save(); ctx.translate(x, y); ctx.rotate(6 * D2R);
@@ -185,8 +205,15 @@
   function desk(ctx, t, b, T, o) {
     if (!o.noGround) { ctx.fillStyle = P.blue; ctx.fillRect(-1500, -1500, 4000, 5000); }
     underlay(ctx, b);
-    letter(ctx, b, o.write, { clearZone: o.clearZone, sy: o.sy, icons: o.clearZone ? null : c => icons(c, t, b, T) });
-    if (o.env) envelope(ctx, 600 + o.env[0], 1110 + o.env[1], b, o.post || 0);
+    const lk = o.letterK === undefined ? 1 : o.letterK;
+    if (lk < 1 && o.env) envelope(ctx, 600 + o.env[0], 1110 + o.env[1], b, o.post || 0);   // the letter slides out of it
+    if (lk > 0) {
+      const k = KP.ease.out(lk), c = [LET.x + LET.w / 2, LET.y + LET.h / 2], sc = KP.lerp(.28, 1, k);
+      ctx.save(); ctx.translate(KP.lerp(E2[0], c[0], k), KP.lerp(E2[1] - 40, c[1], k)); ctx.scale(sc, sc); ctx.translate(-c[0], -c[1]);
+      letter(ctx, b, o.write, { clearZone: o.clearZone, sy: o.sy, icons: o.clearZone ? null : cc => icons(cc, t, b, T) });
+      ctx.restore();
+    }
+    if (lk >= 1 && o.env) envelope(ctx, 600 + o.env[0], 1110 + o.env[1], b, o.post || 0);
     if (o.card) card(ctx, b, o.q || [0, 0, 0], o.merge || 0);
   }
 
@@ -272,7 +299,84 @@
     if (divider) divider(ctx);
   }
 
+  // ---- shots 9-10: the carton
+  const CX0 = 490, CY0 = 980, CS = 2.3;   // carton bottom centre + scale (MID)
+  function theCarton(ctx, t, b, T, D) {
+    const col = KP.ep(t, T.s9, T.s9 + .35, 'out'), hit = T.stuck;
+    const push = 1 + .18 * KP.ep(t, T.name - .2, T.s10, 'inOut') * (t < T.s10 ? 1 : 1);
+    const ring = t >= T.s9 + .3, f = Math.floor(t * 15);
+    const sh = t >= hit && t < hit + 6 / 30 ? KP.wob(t * 2, 3, 12) : [0, 0];
+    ctx.fillStyle = P.magenta; ctx.fillRect(0, 0, KP.W, KP.H);
+    // alarm bands behind (flat paper), as in the split's bottom half, now full frame
+    for (let i = 0; i < 26; i++) { ctx.fillStyle = (i + f) % 2 ? P.tomato : P.pink; ctx.fillRect(0, i * 80, KP.W, 40); }
+    ctx.save(); ctx.translate(sh[0], sh[1]);
+    KP.camera(ctx, 490, KP.lerp(900, 820, push - 1 > 0 ? 1 : 0), push, () => {
+      // newspapers swirl round the carton in a tight tomato-red anti-ripple
+      const sw = KP.ep(t, hit, hit + .8, 'out');
+      for (let i = 0; i < 7; i++) {
+        const a = i / 7 * TAU + KP.held(t) * .6, r = KP.lerp(1000, 560, sw) + (i % 2) * 40;
+        if (sw <= 0) continue;
+        newspaper(ctx, 490 + Math.cos(a) * r, 760 + Math.sin(a) * r * .95, 180, 210, a + 1.2, 70 + i, P.coral, b, 26);
+      }
+      // the carton: grows from the split's bottom half into MID
+      const k = KP.lerp(.5, 1, col), x = KP.lerp(380, CX0, col), y = KP.lerp(1200, CY0, col), s = CS * k;
+      ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.translate(-x, -y);
+      carton(ctx, x, y, b);
+      // the stamped quoted headline on its front face, from 'stuck' (clipped to the carton's front)
+      if (t >= hit) {
+        const sa = KP.arrive(t, hit, .12), st = headline();
+        ctx.save(); ctx.clip(KP.path([[x - 110, y - 140], [x + 110, y - 140], [x + 80, y + 70], [x - 80, y + 70]]));
+        ctx.translate(x, y - 40); ctx.rotate(-8 * D2R); ctx.scale(.3 * (1 + (1 - sa.p) * .4), .3 * (1 + (1 - sa.p) * .4));
+        ctx.drawImage(st, -STW / 2, -STH / 2); ctx.restore();
+      }
+      ctx.restore();
+      // the stamp handle slams down on 'stuck' and lifts away
+      const down = KP.ease.in(KP.prog(t, hit - .35, hit)), up = KP.ep(t, hit + .1, hit + .5, 'out');
+      if (t > hit - .35 && up < 1) { const yy = t < hit ? KP.lerp(-500, 380, down) : KP.lerp(380, -600, up); stampHandle(ctx, b, -210, yy - 170); }
+      // three ringing bells crowd in around it
+      if (ring) [[170, 420, .9], [800, 400, 1.0], [150, 900, .8]].forEach(([bx, by, sc2], i) => {
+        const ia = KP.arrive(t, T.s9 + .3 + i * .15, .3); if (!ia.on) return;
+        ctx.save(); KP.pose(ctx, ia, bx, by, 'pop'); bell(ctx, bx, by, b, true, t + i * .1, sc2); ctx.restore();
+      });
+      if (t >= T.s10) {   // shot 10: the '?' drops onto the carton on 'right?'
+        const q = KP.arrive(t, T.right, .35);
+        if (q.on) { ctx.save(); ctx.translate(CX0 + 40, CY0 - 470 - (1 - q.p) * 700); ctx.scale(q.sx, q.sy); KP.qmark(ctx, 0, 0, 280, { rot: .1 + Math.sin(KP.held(t) * 2) * .05 }); ctx.restore(); }
+      }
+    });
+    ctx.restore();
+    // the split collapsing in (first .35 s)
+    if (col < 1) {
+      ctx.save(); ctx.globalAlpha = 1 - col;
+      ctx.fillStyle = P.turq; ctx.fillRect(0, 0, KP.W, 760 * (1 - col));
+      ctx.restore();
+    }
+  }
+  function bridge(ctx, t, b, T, D) {
+    // the villain shaker steps into the foreground (from the right) on 'Is', turns to camera on 'MSG'
+    const step = KP.ep(t, T.isMSG - .35, T.isMSG + .1, 'out'), turn = KP.ep(t, T.isMSG + .15, T.isMSG + .45, 'inOut');
+    if (step > 0) {
+      const x = KP.lerp(1300, 800, step), y = 1290, hgt = 470, hop = Math.abs(Math.sin(KP.held(t) * 6)) * 14 * (1 - step);
+      KP.shaker(ctx, x, y - hop, hgt, { boil: b, seed: 7, sx: KP.lerp(-1, 1, turn) || .01 });
+      const top = y - hop - hgt * .62;
+      if (turn > .5) {   // eyes (turned to camera)
+        for (const sx of [-1, 1]) { ctx.fillStyle = P.ink; ctx.beginPath(); ctx.ellipse(x + sx * 46, top + 70, 15, 18, 0, 0, TAU); ctx.fill(); ctx.fillStyle = P.rice; ctx.beginPath(); ctx.arc(x + sx * 46 - 4, top + 64, 5, 0, TAU); ctx.fill(); }
+      }
+      // the moustache: on; wobbles loose on 'bad' (hangs by one end, swinging)
+      const loose = KP.prog(t, T.bad, T.bad + .4), sw = t >= T.bad ? Math.sin((t - T.bad) * 9) * .5 * (1 - KP.prog(t, T.bad, D)) : 0;
+      ctx.save(); ctx.translate(x - 110, top + 130); ctx.rotate(loose * 1.0 + sw); ctx.translate(110, 0);
+      KP.paper(ctx, KP.jitter(KP.curve([[0, -14], [40, -30], [86, -24], [118, -50], [104, -6], [64, 16], [20, 10], [0, 4], [-20, 10], [-64, 16], [-104, -6], [-118, -50], [-86, -24], [-40, -30]], true, 5), 30 + b, 1.2), P.ink, { shadow: KP.SH.far, shadowA: .35 });
+      ctx.restore();
+    }
+    // on 'you?' a single gold drop falls from the top of frame; it ends where s02's drop starts (490, 340)
+    if (t >= T.you - .1) {
+      const k = KP.ease.out(KP.prog(t, T.you - .1, D)), y = KP.lerp(-160, 340, k);
+      KP.paper(ctx, KP.jitter(KP.drop(490, y, 130), 960 + b, 1.2), P.gold, { shadow: KP.SH.near, mis: P.tomato, misOff: [-3, 2], misA: .4 });
+      KP.brush(ctx, [[490, y - 150], [490, y - 230]], 6, P.ink, { taper: .6 });
+    }
+  }
   KP.scene('s06_origin', {
+    envOverride: null,
+    api: { envelope: (...a) => envelope(...a), slip1968: (...a) => slip1968(...a), E1 },
     // for s01's flash-forward: when the stamp hits, and when the whip into the stamp shot settles
     stampTimes(cues, D) { const T = times(cues, D); return { hit: T.chinese, shot: T.l4 + .3, catchy: T.catchy }; },
     sfx(cues, D) {
@@ -285,7 +389,8 @@
       e(T.mice, 'pop_small', .3); e(T.injected, 'swoosh_down', .35); e(T.huge, 'impact_soft', .4); e(T.damage, 'alarm', .25);
       e(T.l6 + .1, 'whoosh', .35); e(T.nothing, 'impact_soft', .5); e(T.dinner, 'chomp', .35);
       e(T.tomato, 'pop_small', .3); e(T.panicked, 'alarm', .5); e(T.parm, 'alarm', .45);
-      e(T.fear, 'swoosh_down', .3); e(T.name, 'impact_soft', .4); e(D - .3, 'whoosh', .4);
+      e(T.s9, 'swoosh_down', .3); e(T.stuck, 'stamp', .7); e(T.stuck + .05, 'impact_big', .4); e(T.cuisine, 'alarm', .4); e(T.name, 'impact_soft', .4);
+      e(T.right, 'boing', .35); e(T.isMSG, 'pop', .4); e(T.bad, 'boing', .3); e(T.you, 'swoosh_down', .4);
       return a.sort((x, y) => x.t - y.t);
     },
     draw(ctx, t, cues, D, nested) {
@@ -294,9 +399,15 @@
       let label = null;
       if (t < T.l2) {
         // ---- 1: kombu -> shaker, villain spotlight + moustache
-        const push = 1 + .06 * KP.ep(t, 0, T.l2, 'inOut');
+        const push = 1 + .06 * KP.ep(t, 0, T.l2, 'inOut'), pan = KP.ep(t, T.l2 - .45, T.l2, 'inOut');
         ctx.fillStyle = P.blue; ctx.fillRect(0, 0, KP.W, KP.H);
+        if (pan > 0) { ctx.save(); ctx.translate(KP.W * (1 - pan), 0); desk(ctx, T.l2, b, T, { write: 0, env: null, post: 0, card: false, letterK: 0, noGround: false }); ctx.restore(); }
+        ctx.save(); ctx.translate(-KP.W * pan, 0);
         KP.camera(ctx, 490, 900, push, () => {
+          // the cobalt desk of style frame C (hot-pink underlay + turquoise card at the edges, the sealed envelope)
+          KP.paper(ctx, KP.rot(KP.jitter(KP.rr(-260, 230, 470, 640, 6, 30), 3 + b, 1.5), 0, 550, .08), P.pink, { shadow: KP.SH.near, shadowA: .3 });
+          ctx.save(); ctx.translate(-170, -90); card(ctx, b, [0, 0, 0], 0); ctx.restore();
+          if (pan <= 0) envelope1(ctx, t, b);
           const on = t >= T.villain;
           if (on) KP.paper(ctx, KP.jitter([[400, -200], [580, -200], [800, 1220], [180, 1220]], 20 + b, 2), P.tomato, { shadow: false, mis: P.pink, misOff: [-6, 0], misA: .4 });
           KP.paper(ctx, KP.jitter(KP.ell(490, 1210, 300, 60, 44), 21 + b, 1.5), on ? P.coral : KP.mix(P.blue, P.grape, .4), { shadow: false });
@@ -319,10 +430,13 @@
             ctx.restore();
           }
         });
+        ctx.restore();
+        // the envelope travels from E1 (shot 1) to E2 (the letter desk) during the pan
+        if (pan > 0) { const ex = KP.lerp(E1[0], E2[0], pan), ey = KP.lerp(E1[1], E2[1], pan); envelope(ctx, ex, ey, b, 0); }
         if (t >= T.villain) label = c => { const ar = KP.arrive(t, T.villain, .3); c.save(); KP.pose(c, ar, 330, 380, 'pop'); KP.slip(c, [{ s: 'Villain?', size: 84, ls: 1 }], 160, 260, { rot: -.05, seed: 40, boil: b, tape: P.lemon, padX: 38, padY: 22 }); c.restore(); };
       } else if (t < T.l4) {
         // ---- 2-4: the letter on the cobalt desk; 4 = close on the card
-        const slideIn = KP.ep(t, T.l2, T.l2 + .45, 'out');
+        const slideIn = 1, letterK = KP.ep(t, T.l2, T.doctor - .1, 'out');
         const write = KP.ep(t, T.doctor - .3, T.journal, 'inOut') * .55 + KP.ep(t, T.after, T.numb - .2, 'inOut') * .45;
         const fold = (t >= T.journal && t < T.journal + .45 ? .92 + .08 * KP.ease.out(KP.prog(t, T.journal + .15, T.journal + .45)) : 1) * (t >= T.food && t < T.food + .5 ? 1 + .04 * Math.sin((t - T.food) * 40) * (1 - KP.prog(t, T.food, T.food + .5)) : 1);
         const envOut = KP.ep(t, T.l3 - .3, T.l3 + .1, 'in');
@@ -335,7 +449,7 @@
         ctx.save(); ctx.translate(0, (1 - slideIn) * 1400);
         KP.camera(ctx, cx, cy, s, () => {
           ctx.save();
-          desk(ctx, t, b, T, { write, sy: fold, env: [envOut * 900, 0], post: KP.backOut(KP.prog(t, T.journal + .45, T.journal + .7)), card: false });
+          desk(ctx, t, b, T, { write, sy: fold, env: [envOut * 900, 0], post: KP.backOut(KP.prog(t, T.journal + .45, T.journal + .7)), card: false, letterK });
           ctx.restore();
           if (cardIn.on) { ctx.save(); KP.pose(ctx, cardIn, 250, 1300, 'up', 600); card(ctx, b, q, merge); ctx.restore(); }
         });
@@ -407,11 +521,9 @@
         }, c => {
           c.fillStyle = P.pink; c.fillRect(0, 760, KP.W, KP.H - 760);
           KP.paper(c, KP.jitter(KP.rr(-60, 1180, 1200, 800, 10, 40), 660 + b, 1.5), P.coral, { shadow: [0, -8], shadowA: .3 });
-          bowl(c, 380, 1080, b, t, T);
-          const ch = t >= T.dinner - .3 && t < T.dinner + .15;
-          KP.arm(c, 690, 1150, 40, 2.4, 22, P.bubble, { seed: 670, boil: b });
-          KP.cell(c, 760, 1110, 150, 160, { seed: 671, boil: b, fill: P.bubble, bib: P.rice, eyes: 'happy', mouth: ch ? 'chomp' : 'smile', mouthDx: -.1 });
-          if (t > T.dinner - .45 && t < T.dinner) KP.goldie(c, KP.lerp(560, 735, KP.prog(t, T.dinner - .45, T.dinner)), 1110, 48, { seed: 672, boil: b, steam: false });
+          bowl(c, 470, 1080, b, t, T);
+          // on 'dinner' the spoon dips and a Goldie hops out happily (dinner, not an injection)
+          if (t >= T.dinner) { const h = KP.arrive(t, T.dinner, .3); c.save(); KP.pose(c, h, 470, 1030, 'up', 120); KP.goldie(c, 470, 960, 80, { seed: 672, boil: b, eyes: 'happy', steam: false }); c.restore(); }
         }, c => {
           const ne = KP.arrive(t, T.nothing, .3); if (!ne.on) return;
           c.save(); KP.pose(c, ne, 490, 760, 'pop');
@@ -442,34 +554,21 @@
           for (let i = 0; i < 2; i++) KP.goldie(c, 300 + i * 150, 900 + Math.sin(KP.held(t) * 3 + i) * 8, 60, { seed: 700 + i, boil: b, steam: false, shadow: KP.SH.far, eyes: ring ? 'closed' : 'dot', mouth: ring ? 'wobble' : 'smile' });
           c.restore();
         }, null, prev);
+      } else if (t < T.s10) {
+        // ---- 9: THE FEAR STICKS: the split collapses onto the plain carton; the stamp slams the quoted headline onto its
+        // side on 'stuck' and it stays stuck; newspapers swirl round it; three ringing bells crowd in; push in on 'name'
+        theCarton(ctx, t, b, T, D);
       } else {
-        // ---- 9: the split collapses; the stamped headline slides back; push in on 'name'
-        const col = KP.ep(t, T.s9, T.s9 + .3, 'in');
-        const back = KP.ep(t, T.s9 + .1, T.s9 + .5, 'out');
-        const push = 1 + .22 * KP.ep(t, T.name - .2, D, 'inOut');
-        ctx.fillStyle = P.blue; ctx.fillRect(0, 0, KP.W, KP.H);
-        ctx.save(); ctx.translate((1 - back) * 1300, 0);
-        KP.camera(ctx, KP.lerp(490, SCX, push - 1 > 0 ? 1 : 0), KP.lerp(860, SCY, KP.prog(push, 1, 1.22)), push, () => {
-          ctx.fillStyle = P.blue; ctx.fillRect(-1500, -1500, 4000, 5000);
-          papers(ctx, b, 1);
-          desk(ctx, t, b, T, { write: 1, clearZone: true, card: true, q: [1, 1, 1], noGround: true });
-          impression(ctx);
-          if (t >= T.loud) { const k = KP.ease.in(KP.prog(t, T.loud, T.loud + .5)); newspaper(ctx, 760 + k * 700, 1180 + k * 200, 300, 340, .1 + k, 69, P.coral, b); }
-          stampHandle(ctx, b, 0, 0);
-        });
-        ctx.restore();
-        if (col < 1) {
-          ctx.save(); ctx.translate(0, 760); ctx.scale(1, 1 - col); ctx.translate(0, -760);
-          ctx.fillStyle = P.turq; ctx.fillRect(0, 0, KP.W, 760); ctx.fillStyle = P.pink; ctx.fillRect(0, 760, KP.W, KP.H - 760);
-          ctx.restore();
-          KP.paper(ctx, KP.jitter(KP.rr(-40, 746, KP.W + 80, 28, 6, 40), 991, 1), P.ink, { shadow: false });
-        }
+        // ---- 10: BRIDGE: '?' drops onto the carton on 'right?'; the villain shaker steps into the foreground and turns to
+        // camera on 'Is MSG'; its moustache wobbles loose on 'bad'; on 'you?' a gold drop falls toward s02's broth
+        theCarton(ctx, t, b, T, D);
+        bridge(ctx, t, b, T, D);
       }
       if (label) label(ctx);
       if (nested) return;
       KP.texture(ctx, 'news', .05);
       KP.texture(ctx, 'grain', .1, 101, 57);
-      KP.slide(ctx, KP.ep(t, D - .3, D, 'in'), KP.GROUND.s09_outro);   // out: paper slide back to the TV wall
+      // out: no slide; the gold drop from shot 10 lands in s02's broth (match)
     },
   });
 })();

@@ -191,7 +191,7 @@
       else if (t < T.s4) shot3(ctx, t, b, T);
       else shot45(ctx, t, b, T, D);
       KP.texture(ctx, 'grain', .1);
-      KP.goldOut(ctx, KP.prog(t, D - .45, D), 490, 860, b);   // out: Gold Ripple wipe (act change)
+      KP.irisTo(ctx, KP.prog(t, D - .45, D), 's05_body', 490, 860, b);   // out: Gold Ripple wipe reveals s05
     },
   });
 })();

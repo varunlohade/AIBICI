@@ -338,8 +338,8 @@
         ctx.restore();
       }
       KP.texture(ctx, 'grain', .1);
-      KP.goldIn(ctx, KP.prog(t, 0, .5), 490, 860, b);                 // in: Gold Ripple reveal (act change)
-      KP.slide(ctx, KP.ep(t, D - .5, D, 'inOut'), KP.GROUND.s07_tests); // out: paper slide
+      // in: revealed by s04's Gold Ripple wipe
+      KP.slideTo(ctx, KP.ep(t, D - .5, D, 'inOut'), 's07_tests');      // out: slide carrying s07's first frame
     },
   });
 })();

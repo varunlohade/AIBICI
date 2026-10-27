@@ -149,7 +149,7 @@
     const rc = ramenCanvas(), g = rc.getContext('2d');
     g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, KP.W, KP.H);
     ramen(g, t, b, T);
-    const S = HS(), coverK = Math.max(S.w / KP.W, S.h / KP.H);       // ramen canvas cover-fits the hero screen
+    const S = s01().api.screen0(), coverK = Math.max(S.w / KP.W, S.h / KP.H);   // hero screen rect in s01 frame 0 (frame coords)
     const zEnd = 1 / coverK;                                           // ramen push-in ends where the pull-back starts
     if (t < T.pull) {
       const z = KP.lerp(1, zEnd, KP.ep(t, T.s5, T.pull, 'inOut'));

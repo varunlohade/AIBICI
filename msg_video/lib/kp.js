@@ -155,6 +155,29 @@
     ctx.restore();
   };
 
+  // draw another scene's frame (nested; no captions). Used by transitions so a join always hands content across.
+  KP.drawScene = (ctx, id, t) => {
+    const sc = window.KZ && KZ.scenes[id], cu = window.CUES && window.CUES[id];
+    if (!sc || !cu) return false;
+    ctx.save(); sc.draw(ctx, t ?? 0, cu.lines, cu.duration, true); ctx.restore();
+    return true;
+  };
+  // paper slide carrying the next scene's first frame (never a blank sheet)
+  KP.slideTo = (ctx, p, nextId, fill) => KP.slide(ctx, p, fill || KP.GROUND[nextId] || P.lemon, c => KP.drawScene(c, nextId, 0));
+  // Gold Ripple wipe: a gold ring (with paper rings inside it) expands from (cx, cy); the next scene's first frame is
+  // revealed inside it. At p = 1 the frame is exactly the next scene's frame 0.
+  KP.irisTo = (ctx, p, nextId, cx = 490, cy = 860, boil = 0) => {
+    if (p <= 0) return;
+    const r = 30 + KP.ease.in(p) * 2100;
+    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+    const hole = KP.jitter(KP.ell(cx, cy, r, r, 72), 997 + boil, 2);
+    ctx.save(); ctx.clip(KP.path(hole)); KP.drawScene(ctx, nextId, 0); ctx.restore();
+    if (p < 1) {
+      for (let i = 1; i <= 3; i++) { const q = KP.jitter(KP.ell(cx, cy, r * (1 - i * .08), r * (1 - i * .08), 64), 998 + i + boil, 1.4); q.push(q[0]); KP.brush(ctx, q, 6, P.rice, { taper: .1 }); }
+      hole.push(hole[0]); KP.brush(ctx, hole, 40 + 60 * (1 - p), P.gold, { taper: .05 });
+    }
+    ctx.restore();
+  };
   // the pink paper brain (s01 style). (x,y) centre, r radius. o.eyes/mouth for the face, o.boil
   KP.brain = (ctx, x, y, r, o = {}) => {
     const b = o.boil || 0, k = r / 112;

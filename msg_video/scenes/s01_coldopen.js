@@ -233,13 +233,11 @@
       }
     });
     // 'it all started': a lemon envelope slides in onto the top table
-    if (t >= T.and) {
+    if (t >= T.and && t < T.ff0 + .32) {   // (the same envelope art as s06's, so the handoff is one object)
       const k = KP.ep(t, T.and, T.started, 'out'), land = KP.arrive(t, T.started, .2);
-      const ex = KP.lerp(1300, 420, k), ey = 735 - Math.sin(Math.PI * k) * 120;
-      ctx.save(); ctx.translate(ex, ey); ctx.rotate(KP.lerp(.6, -.08, k)); if (t >= T.started) ctx.scale(land.sx, land.sy);
-      KP.paper(ctx, KP.jitter(KP.rr(-110, -66, 220, 132, 8, 16), 895 + b, 1.2), P.lemon, { shadow: KP.SH.near, shadowA: .4, mis: P.coral, misOff: [-3, 2], misA: .45 });
-      KP.brush(ctx, [[-106, -62], [0, 8], [106, -62]], 6, P.coral, { taper: .1 });
-      for (let i = 0; i < 2; i++) KP.squiggle(ctx, -40, 40 - i * 20, 26 + i * 22, 896 + i, { amp: 3, wl: 14, w: 5 });
+      const ex = KP.lerp(1300, ENV0[0], k), ey = ENV0[1] - Math.sin(Math.PI * k) * 120;
+      ctx.save(); ctx.translate(ex, ey); ctx.rotate(KP.lerp(.6, 0, k)); ctx.scale(ENV0[2], ENV0[2]); if (t >= T.started) ctx.scale(land.sx, land.sy);
+      const s6 = KZ.scenes.s06_origin; if (s6 && s6.api) s6.api.envelope(ctx, 0, 0, b, 0);
       ctx.restore();
     }
     // floor below the caption band (decor)
@@ -285,11 +283,41 @@
     ctx.restore();
   }
 
-  function handoff(ctx, t, b, T, D) { tablesSheetFull(ctx, t, b, T); }
-  function tablesSheetFull(ctx, t, b, T) { ctx.save(); ctx.translate(0, -50); tablesSheet(ctx, t, b, T); ctx.restore(); }
+  // ===== shot 5: HANDOFF TO s06. Push into the envelope on the top table ('one letter'); it lifts toward camera,
+  // the background becomes s06's cobalt desk (its frame 0, nested), and it lands at s06's envelope spot; the '1968'
+  // slip pins on '1968'. From then on the frame is s06 frame 0 itself (match cut, no blank frame).
+  const ENV0 = [420, 735, .62];                 // envelope on the top table (tables-sheet coords) + its scale
+  function handoff(ctx, t, b, T, D) {
+    const sheetY = 60 - 110, ex = ENV0[0], ey = ENV0[1] + sheetY;   // envelope in screen space at the end of shot 4
+    const swap = T.ff0 + .4, push = KP.ep(t, T.ff0, swap, 'in');
+    const s6c = window.CUES && window.CUES.s06_origin, sc6 = KZ.scenes.s06_origin;
+    if (t < swap || !sc6) {
+      const z = KP.lerp(1, 3.2, push);
+      ctx.fillStyle = P.blue; ctx.fillRect(0, 0, KP.W, KP.H);
+      ctx.save(); ctx.translate(KP.lerp(ex, 490, push), KP.lerp(ey, 860, push)); ctx.scale(z, z); ctx.translate(-ex, -ey);
+      ctx.translate(0, sheetY); tablesSheet(ctx, Math.min(t, T.ff0), b, T);
+      ctx.restore();
+      KP.texture(ctx, 'grain', .1);
+      return;
+    }
+    const api = sc6.api, E1 = api.E1, fly = KP.ep(t, swap, T.land, 'out');
+    const settled = t >= D - .2;               // the last frames are exactly s06 frame 0
+    const flapT = (T.y1968 + D) / 2, flap = Math.sin(Math.PI * KP.prog(t, flapT - .25, flapT + .35)) * .06;   // the flap lifts a little
+    const landHop = t >= T.land ? (1 - KP.arrive(t, T.land, .2).sy) * 2 : 0;
+    sc6.envOverride = settled ? null : c => {
+      const x = KP.lerp(490, E1[0], fly), y = KP.lerp(860, E1[1], fly), k = KP.lerp(3.2 * ENV0[2], 1, fly);
+      c.save(); c.translate(x, y); c.scale(k * (1 + landHop * .1), k * (1 - landHop * .1)); c.rotate(KP.lerp(-.1, 0, fly) - flap); c.translate(-x, -y);
+      api.envelope(c, x, y, 0, 0); c.restore();
+      if (t >= T.y1968) api.slip1968(c, 0, 0, KP.arrive(t, T.y1968, .3));
+    };
+    try { sc6.draw(ctx, 0, s6c.lines, s6c.duration); } finally { sc6.envOverride = null; }
+  }
   KP.scene('s01_coldopen', {
     // shared with s09 (the loop): the TV wall drawer + a hero-screen override hook (set only around a nested draw)
-    api: { wall: (...a) => wall(...a), HERO, ALL, FAR },
+    api: { wall: (...a) => wall(...a), HERO, ALL, FAR,
+      // the hero screen's rect in FRAME coordinates at t = 0 (the big framing), for s09's loop pull-back
+      screen0: () => { const [x, y, w, h] = HERO, S = KP.tvScreen(x, y, w, h, { panel: 'bottom' }), f = (px, py) => [(px - BIG.cx) * BIG.s + KP.CAM[0], (py - BIG.cy) * BIG.s + KP.CAM[1]];
+        const [x0, y0] = f(S.x, S.y), [x1, y1] = f(S.x + S.w, S.y + S.h); return { x: x0, y: y0, w: x1 - x0, h: y1 - y0, world: S }; } },
     heroOverride: null,
     sfx(cues, D) {
       const T = times(cues, D), a = [], e = (t, name, gain) => a.push({ t: Math.max(0, +t.toFixed(3)), name, gain });

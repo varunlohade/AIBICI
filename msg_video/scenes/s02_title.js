@@ -68,7 +68,7 @@
       }
       // out: Gold Ripple wipe, a wide gold ring sweeping out past the frame
       KP.texture(ctx, 'grain', .1);
-      KP.goldOut(ctx, KP.prog(t, T.wipe, D), CX, 860, b);
+      KP.irisTo(ctx, KP.prog(t, T.wipe, D), 's03_ikeda', CX, 860, b);   // Gold Ripple wipe reveals s03 inside the ring
     },
   });
 })();

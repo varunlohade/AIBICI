@@ -64,8 +64,9 @@
       const rem = [[0, 0], [KP.W, 0], [KP.W, KP.H], [0, KP.H]].filter(([x, y]) => ((x - fx) * ux + (y - fy) * uy) > d);
       const a = pt(d, -3000), bb = pt(d, 3000);
       ctx.save(); ctx.beginPath(); ctx.moveTo(...a); ctx.lineTo(...bb); ctx.lineTo(...pt(4000, 3000)); ctx.lineTo(...pt(4000, -3000)); ctx.closePath(); ctx.clip();
-      ctx.fillStyle = P.lemon; ctx.fillRect(0, 0, KP.W, KP.H);
-      for (let i = -4; i < 12; i++) { ctx.fillStyle = KP.mix(P.lemon, P.brass, .3); ctx.fillRect(-20 + i * 136, 0, 60, KP.H); }
+      // the page being peeled is s07's last frame (so the curl hands content across)
+      const c7 = window.CUES && window.CUES.s07_tests;
+      if (!c7 || !KP.drawScene(ctx, 's07_tests', (Math.round(c7.duration * 30) - 1) / 30)) { ctx.fillStyle = P.lemon; ctx.fillRect(0, 0, KP.W, KP.H); }
       ctx.restore();
       // the folded-back flap (mirror of the corner across the fold), coral underside with a hard shadow
       const flap = [pt(d, -d * .9), pt(d, d * .9), pt(d * 1.0 - d, 0)].map(([x, y]) => [x, y]);
@@ -133,7 +134,7 @@
       const T = times(cues, D), b = KP.boil(t);
       if (t < T.s2) shot1(ctx, t, b, T); else shot2(ctx, t, b, T, D);
       KP.texture(ctx, 'grain', .1);
-      KP.slide(ctx, KP.ep(t, D - .45, D, 'inOut'), KP.GROUND.s06_origin);
+      KP.slideTo(ctx, KP.ep(t, D - .45, D, 'inOut'), 's09_outro');   // slide carrying s09's TV wall
     },
   });
 })();

@@ -192,8 +192,8 @@
       if (t < T.l2) shotLab(ctx, t, b, T);
       else shotTastes(ctx, t, b, T, D);
       KP.texture(ctx, 'grain', .1);
-      KP.goldIn(ctx, KP.prog(t, 0, .5), 490, 860, b);
-      KP.slide(ctx, KP.ep(t, D - .5, D, 'inOut'), KP.GROUND.s04_everywhere);
+      // in: revealed by s02's Gold Ripple wipe (frame 0 is the iris's final frame)
+      KP.slideTo(ctx, KP.ep(t, D - .5, D, 'inOut'), 's04_everywhere');   // slide carrying s04's first frame
     },
   });
 })();

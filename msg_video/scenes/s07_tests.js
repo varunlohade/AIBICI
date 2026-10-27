@@ -153,7 +153,7 @@
       const T = times(cues, D), b = KP.boil(t);
       if (t < T.s2) shot1(ctx, t, b, T); else if (t < T.s3) shot2(ctx, t, b, T); else shot3(ctx, t, b, T, D);
       KP.texture(ctx, 'grain', .1);
-      KP.slide(ctx, KP.ep(t, D - .45, D, 'inOut'), KP.GROUND.s08_twist);
+      // out: cut; s08's page curl peels this scene's last frame away
     },
   });
 })();
