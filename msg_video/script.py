@@ -29,14 +29,34 @@ SCENES = [{'id': 's01_coldopen',
   'visual': "Wall of retro TV screens. Each lights up with a flat-vector silhouette 'celebrity' "
             "(dramatization) making a claim. Glitchy channel-switch between them. Ends with a neon 'NO MSG' "
             'restaurant sign buzzing on, then a record scratch.',
-  'lines': [('CLIP:blaylock_brain', 'Excitotoxicity destroys brain cells.', 0.35),
-            ('CLIP:blaylock_hungry',
+  'lines': [('CLIP:blaylock_hungry',
              'They put so much MSG in food because it makes you hungry and you eat more of their food.',
-             0.5),
+             0.35),
+            ('CLIP:blaylock_brain', 'Excitotoxicity destroys brain cells.', 0.5),
             ('NARR',
              'For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968.',
-             0.35),
-            ('NARR', 'But is it actually bad for you?', 0.5)]},
+             0.4)]},
+ {'id': 's06_origin',
+  'title': 'How the Rumour Started',
+  'visual': '1968: a typewritten letter flutters onto a desk, addressed to the New England Journal of '
+            "Medicine. Question marks over wine, salt, MSG. A headline stamp slams down: 'CHINESE-RESTAURANT "
+            "SYNDROME'. Newspapers multiply and spin. 1969: lab mouse + giant syringe. Then a split screen: "
+            'tomatoes/parmesan (no alarm) vs takeout box (alarm bells).',
+  'lines': [('NARR', 'So how did a seaweed seasoning become a villain?', 0.25),
+            ('NARR',
+             'In 1968, a doctor wrote to a medical journal: after Chinese food, he felt numb and weak.',
+             0.2),
+            ('NARR', 'Wine? Salt? MSG? He was guessing.', 0.2),
+            ('NARR', 'But the journal gave it a catchy headline: Chinese Restaurant Syndrome.', 0.3),
+            ('NARR',
+             'Then mice injected with huge doses got brain damage. But injecting a baby mouse is nothing '
+             'like eating dinner.',
+             0.25),
+            ('NARR',
+             'And nobody panicked about parmesan. The fear stuck to one cuisine, and the name said it out '
+             'loud.',
+             0.4),
+            ('NARR', 'But was he right? Is MSG actually bad for you?', 0.5)]},
  {'id': 's02_title',
   'title': 'Title Card',
   'visual': "Kurzgesagt-style title: a glowing glutamate crystal spins in a starfield. Title 'MSG: The Most "
@@ -93,26 +113,6 @@ SCENES = [{'id': 's01_coldopen',
   'lines': [('NARR',
              'Plot twist: it has a third of the sodium of table salt. Same flavor, less sodium.',
              0.4)]},
- {'id': 's06_origin',
-  'title': 'How the Rumour Started',
-  'visual': '1968: a typewritten letter flutters onto a desk, addressed to the New England Journal of '
-            "Medicine. Question marks over wine, salt, MSG. A headline stamp slams down: 'CHINESE-RESTAURANT "
-            "SYNDROME'. Newspapers multiply and spin. 1969: lab mouse + giant syringe. Then a split screen: "
-            'tomatoes/parmesan (no alarm) vs takeout box (alarm bells).',
-  'lines': [('NARR', 'So how did a seaweed seasoning become a villain?', 0.25),
-            ('NARR',
-             'In 1968, a doctor wrote to a medical journal: after Chinese food, he felt numb and weak.',
-             0.2),
-            ('NARR', 'Wine? Salt? MSG? He was guessing.', 0.2),
-            ('NARR', 'But the journal gave it a catchy headline: Chinese Restaurant Syndrome.', 0.3),
-            ('NARR',
-             'Then mice injected with huge doses got brain damage. But injecting a baby mouse is nothing '
-             'like eating dinner.',
-             0.25),
-            ('NARR',
-             'And nobody panicked about parmesan. The fear stuck to one cuisine, and the name said it out '
-             'loud.',
-             0.4)]},
  {'id': 's09_outro',
   'title': 'So... Is MSG Bad for You?',
   'visual': "Callback to the wall of TVs, now switching off one by one. The 'NO MSG' sign flickers and the "
@@ -125,7 +125,7 @@ SCENES = [{'id': 's01_coldopen',
 
 # One Instagram Reel (9:16), about 2 minutes. The earlier 3-part cut is in git history.
 PARTS = [
-    {"id": "reel", "title": "MSG: The Most Misunderstood Molecule", "scenes": ['s01_coldopen', 's02_title', 's03_ikeda', 's04_everywhere', 's05_body', 's07_tests', 's08_twist', 's06_origin', 's09_outro']},
+    {"id": "reel", "title": "MSG: The Most Misunderstood Molecule", "scenes": ["s01_coldopen", "s06_origin", "s02_title", "s03_ikeda", "s04_everywhere", "s05_body", "s07_tests", "s08_twist", "s09_outro"]},
 ]
 
 SOURCES = ['Kwok, R.H.M. (1968). Chinese-Restaurant Syndrome. N Engl J Med 278:796.',
