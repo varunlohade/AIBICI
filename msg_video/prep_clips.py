@@ -26,6 +26,12 @@ def main():
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", *cut, "-vn", "-ac", "1", "-ar", "24000",
                         "-af", "loudnorm=I=-18:TP=-2:LRA=7", os.path.join(out_root, c["id"] + ".wav")], check=True)
         frames = len([f for f in os.listdir(d) if f.endswith(".jpg")])
+        if "video_hold_after" in c:
+            # the source cuts away from the speaker (fade, slide): hold the last on-camera frame
+            # while the audio plays on, rather than showing the cutaway
+            keep = max(1, int(c["video_hold_after"] * FPS))
+            for i in range(keep + 1, frames + 1):
+                shutil.copyfile(os.path.join(d, f"f{keep:04d}.jpg"), os.path.join(d, f"f{i:04d}.jpg"))
         w, h = map(int, subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
                                         "stream=width,height", "-of", "csv=p=0", os.path.join(d, "f0001.jpg")],
                                        capture_output=True, text=True, check=True).stdout.strip().split(","))
