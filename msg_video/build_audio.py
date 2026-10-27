@@ -98,16 +98,29 @@ def polish(a):
 
 
 def main():
-    kd = os.environ["KOKORO_DIR"]
-    k = Kokoro(f"{kd}/kokoro-v1.0.onnx", f"{kd}/voices-v1.0.bin")
+    # TTS_ENGINE=elevenlabs uses ElevenLabs for the narrator (ELEVENLABS_VOICE_ID); everything else stays Kokoro.
+    eleven = os.environ.get("TTS_ENGINE") == "elevenlabs"
+    if eleven:
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "audio"))
+        import elevenlabs
+        voice_id = os.environ["ELEVENLABS_VOICE_ID"]
+    kd = os.environ.get("KOKORO_DIR")
+    k = Kokoro(f"{kd}/kokoro-v1.0.onnx", f"{kd}/voices-v1.0.bin") if kd else None
     os.makedirs(OUT, exist_ok=True)
     cues = {}
+    narr = [l[1] for sc in SCENES for l in sc["lines"] if l[0] == "NARR"]
     for sc in SCENES:
         chunks, lines, t = [np.zeros(int(LEAD_IN * SR), np.float32)], [], LEAD_IN
         for voice, text, pause, *rest in sc["lines"]:
             if voice.startswith("CLIP:"):
                 # a real interview clip: its own audio, prepared by prep_clips.py; text is its exact quote
                 a, sr = sf.read(os.path.join(HERE, "clips", "prepared", voice[5:] + ".wav"), dtype="float32")
+            elif voice == "NARR" and eleven:
+                i = narr.index(text)
+                a, sr = elevenlabs.synth(text, voice_id, speed=rest[0] if rest else 1.0,
+                                         prev_text=narr[i - 1] if i else None,
+                                         next_text=narr[i + 1] if i + 1 < len(narr) else None), SR
             else:
                 speed = BASE_SPEED.get(voice, OTHER_SPEED) * (rest[0] if rest else 1.0)
                 a, sr = k.create(text, voice=voice_style(k, VOICES[voice]), speed=speed, lang="en-us")
