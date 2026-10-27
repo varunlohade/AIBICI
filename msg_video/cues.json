@@ -1,0 +1,374 @@
+{
+ "s01_coldopen": {
+  "title": "Cold Open: The Accusations",
+  "duration": 47.709,
+  "lines": [
+   {
+    "voice": "HOST",
+    "text": "Coming up after the break: the hidden chemical in your takeout that could be making you sick!",
+    "start": 0.6,
+    "end": 4.696
+   },
+   {
+    "voice": "TVDOC",
+    "text": "MSG is an excitotoxin. It overexcites your brain cells. Literally to death.",
+    "start": 5.046,
+    "end": 10.102
+   },
+   {
+    "voice": "CHEF",
+    "text": "We never use MSG in my kitchen. Never! It's poison, darling.",
+    "start": 10.452,
+    "end": 14.996
+   },
+   {
+    "voice": "GURU",
+    "text": "Every time I eat Chinese food I get headaches, my heart races... it's the MSG, you guys!",
+    "start": 15.346,
+    "end": 21.106
+   },
+   {
+    "voice": "AUNT",
+    "text": "Sharing this for everyone. MSG is basically brain poison! Please read!!",
+    "start": 21.456,
+    "end": 26.021
+   },
+   {
+    "voice": "NARR",
+    "text": "For more than fifty years, three little letters have terrified diners around the world.",
+    "start": 26.921,
+    "end": 32.148
+   },
+   {
+    "voice": "NARR",
+    "text": "Restaurants hang signs promising they don't use it. Food labels proudly brag about leaving it out.",
+    "start": 32.448,
+    "end": 38.72
+   },
+   {
+    "voice": "NARR",
+    "text": "But what actually is MSG? Is it really bad for you?",
+    "start": 39.02,
+    "end": 42.625
+   },
+   {
+    "voice": "NARR",
+    "text": "And if it isn't... why does almost everyone think it is?",
+    "start": 42.925,
+    "end": 46.509
+   }
+  ]
+ },
+ "s02_title": {
+  "title": "Title Card",
+  "duration": 6.36,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "MSG. The most misunderstood molecule in your kitchen.",
+    "start": 0.6,
+    "end": 4.76
+   }
+  ]
+ },
+ "s03_ikeda": {
+  "title": "1908: The Discovery of Umami",
+  "duration": 41.495,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "Our story begins in Tokyo, in 1908.",
+    "start": 0.6,
+    "end": 4.269
+   },
+   {
+    "voice": "NARR",
+    "text": "A chemist named Kikunae Ikeda was eating a bowl of soup made with kombu, a kind of seaweed.",
+    "start": 4.569,
+    "end": 10.628
+   },
+   {
+    "voice": "NARR",
+    "text": "He noticed a taste that wasn't sweet, or sour, or salty, or bitter. It was something else. Savory. Meaty. Deep.",
+    "start": 10.928,
+    "end": 18.373
+   },
+   {
+    "voice": "NARR",
+    "text": "So he went to his lab, boiled down huge amounts of seaweed, and found the source: a substance called glutamic acid.",
+    "start": 18.773,
+    "end": 26.517
+   },
+   {
+    "voice": "NARR",
+    "text": "He named the taste umami. Roughly: delicious taste.",
+    "start": 26.817,
+    "end": 30.209
+   },
+   {
+    "voice": "NARR",
+    "text": "To turn it into a seasoning, he paired it with sodium, making a stable, salt-like crystal. Monosodium glutamate.",
+    "start": 30.509,
+    "end": 38.189
+   },
+   {
+    "voice": "NARR",
+    "text": "Within a year, it was on sale.",
+    "start": 38.489,
+    "end": 40.495
+   }
+  ]
+ },
+ "s04_everywhere": {
+  "title": "Glutamate Is Everywhere",
+  "duration": 42.752,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "Here's the thing. Glutamate isn't some strange lab-made chemical.",
+    "start": 0.6,
+    "end": 4.781
+   },
+   {
+    "voice": "NARR",
+    "text": "It's one of the most common amino acids on Earth, a building block of the proteins in every living thing.",
+    "start": 5.081,
+    "end": 11.865
+   },
+   {
+    "voice": "NARR",
+    "text": "Ripe tomatoes are full of it. So are mushrooms, soy sauce, and parmesan cheese, one of the richest sources of glutamate there is.",
+    "start": 12.165,
+    "end": 21.381
+   },
+   {
+    "voice": "NARR",
+    "text": "Human breast milk contains around ten times more free glutamate than cow's milk. Our very first meal is umami.",
+    "start": 21.681,
+    "end": 29.255
+   },
+   {
+    "voice": "NARR",
+    "text": "Your body even makes its own glutamate, every single day.",
+    "start": 29.655,
+    "end": 33.452
+   },
+   {
+    "voice": "NARR",
+    "text": "And to your body, glutamate from a tomato and glutamate from a shaker of MSG are exactly the same molecule.",
+    "start": 33.752,
+    "end": 41.752
+   }
+  ]
+ },
+ "s05_body": {
+  "title": "What Happens When You Eat It",
+  "duration": 45.164,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "So what happens when you eat it?",
+    "start": 0.6,
+    "end": 2.477
+   },
+   {
+    "voice": "NARR",
+    "text": "First, glutamate docks onto special receptors on your tongue, and sends your brain a message: this food has protein in it. Yum.",
+    "start": 2.777,
+    "end": 11.033
+   },
+   {
+    "voice": "NARR",
+    "text": "Then it reaches your gut. And this is where the scary story starts to fall apart.",
+    "start": 11.333,
+    "end": 16.176
+   },
+   {
+    "voice": "NARR",
+    "text": "The cells lining your intestines love glutamate. They burn it as fuel.",
+    "start": 16.476,
+    "end": 21.084
+   },
+   {
+    "voice": "NARR",
+    "text": "Almost all the glutamate you eat, around ninety-five percent, is used up right there in your gut, before it ever reaches your bloodstream.",
+    "start": 21.384,
+    "end": 30.365
+   },
+   {
+    "voice": "NARR",
+    "text": "And the little that slips through faces another wall: the blood-brain barrier, a tightly guarded border that controls what gets into your brain.",
+    "start": 30.765,
+    "end": 39.704
+   },
+   {
+    "voice": "NARR",
+    "text": "The glutamate on your dinner plate doesn't just stroll into your neurons.",
+    "start": 40.004,
+    "end": 44.164
+   }
+  ]
+ },
+ "s06_origin": {
+  "title": "How the Rumour Started",
+  "duration": 78.143,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "So how did a seaweed seasoning become public enemy number one?",
+    "start": 0.6,
+    "end": 4.739
+   },
+   {
+    "voice": "NARR",
+    "text": "It started in 1968, with a letter.",
+    "start": 5.039,
+    "end": 8.367
+   },
+   {
+    "voice": "NARR",
+    "text": "A doctor wrote to the New England Journal of Medicine, describing numbness, weakness and palpitations after eating at Chinese restaurants in the United States.",
+    "start": 8.667,
+    "end": 19.056
+   },
+   {
+    "voice": "NARR",
+    "text": "He wondered what might be causing it. The cooking wine? The salt? Maybe the MSG? He didn't know. It was a guess.",
+    "start": 19.356,
+    "end": 26.417
+   },
+   {
+    "voice": "NARR",
+    "text": "But the journal printed it under a catchy headline: Chinese Restaurant Syndrome.",
+    "start": 26.717,
+    "end": 31.453
+   },
+   {
+    "voice": "NARR",
+    "text": "Letters poured in. Newspapers ran with it. Almost overnight, a guess had become a diagnosis.",
+    "start": 31.753,
+    "end": 38.324
+   },
+   {
+    "voice": "NARR",
+    "text": "A year later, a scientist injected huge doses of MSG under the skin of newborn mice, and found brain damage. The headlines got even scarier.",
+    "start": 38.724,
+    "end": 49.391
+   },
+   {
+    "voice": "NARR",
+    "text": "But injecting a massive dose into a baby mouse is nothing like eating a seasoned meal. Remember: your gut eats almost all of it first.",
+    "start": 49.691,
+    "end": 58.693
+   },
+   {
+    "voice": "NARR",
+    "text": "And there was something else going on. In 1960s America, Chinese food was seen as foreign and suspicious.",
+    "start": 59.093,
+    "end": 67.093
+   },
+   {
+    "voice": "NARR",
+    "text": "Nobody blamed the tomato sauce. Nobody worried about Italian Restaurant Syndrome. The fear stuck to one cuisine, and the name said it out loud.",
+    "start": 67.393,
+    "end": 77.143
+   }
+  ]
+ },
+ "s07_tests": {
+  "title": "Putting MSG to the Test",
+  "duration": 46.74,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "Scientists took the claims seriously, and tested them. Again, and again.",
+    "start": 0.6,
+    "end": 5.272
+   },
+   {
+    "voice": "NARR",
+    "text": "The gold standard is a double-blind study: people get either MSG or a placebo, and nobody, not even the researchers, knows who got which.",
+    "start": 5.572,
+    "end": 15.599
+   },
+   {
+    "voice": "NARR",
+    "text": "Over and over, people who said they were sensitive to MSG reacted just as often to the fake.",
+    "start": 15.899,
+    "end": 22.597
+   },
+   {
+    "voice": "NARR",
+    "text": "Huge doses on an empty stomach caused mild, short-lived symptoms in some people. But the results weren't consistent, and nothing like that showed up with normal amounts in normal food.",
+    "start": 22.897,
+    "end": 35.015
+   },
+   {
+    "voice": "NARR",
+    "text": "Today, the US Food and Drug Administration lists MSG as generally recognized as safe, the same category as salt, sugar, and baking powder.",
+    "start": 35.415,
+    "end": 45.74
+   }
+  ]
+ },
+ "s08_twist": {
+  "title": "Plot Twist: MSG vs Salt",
+  "duration": 18.733,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "Here's a plot twist. MSG might actually help.",
+    "start": 0.6,
+    "end": 4.035
+   },
+   {
+    "voice": "NARR",
+    "text": "Gram for gram, it has only about a third of the sodium of table salt.",
+    "start": 4.335,
+    "end": 9.092
+   },
+   {
+    "voice": "NARR",
+    "text": "Swap some of the salt in a recipe for MSG, and you can cut the sodium in a dish noticeably, while keeping all the flavor.",
+    "start": 9.392,
+    "end": 17.733
+   }
+  ]
+ },
+ "s09_outro": {
+  "title": "So... Is MSG Bad for You?",
+  "duration": 32.319,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "So, is MSG bad for you?",
+    "start": 0.6,
+    "end": 2.648
+   },
+   {
+    "voice": "NARR",
+    "text": "In absurd amounts, almost anything is. Even water. But in food, the evidence says it's about as dangerous as the tomato on your pizza.",
+    "start": 2.948,
+    "end": 12.463
+   },
+   {
+    "voice": "NARR",
+    "text": "The story of MSG is really a story about how one guess, a catchy name, and a little bit of prejudice can outlive decades of science.",
+    "start": 12.863,
+    "end": 22.057
+   },
+   {
+    "voice": "NARR",
+    "text": "So the next time you see a No MSG sign, you'll know the real story.",
+    "start": 22.457,
+    "end": 27.172
+   },
+   {
+    "voice": "NARR",
+    "text": "And maybe... you'll reach for the shaker.",
+    "start": 27.472,
+    "end": 29.819
+   }
+  ]
+ }
+}
