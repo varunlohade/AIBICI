@@ -14,7 +14,14 @@ LEAD_IN = 0.6   # silence before the first line of every scene
 SR = 24000
 
 def syllables(w):
-    w = re.sub(r"[^a-z]", "", w.lower())
+    core = re.sub(r"[^A-Za-z0-9]", "", w)
+    if re.fullmatch(r"\d{4}s?", core):            # years: "nineteen sixty-eight"
+        return 5
+    if core.isdigit():
+        return 2 * len(core)
+    if len(core) > 1 and core.isupper():           # acronyms are spelled out: M-S-G
+        return sum(3 if ch == "W" else 1 for ch in core)
+    w = core.lower()
     if not w:
         return 1
     n = len(re.findall(r"[aeiouy]+", w))
@@ -46,6 +53,19 @@ def word_times(text, audio, t0):
     return out
 
 
+def retime_words():
+    """Recompute caption word timings from the existing narration WAVs (no TTS needed)."""
+    path = os.path.join(HERE, "cues.json")
+    cues = json.load(open(path))
+    for sid, c in cues.items():
+        audio, sr = sf.read(os.path.join(OUT, sid + ".wav"), dtype="float32")
+        for ln in c["lines"]:
+            seg = audio[int(ln["start"] * sr):int(ln["end"] * sr)]
+            ln["words"] = word_times(ln["text"], seg, ln["start"])
+    with open(path, "w") as f:
+        json.dump(cues, f, indent=1)
+
+
 def main():
     kd = os.environ["KOKORO_DIR"]
     k = Kokoro(f"{kd}/kokoro-v1.0.onnx", f"{kd}/voices-v1.0.bin")
@@ -74,4 +94,5 @@ def main():
         print(p["id"], round(sum(cues[i]["duration"] for i in p["scenes"]), 1), "s")
 
 if __name__ == "__main__":
-    main()
+    import sys
+    retime_words() if "--words-only" in sys.argv else main()
