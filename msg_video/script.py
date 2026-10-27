@@ -57,11 +57,6 @@ SCENES = [{'id': 's01_coldopen',
              'loud.',
              0.4),
             ('NARR', 'But was he right? Is MSG actually bad for you?', 0.5)]},
- {'id': 's02_title',
-  'title': 'Title Card',
-  'visual': "Kurzgesagt-style title: a glowing glutamate crystal spins in a starfield. Title 'MSG: The Most "
-            "Misunderstood Molecule'.",
-  'lines': [('NARR', 'MSG. The most misunderstood molecule in your kitchen.', 0.4)]},
  {'id': 's03_ikeda',
   'title': '1908: The Discovery of Umami',
   'visual': 'Tokyo 1908. Professor Ikeda at a table with a steaming bowl of kombu dashi. Four taste icons '
@@ -125,7 +120,7 @@ SCENES = [{'id': 's01_coldopen',
 
 # One Instagram Reel (9:16), about 2 minutes. The earlier 3-part cut is in git history.
 PARTS = [
-    {"id": "reel", "title": "MSG: The Most Misunderstood Molecule", "scenes": ["s01_coldopen", "s06_origin", "s02_title", "s03_ikeda", "s04_everywhere", "s05_body", "s07_tests", "s08_twist", "s09_outro"]},
+    {"id": "reel", "title": "MSG: The Most Misunderstood Molecule", "scenes": ["s01_coldopen", "s06_origin", "s03_ikeda", "s04_everywhere", "s05_body", "s07_tests", "s08_twist", "s09_outro"]},
 ]
 
 SOURCES = ['Kwok, R.H.M. (1968). Chinese-Restaurant Syndrome. N Engl J Med 278:796.',

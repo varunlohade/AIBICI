@@ -238,7 +238,7 @@
  },
  "s06_origin": {
   "title": "How the Rumour Started",
-  "duration": 35.837,
+  "duration": 36.394,
   "lines": [
    {
     "voice": "NARR",
@@ -692,111 +692,57 @@
     "voice": "NARR",
     "text": "But was he right? Is MSG actually bad for you?",
     "start": 31.9,
-    "end": 35.337,
+    "end": 35.894,
     "words": [
      {
       "w": "But",
-      "start": 31.9,
-      "end": 32.11
+      "start": 32.0,
+      "end": 32.201
      },
      {
       "w": "was",
-      "start": 32.11,
-      "end": 32.321
+      "start": 32.201,
+      "end": 32.403
      },
      {
       "w": "he",
-      "start": 32.321,
-      "end": 32.531
+      "start": 32.403,
+      "end": 32.604
      },
      {
       "w": "right?",
-      "start": 32.531,
-      "end": 32.741
+      "start": 32.604,
+      "end": 32.806
      },
      {
       "w": "Is",
-      "start": 33.203,
-      "end": 33.414
+      "start": 33.249,
+      "end": 33.451
      },
      {
       "w": "MSG",
-      "start": 33.414,
-      "end": 34.044
+      "start": 33.451,
+      "end": 34.055
      },
      {
       "w": "actually",
-      "start": 34.044,
-      "end": 34.706
+      "start": 34.055,
+      "end": 34.69
      },
      {
       "w": "bad",
-      "start": 34.706,
-      "end": 34.916
+      "start": 34.69,
+      "end": 34.891
      },
      {
       "w": "for",
-      "start": 34.916,
-      "end": 35.127
+      "start": 34.891,
+      "end": 35.093
      },
      {
       "w": "you?",
-      "start": 35.127,
-      "end": 35.337
-     }
-    ]
-   }
-  ]
- },
- "s02_title": {
-  "title": "Title Card",
-  "duration": 4.694,
-  "lines": [
-   {
-    "voice": "NARR",
-    "text": "MSG. The most misunderstood molecule in your kitchen.",
-    "start": 0.3,
-    "end": 4.294,
-    "words": [
-     {
-      "w": "MSG.",
-      "start": 0.3,
-      "end": 0.909
-     },
-     {
-      "w": "The",
-      "start": 1.355,
-      "end": 1.558
-     },
-     {
-      "w": "most",
-      "start": 1.558,
-      "end": 1.76
-     },
-     {
-      "w": "misunderstood",
-      "start": 1.76,
-      "end": 2.602
-     },
-     {
-      "w": "molecule",
-      "start": 2.602,
-      "end": 3.444
-     },
-     {
-      "w": "in",
-      "start": 3.444,
-      "end": 3.647
-     },
-     {
-      "w": "your",
-      "start": 3.647,
-      "end": 3.85
-     },
-     {
-      "w": "kitchen.",
-      "start": 3.85,
-      "end": 4.286
+      "start": 35.093,
+      "end": 35.294
      }
     ]
    }
@@ -804,194 +750,194 @@
  },
  "s03_ikeda": {
   "title": "1908: The Discovery of Umami",
-  "duration": 16.336,
+  "duration": 15.686,
   "lines": [
    {
     "voice": "NARR",
     "text": "In 1908, a Japanese chemist named Kikunae Ikeda tasted something odd in his seaweed soup.",
     "start": 0.3,
-    "end": 7.22,
+    "end": 6.569,
     "words": [
      {
       "w": "In",
-      "start": 0.359,
-      "end": 0.552
+      "start": 0.38,
+      "end": 0.575
      },
      {
       "w": "1908,",
-      "start": 0.552,
-      "end": 1.513
+      "start": 0.575,
+      "end": 1.549
      },
      {
       "w": "a",
-      "start": 1.744,
-      "end": 1.936
+      "start": 1.783,
+      "end": 1.978
      },
      {
       "w": "Japanese",
-      "start": 1.936,
-      "end": 2.542
+      "start": 1.978,
+      "end": 2.592
      },
      {
       "w": "chemist",
-      "start": 2.542,
-      "end": 2.926
+      "start": 2.592,
+      "end": 2.982
      },
      {
       "w": "named",
-      "start": 2.926,
-      "end": 3.311
+      "start": 2.982,
+      "end": 3.372
      },
      {
       "w": "Kikunae",
-      "start": 3.311,
-      "end": 3.695
+      "start": 3.372,
+      "end": 3.761
      },
      {
       "w": "Ikeda",
-      "start": 3.695,
-      "end": 4.272
+      "start": 3.761,
+      "end": 4.346
      },
      {
       "w": "tasted",
-      "start": 4.272,
-      "end": 4.656
+      "start": 4.346,
+      "end": 4.736
      },
      {
       "w": "something",
-      "start": 4.656,
-      "end": 5.262
+      "start": 4.736,
+      "end": 5.35
      },
      {
       "w": "odd",
-      "start": 5.262,
-      "end": 5.454
+      "start": 5.35,
+      "end": 5.545
      },
      {
       "w": "in",
-      "start": 5.454,
-      "end": 5.647
+      "start": 5.545,
+      "end": 5.74
      },
      {
       "w": "his",
-      "start": 5.647,
-      "end": 5.839
+      "start": 5.74,
+      "end": 5.934
      },
      {
       "w": "seaweed",
-      "start": 5.839,
-      "end": 6.223
+      "start": 5.934,
+      "end": 6.324
      },
      {
       "w": "soup.",
-      "start": 6.223,
-      "end": 6.416
+      "start": 6.324,
+      "end": 6.519
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "Not sweet, sour, salty or bitter. He called it umami, and turned it into a seasoning.",
-    "start": 7.47,
-    "end": 13.832,
+    "start": 6.819,
+    "end": 13.182,
     "words": [
      {
       "w": "Not",
-      "start": 7.51,
-      "end": 7.693
+      "start": 6.859,
+      "end": 7.043
      },
      {
       "w": "sweet,",
-      "start": 7.693,
-      "end": 7.877
+      "start": 7.043,
+      "end": 7.227
      },
      {
       "w": "sour,",
-      "start": 8.098,
-      "end": 8.281
+      "start": 7.447,
+      "end": 7.631
      },
      {
       "w": "salty",
-      "start": 8.502,
-      "end": 8.869
+      "start": 7.852,
+      "end": 8.219
      },
      {
       "w": "or",
-      "start": 8.869,
-      "end": 9.053
+      "start": 8.219,
+      "end": 8.403
      },
      {
       "w": "bitter.",
-      "start": 9.053,
-      "end": 9.421
+      "start": 8.403,
+      "end": 8.77
      },
      {
       "w": "He",
-      "start": 9.825,
-      "end": 10.009
+      "start": 9.175,
+      "end": 9.358
      },
      {
       "w": "called",
-      "start": 10.009,
-      "end": 10.376
+      "start": 9.358,
+      "end": 9.726
      },
      {
       "w": "it",
-      "start": 10.376,
-      "end": 10.56
+      "start": 9.726,
+      "end": 9.91
      },
      {
       "w": "umami,",
-      "start": 10.56,
-      "end": 11.111
+      "start": 9.91,
+      "end": 10.461
      },
      {
       "w": "and",
-      "start": 11.332,
-      "end": 11.515
+      "start": 10.681,
+      "end": 10.865
      },
      {
       "w": "turned",
-      "start": 11.515,
-      "end": 11.883
+      "start": 10.865,
+      "end": 11.233
      },
      {
       "w": "it",
-      "start": 11.883,
-      "end": 12.067
+      "start": 11.233,
+      "end": 11.416
      },
      {
       "w": "into",
-      "start": 12.067,
-      "end": 12.434
+      "start": 11.416,
+      "end": 11.784
      },
      {
       "w": "a",
-      "start": 12.434,
-      "end": 12.618
+      "start": 11.784,
+      "end": 11.968
      },
      {
       "w": "seasoning.",
-      "start": 12.618,
-      "end": 13.197
+      "start": 11.968,
+      "end": 12.547
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "Monosodium glutamate.",
-    "start": 14.032,
-    "end": 15.936,
+    "start": 13.382,
+    "end": 15.286,
     "words": [
      {
       "w": "Monosodium",
-      "start": 14.067,
-      "end": 14.861
+      "start": 13.417,
+      "end": 14.211
      },
      {
       "w": "glutamate.",
-      "start": 14.861,
-      "end": 15.464
+      "start": 14.211,
+      "end": 14.814
      }
     ]
    }

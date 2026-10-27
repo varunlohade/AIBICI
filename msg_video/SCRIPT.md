@@ -26,13 +26,7 @@ _An animated explainer Reel for Instagram (9:16, about 2 minutes). Narration + v
 **NARRATOR:** And nobody panicked about parmesan. The fear stuck to one cuisine, and the name said it out loud.  
 **NARRATOR:** But was he right? Is MSG actually bad for you?  
 
-## Scene 3: Title Card
-
-**Visual:** Kurzgesagt-style title: a glowing glutamate crystal spins in a starfield. Title 'MSG: The Most Misunderstood Molecule'.
-
-**NARRATOR:** MSG. The most misunderstood molecule in your kitchen.  
-
-## Scene 4: 1908: The Discovery of Umami
+## Scene 3: 1908: The Discovery of Umami
 
 **Visual:** Tokyo 1908. Professor Ikeda at a table with a steaming bowl of kombu dashi. Four taste icons (sweet, sour, salty, bitter) appear, then a mysterious fifth. Lab montage: giant pile of seaweed boiled down to a few crystals. Word 'UMAMI' appears.
 
@@ -40,7 +34,7 @@ _An animated explainer Reel for Instagram (9:16, about 2 minutes). Narration + v
 **NARRATOR:** Not sweet, sour, salty or bitter. He called it umami, and turned it into a seasoning.  
 **NARRATOR:** Monosodium glutamate.  
 
-## Scene 5: Glutamate Is Everywhere
+## Scene 4: Glutamate Is Everywhere
 
 **Visual:** The glutamate molecule zooms out to reveal it inside tomatoes, mushrooms, soy sauce, parmesan, and a baby bottle / breast milk. Bar chart of free glutamate. Then two identical molecules side by side: 'from tomato' vs 'from MSG' — an equals sign.
 
@@ -48,7 +42,7 @@ _An animated explainer Reel for Instagram (9:16, about 2 minutes). Narration + v
 **NARRATOR:** But glutamate is everywhere: tomatoes, parmesan, even breast milk.  
 **NARRATOR:** To your body, glutamate from a tomato and from MSG is the exact same molecule.  
 
-## Scene 6: What Happens When You Eat It
+## Scene 5: What Happens When You Eat It
 
 **Visual:** Cutaway of a cute flat-style human body. Glutamate particles land on tongue receptors (click/glow). Travel down to the gut where little round intestine-cell characters gobble them up as fuel. 95% counter. Tiny remainder reaches blood, meets the blood-brain barrier as a castle wall with guards.
 
@@ -56,20 +50,20 @@ _An animated explainer Reel for Instagram (9:16, about 2 minutes). Narration + v
 **NARRATOR:** The cells lining your gut burn glutamate as fuel. Around ninety-five percent never even reaches your blood.  
 **NARRATOR:** And the rest hits the blood-brain barrier, one of the best-guarded borders in your body.  
 
-## Scene 7: Putting MSG to the Test
+## Scene 6: Putting MSG to the Test
 
 **Visual:** Clean lab. Two identical capsules, labeled A and B, shuffled under cups. Volunteers with thought bubbles. Results chart: MSG vs placebo bars nearly equal. FDA-style 'GRAS' stamp lands next to salt, sugar, baking powder icons.
 
 **NARRATOR:** In double-blind studies, people who said MSG made them sick reacted just as often to a placebo.  
 **NARRATOR:** The FDA calls it generally recognized as safe. Just like salt.  
 
-## Scene 8: Plot Twist: MSG vs Salt
+## Scene 7: Plot Twist: MSG vs Salt
 
 **Visual:** Two shakers face off on a scale: SALT vs MSG. Sodium atoms pop out: salt has lots, MSG about a third. A heart icon smiles.
 
 **NARRATOR:** Plot twist: it has a third of the sodium of table salt. Same flavor, less sodium.  
 
-## Scene 9: So... Is MSG Bad for You?
+## Scene 8: So... Is MSG Bad for You?
 
 **Visual:** Callback to the wall of TVs, now switching off one by one. The 'NO MSG' sign flickers and the 'NO' burns out. Final shot: a cozy bowl of ramen with an MSG shaker, camera pulls back into space. End card.
 
