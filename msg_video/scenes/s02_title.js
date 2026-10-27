@@ -57,12 +57,8 @@
         ctx.restore();
       }
       // out: Gold Ripple wipe, a wide gold ring sweeping out past the frame
-      if (t > T.wipe) {
-        const p = KP.ease.in(KP.prog(t, T.wipe, D));
-        const r = 340 + p * 1400, pts = KP.jitter(KP.ell(CX, 860, r, r * (.38 + .62 * p), 72), 990 + b, 2); pts.push(pts[0]);
-        KP.brush(ctx, pts, 24 + p * 220, P.gold, { taper: .05 });
-      }
       KP.texture(ctx, 'grain', .1);
+      KP.goldOut(ctx, KP.prog(t, T.wipe, D), CX, 860, b);
     },
   });
 })();

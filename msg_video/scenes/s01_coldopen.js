@@ -394,12 +394,18 @@
         let role = 'TV DOCTOR', t0 = -1, y = ltY;
         if (shot === 'chef') { role = 'CELEBRITY CHEF'; t0 = T.chef; }
         else if (shot === 'guru') { role = 'WELLNESS INFLUENCER'; t0 = T.guru; }
-        else if (shot === 'wall') { role = t >= T.fifty ? '50 YEARS' : null; t0 = T.wall + .2; y = 1150; }
+        else if (shot === 'wall') { role = null; t0 = T.wall + .2; y = 1196; }
         const ar = t0 < 0 ? { p: 1, sx: 1, sy: 1 } : KP.arrive(t, t0, .32);
         if (t0 < 0 || ar.on) {
           ctx.save(); KP.pose(ctx, ar, hx + 30, y + 60, 'left', 760);
-          if (shot === 'wall' && t >= T.fifty) { const r2 = KP.arrive(t, T.fifty, .25); ctx.translate(hx + 30, y + 90); ctx.scale(1, r2.sy); ctx.translate(-hx - 30, -y - 90); }
-          KP.lowerThird(ctx, role, hx + 30, y, { boil: b, seed: shot === 'wall' ? 14 : 12 });
+          KP.lowerThird(ctx, role, shot === 'wall' ? 64 : hx + 30, y, { boil: b, seed: shot === 'wall' ? 15 : 12 });
+          ctx.restore();
+        }
+        // '50 YEARS': its own white torn slip (the one label), separate from the puppets' DRAMATIZATION line
+        if (shot === 'wall' && t >= T.fifty) {
+          const r2 = KP.arrive(t, T.fifty, .3);
+          ctx.save(); KP.pose(ctx, r2, 300, 330, 'pop');
+          KP.slip(ctx, [{ s: '50 YEARS', size: 96, font: 'Young Serif', weight: 400, ls: 3 }], 90, 220, { rot: -.04, seed: 51, boil: b, tape: P.pink, padX: 40, padY: 22 });
           ctx.restore();
         }
         KP.texture(ctx, 'grain', .1);

@@ -4,7 +4,7 @@
 //
 // Animation rules baked in here:
 //   - Deterministic: no Math.random / Date. Everything is seeded (KP.rng) and a pure function of t.
-//   - Stop-motion BOIL: edge jitter and tiny position wobble re-roll on held steps of KP.BOIL_FPS (floor(t*8)).
+//   - Stop-motion BOIL: edge jitter and tiny position wobble re-roll on held steps of KP.BOIL_FPS (floor(t*15), on twos).
 //     Camera moves stay smooth at 30 fps. Use KP.boil(t) as the jitter seed, KP.held(t) for stepped idle motion.
 //   - Expensive full-frame textures (riso grain, paper fibre, flecks, newsprint halftone) are baked ONCE into
 //     offscreen canvases and reused (KP.texture). Puppet cut-out layers use bounded offscreen canvases.
@@ -54,7 +54,7 @@
   // ---------------------------------------------------------------- rng / time / easing
   KP.rng = seed => { let s = seed >>> 0 || 1; return () => ((s = Math.imul(s ^ (s >>> 15), 1 | s), s = s + Math.imul(s ^ (s >>> 7), 61 | s) ^ s, ((s ^ (s >>> 14)) >>> 0) / 4294967296)); };
   KP.hash = (a, b = 0) => { const r = KP.rng((a * 73856093) ^ (b * 19349663) ^ 0x9e3779b9); r(); return r(); };
-  KP.BOIL_FPS = 8;                                   // stop-motion boil: new jitter 8x per second
+  KP.BOIL_FPS = 15;                                  // stop-motion boil 'on twos': new jitter every 2 frames at 30 fps (client-approved)
   KP.boil = t => Math.floor(t * KP.BOIL_FPS + 1e-6);  // integer step index (use as jitter seed offset)
   KP.held = (t, fps = KP.BOIL_FPS) => Math.floor(t * fps + 1e-6) / fps; // time held on stop-motion steps
   // stepped hand-placed wobble: re-rolls every boil step. returns [dx, dy]
@@ -111,6 +111,57 @@
       }
     }
     return 0;
+  };
+
+  // ---------------------------------------------------------------- cue lookups (never hard-code seconds)
+  // KP.word(cues, /re/, {voice, after, end, line, fb}): start of the first word matching re (at/after `after`),
+  // or its end / its line's start; falls back to fb (default 0) if the narration no longer has that word.
+  KP.words = cues => cues.flatMap(l => (l.words || []).map(w => ({ ...w, voice: l.voice, line: l })));
+  KP.word = (cues, re, o = {}) => {
+    const w = KP.words(cues).find(w => re.test(w.w) && (!o.voice || w.voice === o.voice) && w.start >= (o.after ?? -1));
+    return w ? (o.end ? w.end : o.line ? w.line.start : o.lineEnd ? w.line.end : w.start) : (o.fb ?? 0);
+  };
+  // Gold Ripple act change. Out: a gold disc ringed with paper rings grows from (cx,cy) to cover the frame (p 0..1).
+  // In: the gold opens from the centre, revealing the new scene inside a widening ring (p 0..1).
+  KP.goldOut = (ctx, p, cx = 490, cy = 860, boil = 0) => {
+    if (p <= 0) return;
+    const r = 40 + KP.ease.in(p) * 1900;
+    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+    KP.paper(ctx, KP.jitter(KP.ell(cx, cy, r, r, 72), 991 + boil, 2), P.gold, { shadow: [0, 0], mis: P.tomato, misOff: [-5, 4], misA: .4 });
+    for (let i = 1; i <= 4; i++) { const rr = r * (1 - i * .13); if (rr > 20) { const q = KP.jitter(KP.ell(cx, cy, rr, rr, 60), 992 + i + boil, 1.4); q.push(q[0]); KP.brush(ctx, q, 7, P.rice, { taper: .1 }); } }
+    ctx.restore();
+  };
+  KP.goldIn = (ctx, p, cx = 490, cy = 860, boil = 0) => {
+    if (p >= 1) return;
+    const r = KP.ease.out(p) * 1900;
+    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+    const hole = KP.jitter(KP.ell(cx, cy, Math.max(1, r), Math.max(1, r), 72), 995 + boil, 2);
+    const path = new Path2D(); path.rect(-10, -10, W + 20, H + 20); path.addPath(KP.path(hole.slice().reverse()));
+    ctx.fillStyle = P.gold; ctx.fill(path, 'evenodd');
+    if (r > 10) { hole.push(hole[0]); KP.brush(ctx, hole, 18, P.rice, { taper: .05 }); }
+    ctx.restore();
+  };
+  // Paper slide (default transition): a sheet in the NEXT scene's ground colour slides up over the frame, shadow
+  // leading. Outgoing scenes call it over their last ~0.5 s; incoming scenes start on their ground.
+  KP.GROUND = { s01_coldopen: P.plum, s02_title: P.turq, s03_ikeda: P.lemon, s04_everywhere: P.coral, s05_body: P.turq,
+    s07_tests: P.lemon, s08_twist: P.pink, s06_origin: P.blue, s09_outro: P.plum };
+  KP.slide = (ctx, p, fill, inner) => {
+    if (p <= 0) return;
+    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.translate(0, (1 - p) * (H + 60));
+    const sheet = KP.rr(-40, 0, W + 80, H + 120, 18, 40);
+    KP.paper(ctx, KP.jitter(sheet, 950, 2), fill, { shadow: [0, -22], shadowA: .4 });
+    if (inner) { ctx.save(); ctx.clip(KP.path(sheet)); inner(ctx); ctx.restore(); }
+    ctx.restore();
+  };
+
+  // the pink paper brain (s01 style). (x,y) centre, r radius. o.eyes/mouth for the face, o.boil
+  KP.brain = (ctx, x, y, r, o = {}) => {
+    const b = o.boil || 0, k = r / 112;
+    const pts = KP.jitter(KP.curve([[x - r, y + 10 * k], [x - r * .9, y - r * .5], [x - r * .4, y - r * .82], [x + r * .2, y - r * .85], [x + r * .75, y - r * .6], [x + r * 1.02, y - r * .05], [x + r * .8, y + r * .5], [x + r * .2, y + r * .62], [x - r * .5, y + r * .58]], true, 8), (o.seed || 300) + b, 1.5);
+    KP.paper(ctx, KP.jitter(KP.rr(x + 4 * k, y + r * .5, 34 * k, 60 * k, 14 * k, 10), 33 + b, 1), P.pink, { shadow: KP.SH.far });
+    KP.paper(ctx, pts, P.bubble, { shadow: KP.SH.near, mis: P.tomato, misOff: [-3, 3], misA: .45 });
+    [[[-80, -40], [-40, -70], [0, -50], [30, -74]], [[50, -30], [80, -10], [66, 26]], [[-90, 20], [-50, 6], [-30, 36]]].forEach(c => KP.brush(ctx, KP.curve(c.map(([a, bb]) => [x + a * k, y + bb * k]), false, 8), 8 * k, P.magenta, { taper: .6 }));
+    if (o.face !== false) KP.face(ctx, x + 8 * k, y + 20 * k, 110 * k, { eyes: o.eyes || 'dot', mouth: o.mouth || 'smile', cheek: P.magenta });
   };
 
   // ---------------------------------------------------------------- shape builders (closed point lists)
@@ -715,7 +766,7 @@
     accent: {
       s01_coldopen: [P.pink, P.tomato, P.ink], s02_title: [P.pink, P.tomato, P.ink],
       s06_origin: [P.tomato, P.pink, P.rice],
-      // not yet specified by the client (proposed, see report): discovery green, body turquoise, tests blue, outro pink
+      // client-approved 2026-10-27: discovery green, body turquoise, tests cobalt + white text, outro pink
       s03_ikeda: [P.kombu, P.blue, P.ink], s04_everywhere: [P.kombu, P.blue, P.ink], s05_body: [P.turq, P.blue, P.ink],
       s07_tests: [P.blue, P.grape, P.rice], s08_twist: [P.blue, P.grape, P.rice], s09_outro: [P.pink, P.tomato, P.ink],
     },
