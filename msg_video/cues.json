@@ -1,7 +1,7 @@
 {
  "s01_coldopen": {
   "title": "Cold Open: The Accusations",
-  "duration": 22.417,
+  "duration": 21.451,
   "lines": [
    {
     "voice": "TVDOC",
@@ -176,140 +176,140 @@
     "voice": "NARR",
     "text": "For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968.",
     "start": 12.009,
-    "end": 19.711,
+    "end": 18.975,
     "words": [
      {
       "w": "For",
-      "start": 12.049,
-      "end": 12.268
+      "start": 12.08,
+      "end": 12.261
      },
      {
       "w": "fifty",
-      "start": 12.268,
-      "end": 12.704
+      "start": 12.261,
+      "end": 12.623
      },
      {
       "w": "years,",
-      "start": 12.704,
-      "end": 12.922
+      "start": 12.623,
+      "end": 12.804
      },
      {
       "w": "everyone",
-      "start": 13.184,
-      "end": 13.872
+      "start": 13.022,
+      "end": 13.592
      },
      {
       "w": "has",
-      "start": 13.872,
-      "end": 14.09
+      "start": 13.592,
+      "end": 13.773
      },
      {
       "w": "been",
-      "start": 14.09,
-      "end": 14.308
+      "start": 13.773,
+      "end": 13.954
      },
      {
       "w": "scared",
-      "start": 14.308,
-      "end": 14.745
+      "start": 13.954,
+      "end": 14.316
      },
      {
       "w": "of",
-      "start": 14.745,
-      "end": 14.963
+      "start": 14.316,
+      "end": 14.497
      },
      {
       "w": "MSG.",
-      "start": 14.963,
-      "end": 15.618
+      "start": 14.497,
+      "end": 15.04
      },
      {
       "w": "And",
-      "start": 16.098,
-      "end": 16.316
+      "start": 15.438,
+      "end": 15.619
      },
      {
       "w": "it",
-      "start": 16.316,
-      "end": 16.534
+      "start": 15.619,
+      "end": 15.8
      },
      {
       "w": "all",
-      "start": 16.534,
-      "end": 16.753
+      "start": 15.8,
+      "end": 15.981
      },
      {
       "w": "started",
-      "start": 16.753,
-      "end": 17.189
+      "start": 15.981,
+      "end": 16.343
      },
      {
       "w": "with",
-      "start": 17.189,
-      "end": 17.407
+      "start": 16.343,
+      "end": 16.524
      },
      {
       "w": "one",
-      "start": 17.407,
-      "end": 17.626
+      "start": 16.524,
+      "end": 16.705
      },
      {
       "w": "letter,",
-      "start": 17.626,
-      "end": 18.062
+      "start": 16.705,
+      "end": 17.067
      },
      {
       "w": "in",
-      "start": 18.324,
-      "end": 18.542
+      "start": 17.284,
+      "end": 17.465
      },
      {
       "w": "1968.",
-      "start": 18.542,
-      "end": 19.634
+      "start": 17.465,
+      "end": 18.37
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "But is it actually bad for you?",
-    "start": 20.061,
-    "end": 21.917,
+    "start": 19.325,
+    "end": 20.951,
     "words": [
      {
       "w": "But",
-      "start": 20.099,
-      "end": 20.286
+      "start": 19.389,
+      "end": 19.56
      },
      {
       "w": "is",
-      "start": 20.286,
-      "end": 20.474
+      "start": 19.56,
+      "end": 19.731
      },
      {
       "w": "it",
-      "start": 20.474,
-      "end": 20.662
+      "start": 19.731,
+      "end": 19.901
      },
      {
       "w": "actually",
-      "start": 20.662,
-      "end": 21.254
+      "start": 19.901,
+      "end": 20.439
      },
      {
       "w": "bad",
-      "start": 21.254,
-      "end": 21.441
+      "start": 20.439,
+      "end": 20.609
      },
      {
       "w": "for",
-      "start": 21.441,
-      "end": 21.629
+      "start": 20.609,
+      "end": 20.78
      },
      {
       "w": "you?",
-      "start": 21.629,
-      "end": 21.817
+      "start": 20.78,
+      "end": 20.951
      }
     ]
    }
@@ -317,53 +317,53 @@
  },
  "s02_title": {
   "title": "Title Card",
-  "duration": 4.689,
+  "duration": 4.554,
   "lines": [
    {
     "voice": "NARR",
     "text": "MSG. The most misunderstood molecule in your kitchen.",
     "start": 0.3,
-    "end": 4.289,
+    "end": 4.154,
     "words": [
      {
       "w": "MSG.",
-      "start": 0.33,
-      "end": 0.919
+      "start": 0.308,
+      "end": 0.843
      },
      {
       "w": "The",
-      "start": 1.351,
-      "end": 1.547
+      "start": 1.236,
+      "end": 1.414
      },
      {
       "w": "most",
-      "start": 1.547,
-      "end": 1.744
+      "start": 1.414,
+      "end": 1.592
      },
      {
       "w": "misunderstood",
-      "start": 1.744,
-      "end": 2.559
+      "start": 1.592,
+      "end": 2.332
      },
      {
       "w": "molecule",
-      "start": 2.559,
-      "end": 3.373
+      "start": 2.332,
+      "end": 3.073
      },
      {
       "w": "in",
-      "start": 3.373,
-      "end": 3.57
+      "start": 3.073,
+      "end": 3.251
      },
      {
       "w": "your",
-      "start": 3.57,
-      "end": 3.766
+      "start": 3.251,
+      "end": 3.429
      },
      {
       "w": "kitchen.",
-      "start": 3.766,
-      "end": 4.188
+      "start": 3.429,
+      "end": 3.813
      }
     ]
    }
@@ -371,194 +371,194 @@
  },
  "s03_ikeda": {
   "title": "1908: The Discovery of Umami",
-  "duration": 15.678,
+  "duration": 16.336,
   "lines": [
    {
     "voice": "NARR",
     "text": "In 1908, a Japanese chemist named Kikunae Ikeda tasted something odd in his seaweed soup.",
     "start": 0.3,
-    "end": 7.169,
+    "end": 7.22,
     "words": [
      {
       "w": "In",
-      "start": 0.334,
-      "end": 0.545
+      "start": 0.359,
+      "end": 0.552
      },
      {
       "w": "1908,",
-      "start": 0.545,
-      "end": 1.6
+      "start": 0.552,
+      "end": 1.513
      },
      {
       "w": "a",
-      "start": 1.853,
-      "end": 2.064
+      "start": 1.744,
+      "end": 1.936
      },
      {
       "w": "Japanese",
-      "start": 2.064,
-      "end": 2.729
+      "start": 1.936,
+      "end": 2.542
      },
      {
       "w": "chemist",
-      "start": 2.729,
-      "end": 3.151
+      "start": 2.542,
+      "end": 2.926
      },
      {
       "w": "named",
-      "start": 3.151,
-      "end": 3.574
+      "start": 2.926,
+      "end": 3.311
      },
      {
       "w": "Kikunae",
-      "start": 3.574,
-      "end": 3.996
+      "start": 3.311,
+      "end": 3.695
      },
      {
       "w": "Ikeda",
-      "start": 3.996,
-      "end": 4.629
+      "start": 3.695,
+      "end": 4.272
      },
      {
       "w": "tasted",
-      "start": 4.629,
-      "end": 5.051
+      "start": 4.272,
+      "end": 4.656
      },
      {
       "w": "something",
-      "start": 5.051,
-      "end": 5.716
+      "start": 4.656,
+      "end": 5.262
      },
      {
       "w": "odd",
-      "start": 5.716,
-      "end": 5.927
+      "start": 5.262,
+      "end": 5.454
      },
      {
       "w": "in",
-      "start": 5.927,
-      "end": 6.138
+      "start": 5.454,
+      "end": 5.647
      },
      {
       "w": "his",
-      "start": 6.138,
-      "end": 6.349
+      "start": 5.647,
+      "end": 5.839
      },
      {
       "w": "seaweed",
-      "start": 6.349,
-      "end": 6.771
+      "start": 5.839,
+      "end": 6.223
      },
      {
       "w": "soup.",
-      "start": 6.771,
-      "end": 6.982
+      "start": 6.223,
+      "end": 6.416
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "Not sweet, sour, salty or bitter. He called it umami, and turned it into a seasoning.",
-    "start": 7.419,
-    "end": 12.987,
+    "start": 7.47,
+    "end": 13.832,
     "words": [
      {
       "w": "Not",
-      "start": 7.453,
-      "end": 7.629
+      "start": 7.51,
+      "end": 7.693
      },
      {
       "w": "sweet,",
-      "start": 7.629,
-      "end": 7.805
+      "start": 7.693,
+      "end": 7.877
      },
      {
       "w": "sour,",
-      "start": 8.016,
-      "end": 8.192
+      "start": 8.098,
+      "end": 8.281
      },
      {
       "w": "salty",
-      "start": 8.403,
-      "end": 8.755
+      "start": 8.502,
+      "end": 8.869
      },
      {
       "w": "or",
-      "start": 8.755,
-      "end": 8.931
+      "start": 8.869,
+      "end": 9.053
      },
      {
       "w": "bitter.",
-      "start": 8.931,
-      "end": 9.283
+      "start": 9.053,
+      "end": 9.421
      },
      {
       "w": "He",
-      "start": 9.67,
-      "end": 9.846
+      "start": 9.825,
+      "end": 10.009
      },
      {
       "w": "called",
-      "start": 9.846,
-      "end": 10.198
+      "start": 10.009,
+      "end": 10.376
      },
      {
       "w": "it",
-      "start": 10.198,
-      "end": 10.374
+      "start": 10.376,
+      "end": 10.56
      },
      {
       "w": "umami,",
-      "start": 10.374,
-      "end": 10.902
+      "start": 10.56,
+      "end": 11.111
      },
      {
       "w": "and",
-      "start": 11.113,
-      "end": 11.289
+      "start": 11.332,
+      "end": 11.515
      },
      {
       "w": "turned",
-      "start": 11.289,
-      "end": 11.641
+      "start": 11.515,
+      "end": 11.883
      },
      {
       "w": "it",
-      "start": 11.641,
-      "end": 11.817
+      "start": 11.883,
+      "end": 12.067
      },
      {
       "w": "into",
-      "start": 11.817,
-      "end": 12.169
+      "start": 12.067,
+      "end": 12.434
      },
      {
       "w": "a",
-      "start": 12.169,
-      "end": 12.345
+      "start": 12.434,
+      "end": 12.618
      },
      {
       "w": "seasoning.",
-      "start": 12.345,
-      "end": 12.899
+      "start": 12.618,
+      "end": 13.197
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "Monosodium glutamate.",
-    "start": 13.187,
-    "end": 15.278,
+    "start": 14.032,
+    "end": 15.936,
     "words": [
      {
       "w": "Monosodium",
-      "start": 13.231,
-      "end": 14.346
+      "start": 14.067,
+      "end": 14.861
      },
      {
       "w": "glutamate.",
-      "start": 14.346,
-      "end": 15.192
+      "start": 14.861,
+      "end": 15.464
      }
     ]
    }
@@ -566,169 +566,169 @@
  },
  "s04_everywhere": {
   "title": "Glutamate Is Everywhere",
-  "duration": 14.206,
+  "duration": 13.596,
   "lines": [
    {
     "voice": "NARR",
     "text": "Which sounds alarmingly chemical.",
     "start": 0.3,
-    "end": 2.775,
+    "end": 2.622,
     "words": [
      {
       "w": "Which",
-      "start": 0.333,
-      "end": 0.584
+      "start": 0.379,
+      "end": 0.553
      },
      {
       "w": "sounds",
-      "start": 0.584,
-      "end": 0.835
+      "start": 0.553,
+      "end": 0.728
      },
      {
       "w": "alarmingly",
-      "start": 0.835,
-      "end": 1.876
+      "start": 0.728,
+      "end": 1.453
      },
      {
       "w": "chemical.",
-      "start": 1.876,
-      "end": 2.666
+      "start": 1.453,
+      "end": 2.003
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "But glutamate is everywhere: tomatoes, parmesan, even breast milk.",
-    "start": 3.025,
-    "end": 7.846,
+    "start": 2.872,
+    "end": 7.562,
     "words": [
      {
       "w": "But",
-      "start": 3.057,
-      "end": 3.259
+      "start": 2.94,
+      "end": 3.115
      },
      {
       "w": "glutamate",
-      "start": 3.259,
-      "end": 3.896
+      "start": 3.115,
+      "end": 3.665
      },
      {
       "w": "is",
-      "start": 3.896,
-      "end": 4.098
+      "start": 3.665,
+      "end": 3.839
      },
      {
       "w": "everywhere:",
-      "start": 4.098,
-      "end": 4.938
+      "start": 3.839,
+      "end": 4.564
      },
      {
       "w": "tomatoes,",
-      "start": 5.181,
-      "end": 5.818
+      "start": 4.773,
+      "end": 5.323
      },
      {
       "w": "parmesan,",
-      "start": 6.061,
-      "end": 6.698
+      "start": 5.532,
+      "end": 6.082
      },
      {
       "w": "even",
-      "start": 6.941,
-      "end": 7.345
+      "start": 6.292,
+      "end": 6.641
      },
      {
       "w": "breast",
-      "start": 7.345,
-      "end": 7.548
+      "start": 6.641,
+      "end": 6.815
      },
      {
       "w": "milk.",
-      "start": 7.548,
-      "end": 7.75
+      "start": 6.815,
+      "end": 6.99
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "To your body, glutamate from a tomato and from MSG is the exact same molecule.",
-    "start": 8.046,
-    "end": 13.806,
+    "start": 7.762,
+    "end": 13.196,
     "words": [
      {
       "w": "To",
-      "start": 8.08,
-      "end": 8.285
+      "start": 7.813,
+      "end": 7.995
      },
      {
       "w": "your",
-      "start": 8.285,
-      "end": 8.49
+      "start": 7.995,
+      "end": 8.176
      },
      {
       "w": "body,",
-      "start": 8.49,
-      "end": 8.899
+      "start": 8.176,
+      "end": 8.54
      },
      {
       "w": "glutamate",
-      "start": 9.145,
-      "end": 9.79
+      "start": 8.758,
+      "end": 9.33
      },
      {
       "w": "from",
-      "start": 9.79,
-      "end": 9.994
+      "start": 9.33,
+      "end": 9.512
      },
      {
       "w": "a",
-      "start": 9.994,
-      "end": 10.199
+      "start": 9.512,
+      "end": 9.694
      },
      {
       "w": "tomato",
-      "start": 10.199,
-      "end": 10.813
+      "start": 9.694,
+      "end": 10.239
      },
      {
       "w": "and",
-      "start": 10.813,
-      "end": 11.018
+      "start": 10.239,
+      "end": 10.421
      },
      {
       "w": "from",
-      "start": 11.018,
-      "end": 11.223
+      "start": 10.421,
+      "end": 10.602
      },
      {
       "w": "MSG",
-      "start": 11.223,
-      "end": 11.837
+      "start": 10.602,
+      "end": 11.148
      },
      {
       "w": "is",
-      "start": 11.837,
-      "end": 12.042
+      "start": 11.148,
+      "end": 11.329
      },
      {
       "w": "the",
-      "start": 12.042,
-      "end": 12.246
+      "start": 11.329,
+      "end": 11.511
      },
      {
       "w": "exact",
-      "start": 12.246,
-      "end": 12.656
+      "start": 11.511,
+      "end": 11.875
      },
      {
       "w": "same",
-      "start": 12.656,
-      "end": 12.861
+      "start": 11.875,
+      "end": 12.056
      },
      {
       "w": "molecule.",
-      "start": 12.861,
-      "end": 13.71
+      "start": 12.056,
+      "end": 12.81
      }
     ]
    }
@@ -736,224 +736,224 @@
  },
  "s05_body": {
   "title": "What Happens When You Eat It",
-  "duration": 15.166,
+  "duration": 15.221,
   "lines": [
    {
     "voice": "NARR",
     "text": "So what happens when you eat it?",
     "start": 0.3,
-    "end": 2.22,
+    "end": 2.065,
     "words": [
      {
       "w": "So",
-      "start": 0.335,
-      "end": 0.56
+      "start": 0.312,
+      "end": 0.493
      },
      {
       "w": "what",
-      "start": 0.56,
-      "end": 0.786
+      "start": 0.493,
+      "end": 0.674
      },
      {
       "w": "happens",
-      "start": 0.786,
-      "end": 1.236
+      "start": 0.674,
+      "end": 1.036
      },
      {
       "w": "when",
-      "start": 1.236,
-      "end": 1.462
+      "start": 1.036,
+      "end": 1.217
      },
      {
       "w": "you",
-      "start": 1.462,
-      "end": 1.687
+      "start": 1.217,
+      "end": 1.398
      },
      {
       "w": "eat",
-      "start": 1.687,
-      "end": 1.913
+      "start": 1.398,
+      "end": 1.58
      },
      {
       "w": "it?",
-      "start": 1.913,
-      "end": 2.138
+      "start": 1.58,
+      "end": 1.761
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "The cells lining your gut burn glutamate as fuel. Around ninety-five percent never even reaches your blood.",
-    "start": 2.42,
-    "end": 9.545,
+    "start": 2.265,
+    "end": 9.416,
     "words": [
      {
       "w": "The",
-      "start": 2.453,
-      "end": 2.682
+      "start": 2.265,
+      "end": 2.499
      },
      {
       "w": "cells",
-      "start": 2.682,
-      "end": 2.912
+      "start": 2.499,
+      "end": 2.733
      },
      {
       "w": "lining",
-      "start": 2.912,
-      "end": 3.371
+      "start": 2.733,
+      "end": 3.202
      },
      {
       "w": "your",
-      "start": 3.371,
-      "end": 3.601
+      "start": 3.202,
+      "end": 3.437
      },
      {
       "w": "gut",
-      "start": 3.601,
-      "end": 3.83
+      "start": 3.437,
+      "end": 3.671
      },
      {
       "w": "burn",
-      "start": 3.83,
-      "end": 4.06
+      "start": 3.671,
+      "end": 3.905
      },
      {
       "w": "glutamate",
-      "start": 4.06,
-      "end": 4.783
+      "start": 3.905,
+      "end": 4.643
      },
      {
       "w": "as",
-      "start": 4.783,
-      "end": 5.012
+      "start": 4.643,
+      "end": 4.878
      },
      {
       "w": "fuel.",
-      "start": 5.012,
-      "end": 5.242
+      "start": 4.878,
+      "end": 5.112
      },
      {
       "w": "Around",
-      "start": 5.746,
-      "end": 6.206
+      "start": 5.628,
+      "end": 6.097
      },
      {
       "w": "ninety-five",
-      "start": 6.206,
-      "end": 7.158
+      "start": 6.097,
+      "end": 7.069
      },
      {
       "w": "percent",
-      "start": 7.158,
-      "end": 7.617
+      "start": 7.069,
+      "end": 7.538
      },
      {
       "w": "never",
-      "start": 7.617,
-      "end": 8.076
+      "start": 7.538,
+      "end": 8.007
      },
      {
       "w": "even",
-      "start": 8.076,
-      "end": 8.535
+      "start": 8.007,
+      "end": 8.475
      },
      {
       "w": "reaches",
-      "start": 8.535,
-      "end": 8.994
+      "start": 8.475,
+      "end": 8.944
      },
      {
       "w": "your",
-      "start": 8.994,
-      "end": 9.224
+      "start": 8.944,
+      "end": 9.178
      },
      {
       "w": "blood.",
-      "start": 9.224,
-      "end": 9.453
+      "start": 9.178,
+      "end": 9.413
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "And the rest hits the blood-brain barrier, one of the best-guarded borders in your body.",
-    "start": 9.795,
-    "end": 14.766,
+    "start": 9.666,
+    "end": 14.821,
     "words": [
      {
       "w": "And",
-      "start": 9.829,
-      "end": 10.043
+      "start": 9.764,
+      "end": 9.951
      },
      {
       "w": "the",
-      "start": 10.043,
-      "end": 10.256
+      "start": 9.951,
+      "end": 10.138
      },
      {
       "w": "rest",
-      "start": 10.256,
-      "end": 10.47
+      "start": 10.138,
+      "end": 10.325
      },
      {
       "w": "hits",
-      "start": 10.47,
-      "end": 10.684
+      "start": 10.325,
+      "end": 10.512
      },
      {
       "w": "the",
-      "start": 10.684,
-      "end": 10.897
+      "start": 10.512,
+      "end": 10.699
      },
      {
       "w": "blood-brain",
-      "start": 10.897,
-      "end": 11.356
+      "start": 10.699,
+      "end": 11.1
      },
      {
       "w": "barrier,",
-      "start": 11.356,
-      "end": 11.815
+      "start": 11.1,
+      "end": 11.502
      },
      {
       "w": "one",
-      "start": 12.072,
-      "end": 12.285
+      "start": 11.726,
+      "end": 11.913
      },
      {
       "w": "of",
-      "start": 12.285,
-      "end": 12.499
+      "start": 11.913,
+      "end": 12.1
      },
      {
       "w": "the",
-      "start": 12.499,
-      "end": 12.713
+      "start": 12.1,
+      "end": 12.287
      },
      {
       "w": "best-guarded",
-      "start": 12.713,
-      "end": 13.385
+      "start": 12.287,
+      "end": 12.876
      },
      {
       "w": "borders",
-      "start": 13.385,
-      "end": 13.812
+      "start": 12.876,
+      "end": 13.249
      },
      {
       "w": "in",
-      "start": 13.812,
-      "end": 14.026
+      "start": 13.249,
+      "end": 13.436
      },
      {
       "w": "your",
-      "start": 14.026,
-      "end": 14.24
+      "start": 13.436,
+      "end": 13.623
      },
      {
       "w": "body.",
-      "start": 14.24,
-      "end": 14.667
+      "start": 13.623,
+      "end": 13.997
      }
     ]
    }
@@ -961,161 +961,161 @@
  },
  "s07_tests": {
   "title": "Putting MSG to the Test",
-  "duration": 12.449,
+  "duration": 12.374,
   "lines": [
    {
     "voice": "NARR",
     "text": "In double-blind studies, people who said MSG made them sick reacted just as often to a placebo.",
     "start": 0.3,
-    "end": 7.169,
+    "end": 7.034,
     "words": [
      {
       "w": "In",
-      "start": 0.328,
-      "end": 0.563
+      "start": 0.348,
+      "end": 0.559
      },
      {
       "w": "double-blind",
-      "start": 0.563,
-      "end": 1.303
+      "start": 0.559,
+      "end": 1.225
      },
      {
       "w": "studies,",
-      "start": 1.303,
-      "end": 1.809
+      "start": 1.225,
+      "end": 1.68
      },
      {
       "w": "people",
-      "start": 2.091,
-      "end": 2.561
+      "start": 1.934,
+      "end": 2.357
      },
      {
       "w": "who",
-      "start": 2.561,
-      "end": 2.796
+      "start": 2.357,
+      "end": 2.568
      },
      {
       "w": "said",
-      "start": 2.796,
-      "end": 3.031
+      "start": 2.568,
+      "end": 2.78
      },
      {
       "w": "MSG",
-      "start": 3.031,
-      "end": 3.736
+      "start": 2.78,
+      "end": 3.414
      },
      {
       "w": "made",
-      "start": 3.736,
-      "end": 3.971
+      "start": 3.414,
+      "end": 3.625
      },
      {
       "w": "them",
-      "start": 3.971,
-      "end": 4.206
+      "start": 3.625,
+      "end": 3.837
      },
      {
       "w": "sick",
-      "start": 4.206,
-      "end": 4.441
+      "start": 3.837,
+      "end": 4.048
      },
      {
       "w": "reacted",
-      "start": 4.441,
-      "end": 4.911
+      "start": 4.048,
+      "end": 4.471
      },
      {
       "w": "just",
-      "start": 4.911,
-      "end": 5.147
+      "start": 4.471,
+      "end": 4.683
      },
      {
       "w": "as",
-      "start": 5.147,
-      "end": 5.382
+      "start": 4.683,
+      "end": 4.894
      },
      {
       "w": "often",
-      "start": 5.382,
-      "end": 5.852
+      "start": 4.894,
+      "end": 5.317
      },
      {
       "w": "to",
-      "start": 5.852,
-      "end": 6.087
+      "start": 5.317,
+      "end": 5.528
      },
      {
       "w": "a",
-      "start": 6.087,
-      "end": 6.322
+      "start": 5.528,
+      "end": 5.74
      },
      {
       "w": "placebo.",
-      "start": 6.322,
-      "end": 7.062
+      "start": 5.74,
+      "end": 6.406
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "The FDA calls it generally recognized as safe. Just like salt.",
-    "start": 7.419,
-    "end": 12.049,
+    "start": 7.284,
+    "end": 11.974,
     "words": [
      {
       "w": "The",
-      "start": 7.461,
-      "end": 7.67
+      "start": 7.332,
+      "end": 7.509
      },
      {
       "w": "FDA",
-      "start": 7.67,
-      "end": 8.298
+      "start": 7.509,
+      "end": 8.04
      },
      {
       "w": "calls",
-      "start": 8.298,
-      "end": 8.507
+      "start": 8.04,
+      "end": 8.217
      },
      {
       "w": "it",
-      "start": 8.507,
-      "end": 8.716
+      "start": 8.217,
+      "end": 8.394
      },
      {
       "w": "generally",
-      "start": 8.716,
-      "end": 9.584
+      "start": 8.394,
+      "end": 9.128
      },
      {
       "w": "recognized",
-      "start": 9.584,
-      "end": 10.452
+      "start": 9.128,
+      "end": 9.862
      },
      {
       "w": "as",
-      "start": 10.452,
-      "end": 10.661
+      "start": 9.862,
+      "end": 10.039
      },
      {
       "w": "safe.",
-      "start": 10.661,
-      "end": 10.87
+      "start": 10.039,
+      "end": 10.216
      },
      {
       "w": "Just",
-      "start": 11.33,
-      "end": 11.539
+      "start": 10.605,
+      "end": 10.782
      },
      {
       "w": "like",
-      "start": 11.539,
-      "end": 11.748
+      "start": 10.782,
+      "end": 10.959
      },
      {
       "w": "salt.",
-      "start": 11.748,
-      "end": 11.957
+      "start": 10.959,
+      "end": 11.136
      }
     ]
    }
@@ -1123,93 +1123,93 @@
  },
  "s08_twist": {
   "title": "Plot Twist: MSG vs Salt",
-  "duration": 6.332,
+  "duration": 6.273,
   "lines": [
    {
     "voice": "NARR",
     "text": "Plot twist: it has a third of the sodium of table salt. Same flavor, less sodium.",
     "start": 0.3,
-    "end": 5.932,
+    "end": 5.873,
     "words": [
      {
       "w": "Plot",
-      "start": 0.323,
-      "end": 0.547
+      "start": 0.389,
+      "end": 0.587
      },
      {
       "w": "twist:",
-      "start": 0.547,
-      "end": 0.771
+      "start": 0.587,
+      "end": 0.785
      },
      {
       "w": "it",
-      "start": 1.04,
-      "end": 1.265
+      "start": 1.023,
+      "end": 1.221
      },
      {
       "w": "has",
-      "start": 1.265,
-      "end": 1.489
+      "start": 1.221,
+      "end": 1.419
      },
      {
       "w": "a",
-      "start": 1.489,
-      "end": 1.713
+      "start": 1.419,
+      "end": 1.617
      },
      {
       "w": "third",
-      "start": 1.713,
-      "end": 1.937
+      "start": 1.617,
+      "end": 1.815
      },
      {
       "w": "of",
-      "start": 1.937,
-      "end": 2.161
+      "start": 1.815,
+      "end": 2.013
      },
      {
       "w": "the",
-      "start": 2.161,
-      "end": 2.385
+      "start": 2.013,
+      "end": 2.211
      },
      {
       "w": "sodium",
-      "start": 2.385,
-      "end": 2.834
+      "start": 2.211,
+      "end": 2.607
      },
      {
       "w": "of",
-      "start": 2.834,
-      "end": 3.058
+      "start": 2.607,
+      "end": 2.805
      },
      {
       "w": "table",
-      "start": 3.058,
-      "end": 3.506
+      "start": 2.805,
+      "end": 3.201
      },
      {
       "w": "salt.",
-      "start": 3.506,
-      "end": 3.73
+      "start": 3.201,
+      "end": 3.399
      },
      {
       "w": "Same",
-      "start": 4.224,
-      "end": 4.448
+      "start": 3.835,
+      "end": 4.033
      },
      {
       "w": "flavor,",
-      "start": 4.448,
-      "end": 4.896
+      "start": 4.033,
+      "end": 4.429
      },
      {
       "w": "less",
-      "start": 5.165,
-      "end": 5.389
+      "start": 4.666,
+      "end": 4.864
      },
      {
       "w": "sodium.",
-      "start": 5.389,
-      "end": 5.838
+      "start": 4.864,
+      "end": 5.26
      }
     ]
    }
@@ -1217,453 +1217,453 @@
  },
  "s06_origin": {
   "title": "How the Rumour Started",
-  "duration": 33.217,
+  "duration": 31.807,
   "lines": [
    {
     "voice": "NARR",
     "text": "So how did a seaweed seasoning become a villain?",
     "start": 0.3,
-    "end": 3.137,
+    "end": 3.319,
     "words": [
      {
       "w": "So",
-      "start": 0.343,
-      "end": 0.532
+      "start": 0.342,
+      "end": 0.503
      },
      {
       "w": "how",
-      "start": 0.532,
-      "end": 0.72
+      "start": 0.503,
+      "end": 0.663
      },
      {
       "w": "did",
-      "start": 0.72,
-      "end": 0.908
+      "start": 0.663,
+      "end": 0.823
      },
      {
       "w": "a",
-      "start": 0.908,
-      "end": 1.096
+      "start": 0.823,
+      "end": 0.983
      },
      {
       "w": "seaweed",
-      "start": 1.096,
-      "end": 1.472
+      "start": 0.983,
+      "end": 1.304
      },
      {
       "w": "seasoning",
-      "start": 1.472,
-      "end": 2.065
+      "start": 1.304,
+      "end": 1.808
      },
      {
       "w": "become",
-      "start": 2.065,
-      "end": 2.441
+      "start": 1.808,
+      "end": 2.128
      },
      {
       "w": "a",
-      "start": 2.441,
-      "end": 2.629
+      "start": 2.128,
+      "end": 2.289
      },
      {
       "w": "villain?",
-      "start": 2.629,
-      "end": 3.034
+      "start": 2.289,
+      "end": 2.633
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "In 1968, a doctor wrote to a medical journal: after Chinese food, he felt numb and weak.",
-    "start": 3.387,
-    "end": 10.833,
+    "start": 3.569,
+    "end": 9.42,
     "words": [
      {
       "w": "In",
-      "start": 3.421,
-      "end": 3.659
+      "start": 3.569,
+      "end": 3.742
      },
      {
       "w": "1968,",
-      "start": 3.659,
-      "end": 4.852
+      "start": 3.742,
+      "end": 4.607
      },
      {
       "w": "a",
-      "start": 5.139,
-      "end": 5.377
+      "start": 4.815,
+      "end": 4.988
      },
      {
       "w": "doctor",
-      "start": 5.377,
-      "end": 5.854
+      "start": 4.988,
+      "end": 5.334
      },
      {
       "w": "wrote",
-      "start": 5.854,
-      "end": 6.093
+      "start": 5.334,
+      "end": 5.507
      },
      {
       "w": "to",
-      "start": 6.093,
-      "end": 6.332
+      "start": 5.507,
+      "end": 5.68
      },
      {
       "w": "a",
-      "start": 6.332,
-      "end": 6.57
+      "start": 5.68,
+      "end": 5.853
      },
      {
       "w": "medical",
-      "start": 6.57,
-      "end": 7.286
+      "start": 5.853,
+      "end": 6.372
      },
      {
       "w": "journal:",
-      "start": 7.286,
-      "end": 7.799
+      "start": 6.372,
+      "end": 6.744
      },
      {
       "w": "after",
-      "start": 8.085,
-      "end": 8.563
+      "start": 6.952,
+      "end": 7.298
      },
      {
       "w": "Chinese",
-      "start": 8.563,
-      "end": 9.04
+      "start": 7.298,
+      "end": 7.644
      },
      {
       "w": "food,",
-      "start": 9.04,
-      "end": 9.278
+      "start": 7.644,
+      "end": 7.817
      },
      {
       "w": "he",
-      "start": 9.565,
-      "end": 9.803
+      "start": 8.024,
+      "end": 8.198
      },
      {
       "w": "felt",
-      "start": 9.803,
-      "end": 10.042
+      "start": 8.198,
+      "end": 8.371
      },
      {
       "w": "numb",
-      "start": 10.042,
-      "end": 10.281
+      "start": 8.371,
+      "end": 8.544
      },
      {
       "w": "and",
-      "start": 10.281,
-      "end": 10.519
+      "start": 8.544,
+      "end": 8.717
      },
      {
       "w": "weak.",
-      "start": 10.519,
-      "end": 10.758
+      "start": 8.717,
+      "end": 8.89
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "Wine? Salt? MSG? He was guessing.",
-    "start": 11.033,
-    "end": 13.635,
+    "start": 9.62,
+    "end": 13.242,
     "words": [
      {
       "w": "Wine?",
-      "start": 11.061,
-      "end": 11.218
+      "start": 9.638,
+      "end": 9.866
      },
      {
       "w": "Salt?",
-      "start": 11.563,
-      "end": 11.72
+      "start": 10.369,
+      "end": 10.597
      },
      {
       "w": "MSG?",
-      "start": 12.065,
-      "end": 12.535
+      "start": 11.1,
+      "end": 11.786
      },
      {
       "w": "He",
-      "start": 12.88,
-      "end": 13.037
+      "start": 12.288,
+      "end": 12.517
      },
      {
       "w": "was",
-      "start": 13.037,
-      "end": 13.194
+      "start": 12.517,
+      "end": 12.745
      },
      {
       "w": "guessing.",
-      "start": 13.194,
-      "end": 13.531
+      "start": 12.745,
+      "end": 13.237
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "But the journal gave it a catchy headline: Chinese Restaurant Syndrome.",
-    "start": 13.835,
-    "end": 17.995,
+    "start": 13.442,
+    "end": 17.901,
     "words": [
      {
       "w": "But",
-      "start": 13.874,
-      "end": 14.079
+      "start": 13.543,
+      "end": 13.735
      },
      {
       "w": "the",
-      "start": 14.079,
-      "end": 14.284
+      "start": 13.735,
+      "end": 13.926
      },
      {
       "w": "journal",
-      "start": 14.284,
-      "end": 14.693
+      "start": 13.926,
+      "end": 14.31
      },
      {
       "w": "gave",
-      "start": 14.693,
-      "end": 14.898
+      "start": 14.31,
+      "end": 14.502
      },
      {
       "w": "it",
-      "start": 14.898,
-      "end": 15.103
+      "start": 14.502,
+      "end": 14.694
      },
      {
       "w": "a",
-      "start": 15.103,
-      "end": 15.308
+      "start": 14.694,
+      "end": 14.885
      },
      {
       "w": "catchy",
-      "start": 15.308,
-      "end": 15.718
+      "start": 14.885,
+      "end": 15.269
      },
      {
       "w": "headline:",
-      "start": 15.718,
-      "end": 16.158
+      "start": 15.269,
+      "end": 15.681
      },
      {
       "w": "Chinese",
-      "start": 16.404,
-      "end": 16.814
+      "start": 15.912,
+      "end": 16.295
      },
      {
       "w": "Restaurant",
-      "start": 16.814,
-      "end": 17.46
+      "start": 16.295,
+      "end": 16.899
      },
      {
       "w": "Syndrome.",
-      "start": 17.46,
-      "end": 17.9
+      "start": 16.899,
+      "end": 17.312
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "Then mice injected with huge doses got brain damage. But injecting a baby mouse is nothing like eating dinner.",
-    "start": 18.295,
-    "end": 26.231,
+    "start": 18.201,
+    "end": 24.934,
     "words": [
      {
       "w": "Then",
-      "start": 18.322,
-      "end": 18.57
+      "start": 18.231,
+      "end": 18.425
      },
      {
       "w": "mice",
-      "start": 18.57,
-      "end": 18.819
+      "start": 18.425,
+      "end": 18.619
      },
      {
       "w": "injected",
-      "start": 18.819,
-      "end": 19.601
+      "start": 18.619,
+      "end": 19.229
      },
      {
       "w": "with",
-      "start": 19.601,
-      "end": 19.849
+      "start": 19.229,
+      "end": 19.423
      },
      {
       "w": "huge",
-      "start": 19.849,
-      "end": 20.097
+      "start": 19.423,
+      "end": 19.617
      },
      {
       "w": "doses",
-      "start": 20.097,
-      "end": 20.594
+      "start": 19.617,
+      "end": 20.005
      },
      {
       "w": "got",
-      "start": 20.594,
-      "end": 20.842
+      "start": 20.005,
+      "end": 20.199
      },
      {
       "w": "brain",
-      "start": 20.842,
-      "end": 21.09
+      "start": 20.199,
+      "end": 20.393
      },
      {
       "w": "damage.",
-      "start": 21.09,
-      "end": 21.587
+      "start": 20.393,
+      "end": 20.781
      },
      {
       "w": "But",
-      "start": 22.133,
-      "end": 22.381
+      "start": 21.207,
+      "end": 21.401
      },
      {
       "w": "injecting",
-      "start": 22.381,
-      "end": 23.163
+      "start": 21.401,
+      "end": 22.012
      },
      {
       "w": "a",
-      "start": 23.163,
-      "end": 23.411
+      "start": 22.012,
+      "end": 22.206
      },
      {
       "w": "baby",
-      "start": 23.411,
-      "end": 23.908
+      "start": 22.206,
+      "end": 22.594
      },
      {
       "w": "mouse",
-      "start": 23.908,
-      "end": 24.156
+      "start": 22.594,
+      "end": 22.788
      },
      {
       "w": "is",
-      "start": 24.156,
-      "end": 24.404
+      "start": 22.788,
+      "end": 22.982
      },
      {
       "w": "nothing",
-      "start": 24.404,
-      "end": 24.901
+      "start": 22.982,
+      "end": 23.37
      },
      {
       "w": "like",
-      "start": 24.901,
-      "end": 25.149
+      "start": 23.37,
+      "end": 23.564
      },
      {
       "w": "eating",
-      "start": 25.149,
-      "end": 25.645
+      "start": 23.564,
+      "end": 23.951
      },
      {
       "w": "dinner.",
-      "start": 25.645,
-      "end": 26.142
+      "start": 23.951,
+      "end": 24.339
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "And nobody panicked about parmesan. The fear stuck to one cuisine, and the name said it out loud.",
-    "start": 26.481,
-    "end": 32.817,
+    "start": 25.184,
+    "end": 31.407,
     "words": [
      {
       "w": "And",
-      "start": 26.517,
-      "end": 26.725
+      "start": 25.188,
+      "end": 25.396
      },
      {
       "w": "nobody",
-      "start": 26.725,
-      "end": 27.351
+      "start": 25.396,
+      "end": 26.021
      },
      {
       "w": "panicked",
-      "start": 27.351,
-      "end": 28.008
+      "start": 26.021,
+      "end": 26.677
      },
      {
       "w": "about",
-      "start": 28.008,
-      "end": 28.425
+      "start": 26.677,
+      "end": 27.094
      },
      {
       "w": "parmesan.",
-      "start": 28.425,
-      "end": 29.082
+      "start": 27.094,
+      "end": 27.75
      },
      {
       "w": "The",
-      "start": 29.541,
-      "end": 29.749
+      "start": 28.208,
+      "end": 28.417
      },
      {
       "w": "fear",
-      "start": 29.749,
-      "end": 29.958
+      "start": 28.417,
+      "end": 28.625
      },
      {
       "w": "stuck",
-      "start": 29.958,
-      "end": 30.166
+      "start": 28.625,
+      "end": 28.833
      },
      {
       "w": "to",
-      "start": 30.166,
-      "end": 30.375
+      "start": 28.833,
+      "end": 29.041
      },
      {
       "w": "one",
-      "start": 30.375,
-      "end": 30.583
+      "start": 29.041,
+      "end": 29.25
      },
      {
       "w": "cuisine,",
-      "start": 30.583,
-      "end": 31.032
+      "start": 29.25,
+      "end": 29.697
      },
      {
       "w": "and",
-      "start": 31.282,
-      "end": 31.49
+      "start": 29.947,
+      "end": 30.156
      },
      {
       "w": "the",
-      "start": 31.49,
-      "end": 31.699
+      "start": 30.156,
+      "end": 30.364
      },
      {
       "w": "name",
-      "start": 31.699,
-      "end": 31.907
+      "start": 30.364,
+      "end": 30.572
      },
      {
       "w": "said",
-      "start": 31.907,
-      "end": 32.116
+      "start": 30.572,
+      "end": 30.781
      },
      {
       "w": "it",
-      "start": 32.116,
-      "end": 32.325
+      "start": 30.781,
+      "end": 30.989
      },
      {
       "w": "out",
-      "start": 32.325,
-      "end": 32.533
+      "start": 30.989,
+      "end": 31.197
      },
      {
       "w": "loud.",
-      "start": 32.533,
-      "end": 32.742
+      "start": 31.197,
+      "end": 31.405
      }
     ]
    }
@@ -1671,207 +1671,207 @@
  },
  "s09_outro": {
   "title": "So... Is MSG Bad for You?",
-  "duration": 14.219,
+  "duration": 14.196,
   "lines": [
    {
     "voice": "NARR",
     "text": "So, is MSG bad for you?",
     "start": 0.3,
-    "end": 2.284,
+    "end": 2.343,
     "words": [
      {
       "w": "So,",
-      "start": 0.334,
-      "end": 0.535
+      "start": 0.347,
+      "end": 0.515
      },
      {
       "w": "is",
-      "start": 0.777,
-      "end": 0.979
+      "start": 0.717,
+      "end": 0.885
      },
      {
       "w": "MSG",
-      "start": 0.979,
-      "end": 1.585
+      "start": 0.885,
+      "end": 1.389
      },
      {
       "w": "bad",
-      "start": 1.585,
-      "end": 1.786
+      "start": 1.389,
+      "end": 1.557
      },
      {
       "w": "for",
-      "start": 1.786,
-      "end": 1.988
+      "start": 1.557,
+      "end": 1.725
      },
      {
       "w": "you?",
-      "start": 1.988,
-      "end": 2.19
+      "start": 1.725,
+      "end": 1.893
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "Not really.",
-    "start": 2.584,
-    "end": 3.715,
+    "start": 2.643,
+    "end": 3.433,
     "words": [
      {
       "w": "Not",
-      "start": 2.61,
-      "end": 2.932
+      "start": 2.658,
+      "end": 2.854
      },
      {
       "w": "really.",
-      "start": 2.932,
-      "end": 3.576
+      "start": 2.854,
+      "end": 3.248
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "A guess, a catchy name, and a little prejudice outlived decades of science.",
-    "start": 4.065,
-    "end": 8.758,
+    "start": 3.783,
+    "end": 8.706,
     "words": [
      {
       "w": "A",
-      "start": 4.094,
-      "end": 4.288
+      "start": 3.822,
+      "end": 4.026
      },
      {
       "w": "guess,",
-      "start": 4.288,
-      "end": 4.482
+      "start": 4.026,
+      "end": 4.229
      },
      {
       "w": "a",
-      "start": 4.715,
-      "end": 4.909
+      "start": 4.473,
+      "end": 4.677
      },
      {
       "w": "catchy",
-      "start": 4.909,
-      "end": 5.297
+      "start": 4.677,
+      "end": 5.084
      },
      {
       "w": "name,",
-      "start": 5.297,
-      "end": 5.491
+      "start": 5.084,
+      "end": 5.288
      },
      {
       "w": "and",
-      "start": 5.724,
-      "end": 5.918
+      "start": 5.532,
+      "end": 5.736
      },
      {
       "w": "a",
-      "start": 5.918,
-      "end": 6.112
+      "start": 5.736,
+      "end": 5.939
      },
      {
       "w": "little",
-      "start": 6.112,
-      "end": 6.5
+      "start": 5.939,
+      "end": 6.346
      },
      {
       "w": "prejudice",
-      "start": 6.5,
-      "end": 7.111
+      "start": 6.346,
+      "end": 6.988
      },
      {
       "w": "outlived",
-      "start": 7.111,
-      "end": 7.722
+      "start": 6.988,
+      "end": 7.629
      },
      {
       "w": "decades",
-      "start": 7.722,
-      "end": 8.304
+      "start": 7.629,
+      "end": 8.239
      },
      {
       "w": "of",
-      "start": 8.304,
-      "end": 8.498
+      "start": 8.239,
+      "end": 8.443
      },
      {
       "w": "science.",
-      "start": 8.498,
-      "end": 8.721
+      "start": 8.443,
+      "end": 8.677
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "So next time you see a No MSG sign... reach for the shaker.",
-    "start": 9.008,
-    "end": 13.019,
+    "start": 8.956,
+    "end": 12.996,
     "words": [
      {
       "w": "So",
-      "start": 9.044,
-      "end": 9.258
+      "start": 8.985,
+      "end": 9.186
      },
      {
       "w": "next",
-      "start": 9.258,
-      "end": 9.471
+      "start": 9.186,
+      "end": 9.387
      },
      {
       "w": "time",
-      "start": 9.471,
-      "end": 9.685
+      "start": 9.387,
+      "end": 9.588
      },
      {
       "w": "you",
-      "start": 9.685,
-      "end": 9.899
+      "start": 9.588,
+      "end": 9.789
      },
      {
       "w": "see",
-      "start": 9.899,
-      "end": 10.113
+      "start": 9.789,
+      "end": 9.991
      },
      {
       "w": "a",
-      "start": 10.113,
-      "end": 10.326
+      "start": 9.991,
+      "end": 10.192
      },
      {
       "w": "No",
-      "start": 10.326,
-      "end": 10.54
+      "start": 10.192,
+      "end": 10.393
      },
      {
       "w": "MSG",
-      "start": 10.54,
-      "end": 11.181
+      "start": 10.393,
+      "end": 10.996
      },
      {
       "w": "sign...",
-      "start": 11.181,
-      "end": 11.395
+      "start": 10.996,
+      "end": 11.197
      },
      {
       "w": "reach",
-      "start": 11.865,
-      "end": 12.079
+      "start": 11.64,
+      "end": 11.841
      },
      {
       "w": "for",
-      "start": 12.079,
-      "end": 12.293
+      "start": 11.841,
+      "end": 12.042
      },
      {
       "w": "the",
-      "start": 12.293,
-      "end": 12.507
+      "start": 12.042,
+      "end": 12.243
      },
      {
       "w": "shaker.",
-      "start": 12.507,
-      "end": 12.934
+      "start": 12.243,
+      "end": 12.645
      }
     ]
    }
