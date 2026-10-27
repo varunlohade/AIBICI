@@ -31,18 +31,18 @@
     const camY = KP.lerp(110, 0, KP.ep(t, T.happens - .3, T.eat, 'inOut'));
     ctx.save(); ctx.translate(0, camY);
     // table + plate (LOW)
-    KP.paper(ctx, KP.jitter(KP.rr(-60, 1110, 1200, 1000, 12, 40), 10 + b, 1.6), P.coral, { shadow: [0, -10], shadowA: .3, mis: P.pink, misOff: [0, -4], misA: .4 });
-    for (let i = 0; i < 6; i++) KP.paper(ctx, KP.jitter(KP.rr(-40 + i * 200, 1110, 90, 1000, 6, 40), 11 + i + b, 1.2), KP.mix(P.coral, P.pink, .35), { shadow: false });
-    KP.paper(ctx, KP.jitter(KP.ell(420, 1190, 250, 62, 48), 12 + b, 1.4), P.rice, { shadow: KP.SH.near, shadowA: .35, mis: P.turq, misOff: [-3, 3], misA: .4 });
-    KP.paper(ctx, KP.jitter(KP.ell(420, 1186, 170, 38, 40), 13 + b, 1), P.pink30, { shadow: false });
-    for (const [x, y, s] of [[360, 1170, 1], [470, 1180, .9], [420, 1158, .8]]) bite(ctx, x, y, s * .8, b, 20 + x);
+    KP.paper(ctx, KP.jitter(KP.rr(-60, 990, 1200, 1100, 12, 40), 10 + b, 1.6), P.coral, { shadow: [0, -10], shadowA: .3, mis: P.pink, misOff: [0, -4], misA: .4 });
+    for (let i = 0; i < 6; i++) KP.paper(ctx, KP.jitter(KP.rr(-40 + i * 200, 990, 90, 1100, 6, 40), 11 + i + b, 1.2), KP.mix(P.coral, P.pink, .35), { shadow: false });
+    KP.paper(ctx, KP.jitter(KP.ell(420, 1070, 250, 62, 48), 12 + b, 1.4), P.rice, { shadow: KP.SH.near, shadowA: .35, mis: P.turq, misOff: [-3, 3], misA: .4 });
+    KP.paper(ctx, KP.jitter(KP.ell(420, 1066, 170, 38, 40), 13 + b, 1), P.pink30, { shadow: false });
+    for (const [x, y, s] of [[360, 1050, 1], [470, 1060, .9], [420, 1038, .8]]) bite(ctx, x, y, s * .8, b, 20 + x);
     // the head in profile, facing left (TOP)
     const open = KP.ep(t, T.eat - .55, T.eat - .2, 'out') * (1 - KP.ep(t, T.eat, T.eat + .12, 'out'));
     const chew = t > T.eat ? .5 + .5 * Math.sin(KP.held(t) * 16) : 0;
     head(ctx, 700, 520, b, open, t > T.eat ? 'happy' : 'dot', chew * (t < T.eat + 1.2 ? 1 : 0));
     // the fork: rises from the plate to the mouth, delivers the bite, retracts
     const up = KP.ep(t, T.happens, T.eat - .1, 'inOut'), back = KP.ep(t, T.eat + .1, T.eat + .7, 'inOut');
-    const tip = [KP.lerp(430, 478, up) - back * 60, KP.lerp(1130, 735, up) + back * 520];
+    const tip = [KP.lerp(430, 478, up) - back * 60, KP.lerp(1010, 735, up) + back * 420];
     fork(ctx, tip[0], tip[1], -.5 + up * .25, b, t < T.eat);
     ctx.restore();
     if (t > T.eat && t < T.eat + .35) KP.marks(ctx, 470, 600 + camY, 60, 4, 30 + b, { a0: 2, span: 2.4, len: 24 });
