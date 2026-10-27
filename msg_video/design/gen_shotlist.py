@@ -102,36 +102,36 @@ shot(L(3), L(4), "MEDIUM",
      [("Wellness influencer", L(3), None)], "Channel-switch flicker", "Fast pull-back",
      [(L(3) - 0.05, "channel_switch", 0.55), (W(3, "headaches."), "pop_small", 0.35), (W(3, "msg,"), "pop", 0.35)],
      ["TVWALL", "PUPPETS", "DRAMA_LT", "SHAKER"], drama=True)
-shot(L(4), B(4, "terrified"), "EXTREME WIDE",
+shot(L(4), B(4, "have"), "EXTREME WIDE",
      "Pull back: every set on the wall lights up with the three puppets repeating their claims; the wall keeps "
      "receding (it may bleed into the UI zones as decor).",
      "Upper TV rows", "Full TV wall, all screens lit lemon", "Lower TV rows",
      "Pull-back, multiplane layers separating.",
-     [("50+ years", W(4, "fifty"), None)], "Fast pull-back", "Paper slide",
+     [("50 years", W(4, "fifty"), None)], "Fast pull-back", "Paper slide",
      [(L(4), "whoosh", 0.45), (W(4, "fifty"), "pop", 0.4), (W(4, "letters"), "tv_on", 0.3)],
      ["TVWALL", "PUPPETS", "DRAMA_LT"], drama=True, notes="Keep the DRAMATIZATION tag on screen while puppets are readable.")
-shot(B(4, "terrified"), L(5), "MEDIUM",
+shot(B(4, "have"), L(5), "MEDIUM",
      "Dinner tables around the world: three small tables stacked down the frame (different vivid cloths), each with "
      "a folded NO MSG card; at top, a restaurant window with the paper 'neon' NO MSG sign switching on.",
      "Restaurant window + NO MSG sign", "Table 1 / table 2", "Table 3",
      "Tilt down the stack.",
      [("No MSG", W(4, "terrified"), None)], "Paper slide", "Cut",
-     [(W(4, "terrified"), "neon_flicker", 0.45), (W(4, "dinner"), "pop_small", 0.3), (W(4, "world."), "pop_small", 0.3)],
+     [(W(4, "terrified"), "neon_flicker", 0.45), (W(4, "dinner"), "pop_small", 0.3), (W(4, "tables."), "pop_small", 0.3)],
      ["SIGN"], notes="First appearance of the NO MSG sign (paid off in s09). Paper 'neon': flat colour tubes, no glow.")
-shot(L(5), B(5, "and"), "CLOSE",
+shot(L(5), L(6), "CLOSE",
      "The MSG shaker alone on a turquoise table under a cut-paper spotlight; a big ink '?' cut-out drops above it on 'bad'.",
      "'?' cut-out", "Shaker", "Table edge",
      "Very slow push-in.",
      [], "Cut", "Freeze on record scratch",
      [(W(5, "msg"), "pop", 0.4), (W(5, "bad"), "boing", 0.3)],
      ["SHAKER"])
-shot(B(5, "and"), D(), "CLOSE -> WIDE",
+shot(L(6), D(), "CLOSE -> WIDE",
      "Record scratch after 'isn't...': freeze 0.3 s (boil stops). On 'why' pull back: the shaker sits in front of the "
      "TV wall, all three puppets pointing at it.",
      "TV wall", "Puppets pointing", "Shaker",
      "Freeze, then pull-back.",
      [], "Freeze (no cut)", "Paper slide, the sheet carries a falling gold drop into s02",
-     [(W(5, "why") - 0.35, "record_scratch", 0.65), (W(5, "why"), "pop", 0.4), (D() - 0.6, "whoosh", 0.4)],
+     [(W(7, "why") - 0.15, "record_scratch", 0.65), (W(7, "why"), "pop", 0.4), (D() - 0.6, "whoosh", 0.4)],
      ["SHAKER", "TVWALL", "PUPPETS", "DRAMA_LT"], drama=True, hero="Record scratch: 'why does everyone think it is?'")
 
 # ================================================================ s02 title
@@ -169,21 +169,16 @@ shot(B(1, "noticed"), L(2), "MEDIUM-CLOSE",
      [], "Continuous", "Push into the bowl",
      [(W(1, "noticed"), "slurp", 0.35), (W(1, "odd"), "pop_small", 0.35)],
      ["IKEDA"])
-shot(L(2), B(2, "it", 2), "CLOSE (overhead on bowl)",
+shot(L(2), L(3), "CLOSE (overhead on bowl)",
      "Fifth Ripple motif: rings spread from the bowl, each carrying a taste icon that pops on its word (candy = "
-     "sweet, lemon = sour, salt crystal = salty, coffee bean = bitter).",
-     "Sweet / sour icons", "Bowl + rings", "Salty / bitter icons",
-     "Locked overhead.",
-     [], "Push-in", "Continuous",
-     [(W(2, "sweet,"), "pop", 0.35), (W(2, "sour,"), "pop", 0.35), (W(2, "salty"), "pop", 0.35), (W(2, "bitter."), "pop", 0.35)],
-     ["RIPPLE", "TASTE_ICONS"], notes="Icons only, no words: captions say them.")
-shot(B(2, "it", 2), L(3), "CLOSE",
-     "The fifth ring blooms wide and gold; a tiny Goldie rises from the centre.",
-     "—", "Fifth gold ring + Goldie", "—",
-     "Slight push-in.",
-     [("Savory", W(2, "savory."), None)], "Continuous", "Paper slide",
-     [(W(2, "else."), "sparkle", 0.45), (W(2, "savory."), "chime", 0.45)],
-     ["RIPPLE", "GOLDIE", "TASTE_ICONS"])
+     "sweet, lemon = sour, salt crystal = salty, coffee bean = bitter). On 'something else' the fifth ring blooms "
+     "wide and gold and a tiny Goldie rises from the centre.",
+     "Sweet / sour icons", "Bowl + rings -> fifth gold ring + Goldie", "Salty / bitter icons",
+     "Locked overhead, slight push-in on the fifth ring.",
+     [], "Push-in", "Paper slide",
+     [(W(2, "sweet,"), "pop", 0.35), (W(2, "sour,"), "pop", 0.35), (W(2, "salty"), "pop", 0.35), (W(2, "bitter."), "pop", 0.35),
+      (W(2, "something"), "sparkle", 0.4), (W(2, "else."), "chime", 0.45)],
+     ["RIPPLE", "TASTE_ICONS", "GOLDIE"], notes="Icons only, no words: captions say them.")
 shot(L(3), B(3, "and"), "WIDE (tall)",
      "A mountain of kombu-green seaweed strips tumbles from the top of frame into a giant pot; Ikeda is tiny beside it.",
      "Seaweed falling", "Seaweed mountain + pot", "Ikeda on a stool",
@@ -199,7 +194,7 @@ shot(B(3, "and"), L(4), "MEDIUM",
      [("Glutamic acid", W(3, "glutamic"), None)], "Time-lapse", "Cut",
      [(W(3, "and"), "swoosh_down", 0.35), (W(3, "culprit:"), "sparkle", 0.4), (W(3, "glutamic"), "pop", 0.4)],
      ["GOLDIE", "GLU_DIAGRAM"])
-shot(L(4), B(4, "monosodium"), "MEDIUM",
+shot(L(4), L(5), "MEDIUM",
      "Ikeda holds up the crystal dish; the fifth gold ring returns behind it. Then Goldie meets a small blue sodium "
      "ion and they link mittens on 'sodium'.",
      "Umami slip (Young Serif)", "Goldie + sodium ion", "Ikeda's hands",
@@ -207,53 +202,53 @@ shot(L(4), B(4, "monosodium"), "MEDIUM",
      [("Umami", W(4, "umami,"), W(4, "paired"))], "Cut", "Continuous",
      [(W(4, "umami,"), "impact_soft", 0.6), (W(4, "umami,") + 0.15, "chime", 0.4), (W(4, "sodium"), "click", 0.45)],
      ["IKEDA", "GOLDIE", "NA", "RIPPLE"], hero="Umami is named")
-shot(B(4, "monosodium"), D(), "MEDIUM",
+shot(L(5), D(), "MEDIUM",
      "Goldie and the sodium ion hop into the MSG shaker (first canonical appearance); its cap snaps on.",
      "—", "Shaker", "'MSG' slip",
      "Locked.",
-     [("MSG", W(4, "monosodium"), None)], "Continuous", SLIDE_OUT,
-     [(W(4, "monosodium"), "pop", 0.4), (W(4, "glutamate."), "click", 0.4), (D() - 0.4, "whoosh", 0.35)],
+     [("MSG", W(5, "monosodium"), None)], "Continuous", SLIDE_OUT,
+     [(W(5, "monosodium"), "pop", 0.4), (W(5, "glutamate."), "click", 0.4), (D() - 0.4, "whoosh", 0.35)],
      ["GOLDIE", "NA", "SHAKER"])
 
 # ================================================================ s04 everywhere
 scene("s04_everywhere")
-shot(0.0, B(1, "but"), "MEDIUM",
+shot(0.0, L(2), "MEDIUM",
      "'Alarmingly chemical': the shaker sprouts bubbling lab flasks; Goldie looks nervous; a tomato-red warning card flaps.",
      "Flasks", "Shaker + nervous Goldie", "Warning card",
      "Small shake on 'chemical'.",
      [("Chemical?", W(1, "chemical."), None)], SLIDE_IN, "Zoom-out",
      [(W(1, "alarmingly"), "bubble", 0.35), (W(1, "chemical."), "error", 0.3)],
      ["SHAKER", "GOLDIE"])
-shot(B(1, "but"), L(2), "MEDIUM -> WIDE",
+shot(L(2), L(3), "MEDIUM -> WIDE",
      "Flasks fall away; zoom out: Goldie is one bead in a long chain of vivid amino-acid beads that wraps around a "
      "paper Earth.",
      "Bead chain", "Paper Earth wrapped in chains", "—",
      "Zoom-out.",
-     [("Amino acid", W(1, "amino"), None)], "Continuous", "Cut",
-     [(W(1, "but"), "swoosh_up", 0.4), (W(1, "amino"), "pop_small", 0.35), (W(1, "earth."), "chime", 0.35)],
+     [("Amino acid", W(2, "amino"), None)], "Continuous", "Cut",
+     [(W(2, "but"), "swoosh_up", 0.4), (W(2, "amino"), "pop_small", 0.35), (W(2, "earth."), "chime", 0.35)],
      ["GOLDIE"])
-shot(L(2), L(3), "MEDIUM (2x2 grid)",
+shot(L(3), L(4), "MEDIUM (2x2 grid)",
      "A 2x2 grid fills cell by cell, each food with a mini Goldie peeking out: tomato, mushrooms, parmesan, a "
      "simple milk-drop / baby-bottle icon.",
      "Tomato | mushrooms", "Parmesan | milk drop", "—",
      "Locked, boil only.",
      [], "Cut", "Split-wipe",
-     [(W(2, "tomatoes,"), "pop", 0.4), (W(2, "mushrooms,"), "pop", 0.4), (W(2, "parmesan,"), "pop", 0.4), (W(2, "milk."), "pop", 0.4)],
+     [(W(3, "tomatoes,"), "pop", 0.4), (W(3, "mushrooms,"), "pop", 0.4), (W(3, "parmesan,"), "pop", 0.4), (W(3, "milk."), "pop", 0.4)],
      ["TOMATO", "GOLDIE"], notes="Icon-level milk; no nudity. No amounts, no ranking.")
-shot(L(3), B(3, "are"), "WIDE (top/bottom split)",
+shot(L(4), B(4, "is"), "WIDE (top/bottom split)",
      "Top half: a tomato releases a Goldie. Bottom half: the MSG shaker shakes out a Goldie. Each stands beside the "
      "same skeletal diagram.",
      "Tomato -> Goldie (top half)", "Divider", "Shaker -> Goldie (bottom half)",
      "Locked split.",
      [], "Split-wipe", "Continuous",
-     [(W(3, "and"), "whoosh", 0.35), (W(3, "tomato"), "pop", 0.4), (W(3, "msg"), "pop", 0.4)],
+     [(W(4, "and"), "whoosh", 0.35), (W(4, "tomato"), "pop", 0.4), (W(4, "msg"), "pop", 0.4)],
      ["TOMATO", "SHAKER", "GOLDIE", "GLU_DIAGRAM"])
-shot(B(3, "are"), D(), "MEDIUM",
+shot(B(4, "is"), D(), "MEDIUM",
      "Divider tears away; the two Goldies and their diagrams slide together and overlap perfectly; an '=' cut-out.",
      "'=' cut-out", "Two identical Goldies merging", "Same molecule slip",
      "Slow push-in.",
-     [("Same molecule", W(3, "same"), None)], "Continuous", RIPPLE_OUT,
-     [(W(3, "exactly"), "impact_soft", 0.55), (W(3, "same"), "success", 0.4)],
+     [("Same molecule", W(4, "same"), None)], "Continuous", RIPPLE_OUT,
+     [(W(4, "exactly"), "impact_soft", 0.55), (W(4, "same"), "success", 0.4)],
      ["GOLDIE", "GLU_DIAGRAM"], hero="Tomato glutamate = MSG glutamate (copies identical)")
 
 # ================================================================ s05 body (style frame B)
@@ -265,7 +260,7 @@ shot(0.0, L(2), "MEDIUM",
      [], "Gold Ripple reveal", "Match-cut into the tongue",
      [(W(1, "happens"), "whoosh", 0.35), (W(1, "eat"), "chomp", 0.45)],
      ["GOLDIE"])
-shot(L(2), B(2, "then"), "CLOSE -> MEDIUM",
+shot(L(2), L(3), "CLOSE -> MEDIUM",
      "Tongue landscape: Goldies land on receptor cups, each dock sends a small gold Fifth Ripple; a signal zips up a "
      "brush-stroke nerve to a pink paper brain that pops a speech slip.",
      "Brain + speech slip", "Nerve", "Tongue receptors",
@@ -273,43 +268,43 @@ shot(L(2), B(2, "then"), "CLOSE -> MEDIUM",
      [("Protein!", W(2, "protein!"), None)], "Match-cut", "Dive",
      [(W(2, "tongue"), "click", 0.4), (W(2, "tastes"), "click", 0.35), (W(2, "tells"), "swoosh_up", 0.35), (W(2, "protein!"), "ding", 0.45)],
      ["BODY", "GOLDIE", "RIPPLE"])
-shot(B(2, "then"), L(3), "WIDE (vertical dive)",
+shot(L(3), L(4), "WIDE (vertical dive)",
      "The camera dives down through layered pink paper into the gut; on 'eaten' the first gut cell chomps a Goldie.",
      "Pink paper layers rushing up", "Gut opening", "First gut cell",
      "Fast downward dive, ease-out.",
      [], "Dive", "Continuous",
-     [(W(2, "then"), "whoosh_long", 0.45), (W(2, "eaten."), "chomp", 0.45)],
+     [(W(3, "then"), "whoosh_long", 0.45), (W(3, "eaten."), "chomp", 0.45)],
      ["BODY", "GUTCELL", "GOLDIE"])
-shot(L(3), B(3, "around"), "MEDIUM (style frame B)",
+shot(L(4), B(4, "around"), "MEDIUM (style frame B)",
      "Style frame B: turquoise sky over pink villi; gut cells with white bibs on two tiers; a stream of Goldies "
      "drifts in; the front cell chomps one with happy arc eyes, the next one wears a gold flame (burning fuel).",
      "'Fuel!' slip (taped)", "Back tier of 3 cells + Goldie stream", "Front eater + burning cell",
      "Slow lateral truck.",
-     [("Fuel!", W(3, "fuel."), None)], "Continuous", "Pull-back",
-     [(W(3, "cells"), "chomp", 0.4), (W(3, "intestines"), "chomp", 0.35), (W(3, "burn"), "sizzle", 0.3), (W(3, "fuel."), "pop_small", 0.35)],
+     [("Fuel!", W(4, "fuel."), None)], "Continuous", "Pull-back",
+     [(W(4, "cells"), "chomp", 0.4), (W(4, "intestines"), "chomp", 0.35), (W(4, "burn"), "sizzle", 0.3), (W(4, "fuel."), "pop_small", 0.35)],
      ["GUTCELL", "GOLDIE", "CAPTION"], hero="Gut cells eat glutamate as fuel (style frame B)")
-shot(B(3, "around"), L(4), "MEDIUM",
+shot(B(4, "around"), L(5), "MEDIUM",
      "Pull back: the gut wall as a pink border; a big Young Serif number rolls up and lands on '95%'; below the wall a "
      "coral blood vessel gets only a trickle of one or two Goldies on 'blood'.",
      "95% big number", "Gut wall eating the stream", "Blood vessel with a trickle",
      "Pull-back, then lock.",
-     [("95%", W(3, "ninety-five"), None)], "Pull-back", "Track up the vessel",
-     [(W(3, "around"), "tick", 0.2), (W(3, "around") + 0.15, "tick", 0.2), (W(3, "ninety-five"), "ding", 0.5), (W(3, "blood."), "bubble", 0.3)],
+     [("95%", W(4, "ninety-five"), None)], "Pull-back", "Track up the vessel",
+     [(W(4, "around"), "tick", 0.2), (W(4, "around") + 0.15, "tick", 0.2), (W(4, "ninety-five"), "ding", 0.5), (W(4, "blood."), "bubble", 0.3)],
      ["GUTCELL", "GOLDIE", "BADGE95"], hero="95% lands on 'ninety-five'", notes="Never show '5%'.")
-shot(L(4), B(4, "one"), "WIDE (vertical travel)",
-     "Track up the vessel with the few Goldies to the head; a cobalt cut-paper castle wall rises across the frame.",
+shot(L(5), B(5, "one"), "WIDE (vertical travel)",
+     "Track up the vessel with the few remaining Goldies to the head; a cobalt cut-paper castle wall rises across the frame.",
      "Castle wall", "Goldies rising", "Vessel",
      "Track upward.",
-     [("Blood-brain barrier", W(4, "blood-brain"), None)], "Track", "Continuous",
-     [(L(4), "whoosh", 0.4), (W(4, "blood-brain"), "thud", 0.45)],
+     [("Blood-brain barrier", W(5, "blood-brain"), None)], "Track", "Continuous",
+     [(L(5), "whoosh", 0.4), (W(5, "blood-brain"), "thud", 0.45)],
      ["BBB", "GOLDIE"])
-shot(B(4, "one"), D(), "MEDIUM",
+shot(B(5, "one"), D(), "MEDIUM",
      "Paper-doll guards (mitten hands, friendly) at the gate; a Goldie approaches, a guard raises a mitten, Goldie "
      "bounces back and shrugs.",
      "Gate", "Guard + Goldie", "Bouncing Goldie",
      "Push-in to the gate.",
      [], "Continuous", SLIDE_OUT,
-     [(W(4, "best-guarded"), "click", 0.35), (W(4, "body."), "boing", 0.4), (D() - 0.4, "whoosh", 0.3)],
+     [(W(5, "best-guarded"), "click", 0.35), (W(5, "body."), "boing", 0.4), (D() - 0.4, "whoosh", 0.3)],
      ["BBB", "GOLDIE"])
 
 # ================================================================ s07 tests
@@ -345,14 +340,14 @@ shot(B(2, "reacted"), L(3), "MEDIUM (tall chart)",
      [("Placebo", W(2, "often"), None)], "Continuous", "Cut",
      [(W(2, "reacted"), "swoosh_up", 0.4), (W(2, "fake."), "ding", 0.35)],
      ["RIPPLE", "GOLDIE"], hero="MSG vs placebo nearly equal", notes="No axis numbers; label only the placebo bar (gold = MSG by colour).")
-shot(L(3), B(3, "just"), "MEDIUM",
+shot(L(3), W(3, "safe.") + 0.45, "MEDIUM",
      "A generic official document slides in (no seal, no logo); the distressed rubber stamp slams on.",
      "Stamp handle lifting", "Document + GRAS stamp", "—",
      "Push-in; 4-frame shake on the stamp.",
      [("GRAS", W(3, "generally"), None)], "Cut", "Pull-back",
      [(W(3, "today,"), "paper", 0.35), (W(3, "generally"), "stamp", 0.8), (W(3, "generally") + 0.05, "impact_soft", 0.4)],
      ["STAMP"], hero="GRAS stamp")
-shot(B(3, "just"), D(), "MEDIUM",
+shot(W(3, "safe.") + 0.45, D(), "MEDIUM",
      "The MSG shaker hops onto a shelf next to a salt shaker and a sugar bowl.",
      "Shelf", "Salt | MSG | sugar", "—",
      "Pull-back, hold.",
@@ -405,7 +400,7 @@ shot(B(2, "after"), L(3), "MEDIUM",
      [], "Continuous", "Continuous",
      [(W(2, "numb"), "pop_small", 0.35), (W(2, "weak."), "pop_small", 0.35)],
      ["LETTER"], notes="SENSITIVE: no restaurant, no people, no 'oriental' signifiers - paper and objects only.")
-shot(L(3), B(3, "but"), "MEDIUM",
+shot(L(3), L(4), "MEDIUM",
      "The turquoise card from style frame C: wine bottle, salt cellar, MSG shaker; an ink '?' drops over each on its "
      "word, then the three merge into one wobbly '?'.",
      "Wobbly '?'", "Turquoise card: bottle | cellar | shaker", "—",
@@ -413,96 +408,89 @@ shot(L(3), B(3, "but"), "MEDIUM",
      [("A guess", W(3, "guess."), None)], "Continuous", "Whip to the stamp",
      [(W(3, "wine?"), "blip", 0.4), (W(3, "salt?"), "blip", 0.4), (W(3, "msg?"), "blip", 0.45), (W(3, "guess."), "boing", 0.35)],
      ["LETTER", "SHAKER", "SALT"])
-shot(B(3, "but"), L(4), "MEDIUM (style frame C)",
+shot(L(4), L(5), "MEDIUM (style frame C)",
      "Style frame C: the stamp handle slams the quoted headline across the letter; paper flecks fly; coral "
      "newspapers start sliding out from the stamp like a tomato-red anti-ripple.",
      "Stamp handle lifting", "Stamped quoted headline", "Turquoise card + newspapers sliding",
      "Whip-in, 6-frame shake, hold.",
-     [("\"Chinese-Restaurant Syndrome\"", W(3, "chinese"), None)], "Whip", "Continuous",
-     [(W(3, "catchy"), "swoosh_down", 0.35), (W(3, "chinese"), "stamp", 0.8), (W(3, "chinese") + 0.05, "impact_big", 0.45),
-      (W(3, "syndrome."), "paper", 0.35)],
+     [("\"Chinese-Restaurant Syndrome\"", W(4, "chinese"), None)], "Whip", "Continuous",
+     [(W(4, "catchy"), "swoosh_down", 0.35), (W(4, "chinese"), "stamp", 0.8), (W(4, "chinese") + 0.05, "impact_big", 0.45),
+      (W(4, "syndrome."), "paper", 0.35)],
      ["HEADLINE", "STAMP", "LETTER", "RIPPLE"], hero="Headline stamp (style frame C)",
      notes="Young Serif, hyphenated, in quotes; framed as the thing being criticised.")
-shot(L(4), B(4, "scary,"), "MEDIUM",
+shot(L(5), L(6), "MEDIUM",
      "A bright lab: pink newborn mouse pups in a nest; a comically giant syringe lowers from the top (never touches "
      "them). On 'brain damage' the coral newspapers sliding around the edges grow bigger tomato-red headline bars.",
      "Giant syringe", "Mouse pups in nest", "Newspapers at the edges",
      "Slow push-in.",
-     [("Huge doses", W(4, "huge"), None)], "Cut", "Split-wipe",
-     [(W(4, "injected"), "swoosh_down", 0.4), (W(4, "huge"), "impact_soft", 0.4), (W(4, "damage."), "alarm", 0.25)],
+     [("Huge doses", W(5, "huge"), None)], "Cut", "Split-wipe",
+     [(W(5, "injected"), "swoosh_down", 0.4), (W(5, "huge"), "impact_soft", 0.4), (W(5, "damage."), "alarm", 0.25)],
      ["MOUSE", "SYRINGE"], notes="No gore, no needle contact.")
-shot(B(4, "scary,"), L(5), "WIDE (top/bottom split)",
+shot(L(6), L(7), "WIDE (top/bottom split)",
      "Top: giant syringe over a tiny mouse pup. Bottom: a dinner bowl with a spoon and Goldies, and a tiny gut cell "
      "with a bib chomping one (callback to s05). A big '≠' cut-out on the divider.",
      "Syringe + pup (top half)", "'≠' on the divider", "Dinner bowl + gut-cell cameo (bottom half)",
      "Locked split.",
      [], "Split-wipe", "Split-wipe",
-     [(W(4, "scary,"), "whoosh", 0.35), (W(4, "nothing"), "impact_soft", 0.5), (W(4, "dinner."), "chomp", 0.35)],
+     [(W(6, "scary."), "whoosh", 0.35), (W(6, "nothing"), "impact_soft", 0.5), (W(6, "dinner."), "chomp", 0.35)],
      ["MOUSE", "SYRINGE", "GOLDIE", "GUTCELL"], hero="Injection is not dinner")
-shot(L(5), B(5, "the"), "WIDE (top/bottom split)",
+shot(L(7), B(7, "the"), "WIDE (top/bottom split)",
      "Top: pasta with tomato sauce and parmesan under a silent tomato-red bell. Bottom: a plain white takeout carton "
      "under the same bell, ringing. Identical Goldies float over both.",
      "Pasta + silent bell (top half)", "Divider", "Carton + ringing bell (bottom half)",
      "Locked split.",
      [], "Split-wipe", "Collapse",
-     [(W(5, "tomato"), "pop_small", 0.3), (W(5, "parmesan."), "alarm", 0.3)],
+     [(W(7, "tomato"), "pop_small", 0.3), (W(7, "parmesan."), "alarm", 0.3)],
      ["TOMATO", "TAKEOUT", "GOLDIE"], hero="Double standard split")
-shot(B(5, "the"), D(), "CLOSE",
+shot(B(7, "the"), D(), "CLOSE",
      "The split collapses; the stamped headline slides back in; push in on it on 'name'.",
      "—", "Stamped quoted headline", "—",
      "Slow push-in.",
-     [("\"Chinese-Restaurant Syndrome\"", W(5, "the"), None)], "Collapse", SLIDE_OUT + " back to the TV wall",
-     [(W(5, "fear"), "swoosh_down", 0.3), (W(5, "name"), "impact_soft", 0.4)],
+     [("\"Chinese-Restaurant Syndrome\"", W(7, "the"), None)], "Collapse", SLIDE_OUT + " back to the TV wall",
+     [(W(7, "fear"), "swoosh_down", 0.3), (W(7, "name"), "impact_soft", 0.4)],
      ["HEADLINE", "STAMP"])
 
 # ================================================================ s09 outro (LOOP)
 scene("s09_outro")
-shot(0.0, L(2), "WIDE",
+shot(0.0, L(3), "WIDE",
      "TV wall callback: the three puppets still mouth their claims; the shaker sits in front with a '?'; on 'Not "
      "really' the '?' flips and Goldie pops out of the shaker smiling.",
      "TV wall", "Puppets on their screens", "Shaker + Goldie",
      "Slow push-in.",
-     [("Not really", W(1, "not"), None)], SLIDE_IN, "Continuous",
-     [(W(1, "msg"), "pop", 0.35), (W(1, "not"), "boing", 0.35), (W(1, "really."), "sparkle", 0.35)],
+     [("Not really", W(2, "not"), None)], SLIDE_IN, "Continuous",
+     [(W(1, "msg"), "pop", 0.35), (W(2, "not"), "boing", 0.35), (W(2, "really."), "sparkle", 0.35)],
      ["TVWALL", "PUPPETS", "DRAMA_LT", "SHAKER", "GOLDIE"], drama=True)
-shot(L(2), B(2, "one"), "WIDE",
-     "The TV wall loops the claims; camera eases back so the wall fills MID.",
-     "Upper TVs", "TV wall", "Shaker",
-     "Slow pull-back.",
-     [], "Continuous", "Continuous",
-     [(W(2, "story"), "static", 0.2), (W(2, "about"), "channel_switch", 0.3)],
-     ["TVWALL", "PUPPETS", "DRAMA_LT", "SHAKER"], drama=True)
-shot(B(2, "one"), B(2, "can"), "MEDIUM",
-     "Three objects drop onto the shaker like weights, each on its phrase: an ink '?' (guess), a mini tomato-red stamp "
+shot(L(3), B(3, "outlived"), "MEDIUM",
+     "The TV wall stays behind (puppets dimmed, unreadable); three objects drop onto the shaker like weights, each on its phrase: an ink '?' (guess), a mini tomato-red stamp "
      "impression (catchy name), a tomato-red tag on a string (prejudice).",
      "Falling object", "Shaker under the weights", "—",
      "Locked.",
      [], "Continuous", "Pull-back",
-     [(W(2, "guess,"), "thud", 0.35), (W(2, "catchy"), "stamp", 0.35), (W(2, "prejudice"), "thud", 0.4)],
+     [(L(3) + 0.05, "whoosh", 0.3), (W(3, "guess,"), "thud", 0.35), (W(3, "catchy"), "stamp", 0.35), (W(3, "prejudice"), "thud", 0.4)],
      ["SHAKER", "STAMP"], notes="Pictures only; the caption carries the words.")
-shot(B(2, "can"), L(3), "WIDE",
+shot(B(3, "outlived"), L(4), "WIDE",
      "TVs switch off one by one while a tall stack of vivid research papers rises beside them; the weights slide off.",
      "Paper stack top", "TV wall switching off", "Stack base",
      "Pull-back.",
      [], "Pull-back", "Paper slide",
-     [(W(2, "outlive"), "tv_off", 0.45), (W(2, "decades"), "tv_off", 0.45), (W(2, "of", 2), "tv_off", 0.45), (W(2, "science."), "paper", 0.4)],
+     [(W(3, "outlived"), "tv_off", 0.45), (W(3, "decades"), "tv_off", 0.45), (W(3, "of"), "tv_off", 0.45), (W(3, "science."), "paper", 0.4)],
      ["TVWALL", "PUPPETS", "DRAMA_LT"], drama=True, hero="TVs switch off")
-shot(L(3), B(3, "maybe"), "MEDIUM",
+shot(L(4), L(5), "MEDIUM",
      "The NO MSG sign from s01 in its window; the 'NO' tube flickers and goes out on 'sign...', leaving 'MSG' lit gold.",
      "Window top", "Sign", "Window sill",
      "Slow push-in.",
-     [("No MSG", L(3), W(3, "sign...")), ("MSG", W(3, "sign..."), None)], "Paper slide", "Dissolve through the window",
-     [(W(3, "no"), "neon_flicker", 0.45), (W(3, "sign..."), "click", 0.45), (W(3, "sign...") + 0.3, "sparkle", 0.35)],
+     [("No MSG", L(4), W(4, "sign...")), ("MSG", W(4, "sign..."), None)], "Paper slide", "Dissolve through the window",
+     [(W(4, "no"), "neon_flicker", 0.45), (W(4, "sign..."), "click", 0.45), (W(4, "sign...") + 0.3, "sparkle", 0.35)],
      ["SIGN"], hero="'NO' burns out")
-shot(B(3, "maybe"), D(), "CLOSE -> WIDE (LOOP)",
+shot(L(5), D(), "CLOSE -> WIDE (LOOP)",
      "Lamp-lit kitchen table: ramen bowl; a mitten hand reaches for the MSG shaker and shakes; one gold drop hits the "
      "broth and makes the Fifth Ripple (end card: 'MSG' slip on the ripple). Then pull back: the bowl is on the hero "
      "TV's lemon screen in the TV wall, framed exactly like s01 frame 0; a channel flicker hands over to the TV Doctor.",
      "TV wall (end)", "Ramen ripple -> hero TV", "'MSG' end-card slip",
      "Push-in, then pull-back to the s01 framing.",
-     [("MSG", W(3, "shaker."), None)], "Dissolve", "LOOP: last frame = s01 frame 0 layout; flicker on the final frames",
-     [(W(3, "reach"), "pop_small", 0.35), (W(3, "shaker."), "pop_small", 0.35), (W(3, "shaker.") + 0.4, "bubble", 0.4),
-      (W(3, "shaker.") + 0.6, "chime", 0.4), (D() - 0.15, "channel_switch", 0.45)],
+     [("MSG", W(5, "shaker."), None)], "Dissolve", "LOOP: last frame = s01 frame 0 layout; flicker on the final frames",
+     [(W(5, "reach"), "pop_small", 0.35), (W(5, "shaker."), "pop_small", 0.35), (W(5, "shaker.") + 0.4, "bubble", 0.4),
+      (W(5, "shaker.") + 0.6, "chime", 0.4), (D() - 0.15, "channel_switch", 0.45)],
      ["SHAKER", "GOLDIE", "RIPPLE", "TVWALL", "END_CARD"], hero="End card -> loop into the hook",
      notes="Hero TV size/position and wall layout identical to s01.01 frame 0. No fade to black.")
 
@@ -545,24 +533,24 @@ INCIDENTAL = {"TAKEOUT", "MOUSE", "SYRINGE", "LAB", "CAPSULES", "VOLUNTEERS"}
 
 GUARDRAILS = {
     "allowed_numbers_and_claims": [
-        "s01: the three puppets' claims (fictional, DRAMATIZATION); 'more than fifty years' -> label '50+ years'",
-        "s03: 1908; Japanese chemist Kikunae Ikeda; seaweed soup; not sweet/sour/salty/bitter; savory; boiled down seaweed; glutamic acid; named umami; paired with sodium -> monosodium glutamate",
+        "s01: the three puppets' claims (fictional, DRAMATIZATION); 'for fifty years' -> label '50 years'",
+        "s03: 1908; Japanese chemist Kikunae Ikeda; seaweed soup; not sweet/sour/salty/bitter but 'something else'; boiled down seaweed; glutamic acid; named umami; paired with sodium -> monosodium glutamate",
         "s04: glutamate is one of the most common amino acids on Earth; in tomatoes, mushrooms, parmesan, human breast milk; tomato glutamate = MSG glutamate",
-        "s05: tongue tastes it -> brain: protein; gut cells burn it as fuel; ~95% never reaches the blood; blood-brain barrier is one of the best-guarded borders",
+        "s05: tongue tastes it -> brain: protein; gut cells burn it as fuel; ~95% never reaches the blood; the rest hits the blood-brain barrier, one of the best-guarded borders",
         "s07: double-blind studies; MSG-sensitive people reacted as often to placebo; FDA: generally recognized as safe (GRAS), like salt and sugar",
-        "s08: ~1/3 the sodium of table salt; swapping some in keeps flavour with less sodium",
+        "s08: ~1/3 the sodium of table salt; swap some in: same flavour, less sodium",
         "s06: 1968 letter from a doctor to a medical journal; felt numb and weak after eating at Chinese restaurants; wine/salt/MSG was a guess; the journal's headline 'Chinese Restaurant Syndrome'; scientists injected huge doses into newborn mice and found brain damage; a mouse injection is nothing like dinner; nobody panicked about tomato sauce or parmesan",
-        "s09: 'Not really'; one guess, a catchy name and a little prejudice outlived decades of science",
+        "s09: 'Not really'; one guess, a catchy name and a little prejudice outlived decades of science; next time you see a No MSG sign, maybe reach for the shaker",
     ],
     "forbidden": [
-        "Anything the rewrite cut: Tokyo label, 'within a year', soy sauce, '~10x' milk, 'body makes its own', palpitations, the journal's name, 1969, 'Italian Restaurant Syndrome', baking powder, 'even water', 'tomato on your pizza', huge doses on an empty stomach.",
+        "Anything the rewrite cut: Tokyo label, 'within a year', soy sauce, '~10x' milk, 'body makes its own', palpitations, the journal's name, 1969, 'Italian Restaurant Syndrome', baking powder, 'even water', 'tomato on your pizza', huge doses on an empty stomach, 'savory' (cut from s03), 'more than fifty years'.",
         "Any number, %, axis value, study count, dose or date not listed above; never '5%'.",
         "Health claims beyond the script; real logos, seals, mastheads, networks, platforms or brands; recognisable real people.",
         "Gore: no needle touching an animal.",
         "Dull colours (grey, beige, cream, muddy brown, desaturated); glows and gradients (Kombu Paper is flat paper).",
         "More than one 1-3 word label at a time (the DRAMATIZATION line in the lower third is the only extra text).",
     ],
-    "dramatization": "Every frame with a readable puppet (s01.01-04 and s01.07, s09.01, s09.02, s09.04) carries the torn-paper lower third with the role and 'DRAMATIZATION - fictional character'.",
+    "dramatization": "Every frame with a readable puppet (s01.01-04 and s01.07, s09.01, s09.03) carries the torn-paper lower third with the role and 'DRAMATIZATION - fictional character'.",
     "sensitive_1960s_section": [
         "s06 shows only paper, type, a bottle, a salt cellar, a shaker, mice, food and a plain white carton: no restaurants, no staff, no diners.",
         "No faux-Asian fonts or signifiers (pagodas, lanterns, dragons, chopsticks as decoration, conical hats); the carton is plain white.",
