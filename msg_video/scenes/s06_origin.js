@@ -5,7 +5,7 @@
 //   1 kombu curls into the shaker; tomato spotlight + villain moustache, 'Villain?'
 //   2 the lemon letter slides in on the cobalt desk and writes itself in squiggles, '1968'; envelope postmarked
 //   3 symptom icons pin on: pins-and-needles mitten (numb), drooping arm (weak)
-//   4 the turquoise card: '?' over wine, salt, MSG, merging into one wobbly '?', 'A guess'
+//   4 the turquoise card: '?' over wine, salt, MSG, merging into one wobbly '?', 'Guessing'
 //   5 whip to style frame C: the stamp slams the quoted headline; newspapers slide out like an anti-ripple
 //   6 lab: newborn mouse pups, a giant syringe lowers (never touches), 'Huge doses'
 //   7 split: syringe + pup  ≠  dinner bowl + gut cell chomping a Goldie
@@ -25,10 +25,12 @@
     T.chinese = w(/chinese/i, { after: T.catchy, fb: 18.25 }); T.syndrome = w(/syndrome/i, { after: T.catchy, fb: 19.31 });
     T.l5 = w(/injected/i, { line: 1, fb: 20.14 }); T.injected = w(/injected/i, { fb: 21.03 }); T.huge = w(/huge/i, { fb: 21.87 });
     T.brain = w(/^brain/i, { after: T.huge, fb: 24.87 }); T.damage = w(/damage/i, { after: T.huge, fb: 25.13 });
-    T.l6 = w(/scary|^but$/i, { after: T.damage, fb: T.damage + .8 }); T.nothing = w(/nothing/i, { fb: T.l6 + 2 }); T.dinner = w(/dinner/i, { fb: T.l6 + 2.6 });
+    T.l6 = w(/scary|^but$/i, { after: T.damage, fb: T.damage + .8 }) - .1; T.nothing = w(/nothing/i, { fb: T.l6 + 2 }); T.dinner = w(/dinner/i, { fb: T.l6 + 2.6 });
     T.l7 = w(/nobody/i, { line: 1, fb: 31.27 }); T.tomato = w(/tomato|nobody/i, { after: T.l7 - .1, fb: T.l7 + .5 }); T.parm = w(/parmesan/i, { fb: 34.42 });
     T.fear = w(/fear/i, { fb: 35.6 }); T.name = w(/^name/i, { after: T.fear, fb: 37.87 });
     T.s9 = w(/^the$/i, { after: T.parm, fb: T.fear - .2 }) - .1;
+    T.panicked = w(/panick/i, { fb: T.l7 + .8 }); T.food = w(/food|restaurant/i, { after: T.after, fb: T.after + .9 }); T.mice = w(/^mice/i, { fb: T.l5 + .3 });
+    T.loud = w(/loud/i, { after: T.name, fb: D - .5 });
     return T;
   };
 
@@ -208,6 +210,8 @@
     for (let i = 0; i < 26; i++) { const xx = x - 220 * s + r() * 440 * s, yy = y - 12 * s + r() * 40 * s, a = r() * 3; KP.brush(ctx, [[xx - 16 * s * Math.cos(a), yy - 8 * s * Math.sin(a)], [xx + 16 * s * Math.cos(a), yy + 8 * s * Math.sin(a)]], 6 * s, P.lemon, { taper: .5 }); }
     pup(ctx, x - 110 * s, y - 24 * s, s, b, 610, t); pup(ctx, x, y - 34 * s, s * 1.05, b, 620, t); pup(ctx, x + 112 * s, y - 22 * s, s * .95, b, 630, t);
     KP.paper(ctx, KP.jitter(KP.rr(x - 280 * s, y + 70 * s, 560 * s, 26 * s, 8 * s, 20), 602 + b, 1.2), KP.mix(P.blue, P.ink, .3), { shadow: false }); // tray lip
+    KP.paper(ctx, KP.jitter(KP.rr(x + 150 * s, y + 30 * s, 90 * s, 44 * s, 6, 10), 603 + b, .8), P.rice, { shadow: KP.SH.far, shadowA: .3 });   // blank lab label tab
+    KP.brush(ctx, [[x + 166 * s, y + 52 * s], [x + 222 * s, y + 52 * s]], 5 * s, P.blue, { taper: .3 });
   }
   function syringe(ctx, x, tipY, s, b) {
     ctx.save(); ctx.translate(x, tipY); ctx.scale(s, s);
@@ -242,10 +246,10 @@
       KP.marks(ctx, x, y + 10, r0, 4, 903 + k * 7 + b, { a0: -Math.PI * .8, span: 1.1, len: 34, w: 8 });
     }
   }
-  function pasta(ctx, x, y, b) {
-    KP.paper(ctx, KP.jitter(KP.ell(x, y, 200, 52, 40), 950 + b, 1.2), P.rice, { shadow: KP.SH.near, shadowA: .35, mis: P.turq, misOff: [-3, 2], misA: .4 });
-    for (let i = 0; i < 7; i++) KP.brush(ctx, KP.curve([[x - 120 + i * 30, y + 10], [x - 100 + i * 30, y - 40], [x - 130 + i * 32, y - 70], [x - 90 + i * 28, y - 90]], false, 6), 10, P.lemon, { taper: .2 });
-    KP.paper(ctx, KP.jitter(KP.egg(x, y - 70, 80, 36, .1, 28), 951 + b, 1), P.tomato, { shadow: KP.SH.far, mis: P.pink, misOff: [-2, 2], misA: .45 });
+  function pasta(ctx, x, y, b, wedgeOnly) {
+    if (!wedgeOnly) KP.paper(ctx, KP.jitter(KP.ell(x, y, 200, 52, 40), 950 + b, 1.2), P.rice, { shadow: KP.SH.near, shadowA: .35, mis: P.turq, misOff: [-3, 2], misA: .4 });
+    if (!wedgeOnly) for (let i = 0; i < 7; i++) KP.brush(ctx, KP.curve([[x - 120 + i * 30, y + 10], [x - 100 + i * 30, y - 40], [x - 130 + i * 32, y - 70], [x - 90 + i * 28, y - 90]], false, 6), 10, P.lemon, { taper: .2 });
+    if (!wedgeOnly) KP.paper(ctx, KP.jitter(KP.egg(x, y - 70, 80, 36, .1, 28), 951 + b, 1), P.tomato, { shadow: KP.SH.far, mis: P.pink, misOff: [-2, 2], misA: .45 });
     // parmesan wedge
     KP.paper(ctx, KP.jitter([[x + 220, y + 20], [x + 340, y - 50], [x + 340, y + 30], [x + 230, y + 60]], 952 + b, 1), P.brass, { shadow: KP.SH.near, shadowA: .3 });
     ctx.fillStyle = KP.mix(P.brass, P.wood, .5); for (const [hx, hy] of [[300, -10], [320, 20], [270, 30]]) { ctx.beginPath(); ctx.arc(x + hx, y + hy, 7, 0, TAU); ctx.fill(); }
@@ -273,15 +277,15 @@
     stampTimes(cues, D) { const T = times(cues, D); return { hit: T.chinese, shot: T.l4 + .3, catchy: T.catchy }; },
     sfx(cues, D) {
       const T = times(cues, D), a = [], e = (t, name, gain) => a.push({ t: Math.max(0, +t.toFixed(3)), name, gain });
-      e(T.seaweed, 'whoosh', .35); e(T.villain, 'impact_soft', .45);
-      e(T.l2 - .05, 'paper', .35); e(T.y1968, 'pop', .4); e(T.wrote, 'typewriter', .35); e(T.journal, 'paper', .4); e(T.journal + .45, 'stamp', .25);
-      e(T.numb, 'pop_small', .35); e(T.weak, 'pop_small', .35);
+      e(.2, 'whoosh', .3); e(T.seaweed, 'swoosh_down', .3); e(T.villain, 'impact_soft', .45);
+      e(T.y1968, 'pop', .4); e(T.doctor, 'typewriter', .35); e(T.journal, 'paper', .4);
+      e(T.after, 'paper', .25); e(T.numb, 'pop_small', .35); e(T.weak, 'pop_small', .35);
       e(T.wine, 'blip', .4); e(T.salt, 'blip', .4); e(T.msg, 'blip', .45); e(T.guess, 'boing', .35);
-      e(T.l4, 'whoosh', .4); e(T.catchy, 'swoosh_down', .35); e(T.chinese, 'stamp', .8); e(T.chinese + .05, 'impact_big', .45); e(T.syndrome, 'paper', .35);
-      e(T.injected, 'swoosh_down', .4); e(T.huge, 'impact_soft', .4); e(T.damage, 'alarm', .25);
-      e(T.l6, 'whoosh', .35); e(T.nothing, 'impact_soft', .5); e(T.dinner, 'chomp', .35);
-      e(T.l7, 'whoosh', .3); e(T.tomato, 'pop_small', .3); e(T.parm, 'alarm', .3);
-      e(T.s9 + .2, 'swoosh_down', .3); e(T.name, 'impact_soft', .4); e(D - .3, 'whoosh', .4);
+      e(T.l4, 'whoosh', .35); e(T.catchy, 'swoosh_down', .35); e(T.chinese, 'stamp', .8); e(T.chinese + .05, 'impact_big', .45); e(T.syndrome, 'paper', .35);
+      e(T.mice, 'pop_small', .3); e(T.injected, 'swoosh_down', .35); e(T.huge, 'impact_soft', .4); e(T.damage, 'alarm', .25);
+      e(T.l6 + .1, 'whoosh', .35); e(T.nothing, 'impact_soft', .5); e(T.dinner, 'chomp', .35);
+      e(T.tomato, 'pop_small', .3); e(T.panicked, 'alarm', .5); e(T.parm, 'alarm', .45);
+      e(T.fear, 'swoosh_down', .3); e(T.name, 'impact_soft', .4); e(D - .3, 'whoosh', .4);
       return a.sort((x, y) => x.t - y.t);
     },
     draw(ctx, t, cues, D, nested) {
@@ -300,7 +304,7 @@
           // then curls down into the shaker well before the moustache arrives
           const enter = KP.ep(t, 0, T.seaweed + .2, 'out'), into = KP.ep(t, T.seaweed + .5, T.villain - .35, 'inOut');
           if (into < 1) {
-            const fx = KP.lerp(KP.lerp(-260, 250, enter), 490, into), fy = KP.lerp(640, 800, into), fs = 1 - into * .85;
+            const fx = KP.lerp(KP.lerp(-300, 230, enter), 490, into), fy = KP.lerp(660, 800, into), fs = 1.4 * (1 - into * .88);
             ctx.save(); ctx.translate(fx, fy); ctx.rotate(KP.lerp(-.5, .9, into) + Math.sin(KP.held(t) * 2.2) * .08); ctx.scale(fs, fs);
             frond(ctx, b, t);
             ctx.restore();
@@ -320,7 +324,7 @@
         // ---- 2-4: the letter on the cobalt desk; 4 = close on the card
         const slideIn = KP.ep(t, T.l2, T.l2 + .45, 'out');
         const write = KP.ep(t, T.doctor - .3, T.journal, 'inOut') * .55 + KP.ep(t, T.after, T.numb - .2, 'inOut') * .45;
-        const fold = t >= T.journal && t < T.journal + .45 ? .92 + .08 * KP.ease.out(KP.prog(t, T.journal + .15, T.journal + .45)) : 1;
+        const fold = (t >= T.journal && t < T.journal + .45 ? .92 + .08 * KP.ease.out(KP.prog(t, T.journal + .15, T.journal + .45)) : 1) * (t >= T.food && t < T.food + .5 ? 1 + .04 * Math.sin((t - T.food) * 40) * (1 - KP.prog(t, T.food, T.food + .5)) : 1);
         const envOut = KP.ep(t, T.l3 - .3, T.l3 + .1, 'in');
         const cardIn = KP.arrive(t, T.l3 - .1, .35);
         const q = [KP.prog(t, T.wine, T.wine + .35), KP.prog(t, T.salt, T.salt + .35), KP.prog(t, T.msg, T.msg + .35)];
@@ -337,7 +341,7 @@
         });
         ctx.restore();
         if (t >= T.y1968 && t < T.l3 - .2) label = c => { const ar = KP.arrive(t, T.y1968, .3), out = KP.leave(t, T.after - .1, .2); c.save(); c.globalAlpha = 1 - out; KP.pose(c, ar, 760, 330, 'pop'); KP.slip(c, [{ s: '1968', size: 96, font: 'Young Serif', weight: 400, ls: 3 }], 620, 226, { rot: .05, seed: 41, boil: b, tape: P.pink, padX: 34, padY: 18 }); c.restore(); };
-        if (t >= T.guess) label = c => { const ar = KP.arrive(t, T.guess, .25); c.save(); KP.pose(c, ar, 760, 360, 'pop'); KP.slip(c, [{ s: 'A guess', size: 80, ls: 1 }], 600, 270, { rot: .04, seed: 42, boil: b, tape: P.pink, padX: 36, padY: 20 }); c.restore(); };
+        if (t >= T.guess) label = c => { const ar = KP.arrive(t, T.guess, .25); c.save(); KP.pose(c, ar, 740, 360, 'pop'); KP.slip(c, [{ s: 'Guessing', size: 80, ls: 1 }], 560, 270, { rot: .04, seed: 42, boil: b, tape: P.pink, padX: 36, padY: 20 }); c.restore(); };
       } else if (t < T.l5) {
         // ---- 5: whip to style frame C, the stamp slams the headline, newspapers slide out
         const whip = KP.ep(t, T.l4, T.l4 + .28, 'out');
@@ -421,12 +425,12 @@
         halves(ctx, t, T.l7, c => {
           c.fillStyle = P.turq; c.fillRect(0, 0, KP.W, 760);
           const pa = KP.arrive(t, T.tomato, .3);
-          c.save(); c.translate(0, 0); if (t >= T.tomato) KP.pose(c, { ...pa, p: 1 }, 400, 640, 'pop'); pasta(c, 400, 620, b); c.restore();
+          c.save(); if (t >= T.tomato) KP.pose(c, { ...pa, p: 1 }, 400, 640, 'pop'); c.translate(400, 600); c.scale(1.8, 1.8); c.translate(-400 - 280, -600); pasta(c, 400, 620, b, true); c.restore();
           bell(c, 760, 430, b, false, t);
-          if (t >= T.parm) for (let i = 0; i < 3; i++) if (t >= T.parm + .25 * i) { c.fillStyle = P.ink; c.beginPath(); c.arc(870 + i * 26, 420, 7, 0, TAU); c.fill(); }
+          if (t >= T.panicked) for (let i = 0; i < 3; i++) if (t >= T.panicked + .3 * i) { c.fillStyle = P.ink; c.beginPath(); c.arc(870 + i * 26, 420, 7, 0, TAU); c.fill(); }
           for (let i = 0; i < 2; i++) KP.goldie(c, 300 + i * 150, 420 + Math.sin(KP.held(t) * 3 + i) * 8, 60, { seed: 700 + i, boil: b, steam: false, shadow: KP.SH.far });
         }, c => {
-          const ring = t >= T.parm, f = Math.floor(t * 15);
+          const ring = t >= T.panicked, f = Math.floor(t * 15);
           c.fillStyle = P.pink; c.fillRect(0, 760, KP.W, KP.H - 760);
           // alarm: flashing tomato / lemon bands behind the carton (flat paper, no glow) + the whole half shakes
           if (ring) { for (let i = 0; i < 7; i++) { c.fillStyle = (i + f) % 2 ? P.tomato : P.lemon; c.fillRect(0, 780 + i * 80, KP.W, 40); } }
@@ -450,6 +454,7 @@
           papers(ctx, b, 1);
           desk(ctx, t, b, T, { write: 1, clearZone: true, card: true, q: [1, 1, 1], noGround: true });
           impression(ctx);
+          if (t >= T.loud) { const k = KP.ease.in(KP.prog(t, T.loud, T.loud + .5)); newspaper(ctx, 760 + k * 700, 1180 + k * 200, 300, 340, .1 + k, 69, P.coral, b); }
           stampHandle(ctx, b, 0, 0);
         });
         ctx.restore();
