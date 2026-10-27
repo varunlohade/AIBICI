@@ -2,7 +2,7 @@
 
 _An animated explainer Reel for Instagram (9:16, about 2 minutes). Narration + visual direction._
 
-> The cold open uses two real, attributed clips of Dr. Russell Blaylock from a 2012 lecture (archived at https://archive.org/details/youtube-Y0kvaulUIfc), quoted verbatim and verified against a transcript. See clips/clips.json and clips/CANDIDATES.md.
+> The cold open uses two real, attributed clips of Dr. Russell Blaylock from a 2012 lecture (archived at https://archive.org/details/youtube-Y0kvaulUIfc), quoted verbatim and checked against two independent machine transcripts (small and medium Whisper models agree word for word; a final human listen is still recommended). See clips/clips.json and clips/CANDIDATES.md.
 
 # MSG: The Most Misunderstood Molecule
 
@@ -10,9 +10,9 @@ _An animated explainer Reel for Instagram (9:16, about 2 minutes). Narration + v
 
 **Visual:** Wall of retro TV screens. Each lights up with a flat-vector silhouette 'celebrity' (dramatization) making a claim. Glitchy channel-switch between them. Ends with a neon 'NO MSG' restaurant sign buzzing on, then a record scratch.
 
-**[REAL CLIP blaylock_hungry]:** They put so much MSG in food because it makes you hungry and you eat more of their food.  
+**[REAL CLIP blaylock_hungry]:** That's why they put so much MSG in food because it makes you hungry and you eat more of their food.  
 **[REAL CLIP blaylock_brain]:** Excitotoxicity destroys brain cells.  
-**NARRATOR:** For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968.  
+**NARRATOR:** For over fifty years, people have been scared of MSG. And it all started with one letter, in 1968.  
 
 ## Scene 2: How the Rumour Started
 
@@ -21,8 +21,8 @@ _An animated explainer Reel for Instagram (9:16, about 2 minutes). Narration + v
 **NARRATOR:** So how did a seaweed seasoning become a villain?  
 **NARRATOR:** In 1968, a doctor wrote to a medical journal: after Chinese food, he felt numb and weak.  
 **NARRATOR:** Wine? Salt? MSG? He was guessing.  
-**NARRATOR:** But the journal gave it a catchy headline: Chinese Restaurant Syndrome.  
-**NARRATOR:** Then mice injected with huge doses got brain damage. But injecting a baby mouse is nothing like eating dinner.  
+**NARRATOR:** But it ran under a catchy headline: Chinese Restaurant Syndrome.  
+**NARRATOR:** Then mice injected with huge doses got brain damage. But a huge dose in a baby mouse is nothing like eating dinner.  
 **NARRATOR:** And nobody panicked about parmesan. The fear stuck to one cuisine, and the name said it out loud.  
 **NARRATOR:** But was he right? Is MSG actually bad for you?  
 
@@ -54,14 +54,14 @@ _An animated explainer Reel for Instagram (9:16, about 2 minutes). Narration + v
 
 **Visual:** Clean lab. Two identical capsules, labeled A and B, shuffled under cups. Volunteers with thought bubbles. Results chart: MSG vs placebo bars nearly equal. FDA-style 'GRAS' stamp lands next to salt, sugar, baking powder icons.
 
-**NARRATOR:** In double-blind studies, people who said MSG made them sick reacted just as often to a placebo.  
+**NARRATOR:** In double-blind studies, people who blamed MSG couldn't reliably tell it from a placebo.  
 **NARRATOR:** The FDA calls it generally recognized as safe. Just like salt.  
 
 ## Scene 7: Plot Twist: MSG vs Salt
 
 **Visual:** Two shakers face off on a scale: SALT vs MSG. Sodium atoms pop out: salt has lots, MSG about a third. A heart icon smiles.
 
-**NARRATOR:** Plot twist: it has a third of the sodium of table salt. Same flavor, less sodium.  
+**NARRATOR:** Plot twist: it has a third of the sodium of table salt. Big flavor, less sodium.  
 
 ## Scene 8: So... Is MSG Bad for You?
 

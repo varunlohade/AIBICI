@@ -30,11 +30,13 @@ SCENES = [{'id': 's01_coldopen',
             "(dramatization) making a claim. Glitchy channel-switch between them. Ends with a neon 'NO MSG' "
             'restaurant sign buzzing on, then a record scratch.',
   'lines': [('CLIP:blaylock_hungry',
-             'They put so much MSG in food because it makes you hungry and you eat more of their food.',
+             "That's why they put so much MSG in food because it makes you hungry and you eat more of their "
+             'food.',
              0.35),
             ('CLIP:blaylock_brain', 'Excitotoxicity destroys brain cells.', 0.5),
             ('NARR',
-             'For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968.',
+             'For over fifty years, people have been scared of MSG. And it all started with one letter, in '
+             '1968.',
              0.4)]},
  {'id': 's06_origin',
   'title': 'How the Rumour Started',
@@ -47,10 +49,10 @@ SCENES = [{'id': 's01_coldopen',
              'In 1968, a doctor wrote to a medical journal: after Chinese food, he felt numb and weak.',
              0.2),
             ('NARR', 'Wine? Salt? MSG? He was guessing.', 0.2),
-            ('NARR', 'But the journal gave it a catchy headline: Chinese Restaurant Syndrome.', 0.3),
+            ('NARR', 'But it ran under a catchy headline: Chinese Restaurant Syndrome.', 0.3),
             ('NARR',
-             'Then mice injected with huge doses got brain damage. But injecting a baby mouse is nothing '
-             'like eating dinner.',
+             'Then mice injected with huge doses got brain damage. But a huge dose in a baby mouse is '
+             'nothing like eating dinner.',
              0.25),
             ('NARR',
              'And nobody panicked about parmesan. The fear stuck to one cuisine, and the name said it out '
@@ -97,8 +99,7 @@ SCENES = [{'id': 's01_coldopen',
             "thought bubbles. Results chart: MSG vs placebo bars nearly equal. FDA-style 'GRAS' stamp lands "
             'next to salt, sugar, baking powder icons.',
   'lines': [('NARR',
-             'In double-blind studies, people who said MSG made them sick reacted just as often to a '
-             'placebo.',
+             "In double-blind studies, people who blamed MSG couldn't reliably tell it from a placebo.",
              0.25),
             ('NARR', 'The FDA calls it generally recognized as safe. Just like salt.', 0.4)]},
  {'id': 's08_twist',
@@ -106,7 +107,7 @@ SCENES = [{'id': 's01_coldopen',
   'visual': 'Two shakers face off on a scale: SALT vs MSG. Sodium atoms pop out: salt has lots, MSG about a '
             'third. A heart icon smiles.',
   'lines': [('NARR',
-             'Plot twist: it has a third of the sodium of table salt. Same flavor, less sodium.',
+             'Plot twist: it has a third of the sodium of table salt. Big flavor, less sodium.',
              0.4)]},
  {'id': 's09_outro',
   'title': 'So... Is MSG Bad for You?',
@@ -140,8 +141,8 @@ def write_markdown(path="SCRIPT.md"):
     out = ["# MSG: The Most Misunderstood Molecule", "",
            "_An animated explainer Reel for Instagram (9:16, about 2 minutes). Narration + visual direction._", "",
            "> The cold open uses two real, attributed clips of Dr. Russell Blaylock from a 2012 lecture "
-           "(archived at https://archive.org/details/youtube-Y0kvaulUIfc), quoted verbatim and verified against "
-           "a transcript. See clips/clips.json and clips/CANDIDATES.md.", ""]
+           "(archived at https://archive.org/details/youtube-Y0kvaulUIfc), quoted verbatim and checked against "
+           "two independent machine transcripts (small and medium Whisper models agree word for word; a final human listen is still recommended). See clips/clips.json and clips/CANDIDATES.md.", ""]
     by_id = {sc["id"]: sc for sc in SCENES}
     n = 0
     for part in PARTS:

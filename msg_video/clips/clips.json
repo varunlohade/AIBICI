@@ -8,14 +8,15 @@
    "in": 1445.2,
    "out": 1447.75,
    "speaker": "Dr. Russell Blaylock",
-   "credit": "Neurosurgeon, lecture on MSG, 2012",
+   "credit": "Retired neurosurgeon · lecture video posted 2012",
    "quote": "Excitotoxicity destroys brain cells.",
    "video_hold_after": 0.88,
    "track_face": {
     "zoom": 1.35,
     "blur": 14
    },
-   "_note": "He turns toward his slide 0.9 s in; the picture holds his last face-forward frame while his audio continues. Background blurred so slide text isn't readable."
+   "_note": "He turns toward his slide 0.9 s in; the picture holds his last face-forward frame while his audio continues. Background blurred so slide text isn't readable.",
+   "verified": "Quote matches two independent Whisper transcripts (small.en and medium.en) of the exact clip audio."
   },
   {
    "id": "blaylock_hungry",
@@ -24,14 +25,15 @@
    "in": 1376.98,
    "out": 1380.75,
    "speaker": "Dr. Russell Blaylock",
-   "credit": "Neurosurgeon, lecture on MSG, 2012",
-   "quote": "They put so much MSG in food because it makes you hungry and you eat more of their food.",
+   "credit": "Retired neurosurgeon · lecture video posted 2012",
+   "quote": "That's why they put so much MSG in food because it makes you hungry and you eat more of their food.",
    "video_hold_after": 1.25,
    "_note": "The source fades to black and cuts to a lecture slide 1.3 s in; the video holds his last on-camera frame while his audio continues.",
    "track_face": {
     "zoom": 1.6,
     "blur": 14
-   }
+   },
+   "verified": "Quote matches two independent Whisper transcripts (small.en and medium.en) of the exact clip audio."
   }
  ]
 }

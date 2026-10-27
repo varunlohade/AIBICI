@@ -1,107 +1,117 @@
 {
  "s01_coldopen": {
   "title": "Cold Open: The Accusations",
-  "duration": 14.929,
+  "duration": 14.975,
   "lines": [
    {
     "voice": "CLIP:blaylock_hungry",
-    "text": "They put so much MSG in food because it makes you hungry and you eat more of their food.",
+    "text": "That's why they put so much MSG in food because it makes you hungry and you eat more of their food.",
     "start": 0.3,
     "end": 4.07,
     "words": [
      {
-      "w": "They",
+      "w": "That's",
       "start": 0.3,
-      "end": 0.457
+      "end": 0.445
+     },
+     {
+      "w": "why",
+      "start": 0.445,
+      "end": 0.59
+     },
+     {
+      "w": "they",
+      "start": 0.59,
+      "end": 0.735
      },
      {
       "w": "put",
-      "start": 0.457,
-      "end": 0.614
+      "start": 0.735,
+      "end": 0.88
      },
      {
       "w": "so",
-      "start": 0.614,
-      "end": 0.771
+      "start": 0.88,
+      "end": 1.025
      },
      {
       "w": "much",
-      "start": 0.771,
-      "end": 0.928
+      "start": 1.025,
+      "end": 1.17
      },
      {
       "w": "MSG",
-      "start": 0.928,
-      "end": 1.4
+      "start": 1.17,
+      "end": 1.605
      },
      {
       "w": "in",
-      "start": 1.4,
-      "end": 1.557
+      "start": 1.605,
+      "end": 1.75
      },
      {
       "w": "food",
-      "start": 1.557,
-      "end": 1.714
+      "start": 1.75,
+      "end": 1.895
      },
      {
       "w": "because",
-      "start": 1.714,
-      "end": 2.028
-     },
-     {
-      "w": "it",
-      "start": 2.028,
+      "start": 1.895,
       "end": 2.185
      },
      {
-      "w": "makes",
+      "w": "it",
       "start": 2.185,
-      "end": 2.499
+      "end": 2.33
+     },
+     {
+      "w": "makes",
+      "start": 2.33,
+      "end": 2.62
      },
      {
       "w": "you",
-      "start": 2.499,
-      "end": 2.656
+      "start": 2.62,
+      "end": 2.765
      },
      {
       "w": "hungry",
-      "start": 2.656,
-      "end": 2.97
+      "start": 2.765,
+      "end": 3.055
      },
      {
       "w": "and",
-      "start": 2.97,
-      "end": 3.127
+      "start": 3.055,
+      "end": 3.2
      },
      {
       "w": "you",
-      "start": 3.127,
-      "end": 3.285
+      "start": 3.2,
+      "end": 3.345
      },
      {
       "w": "eat",
-      "start": 3.285,
-      "end": 3.442
+      "start": 3.345,
+      "end": 3.49
      },
      {
       "w": "more",
-      "start": 3.442,
-      "end": 3.599
+      "start": 3.49,
+      "end": 3.635
      },
      {
       "w": "of",
-      "start": 3.599,
-      "end": 3.756
+      "start": 3.635,
+      "end": 3.78
      },
      {
       "w": "their",
-      "start": 3.756,
-      "end": 3.913
+      "start": 3.78,
+      "end": 3.925
      },
      {
       "w": "food.",
-      "start": 3.913,
+      "start": 3.925,
       "end": 4.07
      }
     ],
@@ -138,99 +148,104 @@
    },
    {
     "voice": "NARR",
-    "text": "For fifty years, everyone has been scared of MSG. And it all started with one letter, in 1968.",
+    "text": "For over fifty years, people have been scared of MSG. And it all started with one letter, in 1968.",
     "start": 7.47,
-    "end": 14.529,
+    "end": 14.575,
     "words": [
      {
       "w": "For",
-      "start": 7.544,
-      "end": 7.728
+      "start": 7.545,
+      "end": 7.723
+     },
+     {
+      "w": "over",
+      "start": 7.723,
+      "end": 8.08
      },
      {
       "w": "fifty",
-      "start": 7.728,
-      "end": 8.097
+      "start": 8.08,
+      "end": 8.437
      },
      {
       "w": "years,",
-      "start": 8.097,
-      "end": 8.282
+      "start": 8.437,
+      "end": 8.615
      },
      {
-      "w": "everyone",
-      "start": 8.503,
-      "end": 9.084
+      "w": "people",
+      "start": 8.829,
+      "end": 9.186
      },
      {
-      "w": "has",
-      "start": 9.084,
-      "end": 9.269
+      "w": "have",
+      "start": 9.186,
+      "end": 9.364
      },
      {
       "w": "been",
-      "start": 9.269,
-      "end": 9.453
+      "start": 9.364,
+      "end": 9.542
      },
      {
       "w": "scared",
-      "start": 9.453,
-      "end": 9.822
+      "start": 9.542,
+      "end": 9.899
      },
      {
       "w": "of",
-      "start": 9.822,
-      "end": 10.007
+      "start": 9.899,
+      "end": 10.077
      },
      {
       "w": "MSG.",
-      "start": 10.007,
-      "end": 10.56
+      "start": 10.077,
+      "end": 10.612
      },
      {
       "w": "And",
-      "start": 10.966,
-      "end": 11.151
+      "start": 11.004,
+      "end": 11.183
      },
      {
       "w": "it",
-      "start": 11.151,
-      "end": 11.335
+      "start": 11.183,
+      "end": 11.361
      },
      {
       "w": "all",
-      "start": 11.335,
-      "end": 11.52
+      "start": 11.361,
+      "end": 11.539
      },
      {
       "w": "started",
-      "start": 11.52,
-      "end": 11.889
+      "start": 11.539,
+      "end": 11.896
      },
      {
       "w": "with",
-      "start": 11.889,
-      "end": 12.073
+      "start": 11.896,
+      "end": 12.074
      },
      {
       "w": "one",
-      "start": 12.073,
-      "end": 12.258
+      "start": 12.074,
+      "end": 12.252
      },
      {
       "w": "letter,",
-      "start": 12.258,
-      "end": 12.627
+      "start": 12.252,
+      "end": 12.609
      },
      {
       "w": "in",
-      "start": 12.848,
-      "end": 13.033
+      "start": 12.823,
+      "end": 13.001
      },
      {
       "w": "1968.",
-      "start": 13.033,
-      "end": 13.955
+      "start": 13.001,
+      "end": 13.893
      }
     ]
    }
@@ -238,511 +253,521 @@
  },
  "s06_origin": {
   "title": "How the Rumour Started",
-  "duration": 36.394,
+  "duration": 36.58,
   "lines": [
    {
     "voice": "NARR",
     "text": "So how did a seaweed seasoning become a villain?",
     "start": 0.3,
-    "end": 3.179,
+    "end": 3.319,
     "words": [
      {
       "w": "So",
-      "start": 0.358,
-      "end": 0.511
+      "start": 0.366,
+      "end": 0.526
      },
      {
       "w": "how",
-      "start": 0.511,
-      "end": 0.665
+      "start": 0.526,
+      "end": 0.686
      },
      {
       "w": "did",
-      "start": 0.665,
-      "end": 0.819
+      "start": 0.686,
+      "end": 0.846
      },
      {
       "w": "a",
-      "start": 0.819,
-      "end": 0.972
+      "start": 0.846,
+      "end": 1.006
      },
      {
       "w": "seaweed",
-      "start": 0.972,
-      "end": 1.28
+      "start": 1.006,
+      "end": 1.326
      },
      {
       "w": "seasoning",
-      "start": 1.28,
-      "end": 1.764
+      "start": 1.326,
+      "end": 1.829
      },
      {
       "w": "become",
-      "start": 1.764,
-      "end": 2.071
+      "start": 1.829,
+      "end": 2.149
      },
      {
       "w": "a",
-      "start": 2.071,
-      "end": 2.225
+      "start": 2.149,
+      "end": 2.309
      },
      {
       "w": "villain?",
-      "start": 2.225,
-      "end": 2.556
+      "start": 2.309,
+      "end": 2.652
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "In 1968, a doctor wrote to a medical journal: after Chinese food, he felt numb and weak.",
-    "start": 3.429,
-    "end": 9.281,
+    "start": 3.569,
+    "end": 9.42,
     "words": [
      {
       "w": "In",
-      "start": 3.429,
-      "end": 3.602
+      "start": 3.569,
+      "end": 3.742
      },
      {
       "w": "1968,",
-      "start": 3.602,
-      "end": 4.468
+      "start": 3.742,
+      "end": 4.607
      },
      {
       "w": "a",
-      "start": 4.675,
-      "end": 4.848
+      "start": 4.815,
+      "end": 4.988
      },
      {
       "w": "doctor",
-      "start": 4.848,
-      "end": 5.194
+      "start": 4.988,
+      "end": 5.334
      },
      {
       "w": "wrote",
-      "start": 5.194,
-      "end": 5.367
+      "start": 5.334,
+      "end": 5.507
      },
      {
       "w": "to",
-      "start": 5.367,
-      "end": 5.54
+      "start": 5.507,
+      "end": 5.68
      },
      {
       "w": "a",
-      "start": 5.54,
-      "end": 5.713
+      "start": 5.68,
+      "end": 5.853
      },
      {
       "w": "medical",
-      "start": 5.713,
-      "end": 6.233
+      "start": 5.853,
+      "end": 6.372
      },
      {
       "w": "journal:",
-      "start": 6.233,
-      "end": 6.605
+      "start": 6.372,
+      "end": 6.744
      },
      {
       "w": "after",
-      "start": 6.812,
-      "end": 7.158
+      "start": 6.952,
+      "end": 7.298
      },
      {
       "w": "Chinese",
-      "start": 7.158,
-      "end": 7.504
+      "start": 7.298,
+      "end": 7.644
      },
      {
       "w": "food,",
-      "start": 7.504,
-      "end": 7.678
+      "start": 7.644,
+      "end": 7.817
      },
      {
       "w": "he",
-      "start": 7.885,
-      "end": 8.058
+      "start": 8.024,
+      "end": 8.198
      },
      {
       "w": "felt",
-      "start": 8.058,
-      "end": 8.231
+      "start": 8.198,
+      "end": 8.371
      },
      {
       "w": "numb",
-      "start": 8.231,
-      "end": 8.404
+      "start": 8.371,
+      "end": 8.544
      },
      {
       "w": "and",
-      "start": 8.404,
-      "end": 8.577
+      "start": 8.544,
+      "end": 8.717
      },
      {
       "w": "weak.",
-      "start": 8.577,
-      "end": 8.75
+      "start": 8.717,
+      "end": 8.89
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "Wine? Salt? MSG? He was guessing.",
-    "start": 9.481,
-    "end": 13.103,
+    "start": 9.62,
+    "end": 13.335,
     "words": [
      {
       "w": "Wine?",
-      "start": 9.498,
-      "end": 9.727
+      "start": 9.667,
+      "end": 9.9
      },
      {
       "w": "Salt?",
-      "start": 10.23,
-      "end": 10.458
+      "start": 10.412,
+      "end": 10.645
      },
      {
       "w": "MSG?",
-      "start": 10.961,
-      "end": 11.646
+      "start": 11.157,
+      "end": 11.855
      },
      {
       "w": "He",
-      "start": 12.149,
-      "end": 12.378
+      "start": 12.367,
+      "end": 12.6
      },
      {
       "w": "was",
-      "start": 12.378,
-      "end": 12.606
+      "start": 12.6,
+      "end": 12.833
      },
      {
       "w": "guessing.",
-      "start": 12.606,
-      "end": 13.097
+      "start": 12.833,
+      "end": 13.333
      }
     ]
    },
    {
     "voice": "NARR",
-    "text": "But the journal gave it a catchy headline: Chinese Restaurant Syndrome.",
-    "start": 13.303,
-    "end": 17.761,
+    "text": "But it ran under a catchy headline: Chinese Restaurant Syndrome.",
+    "start": 13.535,
+    "end": 17.529,
     "words": [
      {
       "w": "But",
-      "start": 13.404,
-      "end": 13.595
-     },
-     {
-      "w": "the",
-      "start": 13.595,
-      "end": 13.787
-     },
-     {
-      "w": "journal",
-      "start": 13.787,
-      "end": 14.171
-     },
-     {
-      "w": "gave",
-      "start": 14.171,
-      "end": 14.363
+      "start": 13.618,
+      "end": 13.795
      },
      {
       "w": "it",
-      "start": 14.363,
-      "end": 14.554
+      "start": 13.795,
+      "end": 13.972
+     },
+     {
+      "w": "ran",
+      "start": 13.972,
+      "end": 14.149
+     },
+     {
+      "w": "under",
+      "start": 14.149,
+      "end": 14.502
      },
      {
       "w": "a",
-      "start": 14.554,
-      "end": 14.746
+      "start": 14.502,
+      "end": 14.679
      },
      {
       "w": "catchy",
-      "start": 14.746,
-      "end": 15.13
+      "start": 14.679,
+      "end": 15.033
      },
      {
       "w": "headline:",
-      "start": 15.13,
-      "end": 15.542
+      "start": 15.033,
+      "end": 15.413
      },
      {
       "w": "Chinese",
-      "start": 15.772,
-      "end": 16.156
+      "start": 15.625,
+      "end": 15.979
      },
      {
       "w": "Restaurant",
-      "start": 16.156,
-      "end": 16.76
+      "start": 15.979,
+      "end": 16.536
      },
      {
       "w": "Syndrome.",
-      "start": 16.76,
-      "end": 17.173
+      "start": 16.536,
+      "end": 16.916
      }
     ]
    },
    {
     "voice": "NARR",
-    "text": "Then mice injected with huge doses got brain damage. But injecting a baby mouse is nothing like eating dinner.",
-    "start": 18.061,
-    "end": 24.795,
+    "text": "Then mice injected with huge doses got brain damage. But a huge dose in a baby mouse is nothing like eating dinner.",
+    "start": 17.829,
+    "end": 25.074,
     "words": [
      {
       "w": "Then",
-      "start": 18.091,
-      "end": 18.285
+      "start": 17.901,
+      "end": 18.105
      },
      {
       "w": "mice",
-      "start": 18.285,
-      "end": 18.479
+      "start": 18.105,
+      "end": 18.308
      },
      {
       "w": "injected",
-      "start": 18.479,
-      "end": 19.09
+      "start": 18.308,
+      "end": 18.949
      },
      {
       "w": "with",
-      "start": 19.09,
-      "end": 19.284
+      "start": 18.949,
+      "end": 19.152
      },
      {
       "w": "huge",
-      "start": 19.284,
-      "end": 19.478
+      "start": 19.152,
+      "end": 19.356
      },
      {
       "w": "doses",
-      "start": 19.478,
-      "end": 19.866
+      "start": 19.356,
+      "end": 19.763
      },
      {
       "w": "got",
-      "start": 19.866,
-      "end": 20.06
+      "start": 19.763,
+      "end": 19.966
      },
      {
       "w": "brain",
-      "start": 20.06,
-      "end": 20.254
+      "start": 19.966,
+      "end": 20.17
      },
      {
       "w": "damage.",
-      "start": 20.254,
-      "end": 20.641
+      "start": 20.17,
+      "end": 20.576
      },
      {
       "w": "But",
-      "start": 21.068,
-      "end": 21.262
-     },
-     {
-      "w": "injecting",
-      "start": 21.262,
-      "end": 21.873
+      "start": 21.024,
+      "end": 21.227
      },
      {
       "w": "a",
-      "start": 21.873,
-      "end": 22.067
+      "start": 21.227,
+      "end": 21.431
+     },
+     {
+      "w": "huge",
+      "start": 21.431,
+      "end": 21.634
+     },
+     {
+      "w": "dose",
+      "start": 21.634,
+      "end": 21.838
+     },
+     {
+      "w": "in",
+      "start": 21.838,
+      "end": 22.041
+     },
+     {
+      "w": "a",
+      "start": 22.041,
+      "end": 22.245
      },
      {
       "w": "baby",
-      "start": 22.067,
-      "end": 22.455
+      "start": 22.245,
+      "end": 22.652
      },
      {
       "w": "mouse",
-      "start": 22.455,
-      "end": 22.649
+      "start": 22.652,
+      "end": 22.855
      },
      {
       "w": "is",
-      "start": 22.649,
-      "end": 22.843
+      "start": 22.855,
+      "end": 23.058
      },
      {
       "w": "nothing",
-      "start": 22.843,
-      "end": 23.23
+      "start": 23.058,
+      "end": 23.465
      },
      {
       "w": "like",
-      "start": 23.23,
-      "end": 23.424
+      "start": 23.465,
+      "end": 23.669
      },
      {
       "w": "eating",
-      "start": 23.424,
-      "end": 23.812
+      "start": 23.669,
+      "end": 24.076
      },
      {
       "w": "dinner.",
-      "start": 23.812,
-      "end": 24.2
+      "start": 24.076,
+      "end": 24.483
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "And nobody panicked about parmesan. The fear stuck to one cuisine, and the name said it out loud.",
-    "start": 25.045,
-    "end": 31.5,
+    "start": 25.324,
+    "end": 31.686,
     "words": [
      {
       "w": "And",
-      "start": 25.113,
-      "end": 25.305
+      "start": 25.399,
+      "end": 25.589
      },
      {
       "w": "nobody",
-      "start": 25.305,
-      "end": 25.881
+      "start": 25.589,
+      "end": 26.16
      },
      {
       "w": "panicked",
-      "start": 25.881,
-      "end": 26.487
+      "start": 26.16,
+      "end": 26.759
      },
      {
       "w": "about",
-      "start": 26.487,
-      "end": 26.871
+      "start": 26.759,
+      "end": 27.139
      },
      {
       "w": "parmesan.",
-      "start": 26.871,
-      "end": 27.476
+      "start": 27.139,
+      "end": 27.738
      },
      {
       "w": "The",
-      "start": 27.899,
-      "end": 28.091
+      "start": 28.156,
+      "end": 28.346
      },
      {
       "w": "fear",
-      "start": 28.091,
-      "end": 28.283
+      "start": 28.346,
+      "end": 28.536
      },
      {
       "w": "stuck",
-      "start": 28.283,
-      "end": 28.475
+      "start": 28.536,
+      "end": 28.726
      },
      {
       "w": "to",
-      "start": 28.475,
-      "end": 28.667
+      "start": 28.726,
+      "end": 28.917
      },
      {
       "w": "one",
-      "start": 28.667,
-      "end": 28.859
+      "start": 28.917,
+      "end": 29.107
      },
      {
       "w": "cuisine,",
-      "start": 28.859,
-      "end": 29.272
+      "start": 29.107,
+      "end": 29.516
      },
      {
       "w": "and",
-      "start": 29.503,
-      "end": 29.695
+      "start": 29.744,
+      "end": 29.934
      },
      {
       "w": "the",
-      "start": 29.695,
-      "end": 29.887
+      "start": 29.934,
+      "end": 30.124
      },
      {
       "w": "name",
-      "start": 29.887,
-      "end": 30.079
+      "start": 30.124,
+      "end": 30.314
      },
      {
       "w": "said",
-      "start": 30.079,
-      "end": 30.271
+      "start": 30.314,
+      "end": 30.504
      },
      {
       "w": "it",
-      "start": 30.271,
-      "end": 30.463
+      "start": 30.504,
+      "end": 30.694
      },
      {
       "w": "out",
-      "start": 30.463,
-      "end": 30.656
+      "start": 30.694,
+      "end": 30.884
      },
      {
       "w": "loud.",
-      "start": 30.656,
-      "end": 30.848
+      "start": 30.884,
+      "end": 31.075
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "But was he right? Is MSG actually bad for you?",
-    "start": 31.9,
-    "end": 35.894,
+    "start": 32.086,
+    "end": 36.08,
     "words": [
      {
       "w": "But",
-      "start": 32.0,
-      "end": 32.201
+      "start": 32.186,
+      "end": 32.387
      },
      {
       "w": "was",
-      "start": 32.201,
-      "end": 32.403
+      "start": 32.387,
+      "end": 32.589
      },
      {
       "w": "he",
-      "start": 32.403,
-      "end": 32.604
+      "start": 32.589,
+      "end": 32.79
      },
      {
       "w": "right?",
-      "start": 32.604,
-      "end": 32.806
+      "start": 32.79,
+      "end": 32.992
      },
      {
       "w": "Is",
-      "start": 33.249,
-      "end": 33.451
+      "start": 33.435,
+      "end": 33.636
      },
      {
       "w": "MSG",
-      "start": 33.451,
-      "end": 34.055
+      "start": 33.636,
+      "end": 34.241
      },
      {
       "w": "actually",
-      "start": 34.055,
-      "end": 34.69
+      "start": 34.241,
+      "end": 34.876
      },
      {
       "w": "bad",
-      "start": 34.69,
-      "end": 34.891
+      "start": 34.876,
+      "end": 35.077
      },
      {
       "w": "for",
-      "start": 34.891,
-      "end": 35.093
+      "start": 35.077,
+      "end": 35.279
      },
      {
       "w": "you?",
-      "start": 35.093,
-      "end": 35.294
+      "start": 35.279,
+      "end": 35.48
      }
     ]
    }
@@ -1115,7 +1140,7 @@
  },
  "s05_body": {
   "title": "What Happens When You Eat It",
-  "duration": 15.221,
+  "duration": 14.896,
   "lines": [
    {
     "voice": "NARR",
@@ -1257,82 +1282,82 @@
     "voice": "NARR",
     "text": "And the rest hits the blood-brain barrier, one of the best-guarded borders in your body.",
     "start": 9.666,
-    "end": 14.821,
+    "end": 14.496,
     "words": [
      {
       "w": "And",
-      "start": 9.764,
-      "end": 9.951
+      "start": 9.773,
+      "end": 9.956
      },
      {
       "w": "the",
-      "start": 9.951,
-      "end": 10.138
+      "start": 9.956,
+      "end": 10.139
      },
      {
       "w": "rest",
-      "start": 10.138,
-      "end": 10.325
+      "start": 10.139,
+      "end": 10.322
      },
      {
       "w": "hits",
-      "start": 10.325,
-      "end": 10.512
+      "start": 10.322,
+      "end": 10.505
      },
      {
       "w": "the",
-      "start": 10.512,
-      "end": 10.699
+      "start": 10.505,
+      "end": 10.688
      },
      {
       "w": "blood-brain",
-      "start": 10.699,
-      "end": 11.1
+      "start": 10.688,
+      "end": 11.082
      },
      {
       "w": "barrier,",
-      "start": 11.1,
-      "end": 11.502
+      "start": 11.082,
+      "end": 11.475
      },
      {
       "w": "one",
-      "start": 11.726,
-      "end": 11.913
+      "start": 11.695,
+      "end": 11.878
      },
      {
       "w": "of",
-      "start": 11.913,
-      "end": 12.1
+      "start": 11.878,
+      "end": 12.061
      },
      {
       "w": "the",
-      "start": 12.1,
-      "end": 12.287
+      "start": 12.061,
+      "end": 12.244
      },
      {
       "w": "best-guarded",
-      "start": 12.287,
-      "end": 12.876
+      "start": 12.244,
+      "end": 12.821
      },
      {
       "w": "borders",
-      "start": 12.876,
-      "end": 13.249
+      "start": 12.821,
+      "end": 13.187
      },
      {
       "w": "in",
-      "start": 13.249,
-      "end": 13.436
+      "start": 13.187,
+      "end": 13.37
      },
      {
       "w": "your",
-      "start": 13.436,
-      "end": 13.623
+      "start": 13.37,
+      "end": 13.553
      },
      {
       "w": "body.",
-      "start": 13.623,
-      "end": 13.997
+      "start": 13.553,
+      "end": 13.919
      }
     ]
    }
@@ -1340,161 +1365,146 @@
  },
  "s07_tests": {
   "title": "Putting MSG to the Test",
-  "duration": 12.374,
+  "duration": 11.585,
   "lines": [
    {
     "voice": "NARR",
-    "text": "In double-blind studies, people who said MSG made them sick reacted just as often to a placebo.",
+    "text": "In double-blind studies, people who blamed MSG couldn't reliably tell it from a placebo.",
     "start": 0.3,
-    "end": 7.034,
+    "end": 6.198,
     "words": [
      {
       "w": "In",
-      "start": 0.348,
-      "end": 0.559
+      "start": 0.347,
+      "end": 0.544
      },
      {
       "w": "double-blind",
-      "start": 0.559,
-      "end": 1.225
+      "start": 0.544,
+      "end": 1.164
      },
      {
       "w": "studies,",
-      "start": 1.225,
-      "end": 1.68
+      "start": 1.164,
+      "end": 1.586
      },
      {
       "w": "people",
-      "start": 1.934,
-      "end": 2.357
+      "start": 1.823,
+      "end": 2.216
      },
      {
       "w": "who",
-      "start": 2.357,
-      "end": 2.568
+      "start": 2.216,
+      "end": 2.413
      },
      {
-      "w": "said",
-      "start": 2.568,
-      "end": 2.78
+      "w": "blamed",
+      "start": 2.413,
+      "end": 2.806
      },
      {
       "w": "MSG",
-      "start": 2.78,
-      "end": 3.414
+      "start": 2.806,
+      "end": 3.396
      },
      {
-      "w": "made",
-      "start": 3.414,
-      "end": 3.625
+      "w": "couldn't",
+      "start": 3.396,
+      "end": 3.622
      },
      {
-      "w": "them",
-      "start": 3.625,
-      "end": 3.837
+      "w": "reliably",
+      "start": 3.622,
+      "end": 4.242
      },
      {
-      "w": "sick",
-      "start": 3.837,
-      "end": 4.048
+      "w": "tell",
+      "start": 4.242,
+      "end": 4.439
      },
      {
-      "w": "reacted",
-      "start": 4.048,
-      "end": 4.471
+      "w": "it",
+      "start": 4.439,
+      "end": 4.635
      },
      {
-      "w": "just",
-      "start": 4.471,
-      "end": 4.683
-     },
-     {
-      "w": "as",
-      "start": 4.683,
-      "end": 4.894
-     },
-     {
-      "w": "often",
-      "start": 4.894,
-      "end": 5.317
-     },
-     {
-      "w": "to",
-      "start": 5.317,
-      "end": 5.528
+      "w": "from",
+      "start": 4.635,
+      "end": 4.832
      },
      {
       "w": "a",
-      "start": 5.528,
-      "end": 5.74
+      "start": 4.832,
+      "end": 5.029
      },
      {
       "w": "placebo.",
-      "start": 5.74,
-      "end": 6.406
+      "start": 5.029,
+      "end": 5.649
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "The FDA calls it generally recognized as safe. Just like salt.",
-    "start": 7.284,
-    "end": 11.974,
+    "start": 6.448,
+    "end": 11.185,
     "words": [
      {
       "w": "The",
-      "start": 7.332,
-      "end": 7.509
+      "start": 6.547,
+      "end": 6.729
      },
      {
       "w": "FDA",
-      "start": 7.509,
-      "end": 8.04
+      "start": 6.729,
+      "end": 7.275
      },
      {
       "w": "calls",
-      "start": 8.04,
-      "end": 8.217
+      "start": 7.275,
+      "end": 7.456
      },
      {
       "w": "it",
-      "start": 8.217,
-      "end": 8.394
+      "start": 7.456,
+      "end": 7.638
      },
      {
       "w": "generally",
-      "start": 8.394,
-      "end": 9.128
+      "start": 7.638,
+      "end": 8.393
      },
      {
       "w": "recognized",
-      "start": 9.128,
-      "end": 9.862
+      "start": 8.393,
+      "end": 9.148
      },
      {
       "w": "as",
-      "start": 9.862,
-      "end": 10.039
+      "start": 9.148,
+      "end": 9.329
      },
      {
       "w": "safe.",
-      "start": 10.039,
-      "end": 10.216
+      "start": 9.329,
+      "end": 9.511
      },
      {
       "w": "Just",
-      "start": 10.605,
-      "end": 10.782
+      "start": 9.911,
+      "end": 10.093
      },
      {
       "w": "like",
-      "start": 10.782,
-      "end": 10.959
+      "start": 10.093,
+      "end": 10.275
      },
      {
       "w": "salt.",
-      "start": 10.959,
-      "end": 11.136
+      "start": 10.275,
+      "end": 10.457
      }
     ]
    }
@@ -1502,93 +1512,93 @@
  },
  "s08_twist": {
   "title": "Plot Twist: MSG vs Salt",
-  "duration": 6.319,
+  "duration": 6.551,
   "lines": [
    {
     "voice": "NARR",
-    "text": "Plot twist: it has a third of the sodium of table salt. Same flavor, less sodium.",
+    "text": "Plot twist: it has a third of the sodium of table salt. Big flavor, less sodium.",
     "start": 0.3,
-    "end": 5.919,
+    "end": 6.151,
     "words": [
      {
       "w": "Plot",
-      "start": 0.387,
-      "end": 0.587
+      "start": 0.348,
+      "end": 0.584
      },
      {
       "w": "twist:",
-      "start": 0.587,
-      "end": 0.787
+      "start": 0.584,
+      "end": 0.82
      },
      {
       "w": "it",
-      "start": 1.027,
-      "end": 1.228
+      "start": 1.103,
+      "end": 1.339
      },
      {
       "w": "has",
-      "start": 1.228,
-      "end": 1.428
+      "start": 1.339,
+      "end": 1.575
      },
      {
       "w": "a",
-      "start": 1.428,
-      "end": 1.628
+      "start": 1.575,
+      "end": 1.811
      },
      {
       "w": "third",
-      "start": 1.628,
-      "end": 1.828
+      "start": 1.811,
+      "end": 2.047
      },
      {
       "w": "of",
-      "start": 1.828,
-      "end": 2.028
+      "start": 2.047,
+      "end": 2.283
      },
      {
       "w": "the",
-      "start": 2.028,
-      "end": 2.228
+      "start": 2.283,
+      "end": 2.519
      },
      {
       "w": "sodium",
-      "start": 2.228,
-      "end": 2.628
+      "start": 2.519,
+      "end": 2.99
      },
      {
       "w": "of",
-      "start": 2.628,
-      "end": 2.828
+      "start": 2.99,
+      "end": 3.226
      },
      {
       "w": "table",
-      "start": 2.828,
-      "end": 3.228
+      "start": 3.226,
+      "end": 3.698
      },
      {
       "w": "salt.",
-      "start": 3.228,
-      "end": 3.428
+      "start": 3.698,
+      "end": 3.934
      },
      {
-      "w": "Same",
-      "start": 3.869,
-      "end": 4.069
+      "w": "Big",
+      "start": 4.453,
+      "end": 4.689
      },
      {
       "w": "flavor,",
-      "start": 4.069,
-      "end": 4.469
+      "start": 4.689,
+      "end": 5.161
      },
      {
       "w": "less",
-      "start": 4.709,
-      "end": 4.909
+      "start": 5.444,
+      "end": 5.68
      },
      {
       "w": "sodium.",
-      "start": 4.909,
-      "end": 5.309
+      "start": 5.68,
+      "end": 6.151
      }
     ]
    }
@@ -1596,207 +1606,207 @@
  },
  "s09_outro": {
   "title": "So... Is MSG Bad for You?",
-  "duration": 14.521,
+  "duration": 14.382,
   "lines": [
    {
     "voice": "NARR",
     "text": "So, is MSG bad for you?",
     "start": 0.3,
-    "end": 2.668,
+    "end": 2.529,
     "words": [
      {
       "w": "So,",
-      "start": 0.302,
-      "end": 0.559
+      "start": 0.3,
+      "end": 0.483
      },
      {
       "w": "is",
-      "start": 0.868,
-      "end": 1.125
+      "start": 0.702,
+      "end": 0.885
      },
      {
       "w": "MSG",
-      "start": 1.125,
-      "end": 1.897
+      "start": 0.885,
+      "end": 1.433
      },
      {
       "w": "bad",
-      "start": 1.897,
-      "end": 2.154
+      "start": 1.433,
+      "end": 1.616
      },
      {
       "w": "for",
-      "start": 2.154,
-      "end": 2.411
+      "start": 1.616,
+      "end": 1.799
      },
      {
       "w": "you?",
-      "start": 2.411,
-      "end": 2.668
+      "start": 1.799,
+      "end": 1.982
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "Not really.",
-    "start": 2.968,
-    "end": 3.758,
+    "start": 2.829,
+    "end": 3.619,
     "words": [
      {
       "w": "Not",
-      "start": 2.983,
-      "end": 3.18
+      "start": 2.844,
+      "end": 3.04
      },
      {
       "w": "really.",
-      "start": 3.18,
-      "end": 3.573
+      "start": 3.04,
+      "end": 3.433
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "A guess, a catchy name, and a little prejudice outlived decades of science.",
-    "start": 4.108,
-    "end": 9.031,
+    "start": 3.969,
+    "end": 8.891,
     "words": [
      {
       "w": "A",
-      "start": 4.147,
-      "end": 4.351
+      "start": 4.008,
+      "end": 4.211
      },
      {
       "w": "guess,",
-      "start": 4.351,
-      "end": 4.554
+      "start": 4.211,
+      "end": 4.415
      },
      {
       "w": "a",
-      "start": 4.799,
-      "end": 5.002
+      "start": 4.659,
+      "end": 4.863
      },
      {
       "w": "catchy",
-      "start": 5.002,
-      "end": 5.409
+      "start": 4.863,
+      "end": 5.27
      },
      {
       "w": "name,",
-      "start": 5.409,
-      "end": 5.613
+      "start": 5.27,
+      "end": 5.474
      },
      {
       "w": "and",
-      "start": 5.857,
-      "end": 6.061
+      "start": 5.718,
+      "end": 5.921
      },
      {
       "w": "a",
-      "start": 6.061,
-      "end": 6.264
+      "start": 5.921,
+      "end": 6.125
      },
      {
       "w": "little",
-      "start": 6.264,
-      "end": 6.671
+      "start": 6.125,
+      "end": 6.532
      },
      {
       "w": "prejudice",
-      "start": 6.671,
-      "end": 7.313
+      "start": 6.532,
+      "end": 7.173
      },
      {
       "w": "outlived",
-      "start": 7.313,
-      "end": 7.954
+      "start": 7.173,
+      "end": 7.815
      },
      {
       "w": "decades",
-      "start": 7.954,
-      "end": 8.565
+      "start": 7.815,
+      "end": 8.425
      },
      {
       "w": "of",
-      "start": 8.565,
-      "end": 8.768
+      "start": 8.425,
+      "end": 8.629
      },
      {
       "w": "science.",
-      "start": 8.768,
-      "end": 9.002
+      "start": 8.629,
+      "end": 8.863
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "So next time you see a No MSG sign... reach for the shaker.",
-    "start": 9.281,
-    "end": 13.321,
+    "start": 9.141,
+    "end": 13.182,
     "words": [
      {
       "w": "So",
-      "start": 9.31,
-      "end": 9.511
+      "start": 9.171,
+      "end": 9.372
      },
      {
       "w": "next",
-      "start": 9.511,
-      "end": 9.712
+      "start": 9.372,
+      "end": 9.573
      },
      {
       "w": "time",
-      "start": 9.712,
-      "end": 9.913
+      "start": 9.573,
+      "end": 9.774
      },
      {
       "w": "you",
-      "start": 9.913,
-      "end": 10.115
+      "start": 9.774,
+      "end": 9.975
      },
      {
       "w": "see",
-      "start": 10.115,
-      "end": 10.316
+      "start": 9.975,
+      "end": 10.176
      },
      {
       "w": "a",
-      "start": 10.316,
-      "end": 10.517
+      "start": 10.176,
+      "end": 10.377
      },
      {
       "w": "No",
-      "start": 10.517,
-      "end": 10.718
+      "start": 10.377,
+      "end": 10.578
      },
      {
       "w": "MSG",
-      "start": 10.718,
-      "end": 11.321
+      "start": 10.578,
+      "end": 11.182
      },
      {
       "w": "sign...",
-      "start": 11.321,
-      "end": 11.522
+      "start": 11.182,
+      "end": 11.383
      },
      {
       "w": "reach",
-      "start": 11.965,
-      "end": 12.166
+      "start": 11.825,
+      "end": 12.026
      },
      {
       "w": "for",
-      "start": 12.166,
-      "end": 12.367
+      "start": 12.026,
+      "end": 12.227
      },
      {
       "w": "the",
-      "start": 12.367,
-      "end": 12.568
+      "start": 12.227,
+      "end": 12.429
      },
      {
       "w": "shaker.",
-      "start": 12.568,
-      "end": 12.97
+      "start": 12.429,
+      "end": 12.831
      }
     ]
    }
