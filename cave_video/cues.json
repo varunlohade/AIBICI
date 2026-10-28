@@ -1,0 +1,1454 @@
+{
+ "c01_hook": {
+  "title": "Hook",
+  "duration": 9.295,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "In January 2005, a diver went two hundred and seventy metres down a flooded sinkhole...",
+    "start": 0.3,
+    "end": 6.337,
+    "words": [
+     {
+      "w": "In",
+      "start": 0.345,
+      "end": 0.526
+     },
+     {
+      "w": "January",
+      "start": 0.526,
+      "end": 1.07
+     },
+     {
+      "w": "2005,",
+      "start": 1.07,
+      "end": 1.977
+     },
+     {
+      "w": "a",
+      "start": 2.195,
+      "end": 2.376
+     },
+     {
+      "w": "diver",
+      "start": 2.376,
+      "end": 2.739
+     },
+     {
+      "w": "went",
+      "start": 2.739,
+      "end": 2.92
+     },
+     {
+      "w": "two",
+      "start": 2.92,
+      "end": 3.102
+     },
+     {
+      "w": "hundred",
+      "start": 3.102,
+      "end": 3.464
+     },
+     {
+      "w": "and",
+      "start": 3.464,
+      "end": 3.646
+     },
+     {
+      "w": "seventy",
+      "start": 3.646,
+      "end": 4.19
+     },
+     {
+      "w": "metres",
+      "start": 4.19,
+      "end": 4.552
+     },
+     {
+      "w": "down",
+      "start": 4.552,
+      "end": 4.734
+     },
+     {
+      "w": "a",
+      "start": 4.734,
+      "end": 4.915
+     },
+     {
+      "w": "flooded",
+      "start": 4.915,
+      "end": 5.278
+     },
+     {
+      "w": "sinkhole...",
+      "start": 5.278,
+      "end": 5.849
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "to bring a stranger home.",
+    "start": 6.637,
+    "end": 8.495,
+    "words": [
+     {
+      "w": "to",
+      "start": 6.714,
+      "end": 6.913
+     },
+     {
+      "w": "bring",
+      "start": 6.913,
+      "end": 7.113
+     },
+     {
+      "w": "a",
+      "start": 7.113,
+      "end": 7.312
+     },
+     {
+      "w": "stranger",
+      "start": 7.312,
+      "end": 7.741
+     },
+     {
+      "w": "home.",
+      "start": 7.741,
+      "end": 7.94
+     }
+    ]
+   }
+  ]
+ },
+ "c02_hole": {
+  "title": "Boesmansgat",
+  "duration": 19.851,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "This is Boesmansgat, in South Africa: a small pool that opens into a flooded chamber nearly three hundred metres deep.",
+    "start": 0.3,
+    "end": 8.566,
+    "words": [
+     {
+      "w": "This",
+      "start": 0.347,
+      "end": 0.561
+     },
+     {
+      "w": "is",
+      "start": 0.561,
+      "end": 0.775
+     },
+     {
+      "w": "Boesmansgat,",
+      "start": 0.775,
+      "end": 1.449
+     },
+     {
+      "w": "in",
+      "start": 1.706,
+      "end": 1.921
+     },
+     {
+      "w": "South",
+      "start": 1.921,
+      "end": 2.135
+     },
+     {
+      "w": "Africa:",
+      "start": 2.135,
+      "end": 2.777
+     },
+     {
+      "w": "a",
+      "start": 3.034,
+      "end": 3.248
+     },
+     {
+      "w": "small",
+      "start": 3.248,
+      "end": 3.463
+     },
+     {
+      "w": "pool",
+      "start": 3.463,
+      "end": 3.677
+     },
+     {
+      "w": "that",
+      "start": 3.677,
+      "end": 3.891
+     },
+     {
+      "w": "opens",
+      "start": 3.891,
+      "end": 4.319
+     },
+     {
+      "w": "into",
+      "start": 4.319,
+      "end": 4.747
+     },
+     {
+      "w": "a",
+      "start": 4.747,
+      "end": 4.962
+     },
+     {
+      "w": "flooded",
+      "start": 4.962,
+      "end": 5.39
+     },
+     {
+      "w": "chamber",
+      "start": 5.39,
+      "end": 5.818
+     },
+     {
+      "w": "nearly",
+      "start": 5.818,
+      "end": 6.247
+     },
+     {
+      "w": "three",
+      "start": 6.247,
+      "end": 6.461
+     },
+     {
+      "w": "hundred",
+      "start": 6.461,
+      "end": 6.889
+     },
+     {
+      "w": "metres",
+      "start": 6.889,
+      "end": 7.317
+     },
+     {
+      "w": "deep.",
+      "start": 7.317,
+      "end": 7.532
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "In 1994, a twenty-year-old diver named Deon Dreyer sank out of sight in it, and never came back up.",
+    "start": 8.866,
+    "end": 15.832,
+    "words": [
+     {
+      "w": "In",
+      "start": 8.922,
+      "end": 9.124
+     },
+     {
+      "w": "1994,",
+      "start": 9.124,
+      "end": 10.135
+     },
+     {
+      "w": "a",
+      "start": 10.378,
+      "end": 10.58
+     },
+     {
+      "w": "twenty-year-old",
+      "start": 10.58,
+      "end": 11.217
+     },
+     {
+      "w": "diver",
+      "start": 11.217,
+      "end": 11.621
+     },
+     {
+      "w": "named",
+      "start": 11.621,
+      "end": 12.026
+     },
+     {
+      "w": "Deon",
+      "start": 12.026,
+      "end": 12.228
+     },
+     {
+      "w": "Dreyer",
+      "start": 12.228,
+      "end": 12.43
+     },
+     {
+      "w": "sank",
+      "start": 12.43,
+      "end": 12.632
+     },
+     {
+      "w": "out",
+      "start": 12.632,
+      "end": 12.834
+     },
+     {
+      "w": "of",
+      "start": 12.834,
+      "end": 13.037
+     },
+     {
+      "w": "sight",
+      "start": 13.037,
+      "end": 13.239
+     },
+     {
+      "w": "in",
+      "start": 13.239,
+      "end": 13.441
+     },
+     {
+      "w": "it,",
+      "start": 13.441,
+      "end": 13.643
+     },
+     {
+      "w": "and",
+      "start": 13.886,
+      "end": 14.088
+     },
+     {
+      "w": "never",
+      "start": 14.088,
+      "end": 14.492
+     },
+     {
+      "w": "came",
+      "start": 14.492,
+      "end": 14.695
+     },
+     {
+      "w": "back",
+      "start": 14.695,
+      "end": 14.897
+     },
+     {
+      "w": "up.",
+      "start": 14.897,
+      "end": 15.099
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "His body stayed down there for ten years.",
+    "start": 16.132,
+    "end": 19.151,
+    "words": [
+     {
+      "w": "His",
+      "start": 16.201,
+      "end": 16.525
+     },
+     {
+      "w": "body",
+      "start": 16.525,
+      "end": 17.173
+     },
+     {
+      "w": "stayed",
+      "start": 17.173,
+      "end": 17.497
+     },
+     {
+      "w": "down",
+      "start": 17.497,
+      "end": 17.821
+     },
+     {
+      "w": "there",
+      "start": 17.821,
+      "end": 18.145
+     },
+     {
+      "w": "for",
+      "start": 18.145,
+      "end": 18.469
+     },
+     {
+      "w": "ten",
+      "start": 18.469,
+      "end": 18.793
+     },
+     {
+      "w": "years.",
+      "start": 18.793,
+      "end": 19.117
+     }
+    ]
+   }
+  ]
+ },
+ "c03_shaw": {
+  "title": "Dave Shaw",
+  "duration": 12.692,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "In 2004, Dave Shaw, an Australian pilot and record-breaking diver, reached the bottom.",
+    "start": 0.3,
+    "end": 6.755,
+    "words": [
+     {
+      "w": "In",
+      "start": 0.374,
+      "end": 0.569
+     },
+     {
+      "w": "2004,",
+      "start": 0.569,
+      "end": 1.542
+     },
+     {
+      "w": "Dave",
+      "start": 1.776,
+      "end": 1.97
+     },
+     {
+      "w": "Shaw,",
+      "start": 1.97,
+      "end": 2.165
+     },
+     {
+      "w": "an",
+      "start": 2.399,
+      "end": 2.593
+     },
+     {
+      "w": "Australian",
+      "start": 2.593,
+      "end": 3.207
+     },
+     {
+      "w": "pilot",
+      "start": 3.207,
+      "end": 3.596
+     },
+     {
+      "w": "and",
+      "start": 3.596,
+      "end": 3.791
+     },
+     {
+      "w": "record-breaking",
+      "start": 3.791,
+      "end": 4.599
+     },
+     {
+      "w": "diver,",
+      "start": 4.599,
+      "end": 4.988
+     },
+     {
+      "w": "reached",
+      "start": 5.222,
+      "end": 5.611
+     },
+     {
+      "w": "the",
+      "start": 5.611,
+      "end": 5.806
+     },
+     {
+      "w": "bottom.",
+      "start": 5.806,
+      "end": 6.195
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "His torch found Deon.",
+    "start": 6.955,
+    "end": 8.859,
+    "words": [
+     {
+      "w": "His",
+      "start": 6.998,
+      "end": 7.463
+     },
+     {
+      "w": "torch",
+      "start": 7.463,
+      "end": 7.929
+     },
+     {
+      "w": "found",
+      "start": 7.929,
+      "end": 8.394
+     },
+     {
+      "w": "Deon.",
+      "start": 8.394,
+      "end": 8.859
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "Nobody asked him to go back. He offered.",
+    "start": 9.259,
+    "end": 12.092,
+    "words": [
+     {
+      "w": "Nobody",
+      "start": 9.294,
+      "end": 9.834
+     },
+     {
+      "w": "asked",
+      "start": 9.834,
+      "end": 10.194
+     },
+     {
+      "w": "him",
+      "start": 10.194,
+      "end": 10.375
+     },
+     {
+      "w": "to",
+      "start": 10.375,
+      "end": 10.555
+     },
+     {
+      "w": "go",
+      "start": 10.555,
+      "end": 10.735
+     },
+     {
+      "w": "back.",
+      "start": 10.735,
+      "end": 10.915
+     },
+     {
+      "w": "He",
+      "start": 11.311,
+      "end": 11.491
+     },
+     {
+      "w": "offered.",
+      "start": 11.491,
+      "end": 12.059
+     }
+    ]
+   }
+  ]
+ },
+ "c04_plan": {
+  "title": "The Plan",
+  "duration": 5.915,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "The plan: a few minutes at the bottom, then twelve hours climbing slowly back to the light.",
+    "start": 0.3,
+    "end": 5.316,
+    "words": [
+     {
+      "w": "The",
+      "start": 0.302,
+      "end": 0.481
+     },
+     {
+      "w": "plan:",
+      "start": 0.481,
+      "end": 0.66
+     },
+     {
+      "w": "a",
+      "start": 0.875,
+      "end": 1.053
+     },
+     {
+      "w": "few",
+      "start": 1.053,
+      "end": 1.232
+     },
+     {
+      "w": "minutes",
+      "start": 1.232,
+      "end": 1.769
+     },
+     {
+      "w": "at",
+      "start": 1.769,
+      "end": 1.947
+     },
+     {
+      "w": "the",
+      "start": 1.947,
+      "end": 2.126
+     },
+     {
+      "w": "bottom,",
+      "start": 2.126,
+      "end": 2.484
+     },
+     {
+      "w": "then",
+      "start": 2.699,
+      "end": 2.877
+     },
+     {
+      "w": "twelve",
+      "start": 2.877,
+      "end": 3.056
+     },
+     {
+      "w": "hours",
+      "start": 3.056,
+      "end": 3.235
+     },
+     {
+      "w": "climbing",
+      "start": 3.235,
+      "end": 3.62
+     },
+     {
+      "w": "slowly",
+      "start": 3.62,
+      "end": 3.977
+     },
+     {
+      "w": "back",
+      "start": 3.977,
+      "end": 4.156
+     },
+     {
+      "w": "to",
+      "start": 4.156,
+      "end": 4.335
+     },
+     {
+      "w": "the",
+      "start": 4.335,
+      "end": 4.514
+     },
+     {
+      "w": "light.",
+      "start": 4.514,
+      "end": 4.693
+     }
+    ]
+   }
+  ]
+ },
+ "c05_wrong": {
+  "title": "What Went Wrong",
+  "duration": 21.626,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "At two hundred and seventy metres, the gas you breathe is so dense that every breath is hard work.",
+    "start": 0.3,
+    "end": 6.337,
+    "words": [
+     {
+      "w": "At",
+      "start": 0.3,
+      "end": 0.507
+     },
+     {
+      "w": "two",
+      "start": 0.507,
+      "end": 0.714
+     },
+     {
+      "w": "hundred",
+      "start": 0.714,
+      "end": 1.127
+     },
+     {
+      "w": "and",
+      "start": 1.127,
+      "end": 1.334
+     },
+     {
+      "w": "seventy",
+      "start": 1.334,
+      "end": 1.954
+     },
+     {
+      "w": "metres,",
+      "start": 1.954,
+      "end": 2.368
+     },
+     {
+      "w": "the",
+      "start": 2.616,
+      "end": 2.822
+     },
+     {
+      "w": "gas",
+      "start": 2.822,
+      "end": 3.029
+     },
+     {
+      "w": "you",
+      "start": 3.029,
+      "end": 3.236
+     },
+     {
+      "w": "breathe",
+      "start": 3.236,
+      "end": 3.443
+     },
+     {
+      "w": "is",
+      "start": 3.443,
+      "end": 3.649
+     },
+     {
+      "w": "so",
+      "start": 3.649,
+      "end": 3.856
+     },
+     {
+      "w": "dense",
+      "start": 3.856,
+      "end": 4.063
+     },
+     {
+      "w": "that",
+      "start": 4.063,
+      "end": 4.27
+     },
+     {
+      "w": "every",
+      "start": 4.27,
+      "end": 4.89
+     },
+     {
+      "w": "breath",
+      "start": 4.89,
+      "end": 5.097
+     },
+     {
+      "w": "is",
+      "start": 5.097,
+      "end": 5.303
+     },
+     {
+      "w": "hard",
+      "start": 5.303,
+      "end": 5.51
+     },
+     {
+      "w": "work.",
+      "start": 5.51,
+      "end": 5.717
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "As Dave worked, the body came loose, and his line tangled around him.",
+    "start": 6.587,
+    "end": 11.185,
+    "words": [
+     {
+      "w": "As",
+      "start": 6.587,
+      "end": 6.824
+     },
+     {
+      "w": "Dave",
+      "start": 6.824,
+      "end": 7.061
+     },
+     {
+      "w": "worked,",
+      "start": 7.061,
+      "end": 7.535
+     },
+     {
+      "w": "the",
+      "start": 7.82,
+      "end": 8.057
+     },
+     {
+      "w": "body",
+      "start": 8.057,
+      "end": 8.53
+     },
+     {
+      "w": "came",
+      "start": 8.53,
+      "end": 8.767
+     },
+     {
+      "w": "loose,",
+      "start": 8.767,
+      "end": 9.004
+     },
+     {
+      "w": "and",
+      "start": 9.289,
+      "end": 9.526
+     },
+     {
+      "w": "his",
+      "start": 9.526,
+      "end": 9.763
+     },
+     {
+      "w": "line",
+      "start": 9.763,
+      "end": 10.0
+     },
+     {
+      "w": "tangled",
+      "start": 10.0,
+      "end": 10.474
+     },
+     {
+      "w": "around",
+      "start": 10.474,
+      "end": 10.948
+     },
+     {
+      "w": "him.",
+      "start": 10.948,
+      "end": 11.185
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "Straining against it, he couldn't clear the carbon dioxide from his lungs.",
+    "start": 11.435,
+    "end": 15.939,
+    "words": [
+     {
+      "w": "Straining",
+      "start": 11.467,
+      "end": 12.014
+     },
+     {
+      "w": "against",
+      "start": 12.014,
+      "end": 12.523
+     },
+     {
+      "w": "it,",
+      "start": 12.523,
+      "end": 12.778
+     },
+     {
+      "w": "he",
+      "start": 13.083,
+      "end": 13.337
+     },
+     {
+      "w": "couldn't",
+      "start": 13.337,
+      "end": 13.63
+     },
+     {
+      "w": "clear",
+      "start": 13.63,
+      "end": 13.884
+     },
+     {
+      "w": "the",
+      "start": 13.884,
+      "end": 14.139
+     },
+     {
+      "w": "carbon",
+      "start": 14.139,
+      "end": 14.648
+     },
+     {
+      "w": "dioxide",
+      "start": 14.648,
+      "end": 15.157
+     },
+     {
+      "w": "from",
+      "start": 15.157,
+      "end": 15.411
+     },
+     {
+      "w": "his",
+      "start": 15.411,
+      "end": 15.665
+     },
+     {
+      "w": "lungs.",
+      "start": 15.665,
+      "end": 15.92
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "It built up, until he passed out.",
+    "start": 16.139,
+    "end": 18.461,
+    "words": [
+     {
+      "w": "It",
+      "start": 16.213,
+      "end": 16.43
+     },
+     {
+      "w": "built",
+      "start": 16.43,
+      "end": 16.648
+     },
+     {
+      "w": "up,",
+      "start": 16.648,
+      "end": 16.865
+     },
+     {
+      "w": "until",
+      "start": 17.125,
+      "end": 17.56
+     },
+     {
+      "w": "he",
+      "start": 17.56,
+      "end": 17.777
+     },
+     {
+      "w": "passed",
+      "start": 17.777,
+      "end": 18.211
+     },
+     {
+      "w": "out.",
+      "start": 18.211,
+      "end": 18.428
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "He never came back up.",
+    "start": 18.861,
+    "end": 20.626,
+    "words": [
+     {
+      "w": "He",
+      "start": 18.926,
+      "end": 19.107
+     },
+     {
+      "w": "never",
+      "start": 19.107,
+      "end": 19.469
+     },
+     {
+      "w": "came",
+      "start": 19.469,
+      "end": 19.65
+     },
+     {
+      "w": "back",
+      "start": 19.65,
+      "end": 19.831
+     },
+     {
+      "w": "up.",
+      "start": 19.831,
+      "end": 20.012
+     }
+    ]
+   }
+  ]
+ },
+ "c06_shirley": {
+  "title": "Don Shirley",
+  "duration": 16.221,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "His friend Don Shirley saw Dave's light below, not moving, and went down after him.",
+    "start": 0.3,
+    "end": 5.13,
+    "words": [
+     {
+      "w": "His",
+      "start": 0.351,
+      "end": 0.552
+     },
+     {
+      "w": "friend",
+      "start": 0.552,
+      "end": 0.753
+     },
+     {
+      "w": "Don",
+      "start": 0.753,
+      "end": 0.954
+     },
+     {
+      "w": "Shirley",
+      "start": 0.954,
+      "end": 1.355
+     },
+     {
+      "w": "saw",
+      "start": 1.355,
+      "end": 1.556
+     },
+     {
+      "w": "Dave's",
+      "start": 1.556,
+      "end": 1.958
+     },
+     {
+      "w": "light",
+      "start": 1.958,
+      "end": 2.159
+     },
+     {
+      "w": "below,",
+      "start": 2.159,
+      "end": 2.56
+     },
+     {
+      "w": "not",
+      "start": 2.801,
+      "end": 3.002
+     },
+     {
+      "w": "moving,",
+      "start": 3.002,
+      "end": 3.404
+     },
+     {
+      "w": "and",
+      "start": 3.644,
+      "end": 3.845
+     },
+     {
+      "w": "went",
+      "start": 3.845,
+      "end": 4.046
+     },
+     {
+      "w": "down",
+      "start": 4.046,
+      "end": 4.247
+     },
+     {
+      "w": "after",
+      "start": 4.247,
+      "end": 4.648
+     },
+     {
+      "w": "him.",
+      "start": 4.648,
+      "end": 4.849
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "At two hundred and fifty metres, the pressure crushed his rebreather's controls. He had to turn back.",
+    "start": 5.38,
+    "end": 11.603,
+    "words": [
+     {
+      "w": "At",
+      "start": 5.38,
+      "end": 5.595
+     },
+     {
+      "w": "two",
+      "start": 5.595,
+      "end": 5.811
+     },
+     {
+      "w": "hundred",
+      "start": 5.811,
+      "end": 6.243
+     },
+     {
+      "w": "and",
+      "start": 6.243,
+      "end": 6.458
+     },
+     {
+      "w": "fifty",
+      "start": 6.458,
+      "end": 6.89
+     },
+     {
+      "w": "metres,",
+      "start": 6.89,
+      "end": 7.321
+     },
+     {
+      "w": "the",
+      "start": 7.58,
+      "end": 7.796
+     },
+     {
+      "w": "pressure",
+      "start": 7.796,
+      "end": 8.259
+     },
+     {
+      "w": "crushed",
+      "start": 8.259,
+      "end": 8.691
+     },
+     {
+      "w": "his",
+      "start": 8.691,
+      "end": 8.906
+     },
+     {
+      "w": "rebreather's",
+      "start": 8.906,
+      "end": 9.586
+     },
+     {
+      "w": "controls.",
+      "start": 9.586,
+      "end": 10.05
+     },
+     {
+      "w": "He",
+      "start": 10.524,
+      "end": 10.74
+     },
+     {
+      "w": "had",
+      "start": 10.74,
+      "end": 10.956
+     },
+     {
+      "w": "to",
+      "start": 10.956,
+      "end": 11.171
+     },
+     {
+      "w": "turn",
+      "start": 11.171,
+      "end": 11.387
+     },
+     {
+      "w": "back.",
+      "start": 11.387,
+      "end": 11.603
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "It took him twelve and a half hours to get back to the surface.",
+    "start": 11.853,
+    "end": 15.521,
+    "words": [
+     {
+      "w": "It",
+      "start": 11.917,
+      "end": 12.155
+     },
+     {
+      "w": "took",
+      "start": 12.155,
+      "end": 12.393
+     },
+     {
+      "w": "him",
+      "start": 12.393,
+      "end": 12.631
+     },
+     {
+      "w": "twelve",
+      "start": 12.631,
+      "end": 12.869
+     },
+     {
+      "w": "and",
+      "start": 12.869,
+      "end": 13.107
+     },
+     {
+      "w": "a",
+      "start": 13.107,
+      "end": 13.345
+     },
+     {
+      "w": "half",
+      "start": 13.345,
+      "end": 13.583
+     },
+     {
+      "w": "hours",
+      "start": 13.583,
+      "end": 13.82
+     },
+     {
+      "w": "to",
+      "start": 13.82,
+      "end": 14.058
+     },
+     {
+      "w": "get",
+      "start": 14.058,
+      "end": 14.296
+     },
+     {
+      "w": "back",
+      "start": 14.296,
+      "end": 14.534
+     },
+     {
+      "w": "to",
+      "start": 14.534,
+      "end": 14.772
+     },
+     {
+      "w": "the",
+      "start": 14.772,
+      "end": 15.01
+     },
+     {
+      "w": "surface.",
+      "start": 15.01,
+      "end": 15.521
+     }
+    ]
+   }
+  ]
+ },
+ "c07_aftermath": {
+  "title": "Aftermath",
+  "duration": 16.071,
+  "lines": [
+   {
+    "voice": "NARR",
+    "text": "Four days later, as divers lifted the line, Dave and Deon rose to the surface together.",
+    "start": 0.3,
+    "end": 5.919,
+    "words": [
+     {
+      "w": "Four",
+      "start": 0.3,
+      "end": 0.529
+     },
+     {
+      "w": "days",
+      "start": 0.529,
+      "end": 0.758
+     },
+     {
+      "w": "later,",
+      "start": 0.758,
+      "end": 1.216
+     },
+     {
+      "w": "as",
+      "start": 1.49,
+      "end": 1.719
+     },
+     {
+      "w": "divers",
+      "start": 1.719,
+      "end": 2.177
+     },
+     {
+      "w": "lifted",
+      "start": 2.177,
+      "end": 2.635
+     },
+     {
+      "w": "the",
+      "start": 2.635,
+      "end": 2.864
+     },
+     {
+      "w": "line,",
+      "start": 2.864,
+      "end": 3.092
+     },
+     {
+      "w": "Dave",
+      "start": 3.367,
+      "end": 3.596
+     },
+     {
+      "w": "and",
+      "start": 3.596,
+      "end": 3.825
+     },
+     {
+      "w": "Deon",
+      "start": 3.825,
+      "end": 4.054
+     },
+     {
+      "w": "rose",
+      "start": 4.054,
+      "end": 4.283
+     },
+     {
+      "w": "to",
+      "start": 4.283,
+      "end": 4.512
+     },
+     {
+      "w": "the",
+      "start": 4.512,
+      "end": 4.74
+     },
+     {
+      "w": "surface",
+      "start": 4.74,
+      "end": 5.198
+     },
+     {
+      "w": "together.",
+      "start": 5.198,
+      "end": 5.919
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "Dave Shaw did bring Deon home.",
+    "start": 6.319,
+    "end": 8.827,
+    "words": [
+     {
+      "w": "Dave",
+      "start": 6.345,
+      "end": 6.699
+     },
+     {
+      "w": "Shaw",
+      "start": 6.699,
+      "end": 7.053
+     },
+     {
+      "w": "did",
+      "start": 7.053,
+      "end": 7.407
+     },
+     {
+      "w": "bring",
+      "start": 7.407,
+      "end": 7.761
+     },
+     {
+      "w": "Deon",
+      "start": 7.761,
+      "end": 8.115
+     },
+     {
+      "w": "home.",
+      "start": 8.115,
+      "end": 8.469
+     }
+    ]
+   },
+   {
+    "voice": "NARR",
+    "text": "His last dive is still studied today, as a lesson in the limits of the human body.",
+    "start": 9.427,
+    "end": 14.071,
+    "words": [
+     {
+      "w": "His",
+      "start": 9.461,
+      "end": 9.639
+     },
+     {
+      "w": "last",
+      "start": 9.639,
+      "end": 9.818
+     },
+     {
+      "w": "dive",
+      "start": 9.818,
+      "end": 9.996
+     },
+     {
+      "w": "is",
+      "start": 9.996,
+      "end": 10.175
+     },
+     {
+      "w": "still",
+      "start": 10.175,
+      "end": 10.353
+     },
+     {
+      "w": "studied",
+      "start": 10.353,
+      "end": 10.71
+     },
+     {
+      "w": "today,",
+      "start": 10.71,
+      "end": 11.067
+     },
+     {
+      "w": "as",
+      "start": 11.281,
+      "end": 11.46
+     },
+     {
+      "w": "a",
+      "start": 11.46,
+      "end": 11.638
+     },
+     {
+      "w": "lesson",
+      "start": 11.638,
+      "end": 11.995
+     },
+     {
+      "w": "in",
+      "start": 11.995,
+      "end": 12.174
+     },
+     {
+      "w": "the",
+      "start": 12.174,
+      "end": 12.352
+     },
+     {
+      "w": "limits",
+      "start": 12.352,
+      "end": 12.71
+     },
+     {
+      "w": "of",
+      "start": 12.71,
+      "end": 12.888
+     },
+     {
+      "w": "the",
+      "start": 12.888,
+      "end": 13.067
+     },
+     {
+      "w": "human",
+      "start": 13.067,
+      "end": 13.424
+     },
+     {
+      "w": "body.",
+      "start": 13.424,
+      "end": 13.781
+     }
+    ]
+   }
+  ]
+ }
+}
