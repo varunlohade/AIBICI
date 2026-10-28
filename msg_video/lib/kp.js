@@ -953,11 +953,11 @@
   };
 
   // ================================================================= CAPTIONS
-  // Torn white paper strip, Nunito Black 64px, inside y 1300-1480. Spoken words ink, unread words violet ink; the raised chip sits on KEY words only
+  // Torn white paper strip, Nunito Black 72px, horizontally centred, inside y 1300-1480. Spoken words ink, unread words violet ink; the raised chip sits on KEY words only
   // with a hard shadow + misregistered under-print. Chip colour by act (see KP.CAP.accent).
   // words = [{s, state: 'done'|'on'|'later'}], lines = [[wordIndex...], ...]
   KP.CAP = {
-    size: 64, cx: 470, cy: 1390, lh: 1.1, padY: 9, maxW: 780, maxWords: 7, maxChars: 38,
+    size: 72, cx: 540, cy: 1390, lh: 1.08, padY: 9, maxW: 820, maxWords: 7, maxChars: 38,   // centred; 820 px max keeps clear of Instagram's right-side buttons
     lavender: P.unread,
     // per-scene chip colour; [fill, under-print ink, text colour]. Approved: pink cold open, gold glutamate, red 1960s.
     accent: {
@@ -1094,7 +1094,7 @@
     const ws = cw.map(w => w.w), C = KP.CAP, sp = C.size * .26, fnt = { size: C.size, font: 'Nunito', weight: 900 };
     const w = ws.map(s => KP.measure(null, s, fnt)), tot = w.reduce((a, b) => a + b, 0) + sp * (ws.length - 1);
     const idx = ws.map((_, i) => i);
-    if (tot <= 560 || ws.length < 2) return { lines: [idx], size: tot > C.maxW ? Math.floor(C.size * C.maxW / tot) : C.size };
+    if (tot <= 640 || ws.length < 2) return { lines: [idx], size: tot > C.maxW ? Math.floor(C.size * C.maxW / tot) : C.size };
     let bestK = 1, bestV = Infinity, bestW = 0;
     for (let k = 1; k < ws.length; k++) {
       const a = w.slice(0, k).reduce((x, y) => x + y, 0) + sp * (k - 1), b = w.slice(k).reduce((x, y) => x + y, 0) + sp * (ws.length - k - 1);
@@ -1141,7 +1141,8 @@
     const acc = KP.CAP.accent[id] || KP.CAP.accent.s01_coldopen;
     let chip = null, accent = acc;
     if (g >= 0) {
-      const span = c.keys[g], ts = c.words[span[0]].start, hopD = .12, from = g > 0 ? c.keys[g - 1] : null;
+      // the chip snaps to the next key phrase (a slide showed the target words in chip-white before the chip arrived)
+      const span = c.keys[g], ts = c.words[span[0]].start, hopD = .12, from = null;
       chip = { span, from, u: from ? KP.prog(t, ts, ts + hopD) : 1, land: KP.prog(t, ts + (from ? hopD : 0), ts + (from ? hopD : 0) + 4 * KP.F) };
       for (let i = span[0]; i <= span[1]; i++) if (KP.CAP.goldWord.test(c.words[i].w)) accent = KP.CAP.gold;
     }
