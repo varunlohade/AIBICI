@@ -653,6 +653,281 @@ def cash():
     return small_room(y, 0.18)[:n]
 
 
+# ------------------------------------------------------------- abyss / cave diving (Boesmansgat reel)
+def _rms(x):
+    return float(np.sqrt(np.mean(np.square(x)) + 1e-18))
+
+
+def _uw(y, fc=3500.0):
+    """Underwater muffling: gentle low-pass."""
+    return fft_filter(y, lambda f: lp2(f, fc, 0.6))
+
+
+def _wobble(n, rate_hz, seed):
+    """Smooth random modulation, roughly in [-1, 1], bandwidth ~rate_hz."""
+    x = fft_filter(white(n, seed), lambda f: lp2(f, rate_hz, 0.7))
+    return x / (np.abs(x).max() + 1e-9)
+
+
+def _inhale(dur, seed, strain=0.0):
+    """Rebreather inhale: airflow hiss through the mouthpiece; strain adds flutter and a throaty gasp."""
+    n = ns(dur)
+    a = sweep(white(n, seed), lambda t: 1300 + 900 * np.clip(t / dur, 0, 1) + 700 * strain, 0.9)
+    b = fft_filter(white(n, seed + 1), lambda f: hp2(f, 2600) * lp2(f, 7000))
+    y = a / _rms(a) + 0.35 * b / _rms(b)
+    if strain:
+        g = fft_filter(white(n, seed + 2), lambda f: bp2(f, 750, 5.0) + 0.7 * bp2(f, 1250, 6.0))
+        y += 0.5 * strain * g / _rms(g)
+    y = fft_filter(y, lambda f: hp2(f, 350))
+    flutter = 1 + (0.12 + 0.3 * strain) * _wobble(n, 9 + 6 * strain, seed + 3)
+    return y * bell_curve(n, 0.35 - 0.1 * strain, 1.4) * flutter
+
+
+def _exhale(dur, seed, strain=0.0):
+    """Exhale into the loop: muffled breath through hose/counterlung (no bubbles - it's closed circuit)."""
+    n = ns(dur)
+    a = fft_filter(white(n, seed), lambda f: lp2(f, 700 + 300 * strain, 0.7) * hp2(f, 120))
+    c = fft_filter(white(n, seed + 1), lambda f: bp2(f, 420, 2.5) + 0.6 * bp2(f, 1100, 3.0))
+    y = a / _rms(a) + 0.6 * c / _rms(c)
+    y *= bell_curve(n, 0.22, 1.2) * (1 + (0.15 + 0.2 * strain) * _wobble(n, 6 + 6 * strain, seed + 2))
+    bag = fft_filter(white(n, seed + 3), lambda f: bp2(f, 170, 1.2))      # counterlung filling
+    return y + 0.45 * bag / _rms(bag) * bell_curve(n, 0.55, 2.0)
+
+
+def _valve(seed, g=1.0):
+    """Tiny mushroom-valve tick in the mouthpiece."""
+    d = 0.04
+    return g * (nb(ns(d), 2200, 3.0, seed) * env_ad(d, 0.0003, 0.003) + 0.3 * ping(1400, d, 0.004, 0.0004))
+
+
+def _breaths(cycles, n, strain=0.0, seed=400):
+    """cycles: (start, inhale_dur, exhale_gap, exhale_dur)."""
+    parts = []
+    for i, (t0, di, gap, de) in enumerate(cycles):
+        inh = _inhale(di, seed + 10 * i, strain)
+        exh = _exhale(de, seed + 10 * i + 5, strain)
+        parts += [(inh / _rms(inh), t0, 1.0), (_valve(seed + 10 * i + 7), t0, 0.5),
+                  (exh / _rms(exh), t0 + di + gap, 0.85), (_valve(seed + 10 * i + 8, 0.6), t0 + di + gap, 0.4)]
+    return _uw(mix(n, *parts), 6500)
+
+
+@sfx
+def regulator_breath():
+    """Two calm rebreather breaths, 3.0 s per cycle (6.0 s file; place every 6 s for continuous breathing)."""
+    return _breaths([(0.0, 1.15, 0.2, 1.35), (3.0, 1.2, 0.18, 1.3)], ns(6.0))
+
+
+@sfx
+def regulator_breath_fast():
+    """Three strained, quicker breaths, ~1.55 s per cycle (~4.65 s)."""
+    return _breaths([(0.0, 0.55, 0.07, 0.68), (1.55, 0.5, 0.06, 0.7), (3.1, 0.58, 0.06, 0.66)], ns(4.65),
+                    strain=1.0, seed=430)
+
+
+@sfx
+def regulator_breath_stop():
+    """Inhale, exhale, then the next inhale cuts off dead at ~3.5 s (with a faint valve tick)."""
+    n = ns(3.56)
+    y = _breaths([(0.0, 1.15, 0.2, 1.35)], n, seed=460)
+    cut = _inhale(1.3, 470) / _rms(_inhale(1.3, 470))
+    k = ns(0.5)
+    cut = cut[:k] * ramp_out(k, ns(0.018))
+    y += _uw(mix(n, (cut, 3.0, 1.0), (_valve(471), 3.0, 0.5), (_valve(472, 0.8), 3.5, 0.5)), 6500)
+    return y
+
+
+@sfx
+def sonar_ping():
+    """Deep, eerie ping (~700 Hz + 350 Hz undertone, slow beating) with two distant returns and a long tail."""
+    dur = 7.0
+    n = ns(dur)
+    t = tt(dur)
+    f = 700 * (1 - 0.015 * (1 - np.exp(-t / 0.6)))
+    y = np.sin(phase(f, n)) * env_ad(dur, 0.004, 0.45)
+    y += 0.6 * np.sin(phase(f * 1.004, n)) * env_ad(dur, 0.004, 0.5)          # slow beating -> eerie
+    y += 0.45 * np.sin(phase(f * 0.5, n)) * env_ad(dur, 0.01, 0.7)            # deep undertone
+    y += 0.1 * np.sin(phase(f * 2.01, n)) * env_ad(dur, 0.003, 0.15)
+    y += 0.08 * nb(n, 2500, 1.0, 301) * env_ad(dur, 0.0005, 0.004)            # transducer tick
+    dry = fft_filter(y, lambda fr: lp1(fr, 1400) * hp1(fr, 220))
+    for dt, g in ((1.3, 0.3), (2.7, 0.12)):
+        place(y, dry, ns(dt), g)
+    ir = freeverb_ir(seconds=5.5, room=0.95, damp=0.3, stereo=False, predelay=0.03, lo_cut=150, hi_cut=5000)[0]
+    w = convolve(y, ir)[0][:n]
+    return y + 0.9 * w * _rms(y) / _rms(w)
+
+
+@sfx
+def deep_rumble():
+    """5 s low rumble: energy 60-200 Hz, saturated so its harmonics (200-600 Hz) carry on phone speakers."""
+    dur = 5.0
+    n = ns(dur)
+    t = tt(dur)
+    nz = fft_filter(white(n, 311), lambda f: bp2(f, 95, 0.8) * lp2(f, 220) * hp2(f, 55))
+    drift = 1 + 0.01 * _wobble(n, 0.8, 312)
+    tone = sine(65.4 * drift, n) + 0.6 * sine(98.0 * drift, n) + 0.45 * sine(131.0 * drift, n)
+    y = nz / _rms(nz) + 0.8 * tone / _rms(tone)
+    y *= 1 + 0.35 * _wobble(n, 1.5, 313)
+    y = soft_clip(y / np.abs(y).max(), 2.6)                                    # harmonics
+    grit = nb(n, 320, 0.9, 314) * (1 + 0.5 * _wobble(n, 4, 315))
+    y = y / _rms(y) + 0.2 * grit / _rms(grit)
+    y = fft_filter(y, lambda f: hp2(f, 55) * lp2(f, 1100))
+    return y * env_asr(n, 1.2, 1.8)
+
+
+def _bubble_cluster(dur, seed, until, gap, fmin, fmax, thin=1.0):
+    n = ns(dur)
+    r = rng(seed)
+    y = np.zeros(n)
+    t = 0.0
+    while t < until:
+        size = r.random()                                     # big bubbles: low and longer
+        f0 = fmin * (fmax / fmin) ** (1 - size)
+        bd = 0.03 + 0.09 * size
+        b = _bubble(f0, f0 * r.uniform(1.4, 2.3), bd * 2, bd * 0.45)
+        place(y, b, ns(t), r.uniform(0.3, 1.0) * (1 - 0.5 * t / until))
+        t += r.exponential(gap * (1 + thin * t)) + 0.008
+    return y
+
+
+@sfx
+def bubbles_rise():
+    """A cluster of rising bubbles, dense then thinning out (~2.4 s)."""
+    dur = 2.6
+    n = ns(dur)
+    y = _bubble_cluster(dur, 321, 1.9, 0.045, 260, 1800)
+    fizz = fft_filter(white(n, 322), lambda f: bp2(f, 2500, 0.8)) * bell_curve(n, 0.15, 2.0)
+    y = y + 0.06 * fizz / _rms(fizz) * _rms(y)
+    return small_room(_uw(y, 4200), 0.3, 0.8)[:n]
+
+
+@sfx
+def line_creak():
+    """Guide line / rope under tension: stick-slip creak plus fibrous scraping (~2.4 s)."""
+    dur = 2.4
+    n = ns(dur)
+    t = tt(dur)
+    r = rng(331)
+    rate = np.clip(32 + 22 * np.sin(2 * np.pi * 0.45 * t + 0.5) + 12 * _wobble(n, 3, 332), 12, 80)
+    ph = np.cumsum(rate) / SR
+    idx = np.nonzero(np.diff(np.floor(ph)) > 0)[0]
+    imp = np.zeros(n)
+    imp[idx] = r.uniform(0.4, 1.0, len(idx))
+    tension = bell_curve(n, 0.45, 1.0)
+    imp *= tension * np.clip(0.6 + 0.6 * _wobble(n, 5, 333), 0, 1)
+    kt = tt(0.06)
+    body = sum(a * np.sin(2 * np.pi * f * kt) * np.exp(-kt / d)
+               for f, a, d in ((380, 1.0, 0.012), (830, 0.7, 0.009), (1650, 0.5, 0.006), (2900, 0.25, 0.004)))
+    creak = convolve(imp, body)[0][:n]
+    scrape = fft_filter(white(n, 334), lambda f: bp2(f, 2200, 0.9)) * (0.3 + 0.7 * np.abs(_wobble(n, 8, 335)))
+    y = creak / _rms(creak) + 0.3 * scrape * tension / _rms(scrape)
+    return small_room(_uw(y, 5000), 0.15, 0.5)[:n]
+
+
+@sfx
+def alarm_beep():
+    """Dive-computer / rebreather warning: three short piezo-ish beeps (~0.75 s)."""
+    n = ns(0.9)
+    parts = []
+    for i in range(3):
+        k = ns(0.11)
+        f = 2400
+        x = np.sin(phase(f, k)) + 0.3 * np.sin(phase(3 * f, k)) + 0.1 * np.sin(phase(5 * f, k))
+        parts.append((x * env_asr(k, 0.004, 0.015), i * 0.19, 1.0))
+    y = fft_filter(mix(n, *parts), lambda f: lp2(f, 7000))
+    return small_room(y, 0.12, 0.5)[:n]
+
+
+def _heart(period, count, dub_at, seed):
+    n = ns(period * count + 0.4)
+    parts = []
+    for i in range(count):
+        k = ns(0.35)
+        lub = _thump(110, 68, 0.35, 0.075, 0.03) + 0.4 * _thump(210, 150, 0.35, 0.03, 0.01)
+        lub += 0.9 * nb(k, 260, 1.0, seed + i) * env_ad(0.35, 0.002, 0.025)          # chest 'knock'
+        dub = _thump(125, 76, 0.35, 0.06, 0.025) + 0.4 * _thump(240, 170, 0.35, 0.025, 0.01)
+        dub += 0.8 * nb(k, 300, 1.0, seed + 50 + i) * env_ad(0.35, 0.002, 0.02)
+        parts += [(lub, i * period, 1.0), (dub, i * period + dub_at, 0.72)]
+    y = soft_clip(mix(n, *parts) * 2.2, 3.0)                 # harmonics so phones hear it
+    return fft_filter(y, lambda f: lp2(f, 900) * hp2(f, 60) * (1 + 1.5 * bp2(f, 280, 1.2)))
+
+
+@sfx
+def heartbeat_slow():
+    """Two slow beats, ~52 bpm (1.15 s period, ~2.3 s file)."""
+    return _heart(1.15, 2, 0.30, 351)
+
+
+@sfx
+def heartbeat_fast():
+    """Four fast beats, ~125 bpm (0.48 s period, ~1.95 s file)."""
+    return _heart(0.48, 4, 0.19, 361)
+
+
+@sfx
+def torch_click():
+    """Dive torch push-button: press + latch, slightly muffled."""
+    dur = 0.25
+    n = ns(dur)
+    press = nb(n, 2800, 1.8, 371) * env_ad(dur, 0.0003, 0.0025) + 0.5 * ping(1300, dur, 0.006, 0.0005) \
+        + 0.5 * _thump(420, 260, dur, 0.012, 0.005)
+    latch = nb(n, 3600, 2.5, 372) * env_ad(dur, 0.0002, 0.0015) + 0.4 * ping(2100, dur, 0.004, 0.0003)
+    y = mix(n, (press, 0, 1.0), (latch, 0.045, 0.7))
+    return small_room(_uw(y, 6000), 0.1, 0.3)[:n]
+
+
+@sfx
+def water_muffle_hit():
+    """Underwater impact: muffled low body, pressure wave, a burst of bubbles, dark tail (~3 s)."""
+    dur = 3.0
+    n = ns(dur)
+    y = _thump(130, 72, dur, 0.3, 0.05) + 0.6 * _thump(280, 150, dur, 0.09, 0.02)
+    press = fft_filter(white(n, 381), lambda f: lp2(f, 600) * hp2(f, 80)) * env_ad(dur, 0.003, 0.15)
+    y = soft_clip(y + 0.7 * press / np.abs(press).max(), 3.5)
+    y = fft_filter(y, lambda f: lp2(f, 1000, 0.6) * hp2(f, 65) * (1 + bp2(f, 300, 1.0)))
+    bub = _bubble_cluster(1.2, 382, 0.6, 0.03, 220, 1100)
+    place(y, _uw(bub, 2500), ns(0.04), 0.35)
+    ir = freeverb_ir(seconds=2.6, room=0.9, damp=0.6, stereo=False, predelay=0.012, hi_cut=1800)[0]
+    w = convolve(y, ir)[0][:n]
+    return y + 0.45 * w * _rms(y) / _rms(w)
+
+
+@sfx
+def drone_swell():
+    """4 s rising dread swell (minor-second cluster, filter opening, slight upward bend); ends at its peak -
+    place it so it ends on the hit (t = hit - 4.0)."""
+    dur = 4.0
+    n = ns(dur)
+    t = tt(dur)
+    bend = 2 ** (0.8 * (t / dur) ** 2 / 12)
+    r = rng(391)
+    y = np.zeros(n)
+    for m, a in ((38, 0.8), (50, 1.0), (51, 0.7), (57, 0.6), (62, 0.45), (63, 0.3)):
+        for v in (-1, 0, 1):
+            y += a * saw(mtof(m) * bend * 2 ** (v * 6 / 1200), n, r.random())
+    y = stft_filter(y, lambda tq, f: lp2(f, 160 * (3200 / 160) ** ((tq / dur) ** 1.3), 1.3) * hp2(f, 60), nfft=2048)
+    nz = sweep(white(n, 392), lambda tq: 250 * (2800 / 250) ** (tq / dur), 0.9)
+    y = fft_filter(y / _rms(y) + 0.22 * nz / _rms(nz), lambda f: lp2(f, 4500))
+    return y * (t / dur) ** 2.2 * ramp_out(n, ns(0.04))
+
+
+@sfx
+def silence_drop():
+    """Reverse swell (reversed reverb of a low hit + minor chord) that stops dead at its loudest point.
+    Place it so it ENDS at the cut: t = cut - 2.5, and add a music_mute at the cut."""
+    dur = 2.5
+    m = ns(1.0)
+    src = _thump(110, 55, 1.0, 0.25, 0.04)
+    for k, mm in enumerate((50, 57, 62, 65)):
+        src += 0.25 * np.sin(phase(mtof(mm), m)) * env_ad(1.0, 0.002, 0.3)
+    src += 0.3 * nb(m, 1500, 0.7, 401) * env_ad(1.0, 0.0005, 0.03)
+    ir = freeverb_ir(seconds=3.2, room=0.93, damp=0.35, stereo=False, predelay=0.0)[0]
+    w = convolve(soft_clip(src, 2.0), ir)[0]
+    rev = w[::-1][-ns(dur):]
+    nz = sweep(white(ns(dur), 402), lambda tq: 300 * (3000 / 300) ** (tq / dur), 0.8)
+    y = rev / _rms(rev) + 0.25 * nz / _rms(nz) * (tt(dur) / dur) ** 3
+    return y * ramp_in(len(y), ns(0.05)) * ramp_out(len(y), ns(0.008))
+
+
 # ------------------------------------------------------------- finalize / main
 def finalize(y, peak_db=-3.0, max_rms_db=-14.0):
     y = np.asarray(y, dtype=np.float64)
@@ -674,19 +949,23 @@ def finalize(y, peak_db=-3.0, max_rms_db=-14.0):
 def main(names):
     os.makedirs(OUT, exist_ok=True)
     names = names or list(SFX)
-    print(f"{'name':16s} {'dur':>5s} {'peak':>6s} {'rms':>6s} {'centroid':>8s}")
+    print(f"{'name':22s} {'dur':>5s} {'peak':>6s} {'rms':>6s} {'centroid':>8s}")
     for name in names:
         y = finalize(SFX[name]())
         assert np.isfinite(y).all(), name
         write(os.path.join(OUT, name + ".wav"), y)
         s = stats(y)
-        print(f"{name:16s} {s['dur']:5.2f} {s['peak_db']:6.1f} {s['rms_db']:6.1f} {s['centroid']:8.0f}")
+        print(f"{name:22s} {s['dur']:5.2f} {s['peak_db']:6.1f} {s['rms_db']:6.1f} {s['centroid']:8.0f}")
 
 
 ALLOWED = ("whoosh whoosh_long swoosh_up swoosh_down pop pop_small bubble blip click tick ding chime sparkle "
            "impact_soft impact_big thud stamp boing riser record_scratch tv_on tv_off channel_switch static glitch "
            "neon_buzz neon_flicker typewriter paper heartbeat alarm crunch slurp chomp sizzle bubbling_pot cash "
-           "error success").split()
+           "error success "
+           # abyss / cave diving
+           "regulator_breath regulator_breath_fast regulator_breath_stop sonar_ping deep_rumble bubbles_rise "
+           "line_creak alarm_beep heartbeat_slow heartbeat_fast torch_click water_muffle_hit drone_swell "
+           "silence_drop").split()
 
 if __name__ == "__main__":
     missing = set(ALLOWED) - set(SFX)

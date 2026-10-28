@@ -449,8 +449,166 @@ def bed_outro(dur=42.0):
     return B.render(ir_seconds=5.0, room=0.92, verb_level=1.2, fade_out=4.0)
 
 
+# ============================================================= abyss beds (Boesmansgat reel): dark ambient, D minor
+def piano(m, vel=0.45, dur=None):
+    """Felt-ish synthetic piano: stretched (inharmonic) partials with two-stage decay, a detuned string pair per
+    partial (slow beating) and a soft hammer thump. Low velocity = darker."""
+    key = ("pno", m, round(vel, 2))
+    if key in _cache:
+        return _cache[key]
+    f = mtof(m)
+    base = 3.2 * (261.6 / f) ** 0.45
+    dur = dur or min(9.0, 2.2 * base + 0.6)
+    n = ns(dur)
+    t = tt(dur)
+    r = rng(int(m * 7 + vel * 100))
+    y = np.zeros(n)
+    for k in range(1, 16):
+        fk = k * f * np.sqrt(1 + 0.0004 * k * k)
+        if fk > 8000:
+            break
+        amp = (1.0 / k ** (1.9 - 0.9 * vel)) * (1 + 0.35 * np.sin(1.7 * k))
+        d = base / (1 + 0.5 * (k - 1))
+        e = 0.65 * np.exp(-t / (0.3 * d)) + 0.35 * np.exp(-t / d)
+        y += amp * e * 0.5 * (np.sin(2 * np.pi * fk * t + r.uniform(0, 6))
+                               + np.sin(2 * np.pi * fk * (1 + 0.00035) * t + r.uniform(0, 6)))
+    ham = fft_filter(r.standard_normal(n), lambda fr: bp2(fr, min(3500, 4 * f), 0.8), pad=4096)
+    y = y * ramp_in(n, ns(0.003)) + 0.04 * vel * ham * env_ad(dur, 0.0005, 0.006)
+    y = fft_filter(y, lambda fr: lp2(fr, 900 + 3500 * vel), pad=4096) * ramp_out(n, ns(0.4))
+    _cache[key] = y
+    return y
+
+
+def drone(notes, dur, cut_fn, seed, detune=5.0, sine_amt=0.5):
+    """Low saw drone (no 110 Hz high-pass, unlike pad_chord) under a slowly moving low-pass, stereo."""
+    n = ns(dur)
+    r = rng(seed)
+    out = np.zeros((2, n))
+    for m in notes:
+        for v in (-1, 0, 1):
+            fv = mtof(m) * 2 ** ((v * detune + r.uniform(-1, 1)) / 1200)
+            vib = 1 + 0.001 * np.sin(2 * np.pi * r.uniform(0.05, 0.15) * np.arange(n) / SR + r.uniform(0, 6))
+            out += pan2(saw(fv * vib, n, r.random()), 0.5 * v) / 3
+    out += sine_amt * sine(mtof(min(notes)), n)[None]
+    out = stft_filter(out, lambda t, fr: lp2(fr, cut_fn(t), 0.9) * hp2(fr, 50), nfft=2048)
+    return out / np.sqrt(len(notes))
+
+
+def heart_pulse(accent=1.0):
+    """Soft, felt-like 'lub' for the music: ~60-70 Hz body, saturated so 120-300 Hz harmonics carry on phones."""
+    key = ("hp", accent)
+    if key in _cache:
+        return _cache[key]
+    d = 0.45
+    t = tt(d)
+    f = 64 + 50 * np.exp(-t / 0.03)
+    y = np.tanh(2.5 * np.sin(phase(f, len(t)))) * env_ad(d, 0.005, 0.1)
+    y += 0.4 * fft_filter(rng(5).standard_normal(len(t)), lambda fr: bp2(fr, 240, 1.0)) * env_ad(d, 0.002, 0.02)
+    y = fft_filter(y, lambda fr: lp2(fr, 420) * hp2(fr, 55), pad=4096) * accent
+    _cache[key] = y
+    return y
+
+
+def pressure_noise(dur, seed, lo=220.0, hi=650.0, period=17.0):
+    """Stereo filtered noise, band slowly wandering - the 'weight of water' layer."""
+    n = ns(dur)
+    r = rng(seed)
+    x = r.standard_normal((2, n))
+    x = fft_filter(x, lambda fr: 1 / np.sqrt(np.maximum(fr, 20) / 100))           # pinkish
+    fc = lambda t: lo + (hi - lo) * (0.5 + 0.5 * np.sin(2 * np.pi * t / period + 1.0))
+    y = stft_filter(x, lambda t, fr: bp2(fr, fc(t), 0.7), nfft=2048)
+    hiss = fft_filter(r.standard_normal((2, n)), lambda fr: bp2(fr, 3800, 1.5))
+    am = 0.5 + 0.5 * np.sin(2 * np.pi * np.arange(n) / SR / 11.0)
+    y = y / np.sqrt(np.mean(y ** 2)) + 0.08 * hiss / np.sqrt(np.mean(hiss ** 2)) * am[None]
+    return y
+
+
+def bowed(m, dur, seed=0):
+    """Soft low cello-ish sustain: saw + vibrato, darkened, slow bow-in/out."""
+    n = ns(dur)
+    r = rng(seed + m)
+    t = np.arange(n) / SR
+    f = mtof(m) * (1 + 0.003 * np.sin(2 * np.pi * 4.8 * t) * np.clip(t / 1.5, 0, 1))
+    y = 0.7 * saw(f, n, r.random()) + 0.3 * saw(f * 1.002, n, r.random())
+    y += 0.02 * fft_filter(r.standard_normal(n), lambda fr: bp2(fr, 1500, 1.0))
+    y = fft_filter(y, lambda fr: lp2(fr, 700, 0.8) * hp2(fr, 60) * (1 + 0.6 * bp2(fr, 300, 1.5)))
+    return y * env_asr(n, min(1.8, dur / 3), min(2.0, dur / 3), shape=1.5)
+
+
+def bed_abyss_descent(dur=100.0):
+    """Descent: D minor. Slow low drone, sparse distant piano, a heartbeat pulse that speeds up from ~46 to ~78
+    bpm and grows, filtered-noise 'pressure' that thickens with depth. Long enough for a 90 s reel."""
+    B = Bed(dur, 60, seed=71)
+    L = dur + 2
+    # 1) root drone D2/A2 (+D3), filter breathing slowly and closing a little with depth
+    dr = drone([38, 45, 50], L, lambda t: 300 + 110 * np.sin(2 * np.pi * t / 23.0) - 60 * t / dur, seed=1)
+    B.add(dr * (0.55 + 0.25 * np.clip(np.arange(dr.shape[1]) / SR / dur, 0, 1))[None], 0.0, 0.55, verb=0.25)
+    # 2) dark chord layer above the drone, changing every 16 s (Dm - Bb - Gm - A - Dm - Bb/D - Gm/D)
+    chords = [[57, 62, 65], [58, 62, 65], [55, 62, 67, 70], [57, 61, 64], [57, 62, 65], [58, 62, 65, 69],
+              [55, 62, 67, 70]]
+    for i, notes in enumerate(chords):
+        t0 = i * 16.0 - 2.0
+        if t0 > dur:
+            break
+        pc = pad_chord(notes, 18.0, cutoff=650, detune=7, attack=4.0, release=4.0, voices=3, seed=100 + i)
+        B.add(pc, max(t0, 0.0), 0.32, verb=0.6)
+    # 3) sparse distant piano (D natural minor, C# for the dominant), low velocity, lots of reverb and echo
+    notes = [(6.0, 69, .40), (9.5, 65, .32), (14.0, 64, .30), (17.0, 62, .34), (24.0, 74, .30), (27.5, 70, .28),
+             (33.0, 67, .34), (36.0, 70, .28), (40.5, 62, .26), (49.0, 69, .36), (52.0, 73, .30), (56.5, 64, .28),
+             (62.0, 61, .30), (65.0, 62, .34), (69.0, 65, .30), (72.0, 69, .32), (77.5, 74, .30), (81.0, 70, .32),
+             (84.0, 69, .28), (88.5, 65, .30), (91.0, 64, .28), (95.0, 62, .32)]
+    for t0, m, v in notes:
+        B.add(piano(m, v), t0, 0.26, pan=0.35 * np.sin(m), verb=2.2, delay=0.3)
+        if m in (62, 74) or t0 in (49.0, 65.0):          # occasional low octave for weight
+            B.add(piano(m - 24, v * 0.8), t0 + 0.02, 0.18, pan=-0.2, verb=1.6)
+    # 4) heartbeat pulse: tempo rises 46 -> 78 bpm, level rises too, enters at ~8 s
+    t, beats = 8.0, []
+    while t < dur - 3.0:
+        x = (t - 8.0) / (dur - 11.0)
+        bpm = 46 + 32 * x ** 1.4
+        beats.append((t, bpm, x))
+        t += 60.0 / bpm
+    for t0, bpm, x in beats:
+        g = (0.35 + 0.65 * x) * min(1.0, (t0 - 8.0) / 6.0 + 0.15)
+        B.add(heart_pulse(), t0, 0.75 * g, verb=0.12)
+        B.add(heart_pulse(0.7), t0 + 0.32 * 60.0 / bpm, 0.75 * g, verb=0.12)
+    # 5) pressure: filtered noise thickening with depth
+    pn = pressure_noise(L, 72)
+    pn *= (0.4 + 0.6 * np.clip(np.arange(pn.shape[1]) / SR / dur, 0, 1))[None]
+    B.add(pn, 0.0, 0.05, verb=0.2)
+    return B.render(ir_seconds=6.0, room=0.94, verb_level=1.1, delay_div=1.0, fade_in=2.0, fade_out=3.0)
+
+
+def bed_abyss_aftermath(dur=42.0):
+    """Aftermath: sombre, respectful, quiet resolve. Dm - Bb - F/A - Gm - Bb - Dsus2 -> D. Warm pad, slow simple
+    piano line, a soft low bowed line; no pulse."""
+    B = Bed(dur, 60, seed=81)
+    dr = drone([38, 45], dur + 2, lambda t: 260 + 40 * np.sin(2 * np.pi * t / 19.0), seed=2, sine_amt=0.4)
+    B.add(dr * np.clip(1.0 - np.arange(dr.shape[1]) / SR / 30.0, 0.25, 1.0)[None], 0.0, 0.4, verb=0.3)
+    prog = [(0.0, [57, 62, 64, 65]), (7.0, [58, 62, 65, 69]), (14.0, [57, 60, 65, 69]), (21.0, [55, 62, 65, 70]),
+            (28.0, [58, 62, 65, 72]), (33.5, [57, 62, 64, 69]), (36.5, [57, 62, 66, 69])]
+    for i, (t0, notes) in enumerate(prog):
+        ln = (prog[i + 1][0] if i + 1 < len(prog) else dur) - t0 + 2.0
+        cut = 900 if i < 5 else 1300
+        B.add(pad_chord(notes, ln, cutoff=cut, detune=6, attack=2.5, release=3.0, voices=3, seed=200 + i),
+              max(0.0, t0 - 1.0), 0.3, verb=0.7)
+    for t0, m, d in ((0.5, 50, 7.5), (7.0, 46, 7.5), (14.0, 45, 7.5), (21.0, 43, 7.5), (28.0, 46, 6.0),
+                     (33.5, 38, 8.5)):
+        B.add(bowed(m, d, seed=7), t0, 0.16, pan=-0.15, verb=0.6)
+    mel = [(2.0, 69, .36), (4.0, 65, .30), (5.5, 64, .30), (9.0, 70, .34), (11.0, 69, .30), (12.5, 65, .28),
+           (16.0, 72, .34), (18.0, 69, .30), (19.5, 65, .28), (23.0, 67, .32), (25.0, 65, .30), (26.5, 62, .28),
+           (30.0, 70, .32), (32.0, 69, .30), (34.5, 64, .30), (37.0, 66, .34), (37.03, 62, .26), (37.06, 57, .24)]
+    for t0, m, v in mel:
+        B.add(piano(m, v), t0, 0.4, pan=0.25 * np.sin(m), verb=1.5, delay=0.18)
+    B.add(piano(38, 0.3), 37.0, 0.35, verb=1.2)
+    pn = pressure_noise(dur + 2, 82, lo=300, hi=900, period=23.0)
+    B.add(pn, 0.0, 0.022, verb=0.3)
+    return B.render(ir_seconds=5.5, room=0.93, verb_level=1.1, delay_div=1.0, fade_in=2.5, fade_out=5.0)
+
+
 BEDS = dict(tension=bed_tension, wonder=bed_wonder, science=bed_science, mystery=bed_mystery,
-            resolve=bed_resolve, outro=bed_outro)
+            resolve=bed_resolve, outro=bed_outro,
+            abyss_descent=bed_abyss_descent, abyss_aftermath=bed_abyss_aftermath)
 
 # ------------------------------------------------------------- stings: 1.8 s "button" endings in each bed's key
 STING_LEN = 1.8
@@ -458,9 +616,33 @@ STING_CHORDS = dict(tension=[50, 62, 65, 69, 74], wonder=[50, 62, 66, 69, 74, 78
                     mystery=[52, 64, 67, 71, 76], resolve=[55, 67, 71, 74, 79, 83], outro=[48, 60, 64, 67, 72, 76])
 
 
+# abyss beds get a sombre piano ending instead of the bright pluck/bell button: (low octave, chord)
+ABYSS_STINGS = dict(abyss_descent=([38, 50], [57, 62, 65]), abyss_aftermath=([38, 50], [57, 62, 66, 69]))
+
+
+def sting_abyss(name):
+    """Sombre 1.8 s ending: soft low piano octave + a quiet chord, dark reverb, decayed by STING_LEN."""
+    low, chord = ABYSS_STINGS[name]
+    B = Bed(STING_LEN, 60, seed=98)
+    for m in low:
+        B.add(piano(m, 0.4), 0.0, 0.6, verb=0.8)
+    for i, m in enumerate(chord):
+        B.add(piano(m, 0.3), 0.03 * i, 0.35, pan=-0.3 + 0.2 * i, verb=1.0)
+    ir = freeverb_ir(seconds=2.0, room=0.88, damp=0.5)
+    n = ns(STING_LEN)
+    wet = convolve(B.verb, ir)[:, :n]
+    wet *= np.sqrt(np.mean(B.verb[:, :n] ** 2)) / np.sqrt(np.mean(wet ** 2) + 1e-12)
+    x = B.dry[:, :n] + 0.9 * wet
+    x = fft_filter(x, lambda fr: hp2(fr, 70) ** 2)
+    x *= np.exp(-np.arange(n) / SR / 0.8)[None] * ramp_out(n, ns(0.3))[None] * ramp_in(n, ns(0.002))[None]
+    return x * db(-8.0) / np.abs(x).max()
+
+
 def sting(name):
     """Short 'button' ending: strummed bell+pluck chord, a soft (not sub-heavy) hit, quick reverb bloom,
     fully decayed by STING_LEN so it can sit on the very last frames of a part."""
+    if name in ABYSS_STINGS:
+        return sting_abyss(name)
     notes = STING_CHORDS[name]
     B = Bed(STING_LEN, 100, seed=99)
     for i, m in enumerate(notes[1:]):
@@ -489,7 +671,7 @@ def main(argv):
         ext = ".flac" if flac else ".wav"
         write(os.path.join(OUT, name + ext), x)
         s = stats(x)
-        print(f"{name:8s} {s['dur']:6.1f}s peak {s['peak_db']:6.1f} dBFS  rms {s['rms_db']:6.1f}  "
+        print(f"{name:22s} {s['dur']:6.1f}s peak {s['peak_db']:6.1f} dBFS  rms {s['rms_db']:6.1f}  "
               f"centroid {s['centroid']:6.0f} Hz", flush=True)
 
 
