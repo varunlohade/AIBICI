@@ -8,7 +8,7 @@
     const c1 = window.CUES.c01_hook, D1 = c1.duration, tz1 = AB.at(c1.lines, 'home', 0, D1 - 1.5);
     return {
       D1, tz1,
-      tOpen: AB.at(cues, 'opens', 0, 3.9), tCham: AB.at(cues, 'chamber', 0, 6), tDeep: AB.atEnd(cues, 'deep', 0, 8.5),
+      tOpen: AB.at(cues, 'above', 0, 3.9), tCham: AB.at(cues, 'chamber', 0, 6), tDeep: AB.atEnd(cues, 'deep', 0, 8.5),
       t94: AB.at(cues, '1994', 0, 9), tSank: AB.at(cues, 'sank', 0, 12), tUp: AB.atEnd(cues, 'up', 0, 15.6),
       tStay: AB.at(cues, 'stayed', 0, 16.8), tYears: AB.atEnd(cues, 'years', 0, 19),
     };
@@ -28,7 +28,7 @@
     const P = AB.V.POOL, drift = { d: P.d + .8 * AB.smooth(AB.prog(t, 1.4, k.tOpen)), x: P.x, s: P.s };
     return AB.path([
       [k.tOpen - .1, drift],
-      [k.tCham + .2, THROAT, { ease: 'in' }],
+      [(k.tOpen + k.tDeep) / 2, THROAT, { ease: 'in' }],
       [k.tDeep + .1, CHAMBER, { ease: 'out' }],
       [k.t94 + .9, CHAMBER],
       [k.tUp, FLOORV],
@@ -60,8 +60,9 @@
           const ga = AB.ep(t, k.t94 + .3, k.t94 + 1.1, 'out');
           if (ga > 0) AB.gauge(ctx, 80, 300, AB.lerp(LIGHT0.d, AB.MK.d, AB.ease.inOut(AB.prog(t, k.t94 + .9, k.tUp))), { size: 230, max: 270, ruleW: 380, alpha: ga });
           // one label: 1994, which counts on to 2004 over "ten years"
-          const yr = 1994 + Math.floor(10 * AB.ease.inOut(AB.prog(t, k.tStay, k.tYears)) + 1e-6);
-          AB.slot(ctx, String(yr), AB.ep(t, k.t94, k.t94 + .6, 'out'));
+          const e = 10 * AB.ease.inOut(AB.prog(t, k.tStay, k.tYears)), yr = 1994 + Math.floor(e + 1e-6);
+          const bump = e > 0 && e < 10 ? Math.pow(1 - (e % 1), 3) : 0;
+          AB.year(ctx, yr, AB.ep(t, k.t94, k.t94 + .6, 'out'), yr > 1994 ? bump : 0);
         },
       });
     },

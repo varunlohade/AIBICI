@@ -50,15 +50,32 @@
     let a0 = Math.atan2(mk.y - oy, mk.x - ox); if (a0 < 0) a0 += Math.PI * 2;
     const aim = AB.clamp(a0, Math.PI * .78, Math.PI * 1.04) - ang;
     const cone = aim + (.04 + .1 * strain) * live * Math.sin(T * 1.1 + .5);
+    // the line wraps the body: a helix in the diver's own frame, from the torch hand back along the arm and torso.
+    // Back half drawn behind the silhouette (dim), front half over it (bright), so it reads as wrapping.
+    const k = AB.diverK(cam.s), dx = cam.X(S.m), dy = cam.Y(S.d), c = Math.cos(ang), sn = Math.sin(ang);
+    const P = (lx, ly) => { ly = -ly; return [dx + (lx * c - ly * sn) * k, dy + (lx * sn + ly * c) * k]; };   // flip: true
+    const TURNS = 2.6, N = 120, u0 = 1 - tg, helix = [];
+    for (let i = 0; i <= N; i++) {
+      const u = 1 - (1 - u0) * i / N;                     // from the hand (u = 1) back toward the hips
+      const arm = AB.smooth(AB.clamp((u - .62) / .3)), lx = AB.lerp(-24, 70, u), cy = AB.lerp(-4, 12, arm), R = AB.lerp(19, 8, arm);
+      const ph = 2 * Math.PI * TURNS * u + .3 * Math.sin(T * .7) * live;
+      helix.push({ p: P(lx, cy + R * Math.sin(ph)), z: Math.cos(ph) });
+    }
+    const strand = (front, col, w, glow) => {
+      for (let i = 1; i < helix.length; i++) {
+        const a = helix[i - 1], b = helix[i]; if ((a.z + b.z > 0) !== front) continue;
+        AB.line(ctx, [a.p, b.p], { color: col, width: w, glow });
+      }
+    };
+    const bright = .55 + .45 * I;
+    if (tg > 0) strand(false, `rgba(220,235,235,${.42 * appear})`, 1.6 * Math.max(.6, k), 0);
     const res = AB.diverAt(ctx, cam, S, ang, { t: T, I: I * appear, alpha: appear, cone, flip: true, edge: .26 * (.4 + .6 * I), rim: .9, kick: (.7 + .5 * strain) * live, bubbles: 9, bubA: st.bubA, lenK: .95, spread: .24 });
     if (!res) return null;
-    const kk = cam.s / 16, top = [cam.X(-4.5), cam.Y(150)], via = [cam.X(-6), cam.Y(244)];
-    const tang = AB.tangle(res.L.x + 12 * kk, res.L.y - 2 * kk, 66 * kk, T * live, { n: 15, seed: 12, sx: 1.45, sy: .7, rot: -.4 });
-    const nT = Math.max(1, Math.round(tang.length * tg)), part = tang.slice(0, nT);
-    const lineA = .34 + .2 * tg;
-    AB.line(ctx, [top, via, [part[0][0] + 16 * kk, part[0][1] - 120 * kk], part[0]], { color: `rgba(235,245,245,${lineA * appear})`, width: 1.6 });
-    if (tg > 0) AB.line(ctx, part, { color: `rgba(255,238,210,${.92 * appear * (.55 + .45 * I)})`, width: 2.2, glow: .14 * I });
-    const end = part[part.length - 1], tail = [];
+    if (tg > 0) strand(true, `rgba(255,238,210,${.95 * appear * bright})`, 2.4 * Math.max(.6, k), .16 * I);
+    // the line: down from above to the hand where it snagged, and from the end of the wrap to where it is tied
+    const kk = cam.s / 16, top = [cam.X(-4.5), cam.Y(150)], via = [cam.X(-6), cam.Y(244)], hand = helix[0].p, end = helix[helix.length - 1].p;
+    AB.line(ctx, [top, via, [hand[0] + 16 * kk, hand[1] - 120 * kk], hand], { color: `rgba(235,245,245,${(.34 + .2 * tg) * appear})`, width: 1.6 });
+    const tail = [];
     for (let i = 0; i <= 16; i++) { const u = i / 16; tail.push([AB.lerp(end[0], mk.x, u), AB.lerp(end[1], mk.y, u) + Math.sin(u * Math.PI) * 26 * kk]); }
     AB.line(ctx, tail, { color: `rgba(235,245,245,${.32 * appear})`, width: 1.4 });
     return res;
@@ -75,7 +92,7 @@
       const warn = AB.ep(t, k.tStrain + .4, k.tCarbon + .6, 'inOut') * danger;
       const loose = AB.ep(t, k.tLoose - .2, k.tLoose + 1.8, 'inOut');
       const tg = AB.ep(t, k.tLine - .3, k.tL1e + .7, 'inOut');
-      const pulse = Math.pow(.5 + .5 * Math.cos((t - k.tCarbon) * 5.2), 2);
+      const pulse = .5 + .5 * Math.cos((t - k.tCarbon) * 2.6);   // a gentle pulse
       let res = null;
       AB.frame(ctx, v, T, {
         mid(cam) {
@@ -93,10 +110,7 @@
           // CO2: the chip, and a meter that fills as it builds
           const ca = AB.ep(t, k.tCarbon - .1, k.tCarbon + .4, 'out') * danger;
           if (ca > 0) {
-            ctx.save(); ctx.globalAlpha = ca; const c = AB.warnChip(ctx, 84, g.bottom + 40, { pulse });
-            const fill = AB.ep(t, k.tCarbon, k.tOut, 'inOut'), by = g.bottom + 40 + c.h + 22;
-            ctx.strokeStyle = 'rgba(255,90,70,.7)'; ctx.lineWidth = 2; ctx.strokeRect(84, by, 300, 12);
-            ctx.fillStyle = `rgba(255,59,47,${.7 + .3 * pulse})`; ctx.fillRect(87, by + 3, 294 * fill, 6);
+            ctx.save(); ctx.globalAlpha = ca; AB.warnChip(ctx, 84, g.bottom + 40, { pulse });   // no meter: just the chip, gently pulsing
             ctx.restore();
           }
         },

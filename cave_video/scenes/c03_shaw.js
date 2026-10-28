@@ -56,15 +56,11 @@
         },
         get lights() { return light ? [light] : []; },
         hud() {
-          const ga = AB.ep(t, k.tShaw + .3, k.tShaw + 1.1, 'out') * (1 - AB.prog(v.d, 40, 8));
-          // gauge: holds Deon's depth, then picks up Shaw's light; on the climb it follows the camera to the surface
-          const dShaw = S.d, dCam = Math.max(0, v.d);
-          const g0 = 1 - AB.ep(t, 0, .6, 'out');
-          if (g0 > 0) AB.gauge(ctx, 80, 300, AB.MK.d, { size: 230, max: 270, ruleW: 380, alpha: g0 });
-          if (ga > 0) AB.gauge(ctx, 80, 300, AB.lerp(dShaw, dCam, AB.smooth(r)), { size: 230, max: 270, ruleW: 380, alpha: ga });
-          // one label at a time: 2004 (carried from c02), then the pilot's wings
-          AB.slot(ctx, '2004', 1 - AB.ep(t, k.tPilot - .6, k.tPilot - .1));
-          AB.wings(ctx, 250, 632, 118, AB.win(t, k.tPilot - .1, k.tBottom - .4, .5, .6));
+          // one continuous gauge: it holds Deon's depth from c02, re-targets to Shaw's light as he comes into view, and
+          // hides for the wide climb to the surface (no reading without a visible diver)
+          const ga = 1 - AB.ep(t, k.tNobody - .2, k.tNobody + .3, 'inOut');
+          AB.gauge(ctx, 80, 300, AB.lerp(AB.MK.d, S.d, AB.ep(t, k.tShaw, k.tShaw + 1.6, 'inOut')), { size: 230, max: 270, ruleW: 380, alpha: ga });
+          AB.year(ctx, 2004, 1 - AB.ep(t, k.tPilot - .8, k.tPilot - .1));   // carried from c02's counter
         },
       });
     },

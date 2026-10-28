@@ -29,7 +29,7 @@
     draw(ctx, t, cues, D) {
       const T = AB.amb(ID, t), k = times(cues, D), v = viewAt(t, k, D), S = shirleyAt(t, k, D);
       const danger = AB.ep(t, k.tCrush - .25, k.tCrush + .35, 'out') * (1 - AB.ep(t, k.tTurn + .4, k.tL2 + .9, 'inOut'));
-      const pulse = Math.pow(.5 + .5 * Math.cos((t - k.tCrush) * 5.2), 2);
+      const pulse = .5 + .5 * Math.cos((t - k.tCrush) * 2.6);   // a gentle pulse
       const on = AB.ep(t, .5, .9, 'out') * (1 - AB.ep(t, k.tSurf - .1, AB.lastT(D) - .05, 'inOut'));
       const turn = AB.ep(t, k.tTurn - .5, k.tTurn + .9, 'inOut');
       const planA = AB.ep(t, k.tL2 - .4, k.tL2 + .8) * (1 - AB.ep(t, D - .9, AB.lastT(D))) * .7;
@@ -57,7 +57,7 @@
           const g0 = 1 - AB.ep(t, 0, .7);
           if (g0 > 0) AB.gauge(ctx, 80, 300, window.C05.SHAW.d + .4, { size: 230, max: 270, ruleW: 380, alpha: g0 });
           const g = AB.gauge(ctx, 80, 300, Math.max(0, S.d), { size: 230, max: 270, ruleW: 380, warn, alpha: gaugeA });
-          AB.crackChip(ctx, 84, g.bottom + 40, { pulse, crack: AB.ep(t, k.tCrush, k.tCrush + .6, 'out'), alpha: danger });
+          if (danger > 0) { ctx.save(); ctx.globalAlpha = danger; AB.warnChip(ctx, 84, g.bottom + 40, { pulse, text: 'RIG FAILURE', sub: '' }); ctx.restore(); }
           // one label: 12½ HRS, by the staircase (as in c04)
           AB.bigLabel(ctx, '12½ HRS', 930, cam.Y(150), AB.ep(t, k.t12, k.t12 + .7, 'out') * (1 - AB.ep(t, D - .9, AB.lastT(D))), { size: 132, color: '#ffd9a6' });
         },

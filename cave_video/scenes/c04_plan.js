@@ -32,7 +32,7 @@
         hud(cam) {
           // one label at a time: "6 MIN" by the box, then "12 HRS" in the chamber
           const b = AB.PLAN.box;
-          AB.label(ctx, '6 MIN', cam.X(b.x1) + 16, cam.Y(b.d1) - 2, { size: 28, sp: 5, color: 'rgba(255,214,160,.9)', alpha: AB.win(t, k.tFew + .3, k.t12, .4, .3) });
+          AB.bigLabel(ctx, '6 MIN', 930, cam.Y(150), AB.win(t, k.tFew + .3, k.t12, .4, .3), { size: 132, color: '#ffd9a6' });   // same size and place as 12 HRS
           AB.bigLabel(ctx, '12 HRS', 930, cam.Y(150), AB.ep(t, k.t12 + .05, k.t12 + .7, 'out'), { size: 132, color: '#ffd9a6' });
         },
       });

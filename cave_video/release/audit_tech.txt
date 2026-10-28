@@ -1,0 +1,12 @@
+PASS  Length under 3:00 (Instagram Reel limit)                   95.1 s
+PASS  Resolution 1080x1920 (9:16)                                1080x1920
+PASS  Frame rate 30 fps                                          30/1
+PASS  Codecs H.264 + AAC, yuv420p                                h264/yuv420p + aac
+PASS  Audio and video lengths match                              video 95.10 s, audio 95.11 s
+PASS  File size reasonable for upload                            74 MB
+PASS  Integrated loudness about -14 LUFS (Instagram/Reels norm)  -14.1 LUFS
+PASS  True peak below -1 dBTP                                    -1.6 dBTP
+PASS  No silent gaps over 1.5 s                                  0 gaps
+PASS  No black frames                                            0 black runs
+PASS  No blank single-colour frames (sampled at 10 fps)          0 flagged
+PASS  Seamless loop (last frame matches first)                   mean pixel difference 0.3/255 at 54x96
