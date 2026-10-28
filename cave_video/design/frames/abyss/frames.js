@@ -168,8 +168,6 @@
     ctx.save(); ctx.globalCompositeOperation = 'lighter';
     ctx.strokeStyle = 'rgba(170,240,230,0.55)'; ctx.lineWidth = 2;
     ctx.beginPath(); for (let x = x0; x <= x1; x += 4) { const yy = y + 1.4 * Math.sin(x * .05 + t * 1.6); x === x0 ? ctx.moveTo(x, yy) : ctx.lineTo(x, yy); } ctx.stroke();
-    const g = ctx.createLinearGradient(0, y - 30, 0, y); g.addColorStop(0, 'rgba(90,190,180,0)'); g.addColorStop(1, 'rgba(90,190,180,0.10)');
-    ctx.fillStyle = g; ctx.fillRect(x0, y - 30, x1 - x0, 30);
     ctx.restore();
   };
 
@@ -287,10 +285,10 @@
       // rebreather / cylinder on the back + breathing hose
       ctx.beginPath(); ctx.roundRect(-12, -21, 44, 13, 6.5); ctx.fill();
       ctx.save(); ctx.strokeStyle = ctx.fillStyle; ctx.lineWidth = 2.6; ctx.lineCap = 'round';
-      ctx.beginPath(); ctx.moveTo(30, -18); ctx.quadraticCurveTo(48, -20, 56, -4); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(30, -18); ctx.quadraticCurveTo(44, -16, 55, -5); ctx.stroke();
       // legs: thigh + shin, gently bent, scissoring
-      for (const [sgn, off] of [[1, -3], [-1, 3]]) {
-        const a = kick * .14 * sgn, kx = -40, ky = off + 2 * sgn + a * 40, ax = -62, ay = off + a * 70;
+      for (const [sgn, off] of [[1, -4], [-1, 4]]) {
+        const a = (kick * .2 + .06) * sgn, kx = -40, ky = off + 2 * sgn + a * 40, ax = -62, ay = off + a * 70;
         ctx.lineWidth = 12; ctx.beginPath(); ctx.moveTo(-12, off * .8); ctx.lineTo(kx, ky); ctx.stroke();
         ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(kx, ky); ctx.lineTo(ax, ay); ctx.stroke();
         // fin blade
@@ -305,6 +303,11 @@
       ctx.beginPath(); ctx.roundRect(56, 9, 15, 9, 3); ctx.fill();
     };
     // amber rim light (offset toward the torch), then the silhouette
+    if (o.edge) {   // thin cool outline so the silhouette reads against black water
+      ctx.save(); ctx.fillStyle = `rgba(150,205,220,${o.edge})`; const e = 1.5 / k;
+      for (const [ex, ey] of [[-e, 0], [e, 0], [0, -e], [0, e]]) { ctx.save(); ctx.translate(ex, ey); body(); ctx.restore(); }
+      ctx.restore();
+    }
     if (o.rim !== 0) {
       ctx.save(); ctx.translate(1.2, 1.4); ctx.fillStyle = `rgba(255,170,80,${o.rim == null ? .55 : o.rim})`; body(); ctx.restore();
     }
@@ -550,7 +553,7 @@
     AB.line(ctx, [[640, 0], [620, 500], [dv.x + 14, dv.y - 30], [612, 1400], [626, H]], { color: 'rgba(220,240,240,0.14)', width: 1.4 });
     AB.bubbles(ctx, dv.x + 6, dv.y - 24, t, { n: 16, height: 860, seed: 13 });
     AB.scatter(ctx, dv.x - 20, dv.y + 80, 330, .13);
-    const L = AB.diver(ctx, dv.x, dv.y, ang, .62, t, { rim: .8 });
+    const L = AB.diver(ctx, dv.x, dv.y, ang, .62, t, { rim: .8, edge: .16 });
     const light = { x: L.x, y: L.y, ang, len: 560, spread: .28 };
     AB.torch(ctx, light, { intensity: 1, halo: 26 });
     AB.coneSilt(ctx, light, t, { n: 180 });
@@ -563,27 +566,28 @@
 
   // C — the bottom, -270 m: the line wraps the torch, CO2 climbing.
   function C(ctx, t) {
-    const cam = AB.cam(470, 1180, 270, 13);
+    const cam = AB.cam(470, 1250, 270, 16);
     AB.cave(ctx, cam, t, { cutWidth: 3 });
     // marker on the floor: a place, not a person
     const mx = cam.X(-22), my = cam.Y(AB.floorD(-22) - 1.4);
     AB.marker(ctx, mx, my, { r: 110, alpha: .7, core: 3.5 });
-    const dv = { x: 600, y: 990 }, ang = Math.PI * .8;
-    AB.scatter(ctx, dv.x - 60, dv.y + 40, 420, .17);
-    const L = AB.diver(ctx, dv.x, dv.y, ang, 1.05, t, { rim: .9, kick: .3, flip: true });
+    const dv = { x: 660, y: 1010 }, ang = Math.PI * .8;
+    AB.scatter(ctx, dv.x - 80, dv.y + 50, 440, .17);
+    AB.scatter(ctx, dv.x + 10, dv.y - 10, 190, .12, '120,170,200');   // faint cool backscatter behind the body
+    const L = AB.diver(ctx, dv.x, dv.y, ang, 1.5, t, { rim: .9, edge: .3, kick: 1, flip: true });
     const light = { x: L.x, y: L.y, ang: ang + .1, len: 520, spread: .24 };
     AB.torch(ctx, light, { intensity: .85, halo: 34 });
     AB.coneSilt(ctx, light, t, { n: 200, seed: 77 });
     AB.silt(ctx, t, { n: 320, lights: [light], alpha: .7, seed: 19 });
     // the line: hangs from above, snarls around the torch arm, trails off
-    const tg = AB.tangle(L.x + 34, L.y - 18, 74, t, { n: 15, seed: 12, sx: 1.45, sy: .7, rot: -.4 });
+    const tg = AB.tangle(L.x + 12, L.y - 2, 66, t, { n: 15, seed: 12, sx: 1.45, sy: .7, rot: -.4 });
     const a0 = tg[0], a1 = tg[tg.length - 1];
     AB.line(ctx, [[cam.X(12), 0], [cam.X(11.5), 500], [a0[0] + 20, a0[1] - 140], a0], { color: 'rgba(235,245,245,0.42)', width: 1.6 });
     AB.line(ctx, tg, { color: 'rgba(255,238,210,0.92)', width: 2.2, glow: .14 });
     { const tail = []; for (let i = 0; i <= 30; i++) { const u = i / 30, x = a1[0] + u * 330, y = a1[1] + Math.sin(u * 1.9) * 150 + u * 40; tail.push([x, Math.min(y, cam.Y(AB.floorD(cam.M(x)) - .6))]); }
       AB.line(ctx, tail, { color: 'rgba(235,245,245,0.28)', width: 1.4 }); }
     AB.bubbles(ctx, L.headX, L.headY - 30, t, { n: 9, height: 520, seed: 31 });
-    const pulse = .5 + .5 * Math.sin(t * 5.2);
+    const pulse = .5 + .5 * Math.cos((t - 1) * 5.2);   // peaks at t=1 (the still)
     AB.vignette(ctx, .85);
     AB.alarm(ctx, .4 + .4 * pulse);
     const g = AB.gauge(ctx, 80, 300, 270, { size: 230, warn: 1, max: 270, ruleW: 380 });

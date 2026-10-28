@@ -14,6 +14,13 @@ Usage:
   python3 mix_audio.py --stems         # also writes out/stem_<name>_{narration,music,sfx}.wav (pre-master)
   python3 mix_audio.py --only part2    # render just one output ("full" or a part id)
 
+Scene -> music bed mapping is configured at the top (DEFAULT_BED / FINAL_BED / FINAL_KEYWORDS / BED_FOR_SCENE).
+
+sfx_events.json entries are {t, name, gain?} per scene. Besides SFX names (audio/make_sfx.py ALLOWED) one special
+event is understood:
+  {"t": 12.4, "name": "music_mute", "dur": 2.5}            # music (and sting) silent from t for dur seconds
+  optional: "fade_out" (s, default 0.06, ends AT t) and "fade_in" (s, default 1.2, starts at t + dur)
+
 Missing SFX / music WAVs are generated automatically (audio/make_sfx.py, audio/make_music.py).
 """
 import json
@@ -46,8 +53,16 @@ SFX_HP = 50.0           # ... and SFX (12 dB/oct)
 NARR_HP = 70.0          # rumble filter on narration
 SCRATCH_GAP = (0.06, 0.9, 1.6)  # music dropout after record_scratch: fade-out, hold, fade-back-in (s)
 
-BED_FOR_SCENE = {"s01": "tension", "s02": "wonder", "s03": "wonder", "s04": "wonder", "s05": "science",
-                 "s06": "mystery", "s07": "resolve", "s08": "resolve", "s09": "outro"}
+MUTE_FADE = (0.06, 1.2)  # music_mute default fade-out (ends at t) and fade-back-in (starts at t+dur), seconds
+
+# ------------------------------------------------------------------ scene -> music bed (edit here)
+# Lookup order for a scene id: exact id in BED_FOR_SCENE, then the longest BED_FOR_SCENE key that is a prefix of the
+# id (e.g. "s03"), then FINAL_BED if the id contains any FINAL_KEYWORDS, else DEFAULT_BED.
+# Adjacent scenes on the same bed play as one continuous run; different beds crossfade over XFADE seconds.
+DEFAULT_BED = "abyss_descent"
+FINAL_BED = "abyss_aftermath"
+FINAL_KEYWORDS = ("outro", "aftermath")
+BED_FOR_SCENE = {}      # e.g. {"s01_coldopen": "abyss_descent", "s07": "abyss_aftermath"}
 
 SFX_DIR = os.path.join(ROOT, "audio", "sfx")
 MUSIC_DIR = os.path.join(ROOT, "audio", "music")
@@ -80,11 +95,14 @@ def find_audio(d, name):
 
 
 def bed_for(sid):
-    bed = BED_FOR_SCENE.get(sid[:3])
-    if bed is None:
-        warn(f"no music bed mapped for {sid}; using 'wonder'")
-        bed = "wonder"
-    return bed
+    if sid in BED_FOR_SCENE:
+        return BED_FOR_SCENE[sid]
+    pre = [k for k in BED_FOR_SCENE if sid.startswith(k)]
+    if pre:
+        return BED_FOR_SCENE[max(pre, key=len)]
+    if any(k in sid.lower() for k in FINAL_KEYWORDS):
+        return FINAL_BED
+    return DEFAULT_BED
 
 
 def ensure_music(names):
@@ -182,20 +200,29 @@ def build_music(sids, cues, offsets, total, events_abs, part, label):
         else:
             g *= ramp_out(n, ns(2.5))
         place(music, seg * g[None], s0)
-        print(f"  [{label}] music {name:8s} {s / SR:7.2f}s -> {e / SR:7.2f}s")
-    # brief dropout for the record scratch(es)
+        print(f"  [{label}] music {name:16s} {s / SR:7.2f}s -> {e / SR:7.2f}s")
+    # music dropouts: brief one after a record scratch, and explicit music_mute events
     drop = np.ones(total)
-    fo, hold, fi = SCRATCH_GAP
-    for t, name, _ in events_abs:
+
+    def dropout(a, fo, hold, fi):
+        """Gain curve: fade out over fo samples starting at a, hold silence, fade back in over fi."""
+        seg = np.concatenate([np.cos(0.5 * np.pi * np.arange(fo) / max(fo, 1)) ** 2, np.zeros(hold),
+                              np.sin(0.5 * np.pi * np.arange(fi) / max(fi, 1)) ** 2])
+        tmp = np.ones(total)
+        s0, e = max(a, 0), min(total, a + len(seg))
+        if s0 < e:
+            tmp[s0:e] = seg[s0 - a:e - a]
+        return tmp
+
+    for t, name, _, e in events_abs:
         if name == "record_scratch":
-            a = ns(t + 0.04)
-            seg = np.concatenate([np.cos(0.5 * np.pi * np.arange(ns(fo)) / ns(fo)) ** 2, np.zeros(ns(hold)),
-                                  np.sin(0.5 * np.pi * np.arange(ns(fi)) / ns(fi)) ** 2])
-            tmp = np.ones(total)
-            e = min(total, a + len(seg))
-            if a < total:
-                tmp[a:e] = seg[:e - a]
-            drop = np.minimum(drop, tmp)
+            fo, hold, fi = SCRATCH_GAP
+            drop = np.minimum(drop, dropout(ns(t + 0.04), ns(fo), ns(hold), ns(fi)))
+        elif name == "music_mute":
+            fo = ns(float(e.get("fade_out", MUTE_FADE[0])))
+            fi = ns(float(e.get("fade_in", MUTE_FADE[1])))
+            drop = np.minimum(drop, dropout(ns(t) - fo, fo, ns(float(e.get("dur", 1.5))), fi))
+            print(f"  [{label}] music_mute {t:7.2f}s for {float(e.get('dur', 1.5)):.2f}s")
     sting = None
     if part:
         nm = "sting_" + runs[-1][0]
@@ -209,6 +236,7 @@ def build_music(sids, cues, offsets, total, events_abs, part, label):
         st = st * ramp_out(st.shape[1], ns(0.25))[None]
         sting = np.zeros((2, total))
         place(sting, fft_filter(st, lambda f: hp2(f, MUSIC_HP) ** 2), start)
+        sting *= drop[None]
     return music * drop[None], sting
 
 
@@ -242,6 +270,12 @@ def build_sfx(sids, ev, cues, offsets, total, level):
             t = float(e.get("t", 0))
             gain = e.get("gain")
             gain = 1.0 if gain is None else float(gain)
+            if name == "music_mute":
+                if "dur" not in e:
+                    warn(f"{sid} t={t:.2f}: music_mute without 'dur'; using 1.5 s")
+                t = min(max(t, 0.0), cues[sid]["duration"])
+                events_abs.append(((offsets[sid] + ns(t)) / SR, name, gain, e))
+                continue
             if name not in allowed:
                 warn(f"{sid} t={t:.2f}: unknown sfx '{name}', skipped")
                 continue
@@ -252,7 +286,7 @@ def build_sfx(sids, ev, cues, offsets, total, level):
                 cache[name] = load(os.path.join(SFX_DIR, name + ".wav"), 1)[0]
             place(sfx, cache[name], offsets[sid] + ns(t), gain * level)
             placed += 1
-            events_abs.append(((offsets[sid] + ns(t)) / SR, name, gain))
+            events_abs.append(((offsets[sid] + ns(t)) / SR, name, gain, e))
     return fft_filter(sfx, lambda f: hp2(f, SFX_HP)), placed, events_abs
 
 
