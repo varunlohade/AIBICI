@@ -29,7 +29,7 @@ SCENES = [
         "visual": "Surface: a small duckweed pool on a dry farm. Push down through the narrow throat into a vast "
                   "flooded chamber. 1994: a second, older light sinks away and goes still on the floor (a soft glow, never a body).",
         "lines": [
-            (N, "This is Boesmansgat, in South Africa: a small pool that opens into a flooded chamber nearly three hundred metres deep.", 0.3),
+            (N, "Boesmansgat, South Africa: a small pool above a flooded chamber nearly three hundred metres deep.", 0.3),
             (N, "In 1994, a twenty-year-old diver named Deon Dreyer sank out of sight in it, and never came back up.", 0.3),
             (N, "His body stayed down there for ten years.", 0.7, 0.95),
         ],
@@ -83,11 +83,10 @@ SCENES = [
         "id": "c07_aftermath",
         "title": "Aftermath",
         "visual": "Four days later: the line is lifted; two soft lights rise together through the water toward the "
-                  "surface caustics. The pool, the plaque. Final: the cross-section, quiet.",
+                  "surface caustics. The pool, the plaque. End on the line 'Dave Shaw did bring Deon home.' and loop.",
         "lines": [
             (N, "Four days later, as divers lifted the line, Dave and Deon rose to the surface together.", 0.4),
-            (N, "Dave Shaw did bring Deon home.", 0.6, 0.92),
-            (N, "His last dive is still studied today, as a lesson in the limits of the human body.", 2.0),
+            (N, "Dave Shaw did bring Deon home.", 2.5, 0.92),
         ],
     },
 ]

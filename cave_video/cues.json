@@ -1,7 +1,7 @@
 {
  "c01_hook": {
   "title": "Hook",
-  "duration": 9.295,
+  "duration": 9.155,
   "lines": [
    {
     "voice": "NARR",
@@ -90,32 +90,32 @@
     "voice": "NARR",
     "text": "to bring a stranger home.",
     "start": 6.637,
-    "end": 8.495,
+    "end": 8.355,
     "words": [
      {
       "w": "to",
-      "start": 6.714,
-      "end": 6.913
+      "start": 6.643,
+      "end": 6.922
      },
      {
       "w": "bring",
-      "start": 6.913,
-      "end": 7.113
+      "start": 6.922,
+      "end": 7.2
      },
      {
       "w": "a",
-      "start": 7.113,
-      "end": 7.312
+      "start": 7.2,
+      "end": 7.479
      },
      {
       "w": "stranger",
-      "start": 7.312,
-      "end": 7.741
+      "start": 7.479,
+      "end": 8.077
      },
      {
       "w": "home.",
-      "start": 7.741,
-      "end": 7.94
+      "start": 8.077,
+      "end": 8.355
      }
     ]
    }
@@ -123,264 +123,239 @@
  },
  "c02_hole": {
   "title": "Boesmansgat",
-  "duration": 19.851,
+  "duration": 18.365,
   "lines": [
    {
     "voice": "NARR",
-    "text": "This is Boesmansgat, in South Africa: a small pool that opens into a flooded chamber nearly three hundred metres deep.",
+    "text": "Boesmansgat, South Africa: a small pool above a flooded chamber nearly three hundred metres deep.",
     "start": 0.3,
-    "end": 8.566,
+    "end": 6.941,
     "words": [
      {
-      "w": "This",
-      "start": 0.347,
-      "end": 0.561
-     },
-     {
-      "w": "is",
-      "start": 0.561,
-      "end": 0.775
-     },
-     {
       "w": "Boesmansgat,",
-      "start": 0.775,
-      "end": 1.449
-     },
-     {
-      "w": "in",
-      "start": 1.706,
-      "end": 1.921
+      "start": 0.35,
+      "end": 1.027
      },
      {
       "w": "South",
-      "start": 1.921,
-      "end": 2.135
+      "start": 1.284,
+      "end": 1.499
      },
      {
       "w": "Africa:",
-      "start": 2.135,
-      "end": 2.777
+      "start": 1.499,
+      "end": 2.143
      },
      {
       "w": "a",
-      "start": 3.034,
-      "end": 3.248
+      "start": 2.4,
+      "end": 2.615
      },
      {
       "w": "small",
-      "start": 3.248,
-      "end": 3.463
+      "start": 2.615,
+      "end": 2.83
      },
      {
       "w": "pool",
-      "start": 3.463,
-      "end": 3.677
+      "start": 2.83,
+      "end": 3.044
      },
      {
-      "w": "that",
-      "start": 3.677,
-      "end": 3.891
-     },
-     {
-      "w": "opens",
-      "start": 3.891,
-      "end": 4.319
-     },
-     {
-      "w": "into",
-      "start": 4.319,
-      "end": 4.747
+      "w": "above",
+      "start": 3.044,
+      "end": 3.474
      },
      {
       "w": "a",
-      "start": 4.747,
-      "end": 4.962
+      "start": 3.474,
+      "end": 3.688
      },
      {
       "w": "flooded",
-      "start": 4.962,
-      "end": 5.39
+      "start": 3.688,
+      "end": 4.118
      },
      {
       "w": "chamber",
-      "start": 5.39,
-      "end": 5.818
+      "start": 4.118,
+      "end": 4.547
      },
      {
       "w": "nearly",
-      "start": 5.818,
-      "end": 6.247
+      "start": 4.547,
+      "end": 4.976
      },
      {
       "w": "three",
-      "start": 6.247,
-      "end": 6.461
+      "start": 4.976,
+      "end": 5.191
      },
      {
       "w": "hundred",
-      "start": 6.461,
-      "end": 6.889
+      "start": 5.191,
+      "end": 5.62
      },
      {
       "w": "metres",
-      "start": 6.889,
-      "end": 7.317
+      "start": 5.62,
+      "end": 6.05
      },
      {
       "w": "deep.",
-      "start": 7.317,
-      "end": 7.532
+      "start": 6.05,
+      "end": 6.264
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "In 1994, a twenty-year-old diver named Deon Dreyer sank out of sight in it, and never came back up.",
-    "start": 8.866,
-    "end": 15.832,
+    "start": 7.241,
+    "end": 14.346,
     "words": [
      {
       "w": "In",
-      "start": 8.922,
-      "end": 9.124
+      "start": 7.241,
+      "end": 7.472
      },
      {
       "w": "1994,",
-      "start": 9.124,
-      "end": 10.135
+      "start": 7.472,
+      "end": 8.625
      },
      {
       "w": "a",
-      "start": 10.378,
-      "end": 10.58
+      "start": 8.902,
+      "end": 9.132
      },
      {
       "w": "twenty-year-old",
-      "start": 10.58,
-      "end": 11.217
+      "start": 9.132,
+      "end": 9.859
      },
      {
       "w": "diver",
-      "start": 11.217,
-      "end": 11.621
+      "start": 9.859,
+      "end": 10.32
      },
      {
       "w": "named",
-      "start": 11.621,
-      "end": 12.026
+      "start": 10.32,
+      "end": 10.782
      },
      {
       "w": "Deon",
-      "start": 12.026,
-      "end": 12.228
+      "start": 10.782,
+      "end": 11.012
      },
      {
       "w": "Dreyer",
-      "start": 12.228,
-      "end": 12.43
+      "start": 11.012,
+      "end": 11.243
      },
      {
       "w": "sank",
-      "start": 12.43,
-      "end": 12.632
+      "start": 11.243,
+      "end": 11.474
      },
      {
       "w": "out",
-      "start": 12.632,
-      "end": 12.834
+      "start": 11.474,
+      "end": 11.705
      },
      {
       "w": "of",
-      "start": 12.834,
-      "end": 13.037
+      "start": 11.705,
+      "end": 11.935
      },
      {
       "w": "sight",
-      "start": 13.037,
-      "end": 13.239
+      "start": 11.935,
+      "end": 12.166
      },
      {
       "w": "in",
-      "start": 13.239,
-      "end": 13.441
+      "start": 12.166,
+      "end": 12.397
      },
      {
       "w": "it,",
-      "start": 13.441,
-      "end": 13.643
+      "start": 12.397,
+      "end": 12.627
      },
      {
       "w": "and",
-      "start": 13.886,
-      "end": 14.088
+      "start": 12.904,
+      "end": 13.135
      },
      {
       "w": "never",
-      "start": 14.088,
-      "end": 14.492
+      "start": 13.135,
+      "end": 13.596
      },
      {
       "w": "came",
-      "start": 14.492,
-      "end": 14.695
+      "start": 13.596,
+      "end": 13.827
      },
      {
       "w": "back",
-      "start": 14.695,
-      "end": 14.897
+      "start": 13.827,
+      "end": 14.057
      },
      {
       "w": "up.",
-      "start": 14.897,
-      "end": 15.099
+      "start": 14.057,
+      "end": 14.288
      }
     ]
    },
    {
     "voice": "NARR",
     "text": "His body stayed down there for ten years.",
-    "start": 16.132,
-    "end": 19.151,
+    "start": 14.646,
+    "end": 17.665,
     "words": [
      {
       "w": "His",
-      "start": 16.201,
-      "end": 16.525
+      "start": 14.715,
+      "end": 15.039
      },
      {
       "w": "body",
-      "start": 16.525,
-      "end": 17.173
+      "start": 15.039,
+      "end": 15.687
      },
      {
       "w": "stayed",
-      "start": 17.173,
-      "end": 17.497
+      "start": 15.687,
+      "end": 16.011
      },
      {
       "w": "down",
-      "start": 17.497,
-      "end": 17.821
+      "start": 16.011,
+      "end": 16.335
      },
      {
       "w": "there",
-      "start": 17.821,
-      "end": 18.145
+      "start": 16.335,
+      "end": 16.659
      },
      {
       "w": "for",
-      "start": 18.145,
-      "end": 18.469
+      "start": 16.659,
+      "end": 16.983
      },
      {
       "w": "ten",
-      "start": 18.469,
-      "end": 18.793
+      "start": 16.983,
+      "end": 17.307
      },
      {
       "w": "years.",
-      "start": 18.793,
-      "end": 19.117
+      "start": 17.307,
+      "end": 17.631
      }
     ]
    }
@@ -1228,7 +1203,7 @@
  },
  "c07_aftermath": {
   "title": "Aftermath",
-  "duration": 16.071,
+  "duration": 11.141,
   "lines": [
    {
     "voice": "NARR",
@@ -1322,130 +1297,37 @@
     "voice": "NARR",
     "text": "Dave Shaw did bring Deon home.",
     "start": 6.319,
-    "end": 8.827,
+    "end": 8.641,
     "words": [
      {
       "w": "Dave",
-      "start": 6.345,
-      "end": 6.699
+      "start": 6.35,
+      "end": 6.673
      },
      {
       "w": "Shaw",
-      "start": 6.699,
-      "end": 7.053
+      "start": 6.673,
+      "end": 6.996
      },
      {
       "w": "did",
-      "start": 7.053,
-      "end": 7.407
+      "start": 6.996,
+      "end": 7.319
      },
      {
       "w": "bring",
-      "start": 7.407,
-      "end": 7.761
+      "start": 7.319,
+      "end": 7.642
      },
      {
       "w": "Deon",
-      "start": 7.761,
-      "end": 8.115
+      "start": 7.642,
+      "end": 7.965
      },
      {
       "w": "home.",
-      "start": 8.115,
-      "end": 8.469
-     }
-    ]
-   },
-   {
-    "voice": "NARR",
-    "text": "His last dive is still studied today, as a lesson in the limits of the human body.",
-    "start": 9.427,
-    "end": 14.071,
-    "words": [
-     {
-      "w": "His",
-      "start": 9.461,
-      "end": 9.639
-     },
-     {
-      "w": "last",
-      "start": 9.639,
-      "end": 9.818
-     },
-     {
-      "w": "dive",
-      "start": 9.818,
-      "end": 9.996
-     },
-     {
-      "w": "is",
-      "start": 9.996,
-      "end": 10.175
-     },
-     {
-      "w": "still",
-      "start": 10.175,
-      "end": 10.353
-     },
-     {
-      "w": "studied",
-      "start": 10.353,
-      "end": 10.71
-     },
-     {
-      "w": "today,",
-      "start": 10.71,
-      "end": 11.067
-     },
-     {
-      "w": "as",
-      "start": 11.281,
-      "end": 11.46
-     },
-     {
-      "w": "a",
-      "start": 11.46,
-      "end": 11.638
-     },
-     {
-      "w": "lesson",
-      "start": 11.638,
-      "end": 11.995
-     },
-     {
-      "w": "in",
-      "start": 11.995,
-      "end": 12.174
-     },
-     {
-      "w": "the",
-      "start": 12.174,
-      "end": 12.352
-     },
-     {
-      "w": "limits",
-      "start": 12.352,
-      "end": 12.71
-     },
-     {
-      "w": "of",
-      "start": 12.71,
-      "end": 12.888
-     },
-     {
-      "w": "the",
-      "start": 12.888,
-      "end": 13.067
-     },
-     {
-      "w": "human",
-      "start": 13.067,
-      "end": 13.424
-     },
-     {
-      "w": "body.",
-      "start": 13.424,
-      "end": 13.781
+      "start": 7.965,
+      "end": 8.288
      }
     ]
    }
