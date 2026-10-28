@@ -20,6 +20,6 @@ PY
 for name in $(python3 -c "from script import PARTS; print(' '.join(p['id'] for p in PARTS))"); do
   audio="out/${name}_audio.wav"
   ffmpeg -y -loglevel error -f concat -safe 0 -i "out/concat_${name}.txt" -i "$audio" \
-    -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart "out/msg_${name}.mp4"
+    -map 0:v -map 1:a -c:v libx264 -preset medium -crf 19 -pix_fmt yuv420p -r 30 -c:a aac -b:a 192k -shortest -movflags +faststart "out/msg_${name}.mp4"
   echo "Done: $(pwd)/out/msg_${name}.mp4"
 done
