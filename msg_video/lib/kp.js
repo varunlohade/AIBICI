@@ -953,11 +953,11 @@
   };
 
   // ================================================================= CAPTIONS
-  // Torn white paper strip, Nunito Black 72px, horizontally centred, inside y 1300-1480. Spoken words ink, unread words violet ink; the raised chip sits on KEY words only
+  // Torn white paper strip, Nunito Black 56px, bottom centre (centre y 1660, client request). Spoken words ink, unread words violet ink; the raised chip sits on KEY words only
   // with a hard shadow + misregistered under-print. Chip colour by act (see KP.CAP.accent).
   // words = [{s, state: 'done'|'on'|'later'}], lines = [[wordIndex...], ...]
   KP.CAP = {
-    size: 72, cx: 540, cy: 1390, lh: 1.08, padY: 9, maxW: 820, maxWords: 7, maxChars: 38,   // centred; 820 px max keeps clear of Instagram's right-side buttons
+    size: 56, cx: 540, cy: 1660, lh: 1.08, padY: 8, maxW: 760, maxWords: 7, maxChars: 38,   // centred; 820 px max keeps clear of Instagram's right-side buttons
     lavender: P.unread,
     // per-scene chip colour; [fill, under-print ink, text colour]. Approved: pink cold open, gold glutamate, red 1960s.
     accent: {
@@ -1094,7 +1094,7 @@
     const ws = cw.map(w => w.w), C = KP.CAP, sp = C.size * .26, fnt = { size: C.size, font: 'Nunito', weight: 900 };
     const w = ws.map(s => KP.measure(null, s, fnt)), tot = w.reduce((a, b) => a + b, 0) + sp * (ws.length - 1);
     const idx = ws.map((_, i) => i);
-    if (tot <= 640 || ws.length < 2) return { lines: [idx], size: tot > C.maxW ? Math.floor(C.size * C.maxW / tot) : C.size };
+    if (tot <= 600 || ws.length < 2) return { lines: [idx], size: tot > C.maxW ? Math.floor(C.size * C.maxW / tot) : C.size };
     let bestK = 1, bestV = Infinity, bestW = 0;
     for (let k = 1; k < ws.length; k++) {
       const a = w.slice(0, k).reduce((x, y) => x + y, 0) + sp * (k - 1), b = w.slice(k).reduce((x, y) => x + y, 0) + sp * (ws.length - k - 1);
